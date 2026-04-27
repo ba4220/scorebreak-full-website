@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support | ScoreBreak Help Center &amp; Customer Service</title>
+  <meta name="description" content="ScoreBreak support — Help Center, app downloads, and direct contact. Get help with film analysis, Airborne sideline replay, and the recruiting portal." />
+  <meta name="keywords" content="ScoreBreak support, ScoreBreak help, film analysis support, Airborne support, sideline replay help, ScoreBreak contact" />
+  <meta property="og:title" content="Support | ScoreBreak Help Center" />
+  <meta property="og:description" content="ScoreBreak support — Help Center, app downloads, and direct contact. We show up when it counts." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/support.html" />
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Support | ScoreBreak Help Center" />
+  <meta name="twitter:description" content="Get help with ScoreBreak — film analysis, Airborne sideline replay, and the recruiting portal." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .support-hero {
+      padding: calc(var(--nav-h) + 5rem) 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .support-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .support-hero .section-label { margin-bottom: .75rem; }
+    .support-hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .support-hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+    .phone-display {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      background: var(--blue-dim);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: .9rem 2rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      color: var(--blue);
+      text-decoration: none;
+      transition: background .2s, box-shadow .2s;
+    }
+    .phone-display:hover { background: var(--blue-mid); box-shadow: var(--shadow-blue); }
+    .phone-display svg { width: 24px; height: 24px; }
+    .phone-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: .7;
+      display: block;
+      margin-top: .75rem;
+    }
+
+    /* Support cards */
+    .support-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .support-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: background .2s, border-color .2s, box-shadow .2s;
+    }
+    .support-card:hover { background: var(--card-bg2); border-color: var(--border); box-shadow: var(--shadow); }
+    .support-card-icon {
+      width: 60px; height: 60px;
+      background: var(--blue-dim);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--blue);
+    }
+    .support-card-icon svg { width: 28px; height: 28px; }
+    .support-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: .6rem;
+      color: var(--text);
+    }
+    .support-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Contact form */
+    .contact-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border-sub);
+      border-bottom: 1px solid var(--border-sub);
+    }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      margin-bottom: 1rem;
+    }
+    .contact-info p {
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+    .contact-detail-icon {
+      width: 36px; height: 36px;
+      background: var(--blue-dim);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .contact-detail-icon svg { width: 18px; height: 18px; }
+    .contact-detail strong { display: block; font-size: .9rem; font-weight: 700; margin-bottom: .1rem; }
+    .contact-detail span { font-size: .85rem; color: var(--text-muted); }
+
+    .contact-form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+    .contact-form-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: .7rem 1rem;
+      background: var(--bg);
+      border: 1.5px solid var(--border-sub);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: .92rem;
+      font-family: var(--font);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-dim);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-dim); }
+    [data-theme="light"] .form-group input,
+    [data-theme="light"] .form-group textarea { background: #fff; }
+    .contact-submit {
+      width: 100%;
+      padding: .85rem;
+      background: var(--blue);
+      color: #0A0E1A;
+      font-size: .95rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity .2s;
+      margin-top: .5rem;
+    }
+    [data-theme="light"] .contact-submit { color: #fff; }
+    .contact-submit:hover { opacity: .9; }
+
+    .contact-confirm {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .contact-confirm.visible { display: block; }
+    .contact-confirm h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: .75rem; color: var(--blue); }
+    .contact-confirm p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* Downloads */
+    .download-items {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .download-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: var(--bg3);
+      border: 1px solid var(--border-sub);
+      border-radius: 10px;
+      gap: 1rem;
+    }
+    .download-item-info { display: flex; align-items: center; gap: .75rem; }
+    .download-item-icon { font-size: 1.5rem; }
+    .download-item-name { font-size: .92rem; font-weight: 700; margin-bottom: .15rem; }
+    .download-item-meta { font-size: .78rem; color: var(--text-dim); }
+
+    @media (max-width: 900px) {
+      .support-cards { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html">Football</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne</a>
+          <a href="portal.html">Portal</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link" style="color:var(--blue)">Support</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="lacrosse.html">Lacrosse</a>
+    <a href="basketball.html">Basketball</a>
+    <a href="football.html">Football</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Solutions</div>
+    <a href="software.html">Team Software</a>
+    <a href="airborne.html">Airborne</a>
+    <a href="portal.html">Portal</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="support.html">Support</a>
+    <a href="demo.html">Request a Demo</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,#FF6B35,#FF4500);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="support-hero">
+  <div class="container">
+    <div class="section-label">Support</div>
+    <h1>Support That Shows Up<br>When It Counts.</h1>
+    <p>Get the help you need, fast. From comprehensive documentation to live support — we're here for your program.</p>
+    <div>
+      <a href="tel:18006092102" class="phone-display">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 9.37 19.79 19.79 0 01.43 .74 2 2 0 012.42.5h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.18a16 16 0 006.29 6.29l1.02-.92a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        1-800-609-2102
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT SECTIONS -->
+<section class="section">
+  <div class="container">
+    <div class="support-cards">
+      <!-- Help Center -->
+      <div class="support-card">
+        <div class="support-card-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="14" cy="14" r="11"/>
+            <path d="M14 10a3 3 0 013 3v1a3 3 0 01-3 3"/>
+            <circle cx="14" cy="20" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Help Center</h3>
+        <p>Explore our comprehensive documentation, tutorials, and guides to get the most out of ScoreBreak.</p>
+        <a href="https://intercom.help/scorebreakhelp/en/" class="btn btn-outline btn-sm" target="_blank" rel="noopener" style="margin: 0 auto;">Visit Help Center →</a>
+      </div>
+
+      <!-- Downloads -->
+      <div class="support-card">
+        <div class="support-card-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 16v4a2 2 0 002 2h16a2 2 0 002-2v-4"/>
+            <polyline points="8 12 14 18 20 12"/>
+            <line x1="14" y1="2" x2="14" y2="18"/>
+          </svg>
+        </div>
+        <h3>Downloads</h3>
+        <p>Get the latest ScoreBreak apps for Mac, iPhone, and iPad — or use the web app directly in your browser.</p>
+        <div class="download-items" style="text-align:left; margin-top: .75rem;">
+          <div class="download-item">
+            <div class="download-item-info">
+              <span class="download-item-icon"></span>
+              <div>
+                <div class="download-item-name">Mac App</div>
+                <div class="download-item-meta">macOS · Latest version</div>
+              </div>
+            </div>
+            <a href="#" class="btn btn-sm btn-outline">Download</a>
+          </div>
+          <div class="download-item">
+            <div class="download-item-info">
+              <span class="download-item-icon"></span>
+              <div>
+                <div class="download-item-name">iPhone &amp; iPad App</div>
+                <div class="download-item-meta">iOS · ScoreBreak: Game Film Review</div>
+              </div>
+            </div>
+            <a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" class="btn btn-sm btn-outline" target="_blank" rel="noopener">App Store</a>
+          </div>
+          <div class="download-item">
+            <div class="download-item-info">
+              <span class="download-item-icon">🌐</span>
+              <div>
+                <div class="download-item-name">Web App</div>
+                <div class="download-item-meta">Use in any browser — no download required</div>
+              </div>
+            </div>
+            <a href="https://app.scorebreak.io" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="support-card" style="text-align:left">
+        <div class="support-card-icon" style="margin-left:0;">
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <h3>Contact Support</h3>
+        <p>Can't find what you're looking for? Send us a message and we'll respond within 1 business day.</p>
+        <div style="margin-top: .5rem;">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h12a1 1 0 011 1v9a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M16 5L9 10 2 5"/></svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>support@scorebreak.io</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 13.4v2.2a1.5 1.5 0 01-1.6 1.5 14.8 14.8 0 01-6.5-2.3 14.6 14.6 0 01-4.5-4.5A14.8 14.8 0 011.6 3.6 1.5 1.5 0 013 2.1h2.2a1.5 1.5 0 011.5 1.3c.1.9.3 1.8.6 2.6a1.5 1.5 0 01-.3 1.6L6 8.6a12 12 0 004.7 4.7l.9-.9a1.5 1.5 0 011.6-.3c.8.3 1.7.5 2.6.6a1.5 1.5 0 011.3 1.5l-.1.2z"/></svg>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <span>1-800-609-2102</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM SECTION -->
+<section class="section contact-section">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Send a Message</div>
+        <h2>We're here to help</h2>
+        <p>Our support team understands there's no time for downtime. We prioritize ScoreBreak users with faster response times and direct access to our technical experts.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg>
+          </div>
+          <div>
+            <strong>Response Time</strong>
+            <span>Within 1 business day</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9l4 4 6-7"/></svg>
+          </div>
+          <div>
+            <strong>Priority Support</strong>
+            <span>All ScoreBreak subscribers get priority queue</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 1l2.3 4.6L17 6.5l-4 3.9.9 5.5L9 13.5l-4.9 2.4.9-5.5-4-3.9 5.7-.9L9 1z"/></svg>
+          </div>
+          <div>
+            <strong>Technical Experts</strong>
+            <span>Direct access to people who built the product</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3>Send us a message</h3>
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="cName">Your Name</label>
+            <input type="text" id="cName" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="cEmail">Email Address</label>
+            <input type="email" id="cEmail" name="email" placeholder="jane@school.edu" required />
+          </div>
+          <div class="form-group">
+            <label for="cMessage">Message</label>
+            <textarea id="cMessage" name="message" placeholder="Describe the issue or question..." required></textarea>
+          </div>
+          <button type="submit" class="contact-submit">Send Message →</button>
+        </form>
+        <div class="contact-confirm" id="contactConfirm">
+          <h4>Message sent!</h4>
+          <p>Thanks for reaching out. Our support team will get back to you within 1 business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="Logos/4-nav.png" alt="ScoreBreak"></a>
+        <p class="footer-tagline">We are ScoreBreak — the sports technology company that connects athletes with coaches, gives teams the intelligence to outperform opponents, and provides professional organizations with game-changing solutions. From recruitment to championships, we power success at every level.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
+          <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="support.html">Downloads</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 ScoreBreak, Inc. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var html = document.documentElement;
+  var saved = localStorage.getItem('sbTheme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  var toggle = document.getElementById('themeToggle');
+  function setIcon(theme) {
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
+      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+  }
+  setIcon(saved);
+  toggle.addEventListener('click', function() {
+    var cur = html.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('sbTheme', next);
+    setIcon(next);
+  });
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+
+  // Contact form
+  var cform = document.getElementById('contactForm');
+  var cconfirm = document.getElementById('contactConfirm');
+  cform.addEventListener('submit', function(e) {
+    e.preventDefault();
+    cform.style.display = 'none';
+    cconfirm.classList.add('visible');
+  });
+})();
+</script>
+</body>
+</html>

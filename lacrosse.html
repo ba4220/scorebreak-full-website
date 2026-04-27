@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScoreBreak for Lacrosse | End-to-End Film Analysis &amp; Recruiting Platform</title>
+  <meta name="description" content="ScoreBreak is the leading lacrosse technology platform — AI-powered film analysis, sideline replay hardware, and a college recruiting portal. The Hudl alternative built for lacrosse programs." />
+  <meta name="keywords" content="lacrosse film analysis, lacrosse recruiting portal, Hudl alternative lacrosse, lacrosse coaching software, sideline replay lacrosse, college lacrosse recruiting, lacrosse video analysis, high school lacrosse software, ScoreBreak lacrosse" />
+  <meta property="og:title" content="ScoreBreak for Lacrosse | Film Analysis, Sideline Replay &amp; Recruiting" />
+  <meta property="og:description" content="The complete lacrosse technology platform — film analysis, sideline replay, and a recruiting portal that gets your athletes in front of college coaches." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/lacrosse.html" />
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ScoreBreak for Lacrosse | Film Analysis &amp; Recruiting Platform" />
+  <meta name="twitter:description" content="The complete lacrosse technology platform — film analysis, sideline replay, and a recruiting portal that gets your athletes in front of college coaches." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Lacrosse page-specific styles ── */
+
+    /* Hero */
+    .lax-hero {
+      padding: calc(var(--nav-h) + 6rem) 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .lax-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.09) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .lax-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .lax-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .3rem .9rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.75rem;
+    }
+    .lax-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .lax-hero .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      background: var(--card-bg2);
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .product-card-img {
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .product-card-img-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-card-img-icon {
+      font-size: 3rem;
+      opacity: .35;
+    }
+
+    /* Individual card gradient themes */
+    .product-card:nth-child(1) .product-card-img {
+      background: linear-gradient(135deg, #0d1f35 0%, #0a2040 40%, #051525 100%);
+    }
+    .product-card:nth-child(1) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(86,199,255,.18) 0%, transparent 55%);
+    }
+    .product-card:nth-child(2) .product-card-img {
+      background: linear-gradient(135deg, #1a1035 0%, #120d28 40%, #0a0820 100%);
+    }
+    .product-card:nth-child(2) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(120,86,255,.18) 0%, transparent 55%);
+    }
+    .product-card:nth-child(3) .product-card-img {
+      background: linear-gradient(135deg, #0d2535 0%, #091d2e 40%, #051018 100%);
+    }
+    .product-card:nth-child(3) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,180,255,.16) 0%, transparent 55%);
+    }
+    .product-card:nth-child(4) .product-card-img {
+      background: linear-gradient(135deg, #1a2810 0%, #152008 40%, #0e1806 100%);
+    }
+    .product-card:nth-child(4) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(100,200,60,.14) 0%, transparent 55%);
+    }
+
+    .product-card-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      flex: 1;
+    }
+
+    .product-card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -.02em;
+      transition: color .15s;
+    }
+    .product-card:hover .product-card-title {
+      color: var(--blue);
+    }
+    .product-card-arrow {
+      color: var(--blue);
+    }
+
+    .product-card-desc {
+      font-size: .93rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .product-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-top: auto;
+      padding-top: .5rem;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity .2s, transform .2s;
+    }
+    .product-card:hover .product-card-link {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Purpose-Built section */
+    .purpose-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .purpose-feature-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: background .2s, border-color .2s;
+    }
+    .purpose-feature-item:hover {
+      background: var(--card-bg2);
+      border-color: var(--border);
+    }
+    .purpose-feature-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--blue-dim);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .purpose-feature-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .purpose-feature-text h3 {
+      font-size: .97rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+    .purpose-feature-text p {
+      font-size: .87rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Testimonials - 2 col for this page */
+    .testimonials-2col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .purpose-feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-2col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .lax-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
+      .purpose-feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html">Football</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne</a>
+          <a href="portal.html">Portal</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="lacrosse.html">Lacrosse</a>
+    <a href="basketball.html">Basketball</a>
+    <a href="football.html">Football</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Solutions</div>
+    <a href="software.html">Team Software</a>
+    <a href="airborne.html">Airborne</a>
+    <a href="portal.html">Portal</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="support.html">Support</a>
+    <a href="demo.html">Request a Demo</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,#FF6B35,#FF4500);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="lax-hero">
+  <div class="container">
+    <div class="lax-hero-inner">
+      <div class="lax-hero-eyebrow">Lacrosse</div>
+      <h1>End to End Lacrosse.</h1>
+      <p class="hero-sub">First look to final whistle, the complete platform for recruiting, coaching, and growing our game.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT GRID ═══ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="product-grid">
+
+      <!-- Card 1: Recruiting Portal -->
+      <a href="portal.html" class="product-card">
+        <div class="product-card-img">
+          <img src="Portal/portal-player.png" alt="ScoreBreak Portal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Recruiting: ScoreBreak Portal <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">Discover your next top recruit with ScoreBreak's Recruiting Portal where coaches find their next recruits. Build your Player Profile with highlights and game footage in a portal that gets you discovered.</p>
+          <span class="product-card-link">Explore the Portal →</span>
+        </div>
+      </a>
+
+      <!-- Card 2: Team Software -->
+      <a href="software.html" class="product-card">
+        <div class="product-card-img">
+          <img src="Software /scorebreak-software-lacrosse.png" alt="ScoreBreak Team Software" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Team Software &amp; Breakdown Services <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">Equip your team with our powerful tools &amp; our Handoff service, detailed expert analysis so you can focus on coaching.</p>
+          <span class="product-card-link">Explore Team Software →</span>
+        </div>
+      </a>
+
+      <!-- Card 3: Sideline Video Replay -->
+      <a href="airborne.html" class="product-card">
+        <div class="product-card-img">
+          <img src="Airborne R/ipad-airborne-sideline.png" alt="Airborne sideline replay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Sideline Video Replay <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">Enhance officiating and sideline coaching review with our Airborne™ hardware, built for seamless integration.</p>
+          <span class="product-card-link">Explore Airborne →</span>
+        </div>
+      </a>
+
+      <!-- Card 4: League Solutions -->
+      <a href="demo.html" class="product-card">
+        <div class="product-card-img">
+          <img src="Portal/recruiting.png" alt="Lacrosse league solutions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">League Solutions <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">Connect your program ecosystem with our full suite of scoring, video, API services, and custom stat websites.</p>
+          <span class="product-card-link">Talk to Sales →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PURPOSE-BUILT SECTION ═══ -->
+<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Platform</span>
+      <h2 class="section-title">Purpose-Built for Coaches, Players, and Leagues</h2>
+      <p class="section-subtitle">Every feature of ScoreBreak is designed specifically for the lacrosse ecosystem — from grassroots recruiting to elite competition.</p>
+    </div>
+
+    <div class="purpose-feature-grid">
+
+      <!-- 1: Athlete Profiles -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M20 21a8 8 0 10-16 0"/>
+          </svg>
+        </div>
+        <div class="purpose-feature-text">
+          <h3>Athlete Profiles</h3>
+          <p>Complete player profiles with highlights, stats, and game footage that get athletes discovered by the right coaches.</p>
+        </div>
+      </div>
+
+      <!-- 2: Scouting -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+            <path d="M11 8v6M8 11h6"/>
+          </svg>
+        </div>
+        <div class="purpose-feature-text">
+          <h3>Scouting</h3>
+          <p>Powerful search and filtering tools let coaches find the exact recruits they need, filtered by position, class year, academics, and more.</p>
+        </div>
+      </div>
+
+      <!-- 3: Integrated Hardware -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+          </svg>
+        </div>
+        <div class="purpose-feature-text">
+          <h3>Integrated Hardware</h3>
+          <p>Airborne™ sideline replay systems connect directly to ScoreBreak software — no extra setup, no workarounds, just replay.</p>
+        </div>
+      </div>
+
+      <!-- 4: Game Film Analysis -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+        </div>
+        <div class="purpose-feature-text">
+          <h3>Game Film Analysis</h3>
+          <p>Tag, clip, and annotate plays. Share film packages with your staff and players to accelerate preparation and review.</p>
+        </div>
+      </div>
+
+      <!-- 5: Team Preparation -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div class="purpose-feature-text">
+          <h3>Team Preparation</h3>
+          <p>Build scouting reports and opponent breakdowns with expert Handoff analysis so your staff can focus on execution.</p>
+        </div>
+      </div>
+
+      <!-- 6: Effortless Communication -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="purpose-feature-text">
+          <h3>Effortless Communication</h3>
+          <p>Keep athletes, coaches, and parents aligned with integrated messaging and automatic notifications throughout the season.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">From the Field</span>
+      <h2 class="section-title">What Lacrosse Coaches Are Saying</h2>
+    </div>
+
+    <div class="testimonials-2col">
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">ScoreBreak completely changed how we recruit. I can find athletes with the exact profile we're looking for — academic fit, position, skill level — in minutes instead of weeks. We signed two players this cycle we never would have found otherwise.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MC</div>
+          <div>
+            <div class="testimonial-name">Coach Mike Callahan</div>
+            <div class="testimonial-title">Head Coach, Division I Men's Lacrosse</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">The sideline replay system is a game changer. During halftime we can pull up footage instantly, show the defense exactly what's happening, and make real adjustments. Airborne has become a core part of how we coach.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SR</div>
+          <div>
+            <div class="testimonial-name">Coach Sarah Reynolds</div>
+            <div class="testimonial-title">Head Coach, Women's Lacrosse Program</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="Logos/4-nav.png" alt="ScoreBreak"></a>
+        <p class="footer-tagline">We are ScoreBreak — the sports technology company that connects athletes with coaches, gives teams the intelligence to outperform opponents, and provides professional organizations with game-changing solutions. From recruitment to championships, we power success at every level.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
+          <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="#">Downloads</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 ScoreBreak, Inc. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var html = document.documentElement;
+  var saved = localStorage.getItem('sbTheme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  var toggle = document.getElementById('themeToggle');
+  function setIcon(theme) {
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
+      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+  }
+  setIcon(saved);
+  toggle.addEventListener('click', function() {
+    var cur = html.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('sbTheme', next);
+    setIcon(next);
+  });
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+})();
+</script>
+</body>
+</html>

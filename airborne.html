@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airborne Sideline Replay System | ScoreBreak Hardware for Coaches</title>
+  <meta name="description" content="Airborne by ScoreBreak is the premier sideline replay system for lacrosse and football. Portable Airborne R for away games, Airborne Stadium for permanent installations. No internet required.">
+  <meta name="keywords" content="sideline replay system, lacrosse replay system, football sideline replay, Airborne replay, ScoreBreak Airborne, coaching hardware, Daktronics integration">
+  <meta property="og:title" content="Airborne Sideline Replay | ScoreBreak">
+  <meta property="og:description" content="Instant sideline replay for coaches — portable or permanently installed. Ultra-low latency, no internet required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scorebreak.io/airborne.html">
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ═══════════════════════════════════════════════
+       Airborne page-specific styles
+    ═══════════════════════════════════════════════ */
+
+    /* ── Hero ── */
+    .ab-hero {
+      padding: calc(var(--nav-h) + 6rem) 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ab-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1000px; height: 600px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .ab-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .ab-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .3rem .9rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.75rem;
+    }
+    .ab-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .ab-hero .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* ── What is Airborne — two-column intro ── */
+    .ab-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .ab-intro-text {}
+    .ab-intro-text .section-label { margin-bottom: .75rem; }
+    .ab-intro-text h2 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .ab-intro-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .ab-intro-text p:last-child { margin-bottom: 0; }
+
+    .ab-intro-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+      margin-top: 1.5rem;
+    }
+    .ab-intro-bullet {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .92rem;
+      color: var(--text-muted);
+    }
+    .ab-intro-bullet-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .ab-intro-visual {
+      background: linear-gradient(135deg, var(--bg3) 0%, var(--bg4) 60%, var(--bg2) 100%);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,.4), 0 0 0 1px var(--border-sub);
+    }
+    .ab-intro-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(86,199,255,.15) 0%, transparent 55%);
+    }
+    .ab-intro-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .ab-intro-visual-icon {
+      font-size: 4rem;
+      opacity: .5;
+    }
+    .ab-intro-visual-label {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    /* ── Solution Cards (chooser) ── */
+    .ab-solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .ab-solution-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .ab-solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .ab-solution-card.ab-r::before {
+      background: linear-gradient(90deg, var(--blue) 0%, rgba(86,199,255,.3) 100%);
+    }
+    .ab-solution-card.ab-stadium::before {
+      background: linear-gradient(90deg, #a78bfa 0%, rgba(167,139,250,.3) 100%);
+    }
+    .ab-solution-card:hover {
+      background: var(--card-bg2);
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .ab-solution-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .3rem .75rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+    .ab-solution-card.ab-r .ab-solution-badge {
+      background: var(--blue-dim);
+      color: var(--blue);
+      border: 1px solid var(--border);
+    }
+    .ab-solution-card.ab-stadium .ab-solution-badge {
+      background: rgba(167,139,250,.1);
+      color: #a78bfa;
+      border: 1px solid rgba(167,139,250,.2);
+    }
+
+    .ab-solution-card h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .ab-solution-card p {
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .ab-solution-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .88rem;
+      font-weight: 700;
+      margin-top: auto;
+    }
+    .ab-solution-card.ab-r .ab-solution-link { color: var(--blue); }
+    .ab-solution-card.ab-stadium .ab-solution-link { color: #a78bfa; }
+
+    /* ── Section dividers for product sections ── */
+    .ab-product-section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    /* Airborne R — blue left accent */
+    .ab-product-section.ab-r-section {
+      border-top: 1px solid var(--border-sub);
+    }
+    .ab-product-section.ab-r-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--blue) 0%, transparent 100%);
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Airborne Stadium — purple accent */
+    .ab-product-section.ab-stadium-section {
+      border-top: 1px solid var(--border-sub);
+      background: var(--bg2);
+    }
+    .ab-product-section.ab-stadium-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #a78bfa 0%, transparent 100%);
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Product section heading */
+    .ab-prod-head {
+      margin-bottom: 3rem;
+    }
+    .ab-prod-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .3rem .9rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .ab-r-section .ab-prod-badge {
+      background: var(--blue-dim);
+      color: var(--blue);
+      border: 1px solid var(--border);
+    }
+    .ab-stadium-section .ab-prod-badge {
+      background: rgba(167,139,250,.1);
+      color: #a78bfa;
+      border: 1px solid rgba(167,139,250,.2);
+    }
+
+    .ab-prod-head h2 {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .ab-r-section .ab-prod-head h2 { color: var(--blue); }
+    .ab-stadium-section .ab-prod-head h2 { color: #a78bfa; }
+
+    .ab-prod-head p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    /* Product layout: text + image side by side then features below */
+    .ab-prod-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+
+    /* Image placeholder for product sections */
+    .ab-prod-img {
+      border-radius: var(--radius-lg);
+      aspect-ratio: 16 / 10;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.4), 0 0 0 1px var(--border-sub);
+    }
+    .ab-r-section .ab-prod-img {
+      background: linear-gradient(135deg, #071828 0%, #0a2238 50%, #051018 100%);
+    }
+    .ab-r-section .ab-prod-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(86,199,255,.2) 0%, transparent 55%);
+    }
+    .ab-stadium-section .ab-prod-img {
+      background: linear-gradient(135deg, #120d28 0%, #1a1040 50%, #0a0820 100%);
+    }
+    .ab-stadium-section .ab-prod-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(167,139,250,.2) 0%, transparent 55%);
+    }
+    .ab-prod-img-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+    }
+    .ab-prod-img-icon { font-size: 3.5rem; opacity: .4; }
+    .ab-prod-img-label {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: .5;
+    }
+    .ab-r-section .ab-prod-img-label { color: var(--blue); }
+    .ab-stadium-section .ab-prod-img-label { color: #a78bfa; }
+
+    /* Highlight specs list for product sections */
+    .ab-prod-specs {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .ab-prod-spec {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      padding: .85rem 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 10px;
+      font-size: .92rem;
+      color: var(--text-muted);
+      transition: background .15s, border-color .15s;
+    }
+    .ab-prod-spec:hover { background: var(--card-bg2); border-color: var(--border); }
+    .ab-prod-spec-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+    .ab-prod-spec strong {
+      display: block;
+      color: var(--text);
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: .15rem;
+    }
+
+    /* Features grid for product sections */
+    .ab-features-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .ab-r-section .ab-features-label { color: var(--blue); }
+    .ab-stadium-section .ab-features-label { color: #a78bfa; }
+
+    .ab-features-grid {
+      display: grid;
+      gap: .85rem;
+    }
+    .ab-features-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .ab-features-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+
+    .ab-feature-chip {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .85rem 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 10px;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: background .15s, border-color .15s;
+    }
+    .ab-feature-chip:hover { background: var(--card-bg2); border-color: var(--border); }
+    .ab-feature-chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .ab-r-section .ab-feature-chip-dot { background: var(--blue); }
+    .ab-stadium-section .ab-feature-chip-dot { background: #a78bfa; }
+
+    /* ── Testimonials ── */
+    .ab-testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ── CTA Section ── */
+    .ab-cta {
+      padding: 5rem 0;
+    }
+    .ab-cta-inner {
+      background: linear-gradient(135deg, var(--blue-dim) 0%, transparent 70%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ab-cta-inner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ab-cta-inner > * { position: relative; z-index: 1; }
+    .ab-cta-inner h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .ab-cta-inner p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .ab-cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .ab-cta-link {
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: color .15s;
+    }
+    .ab-cta-link:hover { color: var(--blue); }
+
+    /* ── Floating image treatment ── */
+    @keyframes abFloat {
+      from { transform: translateY(0px); }
+      to   { transform: translateY(-8px); }
+    }
+    .ab-scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+      cursor: default;
+    }
+    .ab-scene:hover {
+      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+    }
+    .ab-scene .ab-intro-visual,
+    .ab-scene .ab-prod-img {
+      animation: abFloat 3s ease-in-out infinite alternate;
+      width: 100%;
+    }
+    .ab-scene:hover .ab-intro-visual,
+    .ab-scene:hover .ab-prod-img {
+      animation-play-state: paused;
+    }
+    .ab-glow-shadow {
+      width: 60%;
+      height: 14px;
+      background: rgba(86,199,255,.12);
+      border-radius: 50%;
+      filter: blur(10px);
+      margin-top: 10px;
+      animation: abFloat 3s ease-in-out infinite alternate;
+    }
+    .ab-scene:hover .ab-glow-shadow {
+      animation-play-state: paused;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1000px) {
+      .ab-features-grid.cols-5 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .ab-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+      .ab-solutions-grid { grid-template-columns: 1fr; }
+      .ab-prod-top { grid-template-columns: 1fr; gap: 2rem; }
+      .ab-features-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+      .ab-features-grid.cols-5 { grid-template-columns: repeat(2, 1fr); }
+      .ab-testimonials-grid { grid-template-columns: 1fr; }
+      .ab-officiating-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    }
+    @media (max-width: 600px) {
+      .ab-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
+      .ab-product-section { padding: 4rem 0; }
+      .ab-cta-inner { padding: 3rem 1.5rem; }
+      .ab-features-grid.cols-3 { grid-template-columns: 1fr; }
+      .ab-features-grid.cols-5 { grid-template-columns: 1fr; }
+      .ab-prod-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html">Football</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne</a>
+          <a href="portal.html">Portal</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="lacrosse.html">Lacrosse</a>
+    <a href="basketball.html">Basketball</a>
+    <a href="football.html">Football</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Solutions</div>
+    <a href="software.html">Team Software</a>
+    <a href="airborne.html">Airborne</a>
+    <a href="portal.html">Portal</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="support.html">Support</a>
+    <a href="demo.html">Request a Demo</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,#FF6B35,#FF4500);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="ab-hero">
+  <div class="container">
+    <div class="ab-hero-inner">
+      <div class="ab-hero-eyebrow">Airborne™</div>
+      <h1>See the Game Differently.</h1>
+      <p class="hero-sub">Powerful sideline replay systems with deployable and installable options to fit your needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT IS AIRBORNE — INTRO ═══ -->
+<section class="section" style="padding-top: 0; border-top: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="ab-intro">
+      <div class="ab-intro-text">
+        <span class="section-label">The Technology</span>
+        <h2>What is Airborne?</h2>
+        <p>Airborne is ScoreBreak's local network video replay system — a purpose-built hardware and software solution that brings instant replay to any sideline, anywhere.</p>
+        <p>Unlike cloud-based systems, Airborne operates entirely on its own local wireless network. No internet connection required, no latency from external servers — just fast, reliable replay that coaches and officials can count on when every second matters.</p>
+        <div class="ab-intro-bullets">
+          <div class="ab-intro-bullet">
+            <div class="ab-intro-bullet-dot"></div>
+            <span>No internet required — runs on its own local network</span>
+          </div>
+          <div class="ab-intro-bullet">
+            <div class="ab-intro-bullet-dot"></div>
+            <span>Integrated live stats feed directly in the replay interface</span>
+          </div>
+          <div class="ab-intro-bullet">
+            <div class="ab-intro-bullet-dot"></div>
+            <span>Multi-camera support for complete field coverage</span>
+          </div>
+          <div class="ab-intro-bullet">
+            <div class="ab-intro-bullet-dot"></div>
+            <span>Works at any venue — from practice fields to major stadiums</span>
+          </div>
+          <div class="ab-intro-bullet">
+            <div class="ab-intro-bullet-dot"></div>
+            <span>Deeply connected to ScoreBreak coaching software</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ab-scene">
+        <div class="ab-intro-visual">
+          <img src="Airborne R/Airborne-home-page.png" alt="Airborne system deployed at lacrosse game" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="ab-glow-shadow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION CHOOSER CARDS ═══ -->
+<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Two Solutions</span>
+      <h2 class="section-title">Choose the Right Airborne for You</h2>
+      <p class="section-subtitle">Whether you're looking for flexible sideline replay at away games or a full permanent stadium install, we have you covered.</p>
+    </div>
+
+    <div class="ab-solutions-grid">
+
+      <a href="#airborne-r" class="ab-solution-card ab-r">
+        <div class="ab-solution-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Rapid Deployable
+        </div>
+        <h3>Airborne R</h3>
+        <p>Portable, battery-powered sideline replay that deploys in minutes. Take it anywhere — away games, practice, tournaments. Ultra-low 6-second latency with everything you need in a durable travel case.</p>
+        <span class="ab-solution-link">
+          See Airborne R
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="#airborne-stadium" class="ab-solution-card ab-stadium">
+        <div class="ab-solution-badge" style="background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Installed
+        </div>
+        <h3>Airborne Stadium</h3>
+        <p>A permanent multi-angle IP camera network built into your home stadium. No setup on game day, near real-time replay, automated recording and upload, Daktronics integration, and advanced officiating review tools.</p>
+        <span class="ab-solution-link" style="color:#a78bfa;">
+          See Airborne Stadium
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AIRBORNE R SECTION ═══ -->
+<section class="ab-product-section ab-r-section" id="airborne-r">
+  <div class="container">
+
+    <div class="ab-prod-head">
+      <div class="ab-prod-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Rapid Deployable
+      </div>
+      <h2>Airborne™ R: Rapid Deployable Sideline Replay</h2>
+      <p>Take elite-level replay capability to every game on your schedule. Airborne R is a self-contained, battery-powered system that deploys in minutes — perfect for away games, neutral-site tournaments, and daily practice. With ultra-low 6-second latency and seamless integration with ScoreBreak's live stats, your staff has the same replay power at every venue.</p>
+    </div>
+
+    <div class="ab-prod-top">
+      <div>
+        <div class="ab-prod-specs">
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>6-Second Ultra-Low Latency</strong>
+              Near real-time replay the moment the whistle blows.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Battery Powered</strong>
+              Full game coverage with no external power source required.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Live Stats Integration</strong>
+              Game stats flow directly into your replay interface for full context.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Durable Case System</strong>
+              Airline-rated carry-on case keeps your hardware protected anywhere.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Accessories Included</strong>
+              Everything you need out of the box — cables, mounts, and more.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ab-scene">
+        <div class="ab-prod-img">
+          <img src="Airborne R/Airborne-r-camera-case.png" alt="Airborne R camera and case hardware" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="ab-glow-shadow"></div>
+      </div>
+    </div>
+
+    <div class="ab-features-label">All Features</div>
+    <div class="ab-features-grid cols-3">
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Rapidly Deployable Network</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Battery Powered</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Stats Integration</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Durable Case System</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Accessories Included</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Flexible Configurations</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;">
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 16px 40px rgba(0,0,0,.4);">
+        <img src="Airborne R/Airborne-R.png" alt="Airborne R sideline replay system" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 16px 40px rgba(0,0,0,.4);">
+        <img src="Airborne R/ipad--sideline-in-use.png" alt="Airborne R iPad in use on the sideline" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ AIRBORNE STADIUM SECTION ═══ -->
+<section class="ab-product-section ab-stadium-section" id="airborne-stadium">
+  <div class="container">
+
+    <div class="ab-prod-head">
+      <div class="ab-prod-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Installed Stadium Solution
+      </div>
+      <h2>Airborne™ Stadium: Installed Multi-Angle Replay</h2>
+      <p>Transform your home venue into a professional broadcast and replay environment. Airborne Stadium is a permanently installed IP camera network designed for your specific stadium geometry, with automated recording, multi-angle control, Daktronics integration, and advanced officiating review tools that elevate every home game.</p>
+    </div>
+
+    <div class="ab-prod-top">
+      <div class="ab-scene">
+        <div class="ab-prod-img">
+          <img src="Airborne Stadium/camera-installation-airborne-stadium.png" alt="Airborne Stadium camera installation" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="ab-glow-shadow"></div>
+      </div>
+
+      <div>
+        <div class="ab-prod-specs">
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>No Setup on Game Day</strong>
+              Permanently installed — the system is ready when you walk in the door.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Multiple Camera Angles</strong>
+              Full IP camera network covering every zone of your field.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Automated Recording &amp; Upload</strong>
+              Every play captured and synced to ScoreBreak automatically.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Daktronics Integration</strong>
+              Feed replay directly to your scoreboard and video display system.
+            </div>
+          </div>
+          <div class="ab-prod-spec">
+            <div class="ab-prod-spec-icon"></div>
+            <div>
+              <strong>Advanced Officiating Review</strong>
+              Multi-angle review tools built for on-field officiating decisions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ab-features-label">All Features</div>
+    <div class="ab-features-grid cols-5">
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>No Setup on Game Day</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Near Real-Time Replay</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Automated Recording</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Automatic Upload</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Multiple Camera Angles</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Dedicated Wireless Spectrum</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Expansive Coverage</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>High Device Capacity</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Daktronics Integration</div>
+      <div class="ab-feature-chip"><div class="ab-feature-chip-dot"></div>Automated Camera Control</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;">
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 16px 40px rgba(0,0,0,.4);">
+        <img src="Airborne Stadium/AirborneStadium_example-interface.png" alt="Airborne Stadium replay interface" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 16px 40px rgba(0,0,0,.4);">
+        <img src="Airborne Stadium/Airborne-stadium-encoder.png" alt="Airborne Stadium encoder hardware" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 16px 40px rgba(0,0,0,.4);">
+        <img src="Airborne Stadium/airborne-stadium-daktronics-integration.png" alt="Airborne Stadium Daktronics scoreboard integration" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ OFFICIATING REPLAY ═══ -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);">
+  <div class="container">
+    <div class="ab-officiating-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:.5rem;padding:.25rem .75rem;background:var(--blue-dim);border:1px solid var(--border);border-radius:999px;font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:1.25rem;">Officiating Replay</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1rem;">Built for Officiating Replay.</h2>
+        <p style="font-size:.97rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem;">ScoreBreak Airborne Stadium integrates live statistics from your statistics provider and syncs them with multiple camera angles for seamless, frame-accurate playback. Trusted by professional leagues for officiating review.</p>
+        <div style="display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;">
+          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
+            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Live stats sync from your statistics provider in real time</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
+            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Multiple camera angles with seamless multi-angle switching</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
+            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Frame-accurate scrubbing purpose-built for officiating review</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
+            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Trusted by professional leagues including Unrivaled</span>
+          </div>
+        </div>
+        <a href="demo.html" class="btn btn-primary">Request a Demo →</a>
+      </div>
+      <div style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.4);">
+        <img src="Basketball/Officiating-replay-unrivaled.png" alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section" style="border-top: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">From the Sideline</span>
+      <h2 class="section-title">Coaches Trust Airborne</h2>
+    </div>
+
+    <div class="ab-testimonials-grid">
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Airborne R changed how we prepare at away games. We used to have to wait until we got back to review any film — now we're watching replays at halftime and making real adjustments right there on the sideline. The latency is genuinely impressive.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JT</div>
+          <div>
+            <div class="testimonial-name">Coach James Tanner</div>
+            <div class="testimonial-title">Defensive Coordinator, University Lacrosse</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">With Airborne Stadium installed in our facility, game day is seamless. The cameras are already in position, recording starts automatically, and our staff can focus on coaching instead of setting up equipment. The Daktronics integration alone was worth it.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">LP</div>
+          <div>
+            <div class="testimonial-name">Coach Lauren Patrice</div>
+            <div class="testimonial-title">Head Coach, Division I Women's Lacrosse</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="ab-cta">
+  <div class="container">
+    <div class="ab-cta-inner">
+      <h2>Ready to see Airborne in action?</h2>
+      <p>Talk to our team to find the right Airborne solution for your program — whether you need portable field replay or a full stadium installation.</p>
+      <div class="ab-cta-actions">
+        <a href="demo.html" class="btn btn-primary btn-lg">Contact Sales</a>
+        <a href="demo.html" class="ab-cta-link">Request a Demo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="Logos/4-nav.png" alt="ScoreBreak"></a>
+        <p class="footer-tagline">We are ScoreBreak — the sports technology company that connects athletes with coaches, gives teams the intelligence to outperform opponents, and provides professional organizations with game-changing solutions. From recruitment to championships, we power success at every level.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
+          <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="#">Downloads</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 ScoreBreak, Inc. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var html = document.documentElement;
+  var saved = localStorage.getItem('sbTheme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  var toggle = document.getElementById('themeToggle');
+  function setIcon(theme) {
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
+      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+  }
+  setIcon(saved);
+  toggle.addEventListener('click', function() {
+    var cur = html.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('sbTheme', next);
+    setIcon(next);
+  });
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+})();
+</script>
+</body>
+</html>

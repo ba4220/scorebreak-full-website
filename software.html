@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScoreBreak Team Software | Film Analysis Platform for High School & Club Teams</title>
+  <meta name="description" content="ScoreBreak Team Software is the top Hudl alternative for film analysis. Tag boards, AI analysis, playlists, and Handoff film breakdowns — built for high school and club coaches.">
+  <meta name="keywords" content="lacrosse film analysis software, football film analysis software, Hudl alternative, coaching software, sports video analysis, tag boards, AI film analysis, ScoreBreak">
+  <meta property="og:title" content="ScoreBreak Team Software | Film Analysis for Coaches">
+  <meta property="og:description" content="The complete film analysis platform for competitive programs — interactive stats, AI analysis, playlists, and pro Handoff breakdowns.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scorebreak.io/software.html">
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png">
+  <meta name="twitter:card" content="summary_large_image">| ScoreBreak</title>
+  <meta name="description" content="ScoreBreak is the ultimate film analysis tool. Making it faster, easier, and more effective — coaches and players can get the most out of their film." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Hero ─────────────────────────────────────────────── */
+    .sw-hero {
+      padding: calc(var(--nav-h) + 5rem) 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .sw-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sw-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .sw-hero-text .section-label { margin-bottom: .75rem; }
+    .sw-hero-text h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.08;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .sw-hero-text .hero-sub {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+    /* Device mockup */
+    .sw-hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    @keyframes deviceFloat {
+      from { transform: translateY(0px); }
+      to   { transform: translateY(-8px); }
+    }
+    .device-mockup-scene {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+      cursor: default;
+    }
+    .device-mockup-scene:hover {
+      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+    }
+    .sw-hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      animation: deviceFloat 3s ease-in-out infinite alternate;
+    }
+    .device-mockup-scene:hover .sw-hero-img {
+      animation-play-state: paused;
+    }
+    .device-mockup-glow {
+      width: 240px;
+      height: 14px;
+      background: rgba(86,199,255,.12);
+      border-radius: 50%;
+      filter: blur(10px);
+      margin-top: 10px;
+      animation: deviceFloat 3s ease-in-out infinite alternate;
+    }
+    .device-mockup-scene:hover .device-mockup-glow {
+      animation-play-state: paused;
+    }
+
+    /* ── Film Analysis Section ────────────────────────────── */
+    .film-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .film-card {
+      background: #0D1526;
+      border: 1px solid rgba(86,199,255,0.12);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .film-card:hover {
+      border-color: rgba(86,199,255,0.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 32px rgba(86,199,255,0.07);
+      transform: translateY(-4px);
+    }
+    .film-card-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: #0D1526;
+      position: relative;
+      overflow: hidden;
+    }
+    .film-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 20px rgba(10,14,26,0.4);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .film-card-img-icon {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px; height: 52px;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1;
+      color: var(--blue);
+    }
+    .film-card-img-icon svg { width: 24px; height: 24px; }
+    .film-card-body { padding: 1.25rem; }
+    .film-card-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .film-card-body p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Handoff Section ─────────────────────────────────── */
+    .handoff-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border-sub);
+      border-bottom: 1px solid var(--border-sub);
+    }
+    .handoff-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .handoff-text .section-title span { color: var(--blue); }
+    .handoff-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .handoff-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .35rem 1rem;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .handoff-visual {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(145deg, var(--bg3) 0%, var(--bg4) 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(86,199,255,.12), var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .handoff-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 70% 40%, rgba(86,199,255,.14) 0%, transparent 55%),
+        linear-gradient(135deg, transparent 40%, rgba(86,199,255,.07) 100%);
+    }
+    .handoff-visual-inner {
+      position: absolute;
+      inset: 1.5rem;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .hv-row {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+    }
+    .hv-block {
+      background: var(--card-bg2);
+      border: 1px solid var(--border-sub);
+      border-radius: 8px;
+      flex: 1;
+      height: 40px;
+    }
+    .hv-block-wide { flex: 2; }
+    .hv-block-accent {
+      background: linear-gradient(135deg, rgba(86,199,255,.2) 0%, rgba(86,199,255,.07) 100%);
+      border-color: var(--border);
+    }
+    .hv-stat {
+      background: var(--card-bg2);
+      border: 1px solid var(--border-sub);
+      border-radius: 10px;
+      padding: .75rem 1rem;
+      flex: 1;
+    }
+    .hv-stat-val {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: .2rem;
+    }
+    .hv-stat-label {
+      font-size: .72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ── Collaborate Section ─────────────────────────────── */
+    .collab-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .collab-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .collab-card:hover {
+      background: var(--card-bg2);
+      border-color: var(--border);
+      transform: translateY(-2px);
+    }
+    .collab-icon {
+      width: 48px; height: 48px;
+      background: var(--blue-dim);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--blue);
+    }
+    .collab-icon svg { width: 22px; height: 22px; }
+    .collab-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .collab-card p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── Feature Spotlight Checklist ─────────────────────── */
+    .spotlight-section { background: var(--bg2); }
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .65rem 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .95rem;
+      color: var(--text-muted);
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--border-sub);
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-check {
+      width: 20px; height: 20px;
+      background: var(--blue-dim);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+    .checklist-check svg { width: 11px; height: 11px; }
+
+    /* ── Federations Section ─────────────────────────────── */
+    .fed-section {
+      background: var(--bg3);
+      border-top: 1px solid var(--border-sub);
+      border-bottom: 1px solid var(--border-sub);
+    }
+    .fed-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .fed-card {
+      background: linear-gradient(135deg, var(--blue-dim) 0%, transparent 70%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+    }
+    .fed-card h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .fed-card p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .fed-visual {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(145deg, var(--bg3) 0%, var(--bg4) 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .fed-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 40% 50%, rgba(86,199,255,.13) 0%, transparent 60%);
+    }
+    .fed-visual-inner {
+      position: absolute;
+      inset: 1.5rem;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+    .fv-tile {
+      background: var(--card-bg2);
+      border: 1px solid var(--border-sub);
+      border-radius: 10px;
+    }
+    .fv-tile-accent {
+      background: linear-gradient(135deg, rgba(86,199,255,.22) 0%, rgba(86,199,255,.08) 100%);
+      border-color: var(--border);
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .film-grid { grid-template-columns: repeat(2, 1fr); }
+      .collab-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .sw-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .sw-hero-text h1 { font-size: clamp(2rem, 6vw, 3rem); }
+      .handoff-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .fed-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .checklist-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .film-grid { grid-template-columns: 1fr; }
+      .collab-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════════════════ -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html">Football</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne</a>
+          <a href="portal.html">Portal</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="lacrosse.html">Lacrosse</a>
+    <a href="basketball.html">Basketball</a>
+    <a href="football.html">Football</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Solutions</div>
+    <a href="software.html">Team Software</a>
+    <a href="airborne.html">Airborne</a>
+    <a href="portal.html">Portal</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="support.html">Support</a>
+    <a href="demo.html">Request a Demo</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,#FF6B35,#FF4500);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════ -->
+<section class="sw-hero">
+  <div class="container">
+    <div class="sw-hero-inner">
+      <div class="sw-hero-text">
+        <span class="section-label">Team Software</span>
+        <h1>A Complete Film Solution</h1>
+        <p class="hero-sub">ScoreBreak is the ultimate film analysis tool. Making it faster, easier, and more effective — coaches and players can get the most out of their film.</p>
+        <div class="hero-actions">
+          <a href="demo.html" class="btn btn-primary btn-lg">Try ScoreBreak</a>
+          <a href="#film-analysis" class="btn btn-outline btn-lg">Learn More ↓</a>
+        </div>
+      </div>
+      <div class="sw-hero-visual">
+        <div class="device-mockup-scene">
+          <img src="Software /scorebreak-software-lacrosse.png" alt="ScoreBreak film analysis software" class="sw-hero-img">
+          <div class="device-mockup-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FILM ANALYSIS
+════════════════════════════════════════════════════════════ -->
+<section class="section" id="film-analysis">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Film Analysis Made Simple</h2>
+      <p class="section-subtitle">Capture and organize film so coaches can map team data with ease.</p>
+    </div>
+    <div class="film-grid">
+
+      <!-- Interactive Stats -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /interactive-stats-software.png" alt="Interactive stats" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>Interactive Stats</h3>
+          <p>Stay on top of who is doing what on the field, so you can understand the context of events as they happen.</p>
+        </div>
+      </div>
+
+      <!-- Tag Boards -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /tag-boards-software.png" alt="Tag boards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>Tag Boards</h3>
+          <p>Our powerful tagging system makes it easier for coaches to track different events by cutting the film using tags.</p>
+        </div>
+      </div>
+
+      <!-- Playlists -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /playlists-software.png" alt="Playlists" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>Playlists</h3>
+          <p>Curate targeted playback experiences and share within your team. Instantly organize your film into focused playlists.</p>
+        </div>
+      </div>
+
+      <!-- AI Analysis -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /AI-location-charting.png" alt="AI analysis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>AI Analysis</h3>
+          <p>ScoreBreak uses cutting edge AI technology to automatically process video and give you unprecedented insight.</p>
+        </div>
+      </div>
+
+      <!-- Film Sharing -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /film-sharing-software.png" alt="Film sharing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>Film Sharing</h3>
+          <p>Share game film and playlists with your entire program instantly — coaches, players, and staff all in one place.</p>
+        </div>
+      </div>
+
+      <!-- Remote Film Sessions -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /remote-film-sessions-software.png" alt="Remote film sessions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>Remote Film Sessions</h3>
+          <p>Run collaborative film sessions from anywhere — coaches and players watch and discuss film together in real time.</p>
+        </div>
+      </div>
+
+      <!-- Unlimited Storage -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /unlimited-film-storage.png" alt="Unlimited film storage" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>Unlimited Storage</h3>
+          <p>Never delete a game again. Store every practice, scrimmage, and game with no storage limits — your entire library, forever.</p>
+        </div>
+      </div>
+
+      <!-- Team Communication -->
+      <div class="film-card">
+        <div class="film-card-img">
+          <img src="Software /chat-iphone-app.png" alt="Team communication" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="film-card-body">
+          <h3>Team Communication</h3>
+          <p>Keep your program connected with built-in messaging — share clips, notes, and feedback directly within the platform.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HANDOFF
+════════════════════════════════════════════════════════════ -->
+<section class="section handoff-section">
+  <div class="container">
+    <div class="handoff-inner">
+      <div class="handoff-text">
+        <div class="handoff-badge">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 1l1.8 3.6 4 .58-2.9 2.82.68 4L8 10l-3.58 1.98.68-4-2.9-2.82 4-.58L8 1z"/></svg>
+          Premium Service
+        </div>
+        <h2 class="section-title"><span>ScoreBreak Handoff</span></h2>
+        <p>ScoreBreak Handoff™ provides professional ready-to-use film breakdowns with full stats. When you can't find the time to break down film yourself, we do it for you — complete with tagged game film, breakdowns, and playlists. All stats in 24 hours.</p>
+        <a href="demo.html" class="btn btn-outline">Learn More about Handoff →</a>
+      </div>
+      <div class="handoff-visual">
+        <img src="Handoff/handoff.png" alt="ScoreBreak Handoff film breakdown" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,26,.92) 0%,rgba(10,14,26,.5) 50%,transparent 100%);z-index:1;"></div>
+        <div class="handoff-visual-inner" style="z-index:2;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COLLABORATE
+════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Collaborate, Share &amp; Stay Organized</h2>
+      <p class="section-subtitle">Work seamlessly with your entire team, all collaborators.</p>
+    </div>
+    <div class="collab-grid">
+
+      <!-- Chat -->
+      <div class="collab-card">
+        <div class="collab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <h3>Chat</h3>
+        <p>Real-time team communication and collaboration directly within ScoreBreak. Share film, discuss plays, and keep your entire staff aligned.</p>
+      </div>
+
+      <!-- Unlimited Storage -->
+      <div class="collab-card">
+        <div class="collab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          </svg>
+        </div>
+        <h3>Unlimited Storage</h3>
+        <p>Never worry about running out of space. Store all your game film, clips, and playlists with no storage limits.</p>
+      </div>
+
+      <!-- Film Sharing -->
+      <div class="collab-card">
+        <div class="collab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+          </svg>
+        </div>
+        <h3>Film Sharing</h3>
+        <p>Share film packages with coaches, players, and recruiters instantly — full access anytime, anywhere.</p>
+      </div>
+
+      <!-- Remote Film Sessions -->
+      <div class="collab-card">
+        <div class="collab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M15 10l4.553-2.069A1 1 0 0121 8.882v6.236a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+          </svg>
+        </div>
+        <h3>Remote Film Sessions</h3>
+        <p>Host live collaborative film sessions with your entire team remotely. Everyone can watch and react in real-time.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FEATURE SPOTLIGHT CHECKLIST
+════════════════════════════════════════════════════════════ -->
+<section class="section spotlight-section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Feature Spotlights</h2>
+      <p class="section-subtitle">Everything you need to analyze film faster and coach smarter.</p>
+    </div>
+    <div class="checklist-grid">
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Files Section
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Clip Cutting
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Voiceover Recordings
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Drawing on Video
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Editable Clips
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        External Display Support
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Adjustable Playback Speed
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Multi-Angle Playback
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Live Streaming Platform
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Whiteboard with Field Lines
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Downloadable Film to Device
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Event Location Chart
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Folding with Permissions
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Exporting Clips
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Notes on Clips
+      </div>
+      <div class="checklist-item">
+        <span class="checklist-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+        Pinch to Zoom Video Player
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PRICING
+════════════════════════════════════════════════════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Simple, team-based pricing</h2>
+      <p class="section-subtitle">All plans include a free trial. No credit card required.</p>
+    </div>
+    <div class="pricing-grid" style="grid-template-columns:repeat(2,1fr);max-width:740px;margin-left:auto;margin-right:auto;">
+
+      <!-- ScoreBreak Portal -->
+      <div class="pricing-card">
+        <div class="pricing-name">ScoreBreak Portal</div>
+        <div class="pricing-price">
+          <span class="pricing-amount">$499</span>
+          <span class="pricing-period">/team</span>
+        </div>
+        <div class="pricing-desc">Recruiting profiles for your entire roster</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Automatic profiles for every athlete
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Full game film access for college coaches
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Stats &amp; highlights integration
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Academic record uploads
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Free updates: 12 months
+          </li>
+        </ul>
+        <a href="demo.html" class="btn btn-outline" style="width:100%;justify-content:center;">Request a Demo</a>
+      </div>
+
+      <!-- ScoreBreak Pro -->
+      <div class="pricing-card featured">
+        <span class="pricing-badge">Most Popular</span>
+        <div class="pricing-name">ScoreBreak Pro</div>
+        <div class="pricing-price">
+          <span class="pricing-amount">$1,299</span>
+          <span class="pricing-period">/yr</span>
+        </div>
+        <div class="pricing-desc">For elite high school and elite club</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Everything in Portal
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Team size: Unlimited athletes
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Voiceover recordings
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Premium support: 12 months
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Free updates: 12 months
+          </li>
+        </ul>
+        <a href="demo.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FEDERATIONS AND LEAGUES
+════════════════════════════════════════════════════════════ -->
+<section class="section fed-section">
+  <div class="container">
+    <div class="fed-inner">
+      <div class="fed-card">
+        <h2>Federations and Leagues</h2>
+        <p>Connect your league through ScoreBreak Federations for automatic film sharing, scorekeeping, stats, and more. Getting film in your league. ScoreBreak encourages play private.</p>
+        <a href="demo.html" class="btn btn-outline">Learn More →</a>
+      </div>
+      <div class="fed-visual">
+        <img src="Software /league_exchange.png" alt="ScoreBreak League Exchange" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="Logos/4-nav.png" alt="ScoreBreak"></a>
+        <p class="footer-tagline">We are ScoreBreak — the sports technology company that connects athletes with coaches, gives teams the intelligence to outperform opponents, and provides professional organizations with game-changing solutions. From recruitment to championships, we power success at every level.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
+          <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="#">Downloads</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 ScoreBreak, Inc. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPT
+════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  var html = document.documentElement;
+  var saved = localStorage.getItem('sbTheme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  var toggle = document.getElementById('themeToggle');
+  function setIcon(theme) {
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
+      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+  }
+  setIcon(saved);
+  toggle.addEventListener('click', function() {
+    var cur = html.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('sbTheme', next);
+    setIcon(next);
+  });
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+})();
+</script>
+
+</body>
+</html>
