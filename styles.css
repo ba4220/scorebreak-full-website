@@ -113,8 +113,8 @@ body {
   height: 44px;
   width: auto;
 }
-.logo-dark  { display: block !important; }
-.logo-light { display: none  !important; }
+.logo-dark  { display: block !important; height: 44px; width: auto; }
+.logo-light { display: none  !important; height: 44px; width: auto; }
 [data-theme="light"] .logo-dark  { display: none  !important; }
 [data-theme="light"] .logo-light { display: block !important; }
 
