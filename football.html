@@ -55,22 +55,14 @@
     }
 
     .nav-logo {
-      position: relative;
-      display: block;
-      overflow: hidden;
-      height: 36px;
-      width: 178px;
-      text-decoration: none;
+      display: flex;
+      align-items: center;
       flex-shrink: 0;
+      margin-right: auto;
+      text-decoration: none;
     }
-    .nav-logo-img {
-      position: absolute;
-      height: 205px;
-      width: auto;
-      top: -85px;
-      left: -13px;
-      filter: url(#logo-darks-to-white);
-    }
+    .logo-dark  { display: block !important; height: 44px; width: auto; }
+    .logo-light { display: none  !important; height: 44px; width: auto; }
 
     .nav-cta {
       display: inline-flex;
@@ -714,8 +706,9 @@
 <nav class="site-nav" id="siteNav" style="position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;background:rgba(10,14,26,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);box-sizing:border-box;">
   <div style="display:flex;align-items:center;width:100%;padding:0 2rem;gap:1rem;box-sizing:border-box;">
     <!-- Logo -->
-    <a href="index.html" style="display:flex;align-items:center;height:36px;margin-right:auto;flex-shrink:0;text-decoration:none;">
-      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak" />
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
     </a>
 
     <!-- Desktop center nav -->
