@@ -156,24 +156,36 @@
 
     /* ── Founder ── */
     .founder-inner {
-      max-width: 640px;
+      max-width: 900px;
       margin: 0 auto;
-      text-align: center;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .founder-photo-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
     .founder-photo {
-      width: 140px;
-      height: 140px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center top;
-      border: 3px solid var(--border-sub);
-      margin-bottom: .75rem;
+      box-shadow: 0 0 0 3px rgba(86,199,255,0.3);
+      display: block;
+    }
+    .founder-text-col {
+      text-align: left;
     }
     .founder-name {
       font-size: clamp(1.7rem, 3vw, 2.5rem);
       font-weight: 900;
       letter-spacing: -.03em;
-      margin: .75rem 0 .3rem;
+      margin: .6rem 0 .3rem;
     }
     .founder-title {
       font-size: .85rem;
@@ -181,12 +193,20 @@
       color: var(--blue);
       letter-spacing: .08em;
       text-transform: uppercase;
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.5rem;
     }
     .founder-bio {
       font-size: .98rem;
       color: var(--text-muted);
       line-height: 1.82;
+    }
+    @media (max-width: 700px) {
+      .founder-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+      .founder-text-col { text-align: center; }
     }
 
     /* ── Responsive ── */
@@ -381,11 +401,15 @@
 <section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
   <div class="container">
     <div class="founder-inner">
-      <div class="section-label">Our Founder</div>
-      <img src="Jordan_Hendry.webp" alt="Jordan Hendry — Founder & CEO of ScoreBreak" class="founder-photo">
-      <div class="founder-name">Jordan Hendry</div>
-      <div class="founder-title">Founder &amp; CEO</div>
-      <p class="founder-bio">With a distinguished career as a professional lacrosse player for the Denver Outlaws and a collegiate athlete at the University of Denver, Jordan Hendry brings unparalleled expertise and passion to ScoreBreak. His vision to build professional-grade tools accessible to every coach has driven ScoreBreak's growth from a lacrosse film platform into a multi-sport technology company trusted at every level of competition.</p>
+      <div class="founder-photo-col">
+        <img src="Jordan_Hendry.webp" alt="Jordan Hendry — Founder & CEO of ScoreBreak" class="founder-photo">
+      </div>
+      <div class="founder-text-col">
+        <div class="section-label">Our Founder</div>
+        <div class="founder-name">Jordan Hendry</div>
+        <div class="founder-title">Founder &amp; CEO</div>
+        <p class="founder-bio">With a distinguished career as a professional lacrosse player for the Denver Outlaws and a collegiate athlete at the University of Denver, Jordan Hendry brings unparalleled expertise and passion to ScoreBreak. His vision to build professional-grade tools accessible to every coach has driven ScoreBreak's growth from a lacrosse film platform into a multi-sport technology company trusted at every level of competition.</p>
+      </div>
     </div>
   </div>
 </section>
