@@ -346,15 +346,8 @@ body {
 .footer-logo {
   display: flex;
   align-items: center;
-  height: 32px;
   margin-bottom: 1rem;
-}
-.footer-logo img {
-  height: 32px;
-  width: auto;
-}
-[data-theme="dark"] .footer-logo img {
-  filter: invert(1) hue-rotate(180deg);
+  text-decoration: none;
 }
 
 .footer-tagline {

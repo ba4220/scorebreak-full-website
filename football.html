@@ -624,18 +624,8 @@
     .footer-logo {
       display: flex;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      height: 40px;
-      position: relative;
       margin-bottom: .85rem;
-    }
-    .footer-logo-img {
-      position: absolute;
-      height: 240px;
-      width: auto;
-      top: -100px;
-      filter: url(#logo-darks-to-white);
+      text-decoration: none;
     }
 
     .footer-tagline {
@@ -1069,9 +1059,10 @@ document.addEventListener('click', function() {
      FOOTER
 ═══════════════════════════════════════ -->
 <footer>
-  <div class="footer-logo">
-    <img src="Logos/4-nav.png" class="footer-logo-img" alt="ScoreBreak Gridiron" style="filter:invert(1) hue-rotate(180deg);" />
-  </div>
+  <a href="index.html" class="footer-logo" aria-label="ScoreBreak Home">
+    <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+    <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
+  </a>
   <p class="footer-tagline">The modern film analysis and sideline replay tool — built for competitive football programs.</p>
   <p style="margin:.75rem 0;font-size:.85rem;color:rgba(255,255,255,.5);">
     <a href="lacrosse.html" style="color:rgba(255,255,255,.55);text-decoration:none;margin:0 .6rem;" onmouseover="this.style.color='#56C7FF'" onmouseout="this.style.color='rgba(255,255,255,.55)'">Lacrosse</a>·
