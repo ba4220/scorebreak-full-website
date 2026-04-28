@@ -385,7 +385,7 @@
         <p class="hero-sub">Film analysis and sideline replay built for the modern coaching staff.</p>
         <p class="hero-sub" style="margin-top:-.5rem;">From film breakdown to sideline replay — ScoreBreak gives basketball programs the tools to outprepare, outcoach, and outperform.</p>
         <div class="hero-actions">
-          <a href="demo.html" class="btn btn-primary btn-lg">Request a Demo</a>
+          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Get in Touch</a>
           <a href="software.html" class="btn btn-outline btn-lg">Explore Platform</a>
         </div>
       </div>
@@ -543,7 +543,7 @@
             <span>Trusted by professional leagues including Unrivaled</span>
           </div>
         </div>
-        <a href="demo.html" class="btn btn-outline">Request a Demo →</a>
+        <a href="airborne.html#airborne-stadium" class="btn btn-outline">See Airborne Stadium →</a>
       </div>
       <div class="bball-feature-visual" style="overflow:hidden;border-radius:var(--radius-lg);">
         <img src="Basketball/Officiating-replay-unrivaled.png" alt="ScoreBreak officiating replay interface — Unrivaled league" style="width:100%;height:auto;display:block;">
@@ -561,7 +561,7 @@
     </div>
     <div class="partner-section">
       <div class="partner-logo-wrap" style="display:flex;align-items:center;justify-content:center;">
-        <img src="NCAA D1/Unrivaled.png" alt="Unrivaled League" style="max-width:190px;width:100%;height:auto;display:block;image-rendering:-webkit-optimize-contrast;">
+        <img src="NCAA D1/Unrivaled.jpeg" alt="Unrivaled League" style="max-width:190px;width:100%;height:auto;display:block;background:#fff;border-radius:6px;">
       </div>
       <div class="partner-text">
         <h3>ScoreBreak powers Unrivaled.</h3>
@@ -613,6 +613,70 @@
     </div>
   </div>
 </footer>
+
+<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+  <div class="sb-modal">
+    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <h2 id="sbModalTitle">Get in Touch</h2>
+    <p class="sb-modal-sub">Have questions? We're happy to help — no commitment required.</p>
+    <div class="sb-modal-options">
+
+      <a href="mailto:sales@scorebreak.io" class="sb-modal-option">
+        <div class="sb-modal-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sb-modal-option-label">Email Sales</div>
+          <div class="sb-modal-option-detail">sales@scorebreak.io</div>
+        </div>
+      </a>
+
+      <a href="tel:18006092102" class="sb-modal-option">
+        <div class="sb-modal-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sb-modal-option-label">Call Us</div>
+          <div class="sb-modal-option-detail">1-800-609-2102</div>
+        </div>
+      </a>
+
+      <a href="demo.html" class="sb-modal-option">
+        <div class="sb-modal-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sb-modal-option-label">Request a Demo</div>
+          <div class="sb-modal-option-detail">Schedule a personalized walkthrough</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function sbOpenModal() {
+  document.getElementById('sbContactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function sbCloseModal() {
+  document.getElementById('sbContactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('sbContactModal').addEventListener('click', function(e) {
+  if (e.target === this) sbCloseModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sbCloseModal();
+});
+</script>
 
 <script>
   /* ── Theme toggle ── */
