@@ -245,18 +245,71 @@
       line-height: 1.55;
     }
 
-    /* Testimonials - 2 col for this page */
-    .testimonials-2col {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+    /* Testimonials carousel */
+    .tc-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .tc-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    .tc-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .tc-slide .testimonial-card {
+      max-width: 680px;
+      width: 100%;
+    }
+    .tc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .tc-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .tc-btn:hover { background: var(--card-bg2); border-color: var(--border); }
+    .tc-dots {
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+    }
+    .tc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s, transform .2s;
+    }
+    .tc-dot.active {
+      background: var(--blue);
+      transform: scale(1.4);
     }
 
     /* Responsive */
     @media (max-width: 900px) {
       .product-grid { grid-template-columns: 1fr; }
       .purpose-feature-grid { grid-template-columns: repeat(2, 1fr); }
-      .testimonials-2col { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .lax-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
@@ -363,7 +416,7 @@
         </div>
         <div class="product-card-body">
           <div class="product-card-title">Team Software &amp; Breakdown Services <span class="product-card-arrow">→</span></div>
-          <p class="product-card-desc">Equip your team with our powerful tools &amp; our Handoff service, detailed expert analysis so you can focus on coaching.</p>
+          <p class="product-card-desc">ScoreBreak's tagging tools and Handoff breakdown service — expert film analysis delivered within 24 hours so your staff can focus on coaching.</p>
           <span class="product-card-link">Explore Team Software →</span>
         </div>
       </a>
@@ -375,7 +428,7 @@
         </div>
         <div class="product-card-body">
           <div class="product-card-title">Sideline Video Replay <span class="product-card-arrow">→</span></div>
-          <p class="product-card-desc">Enhance officiating and sideline coaching review with our Airborne™ hardware, built for seamless integration.</p>
+          <p class="product-card-desc">Sideline video replay hardware that connects directly to ScoreBreak — no extra configuration required.</p>
           <span class="product-card-link">Explore Airborne →</span>
         </div>
       </a>
@@ -500,36 +553,163 @@
   <div class="container">
     <div class="section-head">
       <span class="section-label">From the Field</span>
-      <h2 class="section-title">What Lacrosse Coaches Are Saying</h2>
+      <h2 class="section-title">What Coaches Are Saying</h2>
     </div>
 
-    <div class="testimonials-2col">
+    <div class="tc-wrap">
+      <div class="tc-track" id="tcTrack">
 
-      <div class="testimonial-card">
-        <p class="testimonial-quote">ScoreBreak is like having another coach in the office and on the field at all times. The in-game adjustments we've made with film access have been incredible.</p>
-        <div class="testimonial-author">
-          <img src="NCAA D1/Denver.png" alt="Denver" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-          <div>
-            <div class="testimonial-name">Liza Kelly</div>
-            <div class="testimonial-title">Denver Women's Lacrosse</div>
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">ScoreBreak is like having another coach in the office and on the field at all times. The in-game adjustments we've made with film access have been incredible.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/Denver.png" alt="Denver" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Liza Kelly</div>
+                <div class="testimonial-title">Denver Women's Lacrosse</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="testimonial-card">
-        <p class="testimonial-quote">One of the coolest features is being able to write directly over clips. It's a quick, clear way to express what the play is about before we even hit play.</p>
-        <div class="testimonial-author">
-          <img src="NCAA D1/Vermont-Catamounts-logo.png" alt="Vermont Catamounts" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-          <div>
-            <div class="testimonial-name">Tatum Lewis</div>
-            <div class="testimonial-title">UVM Men's Lacrosse athlete</div>
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">ScoreBreak has been a total game changer for our staff and players. If I told you we used ScoreBreak 10,000x a day we would probably be underestimating. We are completely obsessed with it and it seems like every year the product has gotten better.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/Brown.png" alt="Brown" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Jon Torpey</div>
+                <div class="testimonial-title">Head Coach, Brown Men's Lacrosse</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">ScoreBreak was a pleasure for our staff and athletes this season... by far the best platform I've ever used. I loved being able to tag and organize clips however I liked to be able to tell a story to our players. My favorite part about the platform is the chat feature. Since everything is stored in the cloud, it is easy to send clips to individual players for instant feedback.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/CNU.png" alt="Christopher Newport" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Mikey Thompson</div>
+                <div class="testimonial-title">Head Coach, Christopher Newport Men's Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">Our best film sessions happen when we can pause, split into groups, and review in real time. Offense goes with one coach, defense with another, and we pull up the play on our iPads to say, 'This is the change we need to make.'</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/oregon.png" alt="Oregon" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Jana Drummond</div>
+                <div class="testimonial-title">Head Coach, Oregon Women's Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">We've tried other platforms — including the most well-known — but I still choose ScoreBreak because the breakdown interface is simply better. ScoreBreak makes it easy to analyze clips, and it's the best platform we've found for film study.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/pennsbury.png" alt="Pennsbury" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Dean Curtis</div>
+                <div class="testimonial-title">Head Coach, Pennsbury HS Boys Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">One of the coolest features is being able to write directly over clips. It's a quick, clear way to express what the play is about before we even hit play.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/Vermont-Catamounts-logo.png" alt="Vermont Catamounts" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Tatum Lewis</div>
+                <div class="testimonial-title">UVM Men's Lacrosse athlete</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">ScoreBreak Recruiting Network offers an unmatched experience, giving us unprecedented access to watch club film when we're unable to attend tournaments.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/Mercer.png" alt="Mercer" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Ryan Danehy</div>
+                <div class="testimonial-title">Head Coach, Mercer Men's Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">The expansion of ScoreBreak into club lacrosse with ScoreBreak Recruiting Network is a game-changer for us at Mad Dog. The additional exposure our players gain by having their film available for NCAA coaches to view is tremendous. Plus, being able to review game film with our teams is another invaluable tool in our player-development toolbox.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/mad-dog.png" alt="Mad Dog Lacrosse" style="width:36px;height:36px;object-fit:contain;border-radius:6px;background:var(--card-bg2);padding:4px;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Mike Hungerford</div>
+                <div class="testimonial-title">Director, Mad Dog Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <div class="tc-controls">
+      <button class="tc-btn" id="tcPrev" aria-label="Previous">←</button>
+      <div class="tc-dots" id="tcDots"></div>
+      <button class="tc-btn" id="tcNext" aria-label="Next">→</button>
+    </div>
+
   </div>
 </section>
+
+<script>
+(function() {
+  var track = document.getElementById('tcTrack');
+  var dotsWrap = document.getElementById('tcDots');
+  var slides = track.querySelectorAll('.tc-slide');
+  var current = 0;
+  var timer;
+
+  slides.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'tc-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', function() { goTo(i); resetTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dotsWrap.querySelectorAll('.tc-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(function() { goTo(current + 1); }, 6000);
+  }
+
+  document.getElementById('tcPrev').addEventListener('click', function() { goTo(current - 1); resetTimer(); });
+  document.getElementById('tcNext').addEventListener('click', function() { goTo(current + 1); resetTimer(); });
+
+  resetTimer();
+})();
+</script>
 
 <!-- ═══ FOOTER ═══ -->
 <footer class="site-footer">
@@ -540,7 +720,7 @@
           <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak — the sports technology company that connects athletes with coaches, gives teams the intelligence to outperform opponents, and provides professional organizations with game-changing solutions. From recruitment to championships, we power success at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak — the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
           <a href="#" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
           <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>

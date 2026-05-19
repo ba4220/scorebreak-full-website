@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScoreBreak League Solutions | Platform for Leagues and Federations</title>
+  <meta name="description" content="ScoreBreak gives leagues and federations the infrastructure to standardize film, stream game day operations, and create a professional experience — from public stats sites to officiating replay and film exchange." />
+  <meta name="keywords" content="lacrosse league platform, sports federation software, league stats site, film exchange platform, officiating replay, league management software, ScoreBreak leagues" />
+  <meta property="og:title" content="ScoreBreak League Solutions | Platform for Leagues and Federations" />
+  <meta property="og:description" content="From film exchange to public stats sites — ScoreBreak gives leagues and federations the infrastructure to standardize film, streamline game day operations, and create a professional experience." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/leagues.html" />
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ScoreBreak League Solutions | Platform for Leagues and Federations" />
+  <meta name="twitter:description" content="From film exchange to public stats sites — ScoreBreak gives leagues and federations the infrastructure they need." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+    /* ── Hero ─────────────────────────────── */
+    .lg-hero {
+      padding: calc(var(--nav-h) + 6rem) 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .lg-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .lg-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .35rem .9rem;
+      background: var(--blue-dim);
+      border: 1px solid rgba(86,199,255,.2);
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.75rem;
+    }
+    .lg-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lg-hero h1 span { color: var(--blue); }
+    .lg-hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── Role Cards ───────────────────────── */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .role-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      transition: background .2s, border-color .2s;
+    }
+    .role-card:hover {
+      background: var(--card-bg2);
+      border-color: var(--border);
+    }
+    .role-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .75rem;
+    }
+    .role-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+    .role-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .6rem;
+    }
+    .role-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── Two-column feature layout ────────── */
+    .lg-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .lg-two-col.reverse { direction: rtl; }
+    .lg-two-col.reverse > * { direction: ltr; }
+
+    /* ── Feature checklist ─────────────────── */
+    .lg-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+      margin-top: 1.75rem;
+    }
+    .lg-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .lg-check-icon {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--blue-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .1rem;
+      color: var(--blue);
+    }
+    .lg-check-icon svg { width: 11px; height: 11px; }
+
+    /* ── Mockup image ──────────────────────── */
+    .lg-visual {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(86,199,255,.15), 0 0 0 1px rgba(86,199,255,.1);
+      animation: lgFloat 3s ease-in-out infinite alternate;
+    }
+    .lg-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @keyframes lgFloat {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-12px); }
+    }
+
+    /* ── LILJ partnership card ─────────────── */
+    .lg-partnership {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(86,199,255,.05);
+      border: 1px solid rgba(86,199,255,.15);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
+    }
+    .lg-partnership:hover {
+      background: rgba(86,199,255,.09);
+      border-color: rgba(86,199,255,.28);
+    }
+    .lg-partnership-divider {
+      width: 1px;
+      align-self: stretch;
+      background: rgba(86,199,255,.2);
+      flex-shrink: 0;
+    }
+    .lg-partnership p {
+      font-size: .8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: .35rem;
+    }
+    .lg-partnership span {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* ── Trusted-by badges ─────────────────── */
+    .trusted-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .trusted-badge {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .75rem 1.25rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 10px;
+    }
+    .trusted-badge img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+    .trusted-badge-label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .trusted-more {
+      font-size: .9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding: .75rem 1.25rem;
+    }
+
+    /* ── Officiating image box ─────────────── */
+    .lg-section-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .lg-section-text p {
+      font-size: .97rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .lg-section-text p + p { margin-top: -.5rem; }
+
+    /* ── Film Exchange benefit cards ─────── */
+    .lg-exchange-cards {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+    .lg-exchange-card {
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      transition: background .2s, border-color .2s;
+    }
+    .lg-exchange-card:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.13);
+    }
+    .lg-exchange-card strong {
+      display: block;
+      font-size: .875rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+    .lg-exchange-card p {
+      font-size: .8125rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Responsive ───────────────────────── */
+    @media (max-width: 900px) {
+      .role-grid { grid-template-columns: 1fr; }
+      .lg-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .lg-two-col.reverse { direction: ltr; }
+    }
+    @media (max-width: 600px) {
+      .lg-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
+      .trusted-row { gap: .75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html">Football</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne</a>
+          <a href="portal.html">Recruiting Network</a>
+          <a href="leagues.html">League Solutions</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="lacrosse.html">Lacrosse</a>
+    <a href="basketball.html">Basketball</a>
+    <a href="football.html">Football</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Solutions</div>
+    <a href="software.html">Team Software</a>
+    <a href="airborne.html">Airborne</a>
+    <a href="portal.html">Recruiting Network</a>
+    <a href="leagues.html">League Solutions</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="support.html">Support</a>
+    <a href="demo.html">Request a Demo</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,#FF6B35,#FF4500);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════ -->
+<section class="lg-hero">
+  <div class="container">
+    <div class="lg-hero-badge">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--blue);display:inline-block;flex-shrink:0;"></span>
+      League Solutions
+    </div>
+    <h1>The Complete Platform for<br><span>Leagues and Federations.</span></h1>
+    <p class="lg-hero-sub">From film exchange to public stats sites — ScoreBreak gives leagues and federations the infrastructure to standardize film, streamline game day operations, and create a professional experience for administrators, coaches, officials, and scouts alike.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Sales</a>
+      <a href="https://app.scorebreak.io/federation/239/main" class="btn btn-outline btn-lg" target="_blank" rel="noopener">View a Live Example →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WHO IT'S FOR
+════════════════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);border-bottom:1px solid var(--border-sub);">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Built for Everyone in the League</span>
+      <h2 class="section-title">Designed for every role on game day and beyond.</h2>
+    </div>
+    <div class="role-grid">
+
+      <div class="role-card">
+        <div class="role-eyebrow"><span class="role-eyebrow-dot"></span>League Administrators</div>
+        <h3>One platform. Every team. Every game.</h3>
+        <p>One platform to manage film, stats, schedules, and player data across every team in your league. Standardize the experience, reduce operational overhead, and give every team access to the same quality of tools.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-eyebrow"><span class="role-eyebrow-dot"></span>Coaching Staffs</div>
+        <h3>Every game. Fully broken down. No extra work.</h3>
+        <p>Every team in the league gets access to fully broken down film for every game — not just their own. Scout opponents, review your own performance, and prepare with professional-grade film without any extra work. ScoreBreak does the breakdown. You do the coaching.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-eyebrow"><span class="role-eyebrow-dot"></span>Game Day Operations</div>
+        <h3>From replay operators to officials.</h3>
+        <p>ScoreBreak streamlines game day from every angle. Airborne Stadium provides frame-accurate multi-angle replay for officiating review, and replay operators get a reliable, easy-to-use system that works with your existing video infrastructure.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-eyebrow"><span class="role-eyebrow-dot"></span>Recruiting</div>
+        <h3>Every game is a recruiting opportunity.</h3>
+        <p>League stats sites are publicly accessible — meaning college coaches and scouts can view standings, player profiles, individual stats, and watch the film behind the numbers. Every league game becomes a recruiting opportunity for the players in your league.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FILM EXCHANGE
+════════════════════════════════════════════════════════════ -->
+<section class="section" style="padding:3.75rem 0;">
+  <div class="container">
+    <div class="lg-two-col" style="align-items:center;gap:3.75rem;grid-template-columns:1.2fr 1fr;">
+      <div style="background:var(--card-bg);border:1px solid var(--border-sub);border-radius:var(--radius-lg);overflow:hidden;">
+        <img src="Software /league_exchange.png" alt="ScoreBreak Film Exchange — league-wide film access for every team" style="width:100%;height:auto;display:block;">
+      </div>
+
+      <div class="lg-section-text">
+        <span class="section-label" style="margin-bottom:1rem;display:inline-block;">Film Exchange</span>
+        <h2>Every team in the league. On the same page.</h2>
+        <p>ScoreBreak's Film Exchange gives leagues a centralized hub for video distribution. Whether teams use ScoreBreak or another platform, everyone stays connected to the same film.</p>
+
+        <div class="lg-exchange-cards">
+
+          <div class="lg-exchange-card">
+            <strong>Universal Access</strong>
+            <p>Teams using any platform can access and download league film through the Exchange. No ScoreBreak subscription required for exchange-only access.</p>
+          </div>
+
+          <div class="lg-exchange-card">
+            <strong>Broken Down Film</strong>
+            <p>ScoreBreak teams get fully broken down film — professionally tagged and statted via Handoff, or broken down by the teams themselves. All breakdowns flow into the same league hub.</p>
+          </div>
+
+          <div class="lg-exchange-card">
+            <strong>Fully Standardized</strong>
+            <p>When the whole league is on ScoreBreak, everyone works from the same film. Same breakdowns. One platform for scouting, prep, and review.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LEAGUE STATS SITES
+════════════════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);border-bottom:1px solid var(--border-sub);">
+  <div class="container">
+    <div class="lg-two-col reverse">
+      <div class="lg-section-text">
+        <span class="section-label" style="margin-bottom:1rem;display:inline-block;">Public League Hub</span>
+        <h2>Give your league a home.</h2>
+        <p>ScoreBreak builds fully branded, public-facing league sites that serve as the official hub for your tournament or federation. Live standings, schedules, player profiles with headshots, and comprehensive statistics — all linked directly to video clips.</p>
+        <p style="font-weight:600;color:var(--text);">Click any stat, watch the play.</p>
+        <div class="lg-checklist">
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Live standings and schedules</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Individual and team statistics</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Player profiles with headshots, grad year, and position</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon" style="background:rgba(86,199,255,.15);"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span style="color:var(--text);font-weight:600;">Every stat linked to video — click any number, watch the play</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Stat leaders leaderboards</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Publicly accessible for fans, coaches, and scouts</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Save stats as PDF</span>
+          </div>
+        </div>
+
+        <!-- LILJ Partnership card -->
+        <a href="https://app.scorebreak.io/federation/239/main" target="_blank" rel="noopener" class="lg-partnership">
+          <img src="NCAA D1/LILJ.png" alt="Long Island Lacrosse Journal" style="height:44px;width:auto;object-fit:contain;flex-shrink:0;">
+          <div class="lg-partnership-divider"></div>
+          <div>
+            <p>In partnership with the Long Island Lacrosse Journal, explore a live sample of our league platform — powered by the Juniors Open.</p>
+            <span>View the Juniors Open Stats Site →</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mockup image -->
+      <div class="lg-visual">
+        <img src="league_site_mockup.png" alt="ScoreBreak League Sites — branded league hub with live standings, stats, and film-linked video">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OFFICIATING REPLAY
+════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div style="max-width:740px;margin:0 auto;text-align:center;">
+      <span class="section-label" style="margin-bottom:1rem;display:inline-block;">Officiating</span>
+      <h2 class="section-title">Built-in officiating replay.</h2>
+      <p style="font-size:1rem;color:var(--text-muted);line-height:1.75;margin-bottom:2rem;">ScoreBreak Airborne Stadium integrates with your league's video infrastructure to provide frame-accurate officiating replay. Live stats from your statistics provider sync automatically with multiple camera angles, enabling synchronized multi-angle playback for officials in real time. Used at the highest levels of basketball and lacrosse.</p>
+      <a href="airborne.html" class="btn btn-outline btn-lg">Learn About Airborne →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     API INTEGRATIONS
+════════════════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);border-bottom:1px solid var(--border-sub);">
+  <div class="container">
+    <div class="lg-two-col">
+      <div class="lg-section-text">
+        <span class="section-label" style="margin-bottom:1rem;display:inline-block;">Integrations</span>
+        <h2>Connect your existing infrastructure.</h2>
+        <p>ScoreBreak integrates with your league's existing technology stack via API. Connect your statistics provider, scoring systems, and data feeds directly into the ScoreBreak platform for automated data flow.</p>
+        <div class="lg-checklist">
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Statistics provider API integration</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Live scoring system connections</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Automated stat sync with video</span>
+          </div>
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Custom data feeds</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border-sub);border-radius:var(--radius-lg);padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem;justify-content:center;">
+        <div style="display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--card-bg2);border:1px solid var(--border-sub);border-radius:10px;">
+          <div style="width:44px;height:44px;background:var(--blue-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div><div style="font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.2rem;">Statistics Provider</div><div style="font-size:.8rem;color:var(--text-muted);">Live stat sync via API</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--card-bg2);border:1px solid var(--border-sub);border-radius:10px;">
+          <div style="width:44px;height:44px;background:var(--blue-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 12h8M8 16h4"/></svg>
+          </div>
+          <div><div style="font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.2rem;">Scoring Systems</div><div style="font-size:.8rem;color:var(--text-muted);">Live scores to standings automatically</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--card-bg2);border:1px solid var(--border-sub);border-radius:10px;">
+          <div style="width:44px;height:44px;background:var(--blue-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <div><div style="font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.2rem;">Video Platform</div><div style="font-size:.8rem;color:var(--text-muted);">Stats and film linked automatically</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TRUSTED BY
+════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:0;">
+      <span class="section-label">Trusted By</span>
+      <h2 class="section-title">Powering leagues at every level.</h2>
+    </div>
+    <div class="trusted-row">
+
+      <div class="trusted-badge">
+        <img src="NCAA D1/LILJ.png" alt="Long Island Lacrosse Journal / Juniors Open">
+        <span class="trusted-badge-label">Juniors Open</span>
+      </div>
+
+      <div class="trusted-badge" style="padding:.75rem 1.5rem;">
+        <span class="trusted-badge-label" style="font-size:.9rem;letter-spacing:.04em;">Showcase X</span>
+      </div>
+
+      <div class="trusted-badge">
+        <img src="NCAA D1/NBA-Academy-Logo.png" alt="NBA Academy Games">
+        <span class="trusted-badge-label">NBA Academy Games</span>
+      </div>
+
+      <div class="trusted-badge">
+        <img src="NCAA D1/Unrivalled_(basketball_league).svg.png" alt="Unrivaled" style="mix-blend-mode:screen;background:transparent;">
+      </div>
+
+      <div class="trusted-more">and more</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CTA
+════════════════════════════════════════════════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Ready to bring ScoreBreak to your league?</h2>
+      <p>Whether you're running a weekend tournament or a full season league, ScoreBreak has the tools to run a better operation for administrators, coaches, fans, and scouts.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Sales</a>
+        <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="ScoreBreak Home">
+          <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+          <img src="Logos/4.png?v=2" class="logo-light" alt="ScoreBreak">
+        </a>
+        <p class="footer-tagline">We are ScoreBreak — the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
+          <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Sports</h4>
+        <ul>
+          <li><a href="lacrosse.html">Lacrosse</a></li>
+          <li><a href="basketball.html">Basketball</a></li>
+          <li><a href="football.html">Football</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="software.html">Team Software</a></li>
+          <li><a href="airborne.html">Airborne</a></li>
+          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="leagues.html">League Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
+          <li><a href="#">Downloads</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ScoreBreak, Inc. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var html = document.documentElement;
+  var saved = localStorage.getItem('sbTheme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  var toggle = document.getElementById('themeToggle');
+  function setIcon(theme) {
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
+      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+  }
+  setIcon(saved);
+  toggle.addEventListener('click', function() {
+    var cur = html.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('sbTheme', next);
+    setIcon(next);
+  });
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+})();
+</script>
+
+<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+  <div class="sb-modal">
+    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <h2 id="sbModalTitle">Get in Touch</h2>
+    <p class="sb-modal-sub">Have questions? We're happy to help — no commitment required.</p>
+    <div class="sb-modal-options">
+      <a href="mailto:sales@scorebreak.io" class="sb-modal-option">
+        <div class="sb-modal-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        </div>
+        <div>
+          <div class="sb-modal-option-label">Email Sales</div>
+          <div class="sb-modal-option-detail">sales@scorebreak.io</div>
+        </div>
+      </a>
+      <a href="tel:18006092102" class="sb-modal-option">
+        <div class="sb-modal-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="sb-modal-option-label">Call Us</div>
+          <div class="sb-modal-option-detail">1-800-609-2102</div>
+        </div>
+      </a>
+      <a href="demo.html" class="sb-modal-option">
+        <div class="sb-modal-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div>
+          <div class="sb-modal-option-label">Request a Demo</div>
+          <div class="sb-modal-option-detail">Schedule a personalized walkthrough</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+function sbOpenModal() {
+  document.getElementById('sbContactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function sbCloseModal() {
+  document.getElementById('sbContactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('sbContactModal').addEventListener('click', function(e) {
+  if (e.target === this) sbCloseModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sbCloseModal();
+});
+</script>
+</body>
+</html>
