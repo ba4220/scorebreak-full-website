@@ -79,36 +79,37 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-bottom: 4rem;
+      align-items: stretch;
     }
     .support-card {
       background: var(--card-bg);
       border: 1px solid var(--border-sub);
       border-radius: var(--radius-lg);
-      padding: 2.5rem 2rem;
+      padding: 1.75rem;
       text-align: center;
       transition: background .2s, border-color .2s, box-shadow .2s;
     }
     .support-card:hover { background: var(--card-bg2); border-color: var(--border); box-shadow: var(--shadow); }
     .support-card-icon {
-      width: 60px; height: 60px;
+      width: 56px; height: 56px;
       background: var(--blue-dim);
-      border-radius: 16px;
+      border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 1.1rem;
       color: var(--blue);
     }
     .support-card-icon svg { width: 28px; height: 28px; }
     .support-card h3 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      margin-bottom: .6rem;
+      margin-bottom: .45rem;
       color: var(--text);
     }
     .support-card p {
-      font-size: .9rem;
+      font-size: .88rem;
       color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      margin-bottom: 1.1rem;
     }
 
     /* Contact form */
@@ -226,22 +227,21 @@
     .download-items {
       display: flex;
       flex-direction: column;
-      gap: .75rem;
+      gap: .4rem;
     }
     .download-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 1.25rem;
+      padding: .6rem .85rem;
       background: var(--bg3);
       border: 1px solid var(--border-sub);
       border-radius: 10px;
-      gap: 1rem;
+      gap: .75rem;
     }
-    .download-item-info { display: flex; align-items: center; gap: .75rem; }
-    .download-item-icon { font-size: 1.5rem; }
-    .download-item-name { font-size: .92rem; font-weight: 700; margin-bottom: .15rem; }
-    .download-item-meta { font-size: .78rem; color: var(--text-dim); }
+    .download-item-info { display: flex; align-items: center; }
+    .download-item-name { font-size: .88rem; font-weight: 700; margin-bottom: .1rem; }
+    .download-item-meta { font-size: .76rem; color: var(--text-dim); }
 
     @media (max-width: 900px) {
       .support-cards { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
@@ -338,9 +338,9 @@
       <div class="support-card">
         <div class="support-card-icon">
           <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="14" cy="14" r="11"/>
-            <path d="M14 10a3 3 0 013 3v1a3 3 0 01-3 3"/>
-            <circle cx="14" cy="20" r="1" fill="currentColor" stroke="none"/>
+            <path d="M4 18v-5C4 8.5 8.5 4 14 4s10 4.5 10 9v5"/>
+            <rect x="2" y="17" width="5" height="6" rx="2"/>
+            <rect x="21" y="17" width="5" height="6" rx="2"/>
           </svg>
         </div>
         <h3>Help Center</h3>
@@ -359,10 +359,9 @@
         </div>
         <h3>Downloads</h3>
         <p>Get the latest ScoreBreak apps for Mac, iPhone, and iPad — or use the web app directly in your browser.</p>
-        <div class="download-items" style="text-align:left; margin-top: .75rem;">
+        <div class="download-items" style="text-align:left; margin-top: .5rem;">
           <div class="download-item">
             <div class="download-item-info">
-              <span class="download-item-icon"></span>
               <div>
                 <div class="download-item-name">Mac App</div>
                 <div class="download-item-meta">macOS · Latest version</div>
@@ -372,7 +371,6 @@
           </div>
           <div class="download-item">
             <div class="download-item-info">
-              <span class="download-item-icon"></span>
               <div>
                 <div class="download-item-name">iPhone &amp; iPad App</div>
                 <div class="download-item-meta">iOS · ScoreBreak: Game Film Review</div>
@@ -382,10 +380,9 @@
           </div>
           <div class="download-item">
             <div class="download-item-info">
-              <span class="download-item-icon">🌐</span>
               <div>
                 <div class="download-item-name">Web App</div>
-                <div class="download-item-meta">Use in any browser — no download required</div>
+                <div class="download-item-meta">Any browser — no download required</div>
               </div>
             </div>
             <a href="https://app.scorebreak.io" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Open</a>
@@ -402,7 +399,7 @@
         </div>
         <h3>Contact Support</h3>
         <p>Can't find what you're looking for? Send us a message and we'll respond within 1 business day.</p>
-        <div style="margin-top: .5rem;">
+        <div style="margin-top: .25rem;">
           <div class="contact-detail">
             <div class="contact-detail-icon">
               <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h12a1 1 0 011 1v9a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M16 5L9 10 2 5"/></svg>
