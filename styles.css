@@ -57,6 +57,7 @@ ul, ol { list-style: none; }
   --nav-bg:     rgba(255,255,255,.95);
   --shadow:     0 4px 24px rgba(0,0,0,.10);
   --shadow-blue:0 4px 24px rgba(14,165,214,.12);
+  color-scheme: light;
 }
 
 /* 3. Base */
@@ -113,8 +114,15 @@ body {
   height: 44px;
   width: auto;
 }
-.logo-dark  { display: block !important; height: 44px !important; width: auto !important; }
-.logo-light { display: none  !important; height: 44px !important; width: auto !important; }
+.logo-dark,
+.logo-light {
+  height: 44px !important;
+  width: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+.logo-dark  { display: block !important; }
+.logo-light { display: none  !important; }
 [data-theme="light"] .logo-dark  { display: none  !important; }
 [data-theme="light"] .logo-light { display: block !important; }
 
@@ -995,3 +1003,18 @@ body {
 }
 [data-theme="light"] .sb-modal-option-label { color: #0A0E1A; }
 [data-theme="light"] .sb-modal-option:last-child .sb-modal-option-detail { color: #5A6478; }
+
+/* ============================================================
+   GLOBAL FORM ELEMENT LIGHT MODE
+   ============================================================ */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background-color: #FFFFFF;
+  color: #0A0E1A;
+  border-color: rgba(0,0,0,0.2);
+}
+[data-theme="light"] select option {
+  background-color: #FFFFFF;
+  color: #0A0E1A;
+}
