@@ -102,6 +102,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
+      align-items: stretch;
     }
     .film-card {
       background: #0D1526;
@@ -109,6 +110,8 @@
       border-radius: var(--radius);
       overflow: hidden;
       transition: border-color .2s, box-shadow .2s, transform .2s;
+      display: flex;
+      flex-direction: column;
     }
     .film-card:hover {
       border-color: rgba(86,199,255,0.3);
@@ -143,7 +146,7 @@
       color: var(--blue);
     }
     .film-card-img-icon svg { width: 24px; height: 24px; }
-    .film-card-body { padding: 1.25rem; }
+    .film-card-body { padding: 1.25rem; flex: 1; }
     .film-card-body h3 {
       font-size: 1rem;
       font-weight: 700;
@@ -258,6 +261,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
+      align-items: stretch;
     }
     .collab-card {
       background: var(--card-bg);
@@ -526,7 +530,7 @@
         </div>
         <div class="film-card-body">
           <h3>Tag Boards</h3>
-          <p>Each coach builds their own custom button layout — a personalized dashboard for tagging exactly the plays they care about. Set it up once and reuse it all season. Use a Droppable Pin for instant one-tap tags, or a Recordable Clip when you need variable-length cuts.</p>
+          <p>Each coach builds a personalized button layout for tagging exactly the plays they care about — set it up once and reuse it all season. Droppable Pins for instant one-tap tags; Recordable Clips for variable-length cuts.</p>
         </div>
       </div>
 
@@ -548,7 +552,7 @@
         </div>
         <div class="film-card-body">
           <h3>AI Analysis</h3>
-          <p>ScoreBreak automatically analyzes uploaded game film to generate location charts, stats, and play tags — no manual input required.</p>
+          <p>ScoreBreak automatically analyzes uploaded game film to generate location charts, stats, and play tags — no manual input required. Upload your film and the AI handles the rest.</p>
         </div>
       </div>
 
@@ -559,7 +563,7 @@
         </div>
         <div class="film-card-body">
           <h3>Film Sharing</h3>
-          <p>Share game film and playlists with your entire program instantly — coaches, players, and staff all in one place.</p>
+          <p>Share game film and playlists with your entire program instantly — coaches, players, and staff all in one place. Anyone can access the film via a direct link without needing a separate account.</p>
         </div>
       </div>
 
@@ -570,7 +574,7 @@
         </div>
         <div class="film-card-body">
           <h3>Remote Film Sessions</h3>
-          <p>Run collaborative film sessions from anywhere — coaches and players watch and discuss film together in real time.</p>
+          <p>Run collaborative film sessions from anywhere — coaches and players watch and discuss film together in real time. Pause, mark up, and give feedback as a group from any device.</p>
         </div>
       </div>
 
@@ -581,7 +585,7 @@
         </div>
         <div class="film-card-body">
           <h3>Unlimited Storage</h3>
-          <p>Never delete a game again. Store every practice, scrimmage, and game with no storage limits — your entire library, forever.</p>
+          <p>Never delete a game again. Store every practice, scrimmage, and game with no storage limits — your entire film library stays accessible and searchable, forever.</p>
         </div>
       </div>
 
@@ -592,7 +596,7 @@
         </div>
         <div class="film-card-body">
           <h3>Team Communication</h3>
-          <p>Keep your program connected with built-in messaging — share clips, notes, and feedback directly within the platform.</p>
+          <p>Keep your program connected with built-in messaging — share clips, notes, and feedback directly within the platform. No third-party tools needed to stay in sync with players and staff.</p>
         </div>
       </div>
 
@@ -656,7 +660,7 @@
           </svg>
         </div>
         <h3>Unlimited Storage</h3>
-        <p>Never worry about running out of space. Store all your game film, clips, and playlists with no storage limits.</p>
+        <p>Never worry about running out of space. Store all your game film, clips, and playlists with no storage limits — your entire library stays accessible and searchable from any device.</p>
       </div>
 
       <!-- Film Sharing -->
@@ -667,7 +671,7 @@
           </svg>
         </div>
         <h3>Film Sharing</h3>
-        <p>Share film packages with coaches, players, and recruiters instantly — full access anytime, anywhere.</p>
+        <p>Share film packages with coaches, players, and recruiters instantly — full access anytime, anywhere. A direct link gets anyone into the film without needing a separate account or login.</p>
       </div>
 
       <!-- Remote Film Sessions & Voiceovers -->

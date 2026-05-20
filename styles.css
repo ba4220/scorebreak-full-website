@@ -536,6 +536,8 @@ body {
   border: 1px solid var(--border-sub);
   border-radius: var(--radius);
   transition: background .2s, border-color .2s;
+  display: flex;
+  flex-direction: column;
 }
 .feature-item:hover { background: var(--card-bg2); border-color: var(--border); }
 
