@@ -406,6 +406,15 @@
       .film-grid { grid-template-columns: 1fr; }
       .collab-grid { grid-template-columns: 1fr; }
     }
+    [data-theme="light"] .film-card {
+      background: var(--card-bg);
+      border-color: rgba(10,14,26,0.1);
+    }
+    [data-theme="light"] .film-card-img { background: rgba(10,14,26,0.06); }
+    [data-theme="light"] .film-card:hover {
+      border-color: rgba(10,14,26,0.2);
+      box-shadow: 0 8px 32px rgba(10,14,26,0.1);
+    }
   </style>
 </head>
 <body>

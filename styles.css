@@ -113,8 +113,8 @@ body {
   height: 44px;
   width: auto;
 }
-.logo-dark  { display: block !important; height: 44px; width: auto; }
-.logo-light { display: none  !important; height: 44px; width: auto; }
+.logo-dark  { display: block !important; height: 44px !important; width: auto !important; }
+.logo-light { display: none  !important; height: 44px !important; width: auto !important; }
 [data-theme="light"] .logo-dark  { display: none  !important; }
 [data-theme="light"] .logo-light { display: block !important; }
 
@@ -254,6 +254,11 @@ body {
 }
 .theme-toggle:hover { background: var(--card-bg); color: var(--text); }
 .theme-toggle svg { width: 18px; height: 18px; }
+[data-theme="light"] .theme-toggle { color: #0A0E1A; }
+
+/* Unrivaled logo — screen blend on dark bg, multiply on light bg */
+.unrivaled-logo { mix-blend-mode: screen; background: transparent; }
+[data-theme="light"] .unrivaled-logo { mix-blend-mode: multiply; }
 
 /* Hamburger */
 .nav-hamburger {
@@ -974,3 +979,19 @@ body {
 .sb-modal-option:last-child .sb-modal-option-detail {
   color: #8A95A8;
 }
+
+/* Modal light mode overrides */
+[data-theme="light"] .sb-modal {
+  background: #fff;
+  border-color: rgba(10,14,26,0.12);
+}
+[data-theme="light"] .sb-modal h2 { color: #0A0E1A; }
+[data-theme="light"] .sb-modal-sub { color: #5A6478; }
+[data-theme="light"] .sb-modal-close { color: #5A6478; }
+[data-theme="light"] .sb-modal-close:hover { background: rgba(10,14,26,.06); color: #0A0E1A; }
+[data-theme="light"] .sb-modal-option {
+  background: rgba(10,14,26,.03);
+  border-color: rgba(10,14,26,.1);
+}
+[data-theme="light"] .sb-modal-option-label { color: #0A0E1A; }
+[data-theme="light"] .sb-modal-option:last-child .sb-modal-option-detail { color: #5A6478; }

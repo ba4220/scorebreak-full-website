@@ -301,6 +301,14 @@
       .lg-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
       .trusted-row { gap: .75rem; }
     }
+    [data-theme="light"] .lg-exchange-card {
+      background: var(--card-bg);
+      border-color: var(--border-sub);
+    }
+    [data-theme="light"] .lg-exchange-card:hover {
+      background: var(--card-bg2);
+      border-color: var(--border);
+    }
   </style>
 </head>
 <body>
@@ -618,7 +626,7 @@
       </div>
 
       <div class="trusted-badge">
-        <img src="NCAA D1/Unrivalled_(basketball_league).svg.png" alt="Unrivaled" style="mix-blend-mode:screen;background:transparent;">
+        <img src="NCAA D1/Unrivalled_(basketball_league).svg.png" alt="Unrivaled" class="unrivaled-logo">
       </div>
 
       <div class="trusted-more">and more</div>
