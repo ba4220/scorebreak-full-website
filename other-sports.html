@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScoreBreak for Soccer, Hockey & More | Film Analysis for Any Sport</title>
+  <meta name="description" content="ScoreBreak's professional film analysis platform works for soccer, ice hockey, field hockey, and more. The same tools used by elite programs — built for any coaching staff." />
+  <meta name="keywords" content="soccer film analysis, ice hockey video analysis, field hockey coaching software, sports film analysis platform, coaching video software, ScoreBreak" />
+  <meta property="og:title" content="ScoreBreak for Other Sports | Film Analysis for Any Sport" />
+  <meta property="og:description" content="Professional film analysis and collaboration tools built for any coaching staff, any sport." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/other-sports.html" />
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Other Sports page-specific styles ── */
+
+    /* Hero */
+    .os-hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: calc(var(--nav-h) + 4rem) 0 5rem;
+    }
+    .os-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .os-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .os-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(8,10,14,.88) 0%,
+        rgba(8,10,14,.70) 50%,
+        rgba(8,10,14,.30) 100%
+      );
+    }
+    [data-theme="light"] .os-hero-bg::after {
+      background: linear-gradient(
+        to right,
+        rgba(240,242,246,.90) 0%,
+        rgba(240,242,246,.72) 50%,
+        rgba(240,242,246,.25) 100%
+      );
+    }
+    .os-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+    }
+    .os-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .3rem .9rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.75rem;
+    }
+    .os-hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.07;
+      margin-bottom: 1.4rem;
+      color: var(--text);
+    }
+    .os-hero .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2.2rem;
+      max-width: 540px;
+    }
+    .os-hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Sport Cards */
+    .sport-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .os-sport-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .os-sport-card:hover {
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+    .os-sport-card-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      position: relative;
+      background: var(--card-bg2);
+    }
+    .os-sport-card-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .os-sport-card:hover .os-sport-card-img img {
+      transform: scale(1.04);
+    }
+    .os-sport-card-body {
+      padding: 1.4rem 1.5rem 1.6rem;
+    }
+    .os-sport-card-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: .5rem;
+      letter-spacing: -.02em;
+    }
+    .os-sport-card-desc {
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Feature Cards */
+    .os-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .os-feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color .2s, background .2s;
+    }
+    .os-feature-card:hover {
+      background: var(--card-bg2);
+      border-color: var(--border);
+    }
+    .os-feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--blue-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+      color: var(--blue);
+    }
+    .os-feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+    }
+    .os-feature-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem;
+      letter-spacing: -.01em;
+    }
+    .os-feature-desc {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Airborne callout */
+    .os-airborne {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 16px;
+      padding: 3.5rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+    .os-airborne-text { flex: 1; }
+    .os-airborne-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .25rem .75rem;
+      background: rgba(86,199,255,.12);
+      border: 1px solid rgba(86,199,255,.25);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.1rem;
+    }
+    .os-airborne h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .os-airborne p {
+      font-size: .98rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .os-airborne-visual {
+      flex: 0 0 300px;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #0d1a2e 0%, #0a2040 60%, #051525 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(86,199,255,.15);
+    }
+    .os-airborne-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(86,199,255,.12) 0%, transparent 70%);
+    }
+    .os-airborne-logo {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .os-airborne-logo img {
+      height: 48px;
+      width: auto;
+      opacity: .85;
+    }
+
+    /* CTA section */
+    .os-cta {
+      text-align: center;
+      padding: 5rem 0;
+    }
+    .os-cta h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .os-cta p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 2.2rem;
+      line-height: 1.7;
+    }
+    .os-cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Section badge shared */
+    .os-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .25rem .75rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sport-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .os-features-grid { grid-template-columns: repeat(2, 1fr); }
+      .os-airborne { flex-direction: column; gap: 2rem; }
+      .os-airborne-visual { flex: none; width: 100%; aspect-ratio: 16/7; }
+    }
+    @media (max-width: 600px) {
+      .os-hero h1 { font-size: clamp(2rem, 8vw, 2.6rem); }
+      .sport-cards-grid { grid-template-columns: 1fr; }
+      .os-features-grid { grid-template-columns: 1fr; }
+      .os-hero { min-height: 80vh; }
+      .os-hero-actions { flex-direction: column; align-items: stretch; }
+      .os-hero-actions .btn { width: 100%; justify-content: center; }
+      .os-cta-actions { flex-direction: column; align-items: stretch; }
+      .os-cta-actions .btn { width: 100%; justify-content: center; }
+      .os-airborne { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html">Football</a>
+          <a href="other-sports.html">Other Sports</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne</a>
+          <a href="portal.html">Recruiting Network</a>
+          <a href="leagues.html">League Solutions</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="lacrosse.html">Lacrosse</a>
+    <a href="basketball.html">Basketball</a>
+    <a href="football.html">Football</a>
+    <a href="other-sports.html">Other Sports</a>
+  </div>
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Solutions</div>
+    <a href="software.html">Team Software</a>
+    <a href="airborne.html">Airborne</a>
+    <a href="portal.html">Recruiting Network</a>
+    <a href="leagues.html">League Solutions</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="support.html">Support</a>
+    <a href="demo.html">Request a Demo</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="os-hero">
+  <div class="os-hero-bg">
+    <img src="https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg" alt="Soccer stadium" loading="lazy">
+  </div>
+  <div class="container">
+    <div class="os-hero-content">
+      <div class="os-hero-eyebrow">Other Sports</div>
+      <h1>ScoreBreak works for your sport.</h1>
+      <p class="hero-sub">The same professional film analysis and collaboration tools used by lacrosse and basketball programs — built to work for any coaching staff, any sport.</p>
+      <div class="os-hero-actions">
+        <a href="demo.html" class="btn btn-primary btn-lg">Request a Demo</a>
+        <button onclick="sbOpenModal()" class="btn btn-outline btn-lg">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPORTS INTRO ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="sport-cards-grid">
+
+      <!-- Soccer -->
+      <div class="os-sport-card">
+        <div class="os-sport-card-img">
+          <img src="soccer.jpg" alt="Soccer match aerial view" loading="lazy">
+        </div>
+        <div class="os-sport-card-body">
+          <div class="os-sport-card-name">Soccer</div>
+          <p class="os-sport-card-desc">Film analysis and collaboration tools for soccer programs at every level.</p>
+        </div>
+      </div>
+
+      <!-- Ice Hockey -->
+      <div class="os-sport-card">
+        <div class="os-sport-card-img">
+          <img src="ice_hockey.jpg" alt="Ice hockey player on the rink" loading="lazy">
+        </div>
+        <div class="os-sport-card-body">
+          <div class="os-sport-card-name">Ice Hockey</div>
+          <p class="os-sport-card-desc">Break down shifts, systems, and special teams with the same tools used by professional programs.</p>
+        </div>
+      </div>
+
+      <!-- Field Hockey -->
+      <div class="os-sport-card">
+        <div class="os-sport-card-img">
+          <img src="field%20hockey.jpg" alt="Field hockey player in action" loading="lazy">
+        </div>
+        <div class="os-sport-card-body">
+          <div class="os-sport-card-name">Field Hockey</div>
+          <p class="os-sport-card-desc">Review possessions, set pieces, and defensive structure with customizable tagging workflows.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="section" style="background: var(--bg2);">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3.5rem;">
+      <div class="os-badge">What's Included</div>
+      <h2 class="section-title">Everything your staff needs.<br>Nothing you don't.</h2>
+      <p class="section-subtitle" style="max-width:580px; margin:0 auto;">ScoreBreak gives your coaching staff a complete film analysis platform — built to fit your system, your terminology, and your workflow.</p>
+    </div>
+
+    <div class="os-features-grid">
+
+      <div class="os-feature-card">
+        <div class="os-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <div class="os-feature-title">Custom Tagging Workflows</div>
+        <p class="os-feature-desc">Build a tagging system around your sport's terminology and your coaching style. Each coach on staff can have their own custom layout.</p>
+      </div>
+
+      <div class="os-feature-card">
+        <div class="os-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg>
+        </div>
+        <div class="os-feature-title">Unlimited Cloud Storage</div>
+        <p class="os-feature-desc">Every game, every practice, every season — stored and accessible forever. No storage limits, no purging old film.</p>
+      </div>
+
+      <div class="os-feature-card">
+        <div class="os-feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="os-feature-title">Playlists &amp; Presentations</div>
+        <p class="os-feature-desc">Combine film clips, whiteboard drawings, and coaching notes into a single presentation for your team or individual players.</p>
+      </div>
+
+      <div class="os-feature-card">
+        <div class="os-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="os-feature-title">Team Collaboration</div>
+        <p class="os-feature-desc">Share clips and game plans with your entire staff instantly. Built-in chat means feedback happens inside the platform — no switching apps.</p>
+      </div>
+
+      <div class="os-feature-card">
+        <div class="os-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div class="os-feature-title">Remote Film Sessions</div>
+        <p class="os-feature-desc">Run live film sessions with your whole team from anywhere — a Zoom-like experience built directly into ScoreBreak.</p>
+      </div>
+
+      <div class="os-feature-card">
+        <div class="os-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </div>
+        <div class="os-feature-title">Offline Viewing</div>
+        <p class="os-feature-desc">Download film to your device and review without an internet connection. Perfect for travel and away games.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AIRBORNE ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="os-airborne">
+      <div class="os-airborne-text">
+        <div class="os-airborne-badge">Sideline Replay</div>
+        <h2>Add sideline replay to any sport.</h2>
+        <p>Airborne R is a portable, battery-powered sideline replay system that works at any venue — no installation required. Set up in minutes, get instant replay on the sideline.</p>
+        <a href="airborne.html" class="btn btn-outline">Learn About Airborne →</a>
+      </div>
+      <div class="os-airborne-visual">
+        <img src="Airborne R/Airborne_locker_room.png" alt="Airborne R sideline replay system in locker room" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section" style="background: var(--bg2);">
+  <div class="container">
+    <div class="os-cta">
+      <h2>ScoreBreak works for your sport.</h2>
+      <p>If your staff reviews film and prepares for opponents, ScoreBreak has the tools to make that process faster and more effective.</p>
+      <div class="os-cta-actions">
+        <a href="demo.html" class="btn btn-primary btn-lg">Request a Demo</a>
+        <button onclick="sbOpenModal()" class="btn btn-outline btn-lg">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="ScoreBreak Home">
+          <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+          <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+        </a>
+        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
+          <a href="https://www.instagram.com/scorebreak" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li><li><a href="other-sports.html">Other Sports</a></li></ul></div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="software.html">Team Software</a></li>
+          <li><a href="airborne.html">Airborne</a></li>
+          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="leagues.html">League Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="https://www.scorebreak.io/blog">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="#">Downloads</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 ScoreBreak, Inc. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<!-- ═══ CONTACT MODAL ═══ -->
+<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+  <div class="sb-modal">
+    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <h2 id="sbModalTitle">Get in Touch</h2>
+    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+
+    <div id="sbModalFormWrap">
+      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact-sales">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+
+        <div class="sb-form-row">
+          <div class="sb-form-group">
+            <label for="sbFirstName">First Name</label>
+            <input type="text" id="sbFirstName" name="firstName" required>
+          </div>
+          <div class="sb-form-group">
+            <label for="sbLastName">Last Name</label>
+            <input type="text" id="sbLastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbEmail">Email</label>
+          <input type="email" id="sbEmail" name="email" required>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbMessage">Message</label>
+          <textarea id="sbMessage" name="message" rows="4" placeholder="Tell us about your program and what you're looking for..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary sb-form-submit">Send Message</button>
+      </form>
+
+      <div class="sb-modal-divider"><span>or</span></div>
+
+      <div class="sb-modal-options">
+        <a href="demo.html" class="sb-modal-option">
+          <div class="sb-modal-option-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="sb-modal-option-label">Request a Demo</div>
+            <div class="sb-modal-option-detail">See the full platform in a 20-minute walkthrough.</div>
+          </div>
+        </a>
+      </div>
+
+      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+    </div>
+
+    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+      <div class="sb-modal-confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function sbOpenModal() {
+  document.getElementById('sbContactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('sbModalFormWrap').style.display = '';
+  document.getElementById('sbModalConfirm').style.display = 'none';
+  var f = document.getElementById('sbContactForm');
+  if (f) f.reset();
+}
+function sbCloseModal() {
+  document.getElementById('sbContactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('sbContactModal').addEventListener('click', function(e) {
+  if (e.target === this) sbCloseModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sbCloseModal();
+});
+var sbContactForm = document.getElementById('sbContactForm');
+if (sbContactForm) {
+  sbContactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(sbContactForm);
+    var firstName = (data.get('firstName') || '').toString().trim();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    }).finally(function() {
+      document.getElementById('sbModalFormWrap').style.display = 'none';
+      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
+      document.getElementById('sbModalConfirm').style.display = 'block';
+    });
+  });
+}
+</script>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('sbTheme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+
+  var themeBtn = document.getElementById('themeToggle');
+  function setIcon(theme) {
+    if (!themeBtn) return;
+    themeBtn.innerHTML = theme === 'dark'
+      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
+      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+  }
+  setIcon(saved);
+  themeBtn.addEventListener('click', function() {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('sbTheme', next);
+    setIcon(next);
+  });
+
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+  mob.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mob.classList.remove('open');
+      ham.classList.remove('active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

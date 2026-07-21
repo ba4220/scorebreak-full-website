@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ScoreBreak Gridiron | Football Film Analysis — Join the Waitlist</title>
+  <title>ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist</title>
   <meta name="description" content="ScoreBreak Gridiron brings professional football film analysis and sideline replay technology to high school and college programs. Join the waitlist for early access." />
   <meta name="keywords" content="football film analysis software, Hudl alternative football, football coaching software, sideline replay football, high school football film, football video analysis, football recruiting software, ScoreBreak Gridiron" />
   <meta property="og:title" content="ScoreBreak Gridiron | Football Film Analysis Platform" />
@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://scorebreak.io/football.html" />
   <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ScoreBreak Gridiron | Football Film Analysis — Join the Waitlist" />
+  <meta name="twitter:title" content="ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist" />
   <meta name="twitter:description" content="Professional football film analysis and sideline replay technology for high school and college programs." />
   <style>
     /* ── Reset & base ── */
@@ -80,6 +80,23 @@
     }
     .nav-cta:hover { opacity: .85; }
 
+    .nav-gridiron {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .45rem 1rem;
+      background: linear-gradient(135deg, var(--blue) 0%, #0080CC 100%);
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .nav-gridiron:hover { opacity: .88; transform: translateY(-1px); }
+
     /* ── Hero ── */
     .hero {
       position: relative;
@@ -93,7 +110,7 @@
       overflow: hidden;
     }
 
-    /* football field background — yard lines + hash marks */
+    /* football field background  -  yard lines + hash marks */
     .hero::before {
       content: '';
       position: absolute;
@@ -641,9 +658,20 @@
     }
 
     /* ── Responsive ── */
+    @media (max-width: 900px) {
+      section { padding: 4.5rem 1.5rem; }
+    }
+
     @media (max-width: 600px) {
       nav { padding: .85rem 1.2rem; }
       .nav-cta { display: none; }
+      section { padding: 3.5rem 1.25rem; }
+      .hero { padding: 6.5rem 1.25rem 3.5rem; }
+      .hero h1 { font-size: clamp(1.9rem, 9vw, 2.6rem); }
+      .hero-subtitle { font-size: clamp(1.05rem, 5vw, 1.3rem); }
+      .hero-cta-group { flex-direction: column; align-self: stretch; }
+      .hero-cta-group .btn-primary,
+      .hero-cta-group .btn-ghost { width: 100%; justify-content: center; }
       .form-row { grid-template-columns: 1fr; }
       .waitlist-card { padding: 1.75rem 1.25rem; }
       .confirm-box { padding: 2rem 1.5rem; }
@@ -713,6 +741,7 @@
           <a href="lacrosse.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Lacrosse</a>
           <a href="basketball.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Basketball</a>
           <a href="football.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#56C7FF;border-radius:8px;text-decoration:none;background:rgba(86,199,255,.1);">Football</a>
+          <a href="other-sports.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Other Sports</a>
         </div>
       </div>
 
@@ -735,7 +764,7 @@
       <a href="support.html" style="padding:.5rem .75rem;font-size:.88rem;font-weight:600;color:#8A95A8;border-radius:8px;text-decoration:none;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A95A8'">Support</a>
       <a href="about.html" style="padding:.5rem .75rem;font-size:.88rem;font-weight:600;color:#8A95A8;border-radius:8px;text-decoration:none;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A95A8'">About</a>
       <a href="demo.html" style="padding:.5rem .75rem;font-size:.88rem;font-weight:600;color:#8A95A8;border-radius:8px;text-decoration:none;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A95A8'">Request a Demo</a>
-      <a href="football.html" style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;background:linear-gradient(135deg,#FF6B35,#FF4500);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.04em;border-radius:999px;text-decoration:none;white-space:nowrap;">Gridiron</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:.5rem 1.1rem;background:rgba(255,255,255,.04);border:1px solid rgba(86,199,255,.15);color:#fff;font-size:.88rem;font-weight:700;border-radius:8px;text-decoration:none;white-space:nowrap;">Log In</a>
     </div>
 
@@ -755,6 +784,7 @@
     <a href="lacrosse.html" style="display:block;padding:.65rem .75rem;font-size:.95rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;">Lacrosse</a>
     <a href="basketball.html" style="display:block;padding:.65rem .75rem;font-size:.95rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;">Basketball</a>
     <a href="football.html" style="display:block;padding:.65rem .75rem;font-size:.95rem;font-weight:600;color:#56C7FF;border-radius:8px;text-decoration:none;">Football</a>
+    <a href="other-sports.html" style="display:block;padding:.65rem .75rem;font-size:.95rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;">Other Sports</a>
   </div>
   <div style="padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:.5rem;">
     <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5A6478;padding:.4rem .75rem;">Solutions</div>
@@ -774,7 +804,10 @@
 /* Show hamburger on mobile, hide desktop center/right */
 @media (max-width: 900px) {
   .sb-nav-center, .sb-nav-right { display: none !important; }
-  #sbHam { display: flex !important; }
+  #sbHam { display: flex !important; width: 44px !important; height: 44px !important; }
+}
+@media (max-width: 600px) {
+  #siteNav > div { padding: 0 1.25rem !important; }
 }
 </style>
 
@@ -793,6 +826,13 @@ document.querySelectorAll('.sb-dd').forEach(function(dd) {
 document.addEventListener('click', function() {
   document.querySelectorAll('.sb-dd-menu').forEach(function(m){ m.style.display='none'; });
 });
+
+/* Close mobile menu on link click */
+document.querySelectorAll('#sbMob a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('sbMob').style.display = 'none';
+  });
+});
 </script>
 
 
@@ -807,10 +847,10 @@ document.addEventListener('click', function() {
 
   <h1>The Future of Football<br>Film Analysis <em>is Coming</em></h1>
 
-  <p class="hero-subtitle"><span>ScoreBreak</span> Gridiron — a new alternative to Hudl</p>
+  <p class="hero-subtitle"><span>ScoreBreak</span> Gridiron  -  a new alternative to Hudl</p>
 
   <p class="hero-sub">
-    <span style="color:var(--white)">Powerful film analysis</span>, <span style="color:var(--white)">reliable sideline replay</span>, and <span style="color:var(--white)">in-depth in-game reports</span> — built with ease of use and customization at the forefront.
+    <span style="color:var(--white)">Powerful film analysis</span>, <span style="color:var(--white)">reliable sideline replay</span>, and <span style="color:var(--white)">in-depth in-game reports</span>  -  built with ease of use and customization at the forefront.
   </p>
 
   <div class="hero-cta-group">
@@ -839,7 +879,7 @@ document.addEventListener('click', function() {
     <div class="features-header">
       <div class="section-label">Core Features</div>
       <h2 class="section-title">A glimpse at what we're building.</h2>
-      <p class="section-sub">Built around how your staff actually works — on the sideline, in the film room, and everything in between.</p>
+      <p class="section-sub">Built around how your staff actually works  -  on the sideline, in the film room, and everything in between.</p>
     </div>
 
     <div class="features-grid">
@@ -852,7 +892,7 @@ document.addEventListener('click', function() {
           </svg>
         </div>
         <div class="feature-title">Effortless In-Game Reporting</div>
-        <p class="feature-body">Built on the Grid — ScoreBreak's smart play-by-play sheet. Enter a play call, field location, and result, and the rest fills itself in. Dead simple on the sideline. Surprisingly deep in the data room.</p>
+        <p class="feature-body">Built on the Grid  -  ScoreBreak's smart play-by-play sheet. Enter a play call, field location, and result, and the rest fills itself in. Dead simple on the sideline. Surprisingly deep in the data room.</p>
         <div class="feature-tags">
           <span class="feature-tag">Context-Aware</span>
           <span class="feature-tag">Auto-Indexed Film</span>
@@ -867,7 +907,7 @@ document.addEventListener('click', function() {
           </svg>
         </div>
         <div class="feature-title">Reliable Sideline Replay</div>
-        <p class="feature-body">Simple to set up. Reliable every game. Live video streams directly to iPads on the sideline — alongside the data your staff is logging in real time.</p>
+        <p class="feature-body">Simple to set up. Reliable every game. Live video streams directly to iPads on the sideline  -  alongside the data your staff is logging in real time.</p>
         <div class="feature-tags">
           <span class="feature-tag">Live Video + Data</span>
           <span class="feature-tag">Instant Post-Game</span>
@@ -882,7 +922,7 @@ document.addEventListener('click', function() {
           </svg>
         </div>
         <div class="feature-title">AI Play Diagramming</div>
-        <p class="feature-body">ScoreBreak automatically generates play diagrams from your play calls — no drawing required. Your playbook, visualized.</p>
+        <p class="feature-body">ScoreBreak automatically generates play diagrams from your play calls  -  no drawing required. Your playbook, visualized.</p>
         <div class="feature-tags">
           <span class="feature-tag">AI-Generated</span>
           <span class="feature-tag">Playbook-Linked</span>
@@ -897,7 +937,7 @@ document.addEventListener('click', function() {
           </svg>
         </div>
         <div class="feature-title">Dashboards & Tendency Reports</div>
-        <p class="feature-body">Your in-game entries automatically build halftime-ready dashboards — formation tendencies, down-and-distance, situational splits — without touching a spreadsheet.</p>
+        <p class="feature-body">Your in-game entries automatically build halftime-ready dashboards  -  formation tendencies, down-and-distance, situational splits  -  without touching a spreadsheet.</p>
         <div class="feature-tags">
           <span class="feature-tag">Auto-Built</span>
           <span class="feature-tag">Halftime Ready</span>
@@ -928,7 +968,7 @@ document.addEventListener('click', function() {
           </svg>
         </div>
         <div class="feature-title">Film Analysis</div>
-        <p class="feature-body">The Grid automatically indexes every play to your film as the game unfolds. Cut-ups, formation breakdowns, and fully searchable footage — ready before the bus ride home.</p>
+        <p class="feature-body">The Grid automatically indexes every play to your film as the game unfolds. Cut-ups, formation breakdowns, and fully searchable footage  -  ready before the bus ride home.</p>
         <div class="feature-tags">
           <span class="feature-tag">Auto-Indexed</span>
           <span class="feature-tag">Searchable</span>
@@ -949,7 +989,7 @@ document.addEventListener('click', function() {
     <div class="section-label">Pre-Launch Waitlist</div>
     <h2 class="section-title">Secure your spot.</h2>
     <p class="section-sub" style="margin: 0 auto;">
-      Join the waitlist for early access. Coaches who refer colleagues move up the list — and enough referrals earns a discount on your first year.
+      Join the waitlist for early access. Coaches who refer colleagues move up the list  -  and enough referrals earns a discount on your first year.
     </p>
 
     <div class="waitlist-card">
@@ -1050,7 +1090,7 @@ document.addEventListener('click', function() {
         <svg class="perk-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M1 8l4 4 9-9"/>
         </svg>
-        <span>Your referrals also get priority access — <strong style="color:var(--white)">everyone wins</strong>.</span>
+        <span>Your referrals also get priority access  -  <strong style="color:var(--white)">everyone wins</strong>.</span>
       </div>
     </div>
 
@@ -1067,11 +1107,23 @@ document.addEventListener('click', function() {
     <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
     <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
   </a>
-  <p class="footer-tagline">The modern film analysis and sideline replay tool — built for competitive football programs.</p>
+  <p class="footer-tagline">The modern film analysis and sideline replay tool  -  built for competitive football programs.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;margin:.75rem 0;">
+    <a href="https://x.com/scorebreak" target="_blank" rel="noopener" aria-label="X (Twitter)" style="color:rgba(255,255,255,.5);display:inline-flex;align-items:center;">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/scorebreak" target="_blank" rel="noopener" aria-label="Instagram" style="color:rgba(255,255,255,.5);display:inline-flex;align-items:center;">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/channel/UCMXxJoJUFUS-QXnHz1Qa8Uw" target="_blank" rel="noopener" aria-label="YouTube" style="color:rgba(255,255,255,.5);display:inline-flex;align-items:center;">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
+    </a>
+  </div>
   <p style="margin:.75rem 0;font-size:.85rem;color:rgba(255,255,255,.5);">
     <a href="lacrosse.html" style="color:rgba(255,255,255,.55);text-decoration:none;margin:0 .6rem;" onmouseover="this.style.color='#56C7FF'" onmouseout="this.style.color='rgba(255,255,255,.55)'">Lacrosse</a>·
     <a href="basketball.html" style="color:rgba(255,255,255,.55);text-decoration:none;margin:0 .6rem;" onmouseover="this.style.color='#56C7FF'" onmouseout="this.style.color='rgba(255,255,255,.55)'">Basketball</a>·
-    <a href="football.html" style="color:#56C7FF;text-decoration:none;margin:0 .6rem;">Football</a>
+    <a href="football.html" style="color:#56C7FF;text-decoration:none;margin:0 .6rem;">Football</a>·
+    <a href="other-sports.html" style="color:rgba(255,255,255,.55);text-decoration:none;margin:0 .6rem;" onmouseover="this.style.color='#56C7FF'" onmouseout="this.style.color='rgba(255,255,255,.55)'">Other Sports</a>
   </p>
   <p class="footer-copy">&copy; 2026 ScoreBreak. All rights reserved. &nbsp;·&nbsp; Built for coaches, by coaches.</p>
 </footer>

@@ -268,6 +268,72 @@
       white-space: nowrap;
     }
 
+    /* ── Reports — Coming Soon ── */
+    .coming-soon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .35rem 1rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--blue);
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+    .coming-soon-badge .cs-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: reportsPulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes reportsPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .5; transform: scale(.7); }
+    }
+    .reports-callout {
+      position: relative;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(86,199,255,.1) 0%, var(--card-bg) 60%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-blue);
+    }
+    .reports-callout::before {
+      content: '';
+      position: absolute;
+      top: -60%; left: 50%;
+      transform: translateX(-50%);
+      width: 420px; height: 300px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .reports-callout-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .reports-callout .coming-soon-badge { margin-bottom: .85rem; }
+    .reports-callout h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+      color: var(--text);
+    }
+    .reports-callout p {
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
     /* ── CTA section ── */
     .bball-cta {
       text-align: center;
@@ -306,11 +372,15 @@
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
       .partner-section { grid-template-columns: 1fr; text-align: center; }
       .partner-logo-wrap { margin: 0 auto; }
+      #film-analysis .bball-bullets { grid-template-columns: 1fr !important; }
     }
     @media (max-width: 600px) {
       .bball-hero { padding-top: calc(var(--nav-h) + 3rem); }
+      .bball-hero h1 { font-size: clamp(1.9rem, 9vw, 2.6rem); }
       .stats-bar { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.75rem 1.25rem; }
+      .stat-label { white-space: normal; }
       .partner-section { padding: 2rem 1.5rem; }
+      .reports-callout { padding: 1.75rem 1.25rem; }
     }
   </style>
 </head>
@@ -330,6 +400,7 @@
           <a href="lacrosse.html">Lacrosse</a>
           <a href="basketball.html" style="color:var(--blue);background:var(--blue-dim);">Basketball</a>
           <a href="football.html">Football</a>
+          <a href="other-sports.html">Other Sports</a>
         </div>
       </div>
       <div class="nav-dropdown" id="dd-solutions">
@@ -348,8 +419,8 @@
       <a href="demo.html" class="nav-link">Request a Demo</a>
       <a href="football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
     </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -361,6 +432,7 @@
     <a href="lacrosse.html">Lacrosse</a>
     <a href="basketball.html" style="color:var(--blue);">Basketball</a>
     <a href="football.html">Football</a>
+    <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
     <div class="nav-mobile-label">Solutions</div>
@@ -375,7 +447,7 @@
     <a href="about.html">About Us</a>
   </div>
   <div class="nav-mobile-section nav-mobile-actions">
-    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,#FF6B35,#FF4500);color:#fff;text-align:center;">Gridiron</a>
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
     <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
   </div>
 </div>
@@ -388,7 +460,7 @@
         <div class="bball-hero-eyebrow">Basketball</div>
         <h1>ScoreBreak for Basketball.</h1>
         <p class="hero-sub">Film analysis and sideline replay built for the modern coaching staff.</p>
-        <p class="hero-sub" style="margin-top:-.5rem;">From film breakdown to sideline replay — ScoreBreak gives basketball programs the tools to outprepare, outcoach, and outperform.</p>
+        <p class="hero-sub" style="margin-top:-.5rem;">From film breakdown to sideline replay  -  ScoreBreak gives basketball programs the tools to outprepare, outcoach, and outperform.</p>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Get in Touch</a>
           <a href="software.html" class="btn btn-outline btn-lg">Explore Platform</a>
@@ -432,40 +504,47 @@
       <div class="bball-feature-text">
         <div class="bball-feature-eyebrow">Film Analysis</div>
         <h2>Break down film faster than ever before.</h2>
-        <p>ScoreBreak's film analysis platform is purpose-built for basketball coaching staffs. Each coach builds their own tag board — a personalized layout for pick-and-rolls, horn sets, transitions, whatever your system demands. Works on iPad and Mac, with the best experience on iPad.</p>
+        <p>ScoreBreak's film analysis platform is built to fit your system  -  not the other way around. Coaches customize their own tagging workflows, organize film the way their staff thinks, and access everything from iPad or Mac.</p>
         <div class="bball-bullets" style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem 2rem;">
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Per-coach tag boards — every coach on staff builds their own custom layout, set up once and reused all season</span>
+            <span>Custom tagging workflows  -  build a system around your terminology, your sets, and your coaching style</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Individual player review playlists — build a personal film session for each athlete with clips, notes, and whiteboard drawings</span>
+            <span>Advanced analytics  -  multi-tag plays to generate tendency reports, location data, and shot charts automatically</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Shot charts from tagged location data — multi-tag plays to auto-generate location reports and tendency breakdowns</span>
+            <span>Player and team film sessions  -  build personal breakdowns for individual athletes or full staff game plans with clips, notes, and drawings</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Team collaboration — share clips, notes, and game plans with your full staff</span>
-          </div>
-          <div class="bball-bullet">
-            <div class="bball-bullet-icon">
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
-            </div>
-            <span>Send clips to players instantly from within the app — no leaving the platform, no extra tools</span>
+            <span>Instant clip sharing  -  get film to players the moment you see something worth coaching, from within the app</span>
           </div>
         </div>
         <a href="software.html" class="btn btn-primary">Explore Team Software →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REPORTS — COMING SOON ═══ -->
+<section style="padding: 2rem 0;" id="reports">
+  <div class="container">
+    <div class="reports-callout">
+      <div class="reports-callout-inner">
+        <span class="coming-soon-badge"><span class="cs-dot"></span>Coming Soon</span>
+        <h3>Reports are coming to ScoreBreak.</h3>
+        <p>Your staff collects data through tag boards and game stats. ScoreBreak visualizes, analyzes, and presents it  -  cumulative stats, efficiency metrics, and visual reports, all linked back to the video behind the numbers. Coming soon.</p>
       </div>
     </div>
   </div>
@@ -478,19 +557,19 @@
       <div class="bball-feature-text">
         <div class="bball-feature-eyebrow">Sideline Replay</div>
         <h2>Real-time replay in the gym. No delays, no excuses.</h2>
-        <p>ScoreBreak Airborne brings broadcast-quality sideline replay to basketball arenas and gyms of every size. Show your players exactly what you're coaching in real time — with instant, wireless replay at your fingertips.</p>
+        <p>ScoreBreak Airborne brings broadcast-quality sideline replay to basketball arenas and gyms of every size. Show your players exactly what you're coaching in real time  -  with instant, wireless replay at your fingertips.</p>
         <div class="bball-bullets">
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Under 5-second live delay — coach with real video, not your memory</span>
+            <span>Under 6-second live delay  -  coach with real video, not your memory</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Wireless iPad-based system — set up anywhere in the gym in minutes</span>
+            <span>Wireless iPad-based system  -  set up anywhere in the gym in minutes</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
@@ -502,7 +581,7 @@
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Works at home and away venues — portable, self-contained hardware</span>
+            <span>Works at home and away venues  -  portable, self-contained hardware</span>
           </div>
         </div>
         <a href="airborne.html" class="btn btn-primary">Explore Airborne →</a>
@@ -551,13 +630,13 @@
         <a href="airborne.html#airborne-stadium" class="btn btn-outline">See Airborne Stadium →</a>
       </div>
       <div class="bball-feature-visual" style="overflow:hidden;border-radius:var(--radius-lg);">
-        <img src="Basketball/Officiating-replay-unrivaled.png" alt="ScoreBreak officiating replay interface — Unrivaled league" style="width:100%;height:auto;display:block;">
+        <img src="Basketball/Officiating-replay-unrivaled.png" alt="ScoreBreak officiating replay interface  -  Unrivaled league" style="width:100%;height:auto;display:block;">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FEATURED PARTNER — UNRIVALED ═══ -->
+<!-- ═══ FEATURED PARTNER  -  UNRIVALED ═══ -->
 <section class="section" id="partner">
   <div class="container">
     <div class="section-head" style="margin-bottom:2rem;">
@@ -570,7 +649,7 @@
       </div>
       <div class="partner-text">
         <h3>ScoreBreak powers Unrivaled.</h3>
-        <p>ScoreBreak powers the Unrivaled league with film analysis, sideline replay, and officiating tools. Unrivaled's coaching and officiating staffs rely on ScoreBreak from pregame preparation to in-game replay and postgame review. ScoreBreak's basketball stats system was built in direct collaboration with Unrivaled — and it's available in every basketball account by default.</p>
+        <p>ScoreBreak powers the Unrivaled league with film analysis, sideline replay, and officiating tools. Unrivaled's coaching and officiating staffs rely on ScoreBreak from pregame preparation to in-game replay and postgame review. ScoreBreak's basketball stats system was built in direct collaboration with Unrivaled  -  and it's available in every basketball account by default.</p>
       </div>
     </div>
   </div>
@@ -598,17 +677,20 @@
           <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak — the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
-          <a href="#" class="footer-social-link" aria-label="X (Twitter)">
+          <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
           </a>
-          <a href="#" class="footer-social-link" aria-label="Instagram">
+          <a href="https://www.instagram.com/scorebreak" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCMXxJoJUFUS-QXnHz1Qa8Uw" class="footer-social-link" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
           </a>
         </div>
       </div>
-      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li></ul></div>
+      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li><li><a href="other-sports.html">Other Sports</a></li></ul></div>
 <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
@@ -618,7 +700,7 @@
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
-      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="https://www.scorebreak.io/blog">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
       <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="#">Downloads</a></li></ul></div>
       <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
     </div>
@@ -632,45 +714,56 @@
   <div class="sb-modal">
     <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
-    <p class="sb-modal-sub">Have questions? We're happy to help — no commitment required.</p>
-    <div class="sb-modal-options">
+    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
 
-      <a href="mailto:sales@scorebreak.io" class="sb-modal-option">
-        <div class="sb-modal-option-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/>
-          </svg>
-        </div>
-        <div>
-          <div class="sb-modal-option-label">Email Sales</div>
-          <div class="sb-modal-option-detail">sales@scorebreak.io</div>
-        </div>
-      </a>
+    <div id="sbModalFormWrap">
+      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact-sales">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
 
-      <a href="tel:18006092102" class="sb-modal-option">
-        <div class="sb-modal-option-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-          </svg>
+        <div class="sb-form-row">
+          <div class="sb-form-group">
+            <label for="sbFirstName">First Name</label>
+            <input type="text" id="sbFirstName" name="firstName" required>
+          </div>
+          <div class="sb-form-group">
+            <label for="sbLastName">Last Name</label>
+            <input type="text" id="sbLastName" name="lastName" required>
+          </div>
         </div>
-        <div>
-          <div class="sb-modal-option-label">Call Us</div>
-          <div class="sb-modal-option-detail">1-800-609-2102</div>
+        <div class="sb-form-group">
+          <label for="sbEmail">Email</label>
+          <input type="email" id="sbEmail" name="email" required>
         </div>
-      </a>
+        <div class="sb-form-group">
+          <label for="sbMessage">Message</label>
+          <textarea id="sbMessage" name="message" rows="4" placeholder="Tell us about your program and what you're looking for..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary sb-form-submit">Send Message</button>
+      </form>
 
-      <a href="demo.html" class="sb-modal-option">
-        <div class="sb-modal-option-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-          </svg>
-        </div>
-        <div>
-          <div class="sb-modal-option-label">Request a Demo</div>
-          <div class="sb-modal-option-detail">Schedule a personalized walkthrough</div>
-        </div>
-      </a>
+      <div class="sb-modal-divider"><span>or</span></div>
 
+      <div class="sb-modal-options">
+        <a href="demo.html" class="sb-modal-option">
+          <div class="sb-modal-option-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="sb-modal-option-label">Request a Demo</div>
+            <div class="sb-modal-option-detail">See the full platform in a 20-minute walkthrough.</div>
+          </div>
+        </a>
+      </div>
+
+      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+    </div>
+
+    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+      <div class="sb-modal-confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
     </div>
   </div>
 </div>
@@ -679,6 +772,10 @@
 function sbOpenModal() {
   document.getElementById('sbContactModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.getElementById('sbModalFormWrap').style.display = '';
+  document.getElementById('sbModalConfirm').style.display = 'none';
+  var f = document.getElementById('sbContactForm');
+  if (f) f.reset();
 }
 function sbCloseModal() {
   document.getElementById('sbContactModal').classList.remove('open');
@@ -690,6 +787,23 @@ document.getElementById('sbContactModal').addEventListener('click', function(e) 
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') sbCloseModal();
 });
+var sbContactForm = document.getElementById('sbContactForm');
+if (sbContactForm) {
+  sbContactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(sbContactForm);
+    var firstName = (data.get('firstName') || '').toString().trim();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    }).finally(function() {
+      document.getElementById('sbModalFormWrap').style.display = 'none';
+      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
+      document.getElementById('sbModalConfirm').style.display = 'block';
+    });
+  });
+}
 </script>
 
 <script>
@@ -736,6 +850,12 @@ document.addEventListener('keydown', function(e) {
   hamburger && hamburger.addEventListener('click', function() {
     hamburger.classList.toggle('active');
     mobileMenu.classList.toggle('open');
+  });
+  mobileMenu && mobileMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('active');
+    });
   });
 </script>
 </body>
