@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ScoreBreak | The Best Hudl Alternative for Film Analysis &amp; Sideline Replay</title>
+  <title>ScoreBreak | A Modern Hudl Alternative for Film Analysis &amp; Sideline Replay</title>
   <meta name="description" content="ScoreBreak is the #1 Hudl alternative for high school and club programs  -  AI-powered film analysis, sideline replay hardware (Airborne), and a lacrosse recruiting portal. Built for coaches who want more.">
   <meta name="keywords" content="Hudl alternative, football film analysis software, lacrosse film analysis, sideline replay system, sports video analysis platform, high school coaching software, recruiting portal for lacrosse, ScoreBreak, Airborne sideline replay">
   <meta property="og:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
@@ -114,7 +114,7 @@
     .marquee-track {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 48px;
       width: max-content;
       animation: marqueeScroll 65s linear infinite;
     }
@@ -128,19 +128,25 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      width: 90px;
-      height: 48px;
     }
+    /* Baseline logo height. Some logo files have significant built-in
+       canvas padding around the actual mark, so those get a taller
+       override below to make the visible mark read at the same size. */
     .marquee-logo {
-      max-width: 100%;
-      max-height: 100%;
+      height: 52px;
       width: auto;
-      height: auto;
       object-fit: contain;
       display: block;
       transition: opacity .2s;
     }
     .marquee-logo:hover { opacity: .8; }
+    .marquee-logo.logo-stanford    { height: 70px; }
+    .marquee-logo.logo-first-class { height: 73px; }
+    .marquee-logo.logo-culver      { height: 60px; }
+    .marquee-logo.logo-cornell     { height: 57px; }
+    .marquee-logo.unrivaled-logo   { height: 56px; }
+    .marquee-logo.logo-denver2     { height: 63px; }
+    .marquee-logo.logo-new-towson  { height: 91px; }
 
     /* Solution product badges */
     .solution-badges {
@@ -205,7 +211,11 @@
       background: linear-gradient(135deg, #0A0E1A 0%, #0F2040 50%, #1A3060 100%);
     }
     .sport-card-football .sport-card-bg {
-      background: linear-gradient(135deg, #1A0A00 0%, #3D1500 50%, #5C2000 100%);
+      background-color: #111D2E;
+      background-image:
+        linear-gradient(rgba(86, 199, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(86, 199, 255, 0.1) 1px, transparent 1px);
+      background-size: 40px 20px;
     }
     .sport-card::after {
       content: '';
@@ -302,6 +312,67 @@
       gap: 1.5rem;
     }
 
+    /* Testimonials carousel */
+    .tc-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .tc-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    .tc-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .tc-slide .testimonial-card {
+      max-width: 680px;
+      width: 100%;
+    }
+    .tc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .tc-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .tc-btn:hover { background: var(--card-bg2); border-color: var(--border); }
+    .tc-dots {
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+    }
+    .tc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s, transform .2s;
+    }
+    .tc-dot.active {
+      background: var(--blue);
+      transform: scale(1.4);
+    }
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; gap: 2.5rem; }
       .hero-image { aspect-ratio: 16/9; }
@@ -317,8 +388,15 @@
       .sports-grid { grid-template-columns: 1fr; }
       .products-grid { grid-template-columns: 1fr; }
       .solution-badges { gap: .75rem; margin-bottom: 2rem; }
-      .logo-cell { width: 72px; height: 40px; }
-      .testimonials-grid { grid-template-columns: 1fr !important; }
+      .marquee-logo { height: 40px; }
+      .marquee-logo.logo-stanford    { height: 54px; }
+      .marquee-logo.logo-first-class { height: 56px; }
+      .marquee-logo.logo-culver      { height: 46px; }
+      .marquee-logo.logo-cornell     { height: 44px; }
+      .marquee-logo.unrivaled-logo   { height: 43px; }
+      .marquee-logo.logo-denver2     { height: 48px; }
+      .marquee-logo.logo-new-towson  { height: 70px; }
+      .tc-btn { width: 44px; height: 44px; }
     }
   </style>
 </head>
@@ -435,51 +513,51 @@
   <div class="logos-strip-label">Trusted by programs nationwide</div>
   <div class="marquee-wrapper">
     <div class="marquee-track">
-      <span class="logo-cell"><img src="NCAA D1/Denver.png"               class="marquee-logo" alt="Denver"></span>
+      <span class="logo-cell"><img src="NCAA D1/Denver2.png"              class="marquee-logo logo-denver2" alt="Denver"></span>
       <span class="logo-cell"><img src="NCAA D1/Duke2.png"                class="marquee-logo" alt="Duke"></span>
       <span class="logo-cell"><img src="NCAA D1/Yale.png"                 class="marquee-logo" alt="Yale"></span>
       <span class="logo-cell"><img src="NCAA D1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
       <span class="logo-cell"><img src="NCAA D1/UNC.png"                  class="marquee-logo" alt="UNC"></span>
       <span class="logo-cell"><img src="NCAA%20D1/Unrivalled_(basketball_league).svg.png" class="marquee-logo unrivaled-logo" alt="Unrivaled"></span>
-      <span class="logo-cell"><img src="NCAA D1/stanford.png"             class="marquee-logo" alt="Stanford"></span>
+      <span class="logo-cell"><img src="NCAA D1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
       <span class="logo-cell"><img src="NCAA D1/Army.png"                 class="marquee-logo" alt="Army"></span>
       <span class="logo-cell"><img src="NCAA D1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
-      <span class="logo-cell"><img src="NCAA D1/cornell.png"              class="marquee-logo" alt="Cornell"></span>
+      <span class="logo-cell"><img src="NCAA D1/cornell.png"              class="marquee-logo logo-cornell" alt="Cornell"></span>
       <span class="logo-cell"><img src="NCAA D1/Marquette.png"            class="marquee-logo" alt="Marquette"></span>
-      <span class="logo-cell"><img src="NCAA D1/first-class.png"          class="marquee-logo" alt="First Class Lacrosse"></span>
+      <span class="logo-cell"><img src="NCAA D1/first-class.png"          class="marquee-logo logo-first-class" alt="First Class Lacrosse"></span>
       <span class="logo-cell"><img src="NCAA D1/princeton.png"            class="marquee-logo" alt="Princeton"></span>
       <span class="logo-cell"><img src="NCAA D1/Brown.png"                class="marquee-logo" alt="Brown"></span>
       <span class="logo-cell"><img src="NCAA D1/rutgers.png"              class="marquee-logo" alt="Rutgers"></span>
       <span class="logo-cell"><img src="NCAA D1/northwestern.png"         class="marquee-logo" alt="Northwestern"></span>
       <span class="logo-cell"><img src="NCAA D1/Syracuse.png"             class="marquee-logo" alt="Syracuse"></span>
-      <span class="logo-cell"><img src="NCAA D1/Towson.png"               class="marquee-logo" alt="Towson"></span>
+      <span class="logo-cell"><img src="NCAA D1/new_towson.png"           class="marquee-logo logo-new-towson" alt="Towson"></span>
       <span class="logo-cell"><img src="NCAA D1/UMD.png"                  class="marquee-logo" alt="Maryland"></span>
-      <span class="logo-cell"><img src="NCAA D1/culver.png"               class="marquee-logo" alt="Culver"></span>
+      <span class="logo-cell"><img src="NCAA D1/culver.png"               class="marquee-logo logo-culver" alt="Culver"></span>
       <span class="logo-cell"><img src="NCAA D1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
       <span class="logo-cell"><img src="NCAA D1/Saint%20Joseph's.png"     class="marquee-logo" alt="Saint Joseph's"></span>
       <span class="logo-cell"><img src="NCAA D1/Mercer.png"               class="marquee-logo" alt="Mercer"></span>
       <span class="logo-cell"><img src="NCAA%20D1/NBA-Academy-Logo.png" class="marquee-logo" alt="NBA Academy"></span>
       <!-- Duplicate for seamless loop -->
-      <span class="logo-cell"><img src="NCAA D1/Denver.png"               class="marquee-logo" alt="Denver"></span>
+      <span class="logo-cell"><img src="NCAA D1/Denver2.png"              class="marquee-logo logo-denver2" alt="Denver"></span>
       <span class="logo-cell"><img src="NCAA D1/Duke2.png"                class="marquee-logo" alt="Duke"></span>
       <span class="logo-cell"><img src="NCAA D1/Yale.png"                 class="marquee-logo" alt="Yale"></span>
       <span class="logo-cell"><img src="NCAA D1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
       <span class="logo-cell"><img src="NCAA D1/UNC.png"                  class="marquee-logo" alt="UNC"></span>
       <span class="logo-cell"><img src="NCAA%20D1/Unrivalled_(basketball_league).svg.png" class="marquee-logo unrivaled-logo" alt="Unrivaled"></span>
-      <span class="logo-cell"><img src="NCAA D1/stanford.png"             class="marquee-logo" alt="Stanford"></span>
+      <span class="logo-cell"><img src="NCAA D1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
       <span class="logo-cell"><img src="NCAA D1/Army.png"                 class="marquee-logo" alt="Army"></span>
       <span class="logo-cell"><img src="NCAA D1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
-      <span class="logo-cell"><img src="NCAA D1/cornell.png"              class="marquee-logo" alt="Cornell"></span>
+      <span class="logo-cell"><img src="NCAA D1/cornell.png"              class="marquee-logo logo-cornell" alt="Cornell"></span>
       <span class="logo-cell"><img src="NCAA D1/Marquette.png"            class="marquee-logo" alt="Marquette"></span>
-      <span class="logo-cell"><img src="NCAA D1/first-class.png"          class="marquee-logo" alt="First Class Lacrosse"></span>
+      <span class="logo-cell"><img src="NCAA D1/first-class.png"          class="marquee-logo logo-first-class" alt="First Class Lacrosse"></span>
       <span class="logo-cell"><img src="NCAA D1/princeton.png"            class="marquee-logo" alt="Princeton"></span>
       <span class="logo-cell"><img src="NCAA D1/Brown.png"                class="marquee-logo" alt="Brown"></span>
       <span class="logo-cell"><img src="NCAA D1/rutgers.png"              class="marquee-logo" alt="Rutgers"></span>
       <span class="logo-cell"><img src="NCAA D1/northwestern.png"         class="marquee-logo" alt="Northwestern"></span>
       <span class="logo-cell"><img src="NCAA D1/Syracuse.png"             class="marquee-logo" alt="Syracuse"></span>
-      <span class="logo-cell"><img src="NCAA D1/Towson.png"               class="marquee-logo" alt="Towson"></span>
+      <span class="logo-cell"><img src="NCAA D1/new_towson.png"           class="marquee-logo logo-new-towson" alt="Towson"></span>
       <span class="logo-cell"><img src="NCAA D1/UMD.png"                  class="marquee-logo" alt="Maryland"></span>
-      <span class="logo-cell"><img src="NCAA D1/culver.png"               class="marquee-logo" alt="Culver"></span>
+      <span class="logo-cell"><img src="NCAA D1/culver.png"               class="marquee-logo logo-culver" alt="Culver"></span>
       <span class="logo-cell"><img src="NCAA D1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
       <span class="logo-cell"><img src="NCAA D1/Saint%20Joseph's.png"     class="marquee-logo" alt="Saint Joseph's"></span>
       <span class="logo-cell"><img src="NCAA%20D1/NBA-Academy-Logo.png" class="marquee-logo" alt="NBA Academy"></span>
@@ -686,55 +764,108 @@
       <h2 class="section-title">What coaches are saying</h2>
       <p class="section-subtitle">Hear from the coaches and athletes who've used ScoreBreak to reach the next level.</p>
     </div>
-    <div class="testimonials-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="tc-wrap">
+      <div class="tc-track" id="tcTrack">
 
-      <div class="testimonial-card">
-        <p class="testimonial-quote">ScoreBreak was a pleasure for our staff and athletes this season... <strong>by far the best platform I've ever used.</strong> I loved being able to tag and organize clips however I liked to be able to tell a story to our players. My favorite part about the platform is the chat feature.</p>
-        <div class="testimonial-author">
-          <img src="NCAA D1/CNU.png" alt="Christopher Newport" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-          <div>
-            <div class="testimonial-name">Mikey Thompson</div>
-            <div class="testimonial-title">Head Coach, Christopher Newport Men's Lacrosse</div>
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">ScoreBreak was a pleasure for our staff and athletes this season... <strong>by far the best platform I've ever used.</strong> I loved being able to tag and organize clips however I liked to be able to tell a story to our players. My favorite part about the platform is the chat feature.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/CNU.png" alt="Christopher Newport" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Mikey Thompson</div>
+                <div class="testimonial-title">Head Coach, Christopher Newport Men's Lacrosse</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Our best film sessions happen when we can pause, split into groups, and review in real time. Offense goes with one coach, defense with another, and <strong>we pull up the play on our iPads to say, 'This is the change we need to make.'</strong></p>
-        <div class="testimonial-author">
-          <img src="NCAA D1/oregon.png" alt="Oregon" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-          <div>
-            <div class="testimonial-name">Jana Drummond</div>
-            <div class="testimonial-title">Head Coach, Oregon Women's Lacrosse</div>
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">Our best film sessions happen when we can pause, split into groups, and review in real time. Offense goes with one coach, defense with another, and <strong>we pull up the play on our iPads to say, 'This is the change we need to make.'</strong></p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/oregon.png" alt="Oregon" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Jana Drummond</div>
+                <div class="testimonial-title">Head Coach, Oregon Women's Lacrosse</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="testimonial-card">
-        <p class="testimonial-quote">We've tried other platforms  -  including the most well-known  -  but I still choose ScoreBreak because <strong>the breakdown interface is simply better.</strong> ScoreBreak makes it easy to analyze clips, and it's the best platform we've found for film study.</p>
-        <div class="testimonial-author">
-          <img src="NCAA D1/pennsbury.png" alt="Pennsbury" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-          <div>
-            <div class="testimonial-name">Dean Curtis</div>
-            <div class="testimonial-title">Head Coach, Pennsbury HS Boys Lacrosse</div>
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">We've tried other platforms  -  including the most well-known  -  but I still choose ScoreBreak because <strong>the breakdown interface is simply better.</strong> ScoreBreak makes it easy to analyze clips, and it's the best platform we've found for film study.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/pennsbury.png" alt="Pennsbury" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Dean Curtis</div>
+                <div class="testimonial-title">Head Coach, Pennsbury HS Boys Lacrosse</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="testimonial-card">
-        <p class="testimonial-quote"><strong>ScoreBreak has been a total game changer for our staff and players.</strong> If I told you we used ScoreBreak 10,000x a day we would probably be underestimating. We are completely obsessed with it and it seems like every year the product has gotten better.</p>
-        <div class="testimonial-author">
-          <img src="NCAA D1/Brown.png" alt="Brown" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-          <div>
-            <div class="testimonial-name">Jon Torpey</div>
-            <div class="testimonial-title">Head Coach, Brown Men's Lacrosse</div>
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote"><strong>ScoreBreak has been a total game changer for our staff and players.</strong> If I told you we used ScoreBreak 10,000x a day we would probably be underestimating. We are completely obsessed with it and it seems like every year the product has gotten better.</p>
+            <div class="testimonial-author">
+              <img src="NCAA D1/Brown.png" alt="Brown" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Jon Torpey</div>
+                <div class="testimonial-title">Head Coach, Brown Men's Lacrosse</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
+
+    <div class="tc-controls">
+      <button class="tc-btn" id="tcPrev" aria-label="Previous">←</button>
+      <div class="tc-dots" id="tcDots"></div>
+      <button class="tc-btn" id="tcNext" aria-label="Next">→</button>
+    </div>
+
   </div>
 </section>
+
+<script>
+(function() {
+  var track = document.getElementById('tcTrack');
+  var dotsWrap = document.getElementById('tcDots');
+  var slides = track.querySelectorAll('.tc-slide');
+  var current = 0;
+  var timer;
+
+  slides.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'tc-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', function() { goTo(i); resetTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dotsWrap.querySelectorAll('.tc-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(function() { goTo(current + 1); }, 6000);
+  }
+
+  document.getElementById('tcPrev').addEventListener('click', function() { goTo(current - 1); resetTimer(); });
+  document.getElementById('tcNext').addEventListener('click', function() { goTo(current + 1); resetTimer(); });
+
+  resetTimer();
+})();
+</script>
 
 <!-- ══════════════════════════════════════
      FINAL CTA
@@ -802,8 +933,8 @@
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Contact Us</a></li>
+          
+          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
 
@@ -811,21 +942,21 @@
         <h4>Support</h4>
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
-          <li><a href="#">Downloads</a></li>
+          <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2025 ScoreBreak, Inc. All rights reserved.</span>
+      <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
     </div>
   </div>
 </footer>

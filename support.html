@@ -524,13 +524,113 @@
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
-      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="https://www.scorebreak.io/blog">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact Us</a></li></ul></div>
-      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="support.html">Downloads</a></li></ul></div>
-      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="https://www.scorebreak.io/blog">Blog</a></li><li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li><li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2025 ScoreBreak, Inc. All rights reserved.</span></div>
+    <div class="footer-bottom"><span>© 2026 ScoreBreak, Inc. All rights reserved.</span></div>
   </div>
 </footer>
+
+<!-- ══════════════════════════════════════
+     CONTACT SALES MODAL
+══════════════════════════════════════ -->
+<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+  <div class="sb-modal">
+    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <h2 id="sbModalTitle">Get in Touch</h2>
+    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+
+    <div id="sbModalFormWrap">
+      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact-sales">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+
+        <div class="sb-form-row">
+          <div class="sb-form-group">
+            <label for="sbFirstName">First Name</label>
+            <input type="text" id="sbFirstName" name="firstName" required>
+          </div>
+          <div class="sb-form-group">
+            <label for="sbLastName">Last Name</label>
+            <input type="text" id="sbLastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbEmail">Email</label>
+          <input type="email" id="sbEmail" name="email" required>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbMessage">Message</label>
+          <textarea id="sbMessage" name="message" rows="4" placeholder="Tell us about your program and what you're looking for..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary sb-form-submit">Send Message</button>
+      </form>
+
+      <div class="sb-modal-divider"><span>or</span></div>
+
+      <div class="sb-modal-options">
+        <a href="demo.html" class="sb-modal-option">
+          <div class="sb-modal-option-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="sb-modal-option-label">Request a Demo</div>
+            <div class="sb-modal-option-detail">See the full platform in a 20-minute walkthrough.</div>
+          </div>
+        </a>
+      </div>
+
+      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+    </div>
+
+    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+      <div class="sb-modal-confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function sbOpenModal() {
+  document.getElementById('sbContactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('sbModalFormWrap').style.display = '';
+  document.getElementById('sbModalConfirm').style.display = 'none';
+  var f = document.getElementById('sbContactForm');
+  if (f) f.reset();
+}
+function sbCloseModal() {
+  document.getElementById('sbContactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('sbContactModal').addEventListener('click', function(e) {
+  if (e.target === this) sbCloseModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sbCloseModal();
+});
+var sbContactForm = document.getElementById('sbContactForm');
+if (sbContactForm) {
+  sbContactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(sbContactForm);
+    var firstName = (data.get('firstName') || '').toString().trim();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    }).finally(function() {
+      document.getElementById('sbModalFormWrap').style.display = 'none';
+      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
+      document.getElementById('sbModalConfirm').style.display = 'block';
+    });
+  });
+}
+</script>
+
 
 <script>
 (function() {

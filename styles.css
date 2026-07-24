@@ -425,8 +425,8 @@ body {
 /* ============================================================
    SHARED SECTION STYLES
    ============================================================ */
-.section { padding: 5rem 0; }
-.section-sm { padding: 3.5rem 0; }
+.section { padding: 3.75rem 0; }
+.section-sm { padding: 3rem 0; }
 .section-lg { padding: 7rem 0; }
 
 .section-label {
@@ -723,6 +723,12 @@ body {
   font-size: .88rem;
   color: var(--text-muted);
 }
+.pricing-note {
+  font-size: .8rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: .75rem;
+}
 .pricing-desc {
   font-size: .88rem;
   color: var(--text-muted);
@@ -874,7 +880,7 @@ body {
   :root { --nav-h: 60px; }
   .container { padding: 0 1.25rem; }
   .nav-inner { padding: 0 1.25rem; }
-  .section { padding: 3.5rem 0; }
+  .section { padding: 2.75rem 0; }
   .page-hero { padding-top: calc(var(--nav-h) + 3rem); }
 
   /* Logo shrinks on small screens so it never crowds the hamburger/toggle */
