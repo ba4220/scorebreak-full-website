@@ -249,21 +249,6 @@ body {
 }
 .nav-login:hover { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
 
-/* Theme toggle */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px; height: 36px;
-  border-radius: 8px;
-  color: var(--text-muted);
-  transition: color .15s, background .15s;
-  flex-shrink: 0;
-}
-.theme-toggle:hover { background: var(--card-bg); color: var(--text); }
-.theme-toggle svg { width: 18px; height: 18px; }
-[data-theme="light"] .theme-toggle { color: #0A0E1A; }
-
 /* Unrivaled logo — screen blend on dark bg, multiply on light bg */
 .unrivaled-logo { mix-blend-mode: screen; background: transparent; }
 [data-theme="light"] .unrivaled-logo { mix-blend-mode: multiply; }
@@ -859,8 +844,8 @@ body {
   .nav-logo { margin-right: 0; }
   .nav-inner { padding: 0 1.5rem; gap: .5rem; }
 
-  /* Touch targets: hamburger + theme toggle get a comfortable hit area on mobile */
-  .nav-hamburger, .theme-toggle {
+  /* Touch target: hamburger gets a comfortable hit area on mobile */
+  .nav-hamburger {
     width: 44px; height: 44px;
   }
 

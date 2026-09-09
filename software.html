@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ScoreBreak Team Software | Film Analysis Platform for High School & Club Teams</title>
-  <meta name="description" content="ScoreBreak Team Software is the top Hudl alternative for film analysis. Tag boards, AI analysis, playlists, and Handoff film breakdowns  -  built for high school and club coaches.">
+  <title>ScoreBreak Team Software | Film Analysis Platform for Competitive Sports Teams</title>
+  <meta name="description" content="ScoreBreak Team Software is a professional film analysis platform built for competitive sports teams — custom tagging workflows, AI analysis, playlists, Handoff breakdowns, and more.">
   <meta name="keywords" content="lacrosse film analysis software, football film analysis software, Hudl alternative, coaching software, sports video analysis, tag boards, AI film analysis, ScoreBreak">
   <meta property="og:title" content="ScoreBreak Team Software | Film Analysis for Coaches">
   <meta property="og:description" content="The complete film analysis platform for competitive programs  -  interactive stats, AI analysis, playlists, and pro Handoff breakdowns.">
@@ -58,10 +58,11 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      transform: translateX(28px);
     }
     @keyframes deviceFloat {
       from { transform: translateY(0px); }
-      to   { transform: translateY(-8px); }
+      to   { transform: translateY(-4px); }
     }
     .device-mockup-scene {
       width: 100%;
@@ -75,7 +76,7 @@
       transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
     }
     .sw-hero-img {
-      width: 100%;
+      width: 114%;
       height: auto;
       display: block;
       animation: deviceFloat 3s ease-in-out infinite alternate;
@@ -321,24 +322,24 @@
       border-color: var(--border);
     }
 
-    /* ── Reports — Coming Soon ───────────────────────────── */
+    /* ── Reports — Coming Soon (de-emphasized: roadmap item, not a gap) ── */
     .coming-soon-badge {
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      padding: .35rem 1rem;
-      background: var(--blue-dim);
-      border: 1px solid var(--blue);
+      padding: .3rem .85rem;
+      background: rgba(86,199,255,.1);
+      border: 1px solid rgba(86,199,255,.4);
       border-radius: 999px;
-      font-size: .75rem;
-      font-weight: 800;
-      letter-spacing: .12em;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--blue);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
     .coming-soon-badge .cs-dot {
-      width: 6px; height: 6px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--blue);
       animation: reportsPulse 2s infinite;
@@ -350,65 +351,72 @@
     }
     .reports-card {
       position: relative;
-      background: linear-gradient(135deg, rgba(86,199,255,.09) 0%, var(--card-bg) 55%);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 4rem;
       overflow: hidden;
-      box-shadow: var(--shadow-blue);
+      background: linear-gradient(135deg, rgba(86,199,255,.07) 0%, var(--card-bg) 60%);
+      border: 1px solid rgba(86,199,255,.18);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: 0 0 0 1px rgba(86,199,255,.06), 0 20px 50px rgba(86,199,255,.08);
     }
     .reports-card::before {
       content: '';
       position: absolute;
-      top: -35%; right: -12%;
-      width: 560px; height: 560px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.16) 0%, transparent 70%);
+      top: -60%; left: 50%;
+      transform: translateX(-50%);
+      width: 380px; height: 260px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.1) 0%, transparent 70%);
       pointer-events: none;
     }
     .reports-card-body {
       position: relative;
       z-index: 1;
-      max-width: 700px;
-      margin-bottom: 3rem;
+      margin-bottom: 1.75rem;
     }
-    .reports-card-body .section-title { margin-bottom: 1rem; }
+    .reports-card-body .section-title {
+      font-size: 1.4rem;
+      margin-bottom: .6rem;
+    }
     .reports-card-body p {
-      font-size: 1.05rem;
+      font-size: .92rem;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.65;
     }
     .reports-features {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
     .reports-feature {
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
+      gap: .85rem;
     }
     .reports-feature-icon {
-      width: 40px; height: 40px;
+      width: 34px; height: 34px;
       flex-shrink: 0;
-      background: var(--blue-dim);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background: rgba(86,199,255,.12);
+      border: 1px solid rgba(86,199,255,.25);
+      border-radius: 9px;
       display: flex; align-items: center; justify-content: center;
       color: var(--blue);
     }
-    .reports-feature-icon svg { width: 20px; height: 20px; }
+    .reports-feature:hover .reports-feature-icon {
+      background: rgba(86,199,255,.18);
+      border-color: rgba(86,199,255,.4);
+    }
+    .reports-feature-icon svg { width: 17px; height: 17px; }
     .reports-feature h3 {
-      font-size: .98rem;
+      font-size: .92rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: .35rem;
+      margin-bottom: .3rem;
     }
     .reports-feature p {
-      font-size: .88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+      font-size: .84rem;
+      color: var(--text-dim);
+      line-height: 1.55;
     }
 
     /* ── Responsive ──────────────────────────────────────── */
@@ -418,11 +426,14 @@
     @media (max-width: 900px) {
       .sw-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .sw-hero-text h1 { font-size: clamp(2rem, 6vw, 3rem); }
+      .sw-hero-visual { transform: none; }
+      .sw-hero-img { width: 100%; }
       .handoff-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .fed-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .reports-card { padding: 2.75rem; }
     }
     @media (max-width: 600px) {
+      .sw-hero-text h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
       .film-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr !important; max-width: 420px !important; }
       .reports-card { padding: 2rem 1.5rem; }
@@ -477,7 +488,6 @@
       <a href="football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
     </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -520,13 +530,13 @@
         <h1>A Complete Film Solution</h1>
         <p class="hero-sub">ScoreBreak is the complete film analysis tool  -  built with an obsessive focus on ease of use. Tagging, playback, sharing, and collaboration are designed to be intuitive from day one, so coaches spend less time navigating software and more time coaching.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Sales</a>
+          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
           <a href="#film-analysis" class="btn btn-outline btn-lg">Learn More ↓</a>
         </div>
       </div>
       <div class="sw-hero-visual">
         <div class="device-mockup-scene">
-          <img src="Software /new_mockup_software.png" alt="ScoreBreak film analysis software" class="sw-hero-img">
+          <img src="Software/final_software_mockup.png" alt="ScoreBreak film analysis software" class="sw-hero-img">
           <div class="device-mockup-glow"></div>
         </div>
       </div>
@@ -548,7 +558,7 @@
       <!-- Interactive Stats -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /interactive-stats-software.png" alt="Interactive stats" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/interactive-stats-software.png" alt="Interactive stats" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>Interactive Stats</h3>
@@ -559,7 +569,7 @@
       <!-- Tag Boards -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /tag-boards-software.png" alt="Tag boards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/tag-boards-software.png" alt="Tag boards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>Tag Boards</h3>
@@ -570,7 +580,7 @@
       <!-- Playlists -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /playlists-software.png" alt="Playlists" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/playlists-software.png" alt="Playlists" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>Playlists</h3>
@@ -581,7 +591,7 @@
       <!-- AI Analysis -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /AI-location-charting.png" alt="AI analysis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/AI-location-charting.png" alt="AI analysis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>AI Analysis</h3>
@@ -592,7 +602,7 @@
       <!-- Film Sharing -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /film-sharing-software.png" alt="Film sharing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/film-sharing-software.png" alt="Film sharing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>Film Sharing</h3>
@@ -603,7 +613,7 @@
       <!-- Remote Film Sessions -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /remote-film-sessions-software.png" alt="Remote film sessions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/remote-film-sessions-software.png" alt="Remote film sessions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>Remote Film Sessions</h3>
@@ -614,7 +624,7 @@
       <!-- Unlimited Storage -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /unlimited-film-storage.png" alt="Unlimited film storage" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/unlimited-film-storage.png" alt="Unlimited film storage" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>Unlimited Storage</h3>
@@ -625,7 +635,7 @@
       <!-- Team Communication -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software /chat-iphone-app.png" alt="Team communication" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/chat-iphone-app.png" alt="Team communication" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>Team Communication</h3>
@@ -730,7 +740,7 @@
         <ul class="pricing-features">
           <li class="pricing-feature">
             <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
-            Automatic profiles for every athlete
+            Profiles unlocked for every athlete
           </li>
           <li class="pricing-feature">
             <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
@@ -783,7 +793,7 @@
     </div>
 
     <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;">
-      <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Sales</a>
+      <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
       <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo →</a>
     </div>
 
@@ -803,7 +813,7 @@
         <a href="leagues.html" class="btn btn-outline">Explore League Solutions →</a>
       </div>
       <div class="fed-visual">
-        <img src="Software /league_exchange.png" alt="ScoreBreak League Exchange" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img src="Software/league_exchange.png" alt="ScoreBreak League Exchange" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
     </div>
   </div>
@@ -822,12 +832,29 @@
         </a>
         <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
-          <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg></a>
-          <a href="https://www.instagram.com/scorebreak" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg></a>
+          <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/scorebreak" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCMXxJoJUFUS-QXnHz1Qa8Uw" class="footer-social-link" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li><li><a href="other-sports.html">Other Sports</a></li></ul></div>
-<div class="footer-col">
+
+      <div class="footer-col">
+        <h4>Sports</h4>
+        <ul>
+          <li><a href="lacrosse.html">Lacrosse</a></li>
+          <li><a href="basketball.html">Basketball</a></li>
+          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="other-sports.html">Other Sports</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
           <li><a href="software.html">Team Software</a></li>
@@ -836,11 +863,36 @@
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
-      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="https://www.scorebreak.io/blog">Blog</a></li><li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li></ul></div>
-      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li></ul></div>
-      <div class="footer-col"><h4>Legal</h4><ul><li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li><li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li></ul></div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
+          <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 ScoreBreak, Inc. All rights reserved.</span></div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+    </div>
   </div>
 </footer>
 
@@ -849,23 +901,6 @@
 ════════════════════════════════════════════════════════════ -->
 <script>
 (function() {
-  var html = document.documentElement;
-  var saved = localStorage.getItem('sbTheme') || 'dark';
-  html.setAttribute('data-theme', saved);
-  var toggle = document.getElementById('themeToggle');
-  function setIcon(theme) {
-    toggle.innerHTML = theme === 'dark'
-      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
-      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
-  }
-  setIcon(saved);
-  toggle.addEventListener('click', function() {
-    var cur = html.getAttribute('data-theme');
-    var next = cur === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('sbTheme', next);
-    setIcon(next);
-  });
   document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
     var btn = dd.querySelector('.nav-drop-btn');
     btn.addEventListener('click', function(e) {

@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ScoreBreak | A Modern Hudl Alternative for Film Analysis &amp; Sideline Replay</title>
-  <meta name="description" content="ScoreBreak is the #1 Hudl alternative for high school and club programs  -  AI-powered film analysis, sideline replay hardware (Airborne), and a lacrosse recruiting portal. Built for coaches who want more.">
-  <meta name="keywords" content="Hudl alternative, football film analysis software, lacrosse film analysis, sideline replay system, sports video analysis platform, high school coaching software, recruiting portal for lacrosse, ScoreBreak, Airborne sideline replay">
+  <meta name="description" content="ScoreBreak is the modern Hudl alternative for high school and club programs  -  AI-powered film analysis, sideline replay hardware (Airborne), and a lacrosse Recruiting Network. Built for coaches who want more.">
+  <meta name="keywords" content="Hudl alternative, football film analysis software, lacrosse film analysis, sideline replay system, sports video analysis platform, high school coaching software, Recruiting Network for lacrosse, ScoreBreak, Airborne sideline replay">
   <meta property="og:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
   <meta property="og:description" content="Professional film analysis, sideline replay, and recruiting tools built for competitive sports programs. Everything your coaching staff needs  -  in one platform.">
   <meta property="og:type" content="website">
@@ -27,10 +27,10 @@
     /* Hero */
     .hero {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 0.95fr;
       align-items: center;
-      gap: 4rem;
-      padding: calc(var(--nav-h) + 1.5rem) 0 2.5rem;
+      gap: 2.5rem;
+      padding: calc(var(--nav-h) + 3rem) 0 2.5rem;
       position: relative;
       overflow: hidden;
     }
@@ -83,12 +83,10 @@
     .hero-image {
       position: relative;
       z-index: 1;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      aspect-ratio: 4/3;
+      aspect-ratio: 3664/2160;
       background: transparent;
-      box-shadow: 0 32px 80px rgba(0,0,0,.5), 0 0 0 1px var(--border-sub);
     }
+
 
     /* Logos strip  -  school logos marquee */
     .logos-strip {
@@ -375,8 +373,9 @@
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; gap: 2.5rem; }
-      .hero-image { aspect-ratio: 16/9; }
-      .sports-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-image { aspect-ratio: 3664/2160; }
+      .sports-grid { grid-template-columns: 1fr; }
+      .sport-card { min-height: 220px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .testimonials-scroll { grid-template-columns: 1fr; }
     }
@@ -384,8 +383,7 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
       .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
-      .hero-image { aspect-ratio: 4/3; }
-      .sports-grid { grid-template-columns: 1fr; }
+      .sport-card { min-height: 200px; }
       .products-grid { grid-template-columns: 1fr; }
       .solution-badges { gap: .75rem; margin-bottom: 2rem; }
       .marquee-logo { height: 40px; }
@@ -447,7 +445,6 @@
       <a href="football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
     </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
 
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -489,18 +486,16 @@
   <div class="container">
     <div class="hero">
       <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span style="width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite;display:inline-block;"></span>
-          NEXT-GEN FILM ANALYSIS SOLUTIONS
-        </div>
         <h1>See every play.<br><span class="accent">Analyze every moment.</span><br>Scout like the pros.</h1>
         <p class="hero-sub">Professional, easy-to-use film analysis, sideline replay, and recruiting tools built for competitive sports programs. Everything your coaching staff needs  -  in one platform.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Get in Touch</a>
+          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
         </div>
       </div>
       <div class="hero-image">
-        <img src="Airborne_ipad_in_use.png" alt="Airborne sideline replay iPad in use on the sideline" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <video autoplay muted loop playsinline id="heroVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0E1A;">
+          <source src="website_demo4_optimized.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
@@ -737,7 +732,7 @@
           </svg>
         </div>
         <h3>Recruiting</h3>
-        <p>Every athlete on a subscribed team gets a profile with game film and highlights — right where college coaches are already looking.</p>
+        <p>Every athlete on a subscribed team can build a profile with game film and highlights — right where college coaches are already looking.</p>
       </div>
 
       <div class="feature-item">
@@ -857,7 +852,7 @@
 
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(function() { goTo(current + 1); }, 6000);
+    timer = setInterval(function() { goTo(current + 1); }, 15000);
   }
 
   document.getElementById('tcPrev').addEventListener('click', function() { goTo(current - 1); resetTimer(); });
@@ -876,7 +871,7 @@
       <h2>Ready to take your program to the next level?</h2>
       <p>Join thousands of coaches, athletes, and leagues already using ScoreBreak to outperform the competition.</p>
       <div class="hero-actions" style="justify-content:center;">
-        <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Get in Touch</a>
+        <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
         <a href="lacrosse.html" class="btn btn-outline btn-lg">Explore Lacrosse →</a>
       </div>
     </div>
@@ -913,7 +908,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Football</a></li>
+          <li><a href="football.html">Gridiron</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -966,26 +961,6 @@
 ══════════════════════════════════════ -->
 <script>
 (function() {
-  // Theme
-  const html = document.documentElement;
-  const saved = localStorage.getItem('sbTheme') || 'dark';
-  html.setAttribute('data-theme', saved);
-
-  const toggle = document.getElementById('themeToggle');
-  function setIcon(theme) {
-    toggle.innerHTML = theme === 'dark'
-      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
-      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
-  }
-  setIcon(saved);
-  toggle.addEventListener('click', function() {
-    const cur = html.getAttribute('data-theme');
-    const next = cur === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('sbTheme', next);
-    setIcon(next);
-  });
-
   // Dropdowns
   document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
     var btn = dd.querySelector('.nav-drop-btn');
@@ -1115,6 +1090,14 @@ if (sbContactForm) {
       document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
       document.getElementById('sbModalConfirm').style.display = 'block';
     });
+  });
+}
+
+const heroVideo = document.getElementById('heroVideo');
+if (heroVideo) {
+  heroVideo.playbackRate = 0.9;
+  heroVideo.addEventListener('loadedmetadata', () => {
+    heroVideo.playbackRate = 0.9;
   });
 }
 </script>

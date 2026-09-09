@@ -274,8 +274,8 @@
       align-items: center;
       gap: .5rem;
       padding: .35rem 1rem;
-      background: var(--blue-dim);
-      border: 1px solid var(--blue);
+      background: rgba(86,199,255,.1);
+      border: 1px solid rgba(86,199,255,.4);
       border-radius: 999px;
       font-size: .75rem;
       font-weight: 800;
@@ -298,20 +298,20 @@
     .reports-callout {
       position: relative;
       text-align: center;
-      background: linear-gradient(135deg, rgba(86,199,255,.1) 0%, var(--card-bg) 60%);
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(86,199,255,.07) 0%, var(--card-bg) 60%);
+      border: 1px solid rgba(86,199,255,.18);
       border-radius: var(--radius-lg);
       padding: 2.25rem 2rem;
       overflow: hidden;
-      box-shadow: var(--shadow-blue);
+      box-shadow: 0 0 0 1px rgba(86,199,255,.06), 0 20px 50px rgba(86,199,255,.08);
     }
     .reports-callout::before {
       content: '';
       position: absolute;
       top: -60%; left: 50%;
       transform: translateX(-50%);
-      width: 420px; height: 300px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.14) 0%, transparent 70%);
+      width: 380px; height: 260px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.1) 0%, transparent 70%);
       pointer-events: none;
     }
     .reports-callout-inner {
@@ -420,7 +420,6 @@
       <a href="football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
     </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -462,7 +461,7 @@
         <p class="hero-sub">Film analysis and sideline replay built for the modern coaching staff.</p>
         <p class="hero-sub" style="margin-top:-.5rem;">From film breakdown to sideline replay  -  ScoreBreak gives basketball programs the tools to outprepare, outcoach, and outperform.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Get in Touch</a>
+          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
           <a href="software.html" class="btn btn-outline btn-lg">Explore Platform</a>
         </div>
       </div>
@@ -662,7 +661,7 @@
     <h2>Ready to take your basketball<br>program to the next level?</h2>
     <p>See ScoreBreak in action with a personalized demo. We'll walk you through film analysis, sideline replay, and officiating tools built for your program.</p>
     <div class="hero-actions" style="justify-content:center;">
-      <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Sales</a>
+      <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
       <a href="software.html" class="btn btn-outline btn-lg">Explore Software</a>
     </div>
   </div>
@@ -690,8 +689,18 @@
           </a>
         </div>
       </div>
-      <div class="footer-col"><h4>Sports</h4><ul><li><a href="lacrosse.html">Lacrosse</a></li><li><a href="basketball.html">Basketball</a></li><li><a href="football.html">Football</a></li><li><a href="other-sports.html">Other Sports</a></li></ul></div>
-<div class="footer-col">
+
+      <div class="footer-col">
+        <h4>Sports</h4>
+        <ul>
+          <li><a href="lacrosse.html">Lacrosse</a></li>
+          <li><a href="basketball.html">Basketball</a></li>
+          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="other-sports.html">Other Sports</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
           <li><a href="software.html">Team Software</a></li>
@@ -700,10 +709,33 @@
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
-      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="https://www.scorebreak.io/blog">Blog</a></li><li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li></ul></div>
-      <div class="footer-col"><h4>Support</h4><ul><li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li><li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li></ul></div>
-      <div class="footer-col"><h4>Legal</h4><ul><li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li><li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li></ul></div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
+          <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
     </div>
+
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
     </div>
@@ -807,28 +839,6 @@ if (sbContactForm) {
 </script>
 
 <script>
-  /* ── Theme toggle ── */
-  (function() {
-    var saved = localStorage.getItem('sbTheme') || 'dark';
-    document.documentElement.setAttribute('data-theme', saved);
-  })();
-
-  var themeBtn = document.getElementById('themeToggle');
-  function setIcon(theme) {
-    if (!themeBtn) return;
-    themeBtn.innerHTML = theme === 'dark'
-      ? '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 1.78a1 1 0 011.42 1.42l-.71.7a1 1 0 11-1.42-1.41l.71-.71zM18 9a1 1 0 110 2h-1a1 1 0 110-2h1zM4.22 4.22a1 1 0 00-1.42 1.42l.71.7A1 1 0 004.93 4.93l-.71-.71zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm13.07 6.07a1 1 0 00-1.42-1.42l-.7.71a1 1 0 001.41 1.42l.71-.71zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.64 15.36a1 1 0 00-1.41 1.42l.7.7a1 1 0 101.42-1.41l-.71-.71zM10 6a4 4 0 100 8 4 4 0 000-8z"/></svg>'
-      : '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
-  }
-  setIcon(localStorage.getItem('sbTheme') || 'dark');
-  themeBtn && themeBtn.addEventListener('click', function() {
-    var cur = document.documentElement.getAttribute('data-theme');
-    var next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('sbTheme', next);
-    setIcon(next);
-  });
-
   /* ── Dropdowns ── */
   document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
     var btn = dd.querySelector('.nav-drop-btn');
