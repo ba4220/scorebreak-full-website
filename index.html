@@ -85,7 +85,60 @@
       z-index: 1;
       aspect-ratio: 3664/2160;
       background: transparent;
+      border-radius: 8px;
     }
+
+    .hero-fade-overlay {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+      z-index: 9;
+      border-radius: 8px;
+    }
+    .hero-fade-overlay.fading {
+      opacity: 1;
+    }
+
+    .hero-endcard {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      background: #ffffff;
+      opacity: 0;
+      transition: opacity .6s ease;
+      z-index: 10;
+      border-radius: 8px;
+    }
+    .hero-endcard.visible { display: flex; }
+    .hero-endcard.fade-in { opacity: 1; }
+    .hero-endcard-logo {
+      width: 200px;
+      max-width: 60%;
+      height: auto;
+    }
+    .hero-replay-btn {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .75rem 1.6rem;
+      background: #0A0E1A;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity .2s;
+    }
+    .hero-replay-btn:hover { opacity: .85; }
 
 
     /* Logos strip  -  school logos marquee */
@@ -493,9 +546,17 @@
         </div>
       </div>
       <div class="hero-image">
-        <video autoplay muted loop playsinline id="heroVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0E1A;">
-          <source src="website_demo4_optimized.mp4" type="video/mp4">
+        <video autoplay muted playsinline id="heroVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0E1A;border-radius:8px;">
+          <source src="website_demo6_optimized.mp4" type="video/mp4">
         </video>
+        <div class="hero-fade-overlay" id="heroFadeOverlay"></div>
+        <div class="hero-endcard" id="heroEndcard">
+          <img src="Logos/3_black.png" alt="ScoreBreak" class="hero-endcard-logo">
+          <button class="hero-replay-btn" id="heroReplayBtn" aria-label="Replay demo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+            Replay
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1094,10 +1155,37 @@ if (sbContactForm) {
 }
 
 const heroVideo = document.getElementById('heroVideo');
+const heroFadeOverlay = document.getElementById('heroFadeOverlay');
+const heroEndcard = document.getElementById('heroEndcard');
+const heroReplayBtn = document.getElementById('heroReplayBtn');
 if (heroVideo) {
-  heroVideo.playbackRate = 0.9;
+  heroVideo.playbackRate = 0.8;
   heroVideo.addEventListener('loadedmetadata', () => {
-    heroVideo.playbackRate = 0.9;
+    heroVideo.playbackRate = 0.8;
+  });
+}
+if (heroVideo && heroFadeOverlay && heroEndcard && heroReplayBtn) {
+  heroVideo.addEventListener('timeupdate', () => {
+    if (heroVideo.currentTime >= 34.95) {
+      heroFadeOverlay.classList.add('fading');
+    }
+  });
+  heroVideo.addEventListener('ended', () => {
+    heroEndcard.classList.add('visible');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        heroEndcard.classList.add('fade-in');
+      });
+    });
+  });
+  heroReplayBtn.addEventListener('click', () => {
+    heroEndcard.classList.remove('fade-in');
+    heroFadeOverlay.classList.remove('fading');
+    setTimeout(() => {
+      heroEndcard.classList.remove('visible');
+      heroVideo.currentTime = 0;
+      heroVideo.play();
+    }, 400);
   });
 }
 </script>
