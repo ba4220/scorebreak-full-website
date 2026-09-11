@@ -94,7 +94,7 @@
       background: #ffffff;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 1.5s ease;
+      transition: opacity 1.5s cubic-bezier(.4,0,.2,1);
       z-index: 9;
       border-radius: 8px;
     }
@@ -110,35 +110,44 @@
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
-      background: #ffffff;
+      background: var(--bg);
       opacity: 0;
       transition: opacity .6s ease;
       z-index: 10;
       border-radius: 8px;
+      overflow: visible;
+      padding: 2rem;
     }
     .hero-endcard.visible { display: flex; }
     .hero-endcard.fade-in { opacity: 1; }
-    .hero-endcard-logo {
-      width: 200px;
-      max-width: 60%;
+    .hero-endcard-mockup {
+      width: 520px;
+      max-width: 85%;
       height: auto;
+      border-radius: 10px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
     }
     .hero-replay-btn {
       display: flex;
       align-items: center;
-      gap: .55rem;
-      padding: .75rem 1.6rem;
-      background: #0A0E1A;
-      color: #fff;
+      gap: .45rem;
+      padding: .6rem 1.4rem;
+      background: #56C7FF;
+      color: #0A0E1A;
       border: none;
       border-radius: 999px;
-      font-size: 1rem;
+      font-size: .85rem;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
-      transition: opacity .2s;
+      opacity: 1 !important;
+      transition: background .2s ease;
+      box-shadow: 0 4px 20px rgba(86,199,255,.35);
     }
-    .hero-replay-btn:hover { opacity: .85; }
+    .hero-replay-btn:hover {
+      background: #3db8f5;
+      opacity: 1 !important;
+    }
 
 
     /* Logos strip  -  school logos marquee */
@@ -436,6 +445,8 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
       .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
+      .hero-endcard-mockup { width: 100%; max-width: 100%; }
+      .hero-replay-btn { font-size: .85rem; padding: .55rem 1.3rem; opacity: 1; }
       .sport-card { min-height: 200px; }
       .products-grid { grid-template-columns: 1fr; }
       .solution-badges { gap: .75rem; margin-bottom: 2rem; }
@@ -547,14 +558,14 @@
       </div>
       <div class="hero-image">
         <video autoplay muted playsinline id="heroVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0E1A;border-radius:8px;">
-          <source src="website_demo6_optimized.mp4" type="video/mp4">
+          <source src="website_demo8_optimized.mp4" type="video/mp4">
         </video>
         <div class="hero-fade-overlay" id="heroFadeOverlay"></div>
         <div class="hero-endcard" id="heroEndcard">
-          <img src="Logos/3_black.png" alt="ScoreBreak" class="hero-endcard-logo">
+          <img src="Software/final_software_mockup.png" alt="ScoreBreak Software" class="hero-endcard-mockup">
           <button class="hero-replay-btn" id="heroReplayBtn" aria-label="Replay demo">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
-            Replay
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0E1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+            Replay Demo
           </button>
         </div>
       </div>
@@ -1159,14 +1170,14 @@ const heroFadeOverlay = document.getElementById('heroFadeOverlay');
 const heroEndcard = document.getElementById('heroEndcard');
 const heroReplayBtn = document.getElementById('heroReplayBtn');
 if (heroVideo) {
-  heroVideo.playbackRate = 0.8;
+  heroVideo.playbackRate = 0.75;
   heroVideo.addEventListener('loadedmetadata', () => {
-    heroVideo.playbackRate = 0.8;
+    heroVideo.playbackRate = 0.75;
   });
 }
 if (heroVideo && heroFadeOverlay && heroEndcard && heroReplayBtn) {
   heroVideo.addEventListener('timeupdate', () => {
-    if (heroVideo.currentTime >= 34.95) {
+    if (heroVideo.currentTime >= 22.43) {
       heroFadeOverlay.classList.add('fading');
     }
   });
@@ -1185,7 +1196,7 @@ if (heroVideo && heroFadeOverlay && heroEndcard && heroReplayBtn) {
       heroEndcard.classList.remove('visible');
       heroVideo.currentTime = 0;
       heroVideo.play();
-    }, 400);
+    }, 600);
   });
 }
 </script>
