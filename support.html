@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     .support-hero {
-      padding: calc(var(--nav-h) + 5rem) 0 4rem;
+      padding: calc(var(--nav-h) + 4.5rem) 0 0;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -78,7 +78,6 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin-bottom: 4rem;
       align-items: stretch;
     }
     .support-card {
@@ -230,7 +229,7 @@
     }
 
     @media (max-width: 600px) {
-      .support-hero { padding: calc(var(--nav-h) + 2.5rem) 0 3rem; }
+      .support-hero { padding: calc(var(--nav-h) + 2.5rem) 0 0; }
       .support-hero h1 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
       .phone-display { padding: .8rem 1.5rem; font-size: 1.2rem; }
       .support-card { padding: 1.5rem 1.25rem; }
@@ -261,9 +260,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -288,11 +289,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -308,13 +311,12 @@
 <!-- HERO -->
 <section class="support-hero">
   <div class="container">
-    <div class="section-label">Support</div>
     <h1>Support That Shows Up<br>When It Counts.</h1>
     <p>Get the help you need, fast. From comprehensive documentation to live support  -  we're here for your program.</p>
     <div>
-      <a href="tel:18006092102" class="phone-display">
+      <a href="tel:18008092102" class="phone-display">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 9.37 19.79 19.79 0 01.43 .74 2 2 0 012.42.5h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.18a16 16 0 006.29 6.29l1.02-.92a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-        1-800-609-2102
+        1.800.809.2102
       </a>
     </div>
   </div>
@@ -382,7 +384,7 @@
             </div>
             <div>
               <strong>Phone</strong>
-              <span>1-800-609-2102</span>
+              <span>1.800.809.2102</span>
             </div>
           </div>
         </div>
@@ -482,7 +484,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -490,6 +492,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -501,7 +504,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -511,20 +514,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -578,7 +579,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">

@@ -18,19 +18,10 @@
   <style>
     /* ── Hero ── */
     .about-hero {
-      padding: calc(var(--nav-h) + 5rem) 0 5.5rem;
+      padding: calc(var(--nav-h) + 4.5rem) 0 4rem;
       text-align: center;
       position: relative;
       overflow: hidden;
-    }
-    .about-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 900px; height: 600px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 65%);
-      pointer-events: none;
     }
     .about-hero h1 {
       font-size: clamp(2rem, 4.5vw, 3.4rem);
@@ -232,9 +223,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -259,11 +252,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -298,7 +293,7 @@
       </div>
       <div class="founder-text-col">
         <div class="section-label">Our Founding</div>
-        <h2 class="founder-headline">Founded on the Sideline.</h2>
+        <h2 class="founder-headline">Founded from Inside the Locker Room Out.</h2>
         <div class="founder-name">Jordan Hendry</div>
         <div class="founder-title">Founder &amp; CEO</div>
         <p class="founder-bio">ScoreBreak was founded in 2015 by Jordan Hendry  -  a retired professional lacrosse player for the Denver Outlaws and former collegiate athlete at the University of Denver. Jordan built ScoreBreak because he lived the problem firsthand: coaches needed better tools, faster film, and real intelligence on the sideline and in the film room.</p>
@@ -317,7 +312,7 @@
       <div class="section-label">Our Mission</div>
       <h2 class="section-title">Professional tools. Built for everyone.</h2>
     </div>
-    <p class="mission-body">ScoreBreak is designed as a pro-sumer platform  -  professional-grade technology that any coach, at any level, can pick up and use. From a first-year high school coach to a Division 1 program with a full staff, ScoreBreak meets you where you are. We believe every coaching staff deserves access to the same quality of tools that the pros use.</p>
+    <p class="mission-body">ScoreBreak brings professional-grade technology that any coach, at any level, can pick up and use. From a first-year high school coach to a Division 1 program with a full staff, ScoreBreak meets you where you are. We believe every coaching staff deserves access to the same quality of tools that the pros use.</p>
   </div>
 </section>
 
@@ -362,7 +357,7 @@
 <section class="section-sm">
   <div class="container">
     <div class="cta-section">
-      <h2>Ready to see ScoreBreak in action?</h2>
+      <h2>See what ScoreBreak can do for your program.</h2>
       <div class="hero-actions" style="justify-content:center;">
         <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
         <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo</a>
@@ -401,7 +396,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -409,6 +404,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -420,7 +416,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -430,20 +426,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -497,7 +491,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">

@@ -19,11 +19,11 @@
     /* Hero */
     .os-hero {
       position: relative;
-      min-height: 92vh;
+      min-height: 75vh;
       display: flex;
       align-items: center;
       overflow: hidden;
-      padding: calc(var(--nav-h) + 4rem) 0 5rem;
+      padding: calc(var(--nav-h) + 4rem) 0 4rem;
     }
     .os-hero-bg {
       position: absolute;
@@ -59,21 +59,6 @@
       position: relative;
       z-index: 1;
       max-width: 640px;
-    }
-    .os-hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .3rem .9rem;
-      background: var(--blue-dim);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1.75rem;
     }
     .os-hero h1 {
       font-size: clamp(2.6rem, 5.5vw, 4.4rem);
@@ -270,7 +255,6 @@
     /* CTA section */
     .os-cta {
       text-align: center;
-      padding: 3.75rem 0;
     }
     .os-cta h2 {
       font-size: clamp(2rem, 4vw, 3.2rem);
@@ -354,9 +338,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -381,11 +367,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -405,7 +393,6 @@
   </div>
   <div class="container">
     <div class="os-hero-content">
-      <div class="os-hero-eyebrow">Other Sports</div>
       <h1>ScoreBreak works for your sport.</h1>
       <p class="hero-sub">The same professional film analysis and collaboration tools used by lacrosse and basketball programs — built to work for any coaching staff, any sport.</p>
       <div class="os-hero-actions">
@@ -539,7 +526,7 @@
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="section" style="background: var(--bg2);">
+<section class="section" style="padding: 2.5rem 0;">
   <div class="container">
     <div class="os-cta">
       <h2>ScoreBreak works for your sport.</h2>
@@ -580,7 +567,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -588,6 +575,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -599,7 +587,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -609,20 +597,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -674,7 +660,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">

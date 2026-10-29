@@ -17,76 +17,6 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ── Basketball hero ── */
-    .bball-hero {
-      padding: calc(var(--nav-h) + 5rem) 0 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .bball-hero::before {
-      content: '';
-      position: absolute;
-      top: -80px; right: -120px;
-      width: 800px; height: 800px;
-      background: radial-gradient(ellipse, rgba(255,160,60,.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .bball-hero::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.06) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .bball-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .bball-hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .3rem .9rem;
-      background: rgba(255,160,60,.12);
-      border: 1px solid rgba(255,160,60,.3);
-      border-radius: 999px;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: #FFA03C;
-      margin-bottom: 1.75rem;
-    }
-    .bball-hero h1 {
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 900;
-      letter-spacing: -.04em;
-      line-height: 1.08;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-    }
-    .bball-hero .hero-sub {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-    .bball-hero-image {
-      position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      aspect-ratio: 4/3;
-    }
-    .bball-hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
 
     /* ── Feature sections ── */
     .bball-feature {
@@ -176,6 +106,11 @@
       color: var(--blue);
     }
 
+    /* Film Analysis bullets: single stacked list, larger text */
+    #film-analysis .bball-bullets { gap: 0; }
+    #film-analysis .bball-bullet { font-size: 1rem; line-height: 1.6; padding: .6rem 0; }
+    #film-analysis .bball-bullet strong { color: var(--text); font-weight: 700; }
+
     /* ── Comparison table ── */
     .vs-table {
       width: 100%;
@@ -207,38 +142,6 @@
     .vs-table th.highlight { color: var(--blue); }
     .vs-table td.highlight { color: var(--text); font-weight: 600; }
 
-    /* ── Partner highlight ── */
-    .partner-section {
-      background: linear-gradient(135deg, rgba(86,199,255,.06) 0%, rgba(86,199,255,.02) 100%);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 3.5rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .partner-logo-wrap {
-      width: 160px;
-      flex-shrink: 0;
-    }
-    .partner-logo-wrap img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .partner-text h3 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      margin-bottom: .75rem;
-    }
-    .partner-text p {
-      font-size: .97rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
     /* ── Stats bar ── */
     .stats-bar {
       display: grid;
@@ -268,87 +171,12 @@
       white-space: nowrap;
     }
 
-    /* ── Reports — Coming Soon ── */
-    .coming-soon-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .35rem 1rem;
-      background: rgba(86,199,255,.1);
-      border: 1px solid rgba(86,199,255,.4);
-      border-radius: 999px;
-      font-size: .75rem;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1.5rem;
-    }
-    .coming-soon-badge .cs-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--blue);
-      animation: reportsPulse 2s infinite;
-      flex-shrink: 0;
-    }
-    @keyframes reportsPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: .5; transform: scale(.7); }
-    }
-    .reports-callout {
-      position: relative;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(86,199,255,.07) 0%, var(--card-bg) 60%);
-      border: 1px solid rgba(86,199,255,.18);
-      border-radius: var(--radius-lg);
-      padding: 2.25rem 2rem;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(86,199,255,.06), 0 20px 50px rgba(86,199,255,.08);
-    }
-    .reports-callout::before {
-      content: '';
-      position: absolute;
-      top: -60%; left: 50%;
-      transform: translateX(-50%);
-      width: 380px; height: 260px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .reports-callout-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 580px;
-      margin: 0 auto;
-    }
-    .reports-callout .coming-soon-badge { margin-bottom: .85rem; }
-    .reports-callout h3 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: -.02em;
-      margin-bottom: .5rem;
-      color: var(--text);
-    }
-    .reports-callout p {
-      font-size: .92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
     /* ── CTA section ── */
     .bball-cta {
       text-align: center;
-      padding: 3.75rem 0;
+      padding: 2.5rem 0;
       position: relative;
       overflow: hidden;
-    }
-    .bball-cta::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 65%);
-      pointer-events: none;
     }
     .bball-cta h2 {
       font-size: clamp(2rem, 4vw, 3rem);
@@ -366,21 +194,13 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .bball-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .bball-feature { grid-template-columns: 1fr; gap: 2rem; }
       .bball-feature.reverse { direction: ltr; }
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .partner-section { grid-template-columns: 1fr; text-align: center; }
-      .partner-logo-wrap { margin: 0 auto; }
-      #film-analysis .bball-bullets { grid-template-columns: 1fr !important; }
     }
     @media (max-width: 600px) {
-      .bball-hero { padding-top: calc(var(--nav-h) + 3rem); }
-      .bball-hero h1 { font-size: clamp(1.9rem, 9vw, 2.6rem); }
       .stats-bar { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.75rem 1.25rem; }
       .stat-label { white-space: normal; }
-      .partner-section { padding: 2rem 1.5rem; }
-      .reports-callout { padding: 1.75rem 1.25rem; }
     }
   </style>
 </head>
@@ -407,9 +227,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -434,11 +256,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -452,20 +276,19 @@
 </div>
 
 <!-- ═══ HERO ═══ -->
-<section class="bball-hero">
+<section class="split-hero">
   <div class="container">
-    <div class="bball-hero-inner">
-      <div class="bball-hero-text">
-        <div class="bball-hero-eyebrow">Basketball</div>
-        <h1>ScoreBreak for Basketball.</h1>
-        <p class="hero-sub">Film analysis and sideline replay built for the modern coaching staff.</p>
-        <p class="hero-sub" style="margin-top:-.5rem;">From film breakdown to sideline replay  -  ScoreBreak gives basketball programs the tools to outprepare, outcoach, and outperform.</p>
+    <div class="split-hero-inner">
+      <div class="split-hero-text">
+        <div class="split-hero-eyebrow split-hero-eyebrow--orange">Basketball</div>
+        <h1>Custom film analysis.<br>Live bench replay.<br><span class="accent">One cloud platform.</span></h1>
+        <p class="hero-sub">Intuitive tagging, organized film libraries, and presentation tools for coaching staffs that work fast.</p>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
-          <a href="software.html" class="btn btn-outline btn-lg">Explore Platform</a>
+          <a href="software.html" class="btn btn-outline btn-lg">Explore Software</a>
         </div>
       </div>
-      <div class="bball-hero-image">
+      <div class="split-hero-media">
         <img src="Basketball/scorebreak-basketball.png" alt="ScoreBreak basketball platform interface">
       </div>
     </div>
@@ -473,7 +296,7 @@
 </section>
 
 <!-- ═══ STATS ═══ -->
-<section class="section" style="padding-top:3rem;padding-bottom:3rem;">
+<section class="section" style="padding-top:0;padding-bottom:3rem;">
   <div class="container">
     <div class="stats-bar">
       <div class="stat-item">
@@ -502,48 +325,41 @@
     <div class="bball-feature" style="grid-template-columns:1fr;">
       <div class="bball-feature-text">
         <div class="bball-feature-eyebrow">Film Analysis</div>
-        <h2>Break down film faster than ever before.</h2>
-        <p>ScoreBreak's film analysis platform is built to fit your system  -  not the other way around. Coaches customize their own tagging workflows, organize film the way their staff thinks, and access everything from iPad or Mac.</p>
-        <div class="bball-bullets" style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem 2rem;">
+        <h2>A comprehensive set of tools built for efficiency and customization.</h2>
+        <p>ScoreBreak's film analysis platform is built to fit your system. Coaches customize their own tagging workflows, organize film the way their staff thinks, and access everything from Mac, iPad, and iPhone.</p>
+        <div class="bball-bullets">
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Custom tagging workflows  -  build a system around your terminology, your sets, and your coaching style</span>
+            <span><strong>Custom tagging workflows</strong> — build a system around your terminology, sets, and coaching style, and tag live, online or offline</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Advanced analytics  -  multi-tag plays to generate tendency reports, location data, and shot charts automatically</span>
+            <span><strong>Advanced analytics</strong> — multi-tag plays to generate tendency reports, location data, and shot charts automatically</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Player and team film sessions  -  build personal breakdowns for individual athletes or full staff game plans with clips, notes, and drawings</span>
+            <span><strong>Player and team film sessions</strong> — build personal breakdowns for individual athletes or full staff game plans with clips, notes, and drawings</span>
           </div>
           <div class="bball-bullet">
             <div class="bball-bullet-icon">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
-            <span>Instant clip sharing  -  get film to players the moment you see something worth coaching, from within the app</span>
+            <span><strong>Instant clip sharing</strong> — get film to players the moment you see something worth coaching, from within the app</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span><strong>AI Reporting</strong> — visual reports and stats generated from your tagged film, tailored to your data and what you want to see</span>
           </div>
         </div>
         <a href="software.html" class="btn btn-primary">Explore Team Software →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ REPORTS — COMING SOON ═══ -->
-<section style="padding: 2rem 0;" id="reports">
-  <div class="container">
-    <div class="reports-callout">
-      <div class="reports-callout-inner">
-        <span class="coming-soon-badge"><span class="cs-dot"></span>Coming Soon</span>
-        <h3>Reports are coming to ScoreBreak.</h3>
-        <p>Your staff collects data through tag boards and game stats. ScoreBreak visualizes, analyzes, and presents it  -  cumulative stats, efficiency metrics, and visual reports, all linked back to the video behind the numbers. Coming soon.</p>
       </div>
     </div>
   </div>
@@ -586,7 +402,7 @@
         <a href="airborne.html" class="btn btn-primary">Explore Airborne →</a>
       </div>
       <div class="bball-feature-visual">
-        <img src="Basketball/Basketball.png" alt="ScoreBreak sideline replay on iPad">
+        <img src="Basketball/Basketball.png" alt="ScoreBreak sideline replay on iPad" style="aspect-ratio:1.55; object-fit:cover; object-position:100% 50%;">
       </div>
     </div>
   </div>
@@ -619,36 +435,31 @@
             </div>
             <span>Frame-accurate scrubbing for precise call review in real time</span>
           </div>
-          <div class="bball-bullet">
-            <div class="bball-bullet-icon">
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
-            </div>
-            <span>Trusted by professional leagues including Unrivaled</span>
-          </div>
         </div>
         <a href="airborne.html#airborne-stadium" class="btn btn-outline">See Airborne Stadium →</a>
       </div>
       <div class="bball-feature-visual" style="overflow:hidden;border-radius:var(--radius-lg);">
-        <img src="Basketball/Officiating-replay-unrivaled.png" alt="ScoreBreak officiating replay interface  -  Unrivaled league" style="width:100%;height:auto;display:block;">
+        <img src="Basketball/Officiating-replay-unrivaled-enhanced.png" alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FEATURED PARTNER  -  UNRIVALED ═══ -->
-<section class="section" id="partner">
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section" style="padding-top:0;">
   <div class="container">
     <div class="section-head" style="margin-bottom:2rem;">
-      <div class="section-label">Featured Partner</div>
-      <h2 class="section-title">Trusted by the pros.</h2>
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What coaches are saying</h2>
     </div>
-    <div class="partner-section">
-      <div class="partner-logo-wrap" style="display:flex;align-items:center;justify-content:center;">
-        <img src="NCAA%20D1/Unrivalled_(basketball_league).svg.png" alt="Unrivaled League" class="unrivaled-logo" style="max-width:190px;width:100%;height:auto;display:block;">
-      </div>
-      <div class="partner-text">
-        <h3>ScoreBreak powers Unrivaled.</h3>
-        <p>ScoreBreak powers the Unrivaled league with film analysis, sideline replay, and officiating tools. Unrivaled's coaching and officiating staffs rely on ScoreBreak from pregame preparation to in-game replay and postgame review. ScoreBreak's basketball stats system was built in direct collaboration with Unrivaled  -  and it's available in every basketball account by default.</p>
+    <div class="testimonial-card" style="max-width:760px;margin:0 auto;">
+      <p class="testimonial-quote">Coming from the Nerd Ball tree of John Andrzejek and the Kyle Smith family, there's a version of the game I see analytically. ScoreBreak allows me to tag, record, and clip in the same facets as HUDL Sportscode — everything I need for post-game film, scouting, and live film review. The best part is I can host my analytical database in the same app and use its AI features to formulate reports based off the data I'm collecting. <strong>One stop shop for film review, analysis, and interpretation.</strong> High-level teaching tool.</p>
+      <div class="testimonial-author">
+        <img src="NCAA D1/CC.png" alt="Connecticut College" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div class="testimonial-name">Josh Arruda</div>
+          <div class="testimonial-title">Assistant Coach, Connecticut College — Former Director of Analytics, Campbell University</div>
+        </div>
       </div>
     </div>
   </div>
@@ -658,8 +469,8 @@
 <section class="bball-cta">
   <div class="container" style="position:relative;z-index:1;">
     <div class="section-label" style="margin-bottom:1rem;">Get Started</div>
-    <h2>Ready to take your basketball<br>program to the next level?</h2>
-    <p>See ScoreBreak in action with a personalized demo. We'll walk you through film analysis, sideline replay, and officiating tools built for your program.</p>
+    <h2>See what ScoreBreak can do for your program.</h2>
+    <p>Get a personalized demo. We'll walk you through film analysis and sideline replay tools built for your program.</p>
     <div class="hero-actions" style="justify-content:center;">
       <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
       <a href="software.html" class="btn btn-outline btn-lg">Explore Software</a>
@@ -695,7 +506,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -703,6 +514,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -714,7 +526,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -724,20 +536,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -788,7 +598,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
@@ -842,12 +652,11 @@ if (sbContactForm) {
   /* ── Dropdowns ── */
   document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
     var btn = dd.querySelector('.nav-drop-btn');
-    btn && btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var open = dd.classList.contains('open');
+      var isOpen = dd.classList.contains('open');
       document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-      if (!open) dd.classList.add('open');
-      btn.setAttribute('aria-expanded', String(!open));
+      if (!isOpen) dd.classList.add('open');
     });
   });
   document.addEventListener('click', function() {

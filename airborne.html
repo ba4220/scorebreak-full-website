@@ -20,19 +20,10 @@
 
     /* ── Hero ── */
     .ab-hero {
-      padding: calc(var(--nav-h) + 6rem) 0 6rem;
+      padding: calc(var(--nav-h) + 4.5rem) 0 4rem;
       text-align: center;
       position: relative;
       overflow: hidden;
-    }
-    .ab-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 1000px; height: 600px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.1) 0%, transparent 65%);
-      pointer-events: none;
     }
     .ab-hero-inner {
       position: relative;
@@ -76,7 +67,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      align-items: center;
+      align-items: start;
     }
     .ab-intro-text {}
     .ab-intro-text .section-label { margin-bottom: .75rem; }
@@ -244,7 +235,7 @@
 
     /* ── Section dividers for product sections ── */
     .ab-product-section {
-      padding: 6rem 0;
+      padding: 4rem 0;
       position: relative;
     }
 
@@ -306,7 +297,7 @@
 
     .ab-prod-head h2 {
       font-size: clamp(1.8rem, 3.5vw, 3rem);
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: -.04em;
       line-height: 1.1;
       margin-bottom: 1.25rem;
@@ -468,13 +459,6 @@
     .ab-r-section .ab-feature-chip-dot { background: var(--blue); }
     .ab-stadium-section .ab-feature-chip-dot { background: #a78bfa; }
 
-    /* ── Testimonials ── */
-    .ab-testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-
     /* ── Image galleries (product section photo strips) ── */
     .ab-gallery-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
     .ab-gallery-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
@@ -482,25 +466,12 @@
 
     /* ── CTA Section ── */
     .ab-cta {
-      padding: 3.75rem 0;
+      padding: 3rem 0;
     }
     .ab-cta-inner {
-      background: linear-gradient(135deg, var(--blue-dim) 0%, transparent 70%);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 5rem 4rem;
+      padding: 3rem 0;
       text-align: center;
       position: relative;
-      overflow: hidden;
-    }
-    .ab-cta-inner::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.06) 0%, transparent 70%);
-      pointer-events: none;
     }
     .ab-cta-inner > * { position: relative; z-index: 1; }
     .ab-cta-inner h2 {
@@ -578,7 +549,6 @@
       .ab-solutions-grid { grid-template-columns: 1fr; }
       .ab-prod-top { grid-template-columns: 1fr; gap: 2rem; }
       .ab-features-grid.cols-5 { grid-template-columns: repeat(2, 1fr); }
-      .ab-testimonials-grid { grid-template-columns: 1fr; }
       .ab-officiating-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
       .ab-gallery-3 { grid-template-columns: repeat(2, 1fr); }
     }
@@ -586,7 +556,7 @@
       .ab-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
       .ab-hero h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
       .ab-product-section { padding: 4rem 0; }
-      .ab-cta-inner { padding: 3rem 1.5rem; }
+      .ab-cta-inner { padding: 2.5rem 0; }
       .ab-features-grid.cols-5 { grid-template-columns: 1fr; }
       .ab-prod-top { grid-template-columns: 1fr; }
       .ab-gallery-2, .ab-gallery-3 { grid-template-columns: 1fr; }
@@ -616,9 +586,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -643,11 +615,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -672,7 +646,7 @@
 </section>
 
 <!-- ═══ WHAT IS AIRBORNE  -  INTRO ═══ -->
-<section class="section" style="padding-top: 0; border-top: 1px solid var(--border-sub);">
+<section class="section" style="padding-top: 5rem;">
   <div class="container">
     <div class="ab-intro">
       <div class="ab-intro-text">
@@ -688,10 +662,6 @@
           <div class="ab-intro-bullet">
             <div class="ab-intro-bullet-dot"></div>
             <span>Integrated live stats feed directly in the replay interface</span>
-          </div>
-          <div class="ab-intro-bullet">
-            <div class="ab-intro-bullet-dot"></div>
-            <span>Multi-camera support for complete field coverage</span>
           </div>
           <div class="ab-intro-bullet">
             <div class="ab-intro-bullet-dot"></div>
@@ -760,10 +730,6 @@
   <div class="container">
 
     <div class="ab-prod-head">
-      <div class="ab-prod-badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        Rapid Deployable
-      </div>
       <h2>Airborne™ R: Rapid Deployable Sideline Replay</h2>
       <p>Take elite-level replay capability to every game on your schedule. Airborne R is a self-contained, battery-powered system that deploys in minutes  -  perfect for away games, neutral-site tournaments, and daily practice. With ultra-low 6-second latency and direct integration with ScoreBreak's live stats, your staff has the same replay capability at every venue.</p>
     </div>
@@ -909,7 +875,7 @@
 <!-- ═══ OFFICIATING REPLAY ═══ -->
 <section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);">
   <div class="container">
-    <div class="ab-officiating-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+    <div class="ab-officiating-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
       <div>
         <div style="display:inline-flex;align-items:center;gap:.5rem;padding:.25rem .75rem;background:var(--blue-dim);border:1px solid var(--border);border-radius:999px;font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:1.25rem;">Officiating Replay</div>
         <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1rem;">Built for Officiating Replay.</h2>
@@ -933,54 +899,12 @@
             </div>
             <span>Frame-accurate scrubbing purpose-built for officiating review</span>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
-            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
-            </div>
-            <span>Trusted by professional leagues including Unrivaled</span>
-          </div>
         </div>
         <a href="demo.html" class="btn btn-primary">Request a Demo →</a>
       </div>
       <div style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.4);">
-        <img src="Basketball/Officiating-replay-unrivaled.png" alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;">
+        <img src="Basketball/Officiating-replay-unrivaled-enhanced.png" alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;">
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TESTIMONIALS ═══ -->
-<section class="section" style="border-top: 1px solid var(--border-sub);">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-label">From the Sideline</span>
-      <h2 class="section-title">Coaches Trust Airborne</h2>
-    </div>
-
-    <div class="ab-testimonials-grid">
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Airborne R changed how we prepare at away games. We used to have to wait until we got back to review any film  -  <strong>now we're watching replays at halftime and making real adjustments right there on the sideline.</strong> The latency is genuinely impressive.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">JT</div>
-          <div>
-            <div class="testimonial-name">Coach James Tanner</div>
-            <div class="testimonial-title">Defensive Coordinator, University Lacrosse</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">With Airborne Stadium installed in our facility, game day is seamless. The cameras are already in position, recording starts automatically, and <strong>our staff can focus on coaching instead of setting up equipment.</strong> The Daktronics integration alone was worth it.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">LP</div>
-          <div>
-            <div class="testimonial-name">Coach Lauren Patrice</div>
-            <div class="testimonial-title">Head Coach, Division I Women's Lacrosse</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -989,8 +913,8 @@
 <section class="ab-cta">
   <div class="container">
     <div class="ab-cta-inner">
-      <h2>Ready to see Airborne in action?</h2>
-      <p>Talk to our team to find the right Airborne solution for your program  -  whether you need portable field replay or a full stadium installation.</p>
+      <h2>Talk to our team about Airborne.</h2>
+      <p>We'll help you find the right Airborne solution for your program  -  whether you need portable field replay or a full stadium installation.</p>
       <div class="ab-cta-actions">
         <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
         <a href="demo.html" class="ab-cta-link">Request a Demo →</a>
@@ -1027,7 +951,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -1035,6 +959,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -1046,7 +971,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -1056,20 +981,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -1150,7 +1073,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">

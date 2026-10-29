@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>v6 - Recordable Film Sessions | ScoreBreak Blog</title>
+  <meta name="description" content="Today, we&#x27;re introducing version 6 of ScoreBreak for iOS, iPadOS, and macOS." />
+  <meta property="og:title" content="v6 - Recordable Film Sessions | ScoreBreak Blog" />
+  <meta property="og:description" content="Today, we&#x27;re introducing version 6 of ScoreBreak for iOS, iPadOS, and macOS." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://scorebreak.io/blog/v6-recordable-film-sessions.html" />
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="v6 - Recordable Film Sessions | ScoreBreak Blog" />
+  <meta name="twitter:description" content="Today, we&#x27;re introducing version 6 of ScoreBreak for iOS, iPadOS, and macOS." />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* ── Hero ── */
+    .blog-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .post-wrap { max-width: 720px; margin: 0 auto; position: relative; }
+    .post-back {
+      display: inline-flex;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+    .post-back:hover { text-decoration: underline; }
+    .post-hero { text-align: left; padding-bottom: 2rem; }
+    .post-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .post-byline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+    .post-byline strong { color: var(--text); font-weight: 700; }
+
+    /* ── Body ── */
+    .post-body {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-sub);
+      font-size: 1.05rem;
+      line-height: 1.82;
+      color: var(--text-muted);
+    }
+    .post-body > * + * { margin-top: 1.35rem; }
+    .post-body strong { color: var(--text); }
+    .post-body h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+    .post-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+    .post-body ul { list-style: disc; padding-left: 1.4rem; }
+    .post-body li + li { margin-top: .5rem; }
+    .post-body blockquote {
+      border-left: 3px solid var(--blue);
+      padding: .25rem 0 .25rem 1.25rem;
+      color: var(--text);
+      font-style: italic;
+    }
+    .post-body kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .85em;
+      padding: .1em .4em;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg2);
+      color: var(--text);
+    }
+    .post-kicker {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .post-about { font-size: .92rem; padding-top: 1.35rem; border-top: 1px solid var(--border-sub); }
+
+    /* ── Prev / next ── */
+    .post-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .post-nav a {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      transition: border-color .2s;
+    }
+    .post-nav a:hover { border-color: var(--border); }
+    .post-nav-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .post-nav-title { font-size: .95rem; font-weight: 700; line-height: 1.4; color: var(--text); }
+    .post-nav-next { grid-column: 2; text-align: right; }
+
+    @media (max-width: 600px) {
+      .post-nav { grid-template-columns: 1fr; }
+      .post-nav-next { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="../Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="../Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="../lacrosse.html">Lacrosse</a>
+          <a href="../basketball.html">Basketball</a>
+          <a href="../football.html">Football</a>
+          <a href="../other-sports.html">Other Sports</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="../software.html">Team Software</a>
+          <a href="../airborne.html">Airborne Sideline Replay</a>
+          <a href="../portal.html">Recruiting Network</a>
+          <a href="../leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="../solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="../support.html" class="nav-link">Support</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../demo.html" class="nav-link">Request a Demo</a>
+      <a href="../football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="../lacrosse.html">Lacrosse</a>
+    <a href="../basketball.html">Basketball</a>
+    <a href="../football.html">Football</a>
+    <a href="../other-sports.html">Other Sports</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="../solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
+    <a href="../software.html">Team Software</a>
+    <a href="../airborne.html">Airborne Sideline Replay</a>
+    <a href="../portal.html">Recruiting Network</a>
+    <a href="../leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="../solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="../support.html">Support</a>
+    <a href="../demo.html">Request a Demo</a>
+    <a href="../about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="../football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     POST
+══════════════════════════════════════ -->
+<article>
+  <header class="blog-hero post-hero">
+    <div class="container">
+      <div class="post-wrap">
+        <a href="index.html" class="post-back">&larr; All posts</a>
+        <h1>v6 - Recordable Film Sessions</h1>
+        <div class="post-byline"><strong>Jordan Hendry</strong><span aria-hidden="true">·</span><time datetime="2023-04-02">April 2, 2023</time></div>
+      </div>
+    </div>
+  </header>
+  <div class="container" style="padding-bottom:4rem;">
+    <div class="post-wrap">
+      <div class="post-body">
+      <p>Today, we're introducing version 6 of ScoreBreak for iOS, iPadOS, and macOS. The marquee feature of this version, Recordable Film Sessions, will revolutionize the way coaches create video analysis materials for preparing and developing their athletes. Our new recordable film sessions feature enables coaches to easily create video presentations with their voiceover and live-animated drawings, which athletes can review at their convenience.</p>
+      <p><strong>Takeaways:</strong> ScoreBreak's new recordable film sessions feature allows for greater flexibility and convenience in creating and reviewing video analysis content. The ability to assign work ahead of time and record sessions allows for deeper discussions and more detailed feedback, leading to better understanding and execution of plays and strategies.</p>
+      <p>We understand that film sessions are a crucial aspect of sports team preparation, but it can be challenging to get everyone in the same room at the same time. With our new feature, coaches can now record their in-person film sessions in the app. All video playback interactions are recorded, along with the coach's voiceover, digital zooming and panning, and telestration drawings. The coach may then share the recordings with the team, enabling athletes in attendance to revisit the content at their convenience, or allowing members that were unable to attend the film meeting to gain access to the information they missed.</p>
+      <p>Our recordable film sessions feature is designed to help teams improve their performance and achieve their goals. The ability to distribute a pre-created voiceover ahead of an in-person film session allows for deeper discussions by allowing athletes to gain a base layer of understanding for the principals which will be reviewed in film. Coaches may record their insights and analysis while at their desk. The interface includes the ability to pause your recording, allowing the user to follow a natural workflow and record segments at a time.</p>
+      <p>Watch a video introduction here: <a href="https://youtu.be/mUmByevap8o" target="_blank" rel="noopener">youtu.be/mUmByevap8o</a></p>
+      <p>Our software is available now for download on the App Store for iPad and Mac and on the Mac App Store for macOS.</p>
+      </div>
+      <nav class="post-nav" aria-label="More posts">
+      <a href="scorebreak-version-60-recordable-film-sessions.html" class="post-nav-next">
+        <span class="post-nav-label">Older &rarr;</span>
+        <span class="post-nav-title">ScoreBreak version 6.0 to enhance coaching solutions with Recordable Film Sessions</span>
+      </a>
+      </nav>
+    </div>
+  </div>
+</article>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo" aria-label="ScoreBreak Home">
+          <img src="../Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+          <img src="../Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+        </a>
+        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/scorebreak" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCMXxJoJUFUS-QXnHz1Qa8Uw" class="footer-social-link" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sports</h4>
+        <ul>
+          <li><a href="../lacrosse.html">Lacrosse</a></li>
+          <li><a href="../basketball.html">Basketball</a></li>
+          <li><a href="../football.html">Football</a></li>
+          <li><a href="../other-sports.html">Other Sports</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="../solutions.html">All Solutions</a></li>
+          <li><a href="../software.html">Team Software</a></li>
+          <li><a href="../airborne.html">Airborne</a></li>
+          <li><a href="../portal.html">Recruiting Network</a></li>
+          <li><a href="../leagues.html">League Solutions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
+          <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     CONTACT SALES MODAL
+══════════════════════════════════════ -->
+<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+  <div class="sb-modal">
+    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <h2 id="sbModalTitle">Get in Touch</h2>
+    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+
+    <div id="sbModalFormWrap">
+      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact-sales">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+
+        <div class="sb-form-row">
+          <div class="sb-form-group">
+            <label for="sbFirstName">First Name</label>
+            <input type="text" id="sbFirstName" name="firstName" required>
+          </div>
+          <div class="sb-form-group">
+            <label for="sbLastName">Last Name</label>
+            <input type="text" id="sbLastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbEmail">Email</label>
+          <input type="email" id="sbEmail" name="email" required>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbMessage">Message</label>
+          <textarea id="sbMessage" name="message" rows="4" placeholder="Tell us about your program and what you're looking for..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary sb-form-submit">Send Message</button>
+      </form>
+
+      <div class="sb-modal-divider"><span>or</span></div>
+
+      <div class="sb-modal-options">
+        <a href="../demo.html" class="sb-modal-option">
+          <div class="sb-modal-option-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="sb-modal-option-label">Request a Demo</div>
+            <div class="sb-modal-option-detail">See the full platform in a 20-minute walkthrough.</div>
+          </div>
+        </a>
+      </div>
+
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
+    </div>
+
+    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+      <div class="sb-modal-confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function sbOpenModal() {
+  document.getElementById('sbContactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('sbModalFormWrap').style.display = '';
+  document.getElementById('sbModalConfirm').style.display = 'none';
+  var f = document.getElementById('sbContactForm');
+  if (f) f.reset();
+}
+function sbCloseModal() {
+  document.getElementById('sbContactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('sbContactModal').addEventListener('click', function(e) {
+  if (e.target === this) sbCloseModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sbCloseModal();
+});
+var sbContactForm = document.getElementById('sbContactForm');
+if (sbContactForm) {
+  sbContactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(sbContactForm);
+    var firstName = (data.get('firstName') || '').toString().trim();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    }).finally(function() {
+      document.getElementById('sbModalFormWrap').style.display = 'none';
+      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
+      document.getElementById('sbModalConfirm').style.display = 'block';
+    });
+  });
+}
+</script>
+
+<script>
+(function() {
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+  mob.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mob.classList.remove('open');
+      ham.classList.remove('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

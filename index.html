@@ -91,10 +91,10 @@
     .hero-fade-overlay {
       position: absolute;
       inset: 0;
-      background: #ffffff;
+      background: var(--bg);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 1.5s cubic-bezier(.4,0,.2,1);
+      transition: opacity 1.5s ease-in-out;
       z-index: 9;
       border-radius: 8px;
     }
@@ -112,7 +112,7 @@
       gap: 1.5rem;
       background: var(--bg);
       opacity: 0;
-      transition: opacity .6s ease;
+      transition: opacity .5s ease-in-out;
       z-index: 10;
       border-radius: 8px;
       overflow: visible;
@@ -120,12 +120,14 @@
     }
     .hero-endcard.visible { display: flex; }
     .hero-endcard.fade-in { opacity: 1; }
+    /* Hide the layers under the end card once it covers them, so nothing bleeds through its rounded edges */
+    .hero-image:has(.hero-endcard.fade-in) .hero-fade-overlay { opacity: 0; }
+    .hero-image:has(.hero-endcard.fade-in) #heroVideo { visibility: hidden; }
     .hero-endcard-mockup {
       width: 520px;
       max-width: 85%;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 24px 60px rgba(0,0,0,.5);
     }
     .hero-replay-btn {
       display: flex;
@@ -142,7 +144,6 @@
       font-family: inherit;
       opacity: 1 !important;
       transition: background .2s ease;
-      box-shadow: 0 4px 20px rgba(86,199,255,.35);
     }
     .hero-replay-btn:hover {
       background: #3db8f5;
@@ -204,7 +205,6 @@
     .marquee-logo.logo-first-class { height: 73px; }
     .marquee-logo.logo-culver      { height: 60px; }
     .marquee-logo.logo-cornell     { height: 57px; }
-    .marquee-logo.unrivaled-logo   { height: 56px; }
     .marquee-logo.logo-denver2     { height: 63px; }
     .marquee-logo.logo-new-towson  { height: 91px; }
 
@@ -299,7 +299,7 @@
       margin-bottom: .75rem;
     }
     .sport-card-lacrosse .sport-card-tag { background: rgba(86,199,255,.25); color: #56C7FF; }
-    .sport-card-football .sport-card-tag { background: rgba(255,107,53,.25); color: #FF6B35; }
+    .sport-card-football .sport-card-tag { background: linear-gradient(135deg, var(--blue) 0%, #0080CC 100%); color: #fff; }
     .sport-card h3 {
       font-size: 1.5rem;
       font-weight: 800;
@@ -339,7 +339,8 @@
       transition: background .2s, border-color .2s, transform .2s;
       text-decoration: none;
       color: inherit;
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
     .product-card:hover { background: var(--card-bg2); border-color: var(--border); transform: translateY(-3px); box-shadow: var(--shadow); }
     .product-icon {
@@ -352,7 +353,7 @@
     }
     .product-icon svg { width: 26px; height: 26px; }
     .product-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .5rem; letter-spacing: -.01em; }
-    .product-card p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem; }
+    .product-card p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem; flex: 1; }
     .product-link {
       font-size: .85rem;
       font-weight: 700;
@@ -455,7 +456,6 @@
       .marquee-logo.logo-first-class { height: 56px; }
       .marquee-logo.logo-culver      { height: 46px; }
       .marquee-logo.logo-cornell     { height: 44px; }
-      .marquee-logo.unrivaled-logo   { height: 43px; }
       .marquee-logo.logo-denver2     { height: 48px; }
       .marquee-logo.logo-new-towson  { height: 70px; }
       .tc-btn { width: 44px; height: 44px; }
@@ -489,15 +489,14 @@
       </div>
 
       <div class="nav-dropdown" id="dd-solutions">
-        <button class="nav-drop-btn" aria-expanded="false">
-          Solutions
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg>
-        </button>
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -526,11 +525,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -585,7 +586,6 @@
       <span class="logo-cell"><img src="NCAA D1/Yale.png"                 class="marquee-logo" alt="Yale"></span>
       <span class="logo-cell"><img src="NCAA D1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
       <span class="logo-cell"><img src="NCAA D1/UNC.png"                  class="marquee-logo" alt="UNC"></span>
-      <span class="logo-cell"><img src="NCAA%20D1/Unrivalled_(basketball_league).svg.png" class="marquee-logo unrivaled-logo" alt="Unrivaled"></span>
       <span class="logo-cell"><img src="NCAA D1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
       <span class="logo-cell"><img src="NCAA D1/Army.png"                 class="marquee-logo" alt="Army"></span>
       <span class="logo-cell"><img src="NCAA D1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
@@ -603,6 +603,7 @@
       <span class="logo-cell"><img src="NCAA D1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
       <span class="logo-cell"><img src="NCAA D1/Saint%20Joseph's.png"     class="marquee-logo" alt="Saint Joseph's"></span>
       <span class="logo-cell"><img src="NCAA D1/Mercer.png"               class="marquee-logo" alt="Mercer"></span>
+      <span class="logo-cell"><img src="NCAA D1/OSU_best.png"                 class="marquee-logo" alt="Ohio State"></span>
       <span class="logo-cell"><img src="NCAA%20D1/NBA-Academy-Logo.png" class="marquee-logo" alt="NBA Academy"></span>
       <!-- Duplicate for seamless loop -->
       <span class="logo-cell"><img src="NCAA D1/Denver2.png"              class="marquee-logo logo-denver2" alt="Denver"></span>
@@ -610,7 +611,6 @@
       <span class="logo-cell"><img src="NCAA D1/Yale.png"                 class="marquee-logo" alt="Yale"></span>
       <span class="logo-cell"><img src="NCAA D1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
       <span class="logo-cell"><img src="NCAA D1/UNC.png"                  class="marquee-logo" alt="UNC"></span>
-      <span class="logo-cell"><img src="NCAA%20D1/Unrivalled_(basketball_league).svg.png" class="marquee-logo unrivaled-logo" alt="Unrivaled"></span>
       <span class="logo-cell"><img src="NCAA D1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
       <span class="logo-cell"><img src="NCAA D1/Army.png"                 class="marquee-logo" alt="Army"></span>
       <span class="logo-cell"><img src="NCAA D1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
@@ -627,8 +627,9 @@
       <span class="logo-cell"><img src="NCAA D1/culver.png"               class="marquee-logo logo-culver" alt="Culver"></span>
       <span class="logo-cell"><img src="NCAA D1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
       <span class="logo-cell"><img src="NCAA D1/Saint%20Joseph's.png"     class="marquee-logo" alt="Saint Joseph's"></span>
-      <span class="logo-cell"><img src="NCAA%20D1/NBA-Academy-Logo.png" class="marquee-logo" alt="NBA Academy"></span>
       <span class="logo-cell"><img src="NCAA D1/Mercer.png"               class="marquee-logo" alt="Mercer"></span>
+      <span class="logo-cell"><img src="NCAA D1/OSU_best.png"                 class="marquee-logo" alt="Ohio State"></span>
+      <span class="logo-cell"><img src="NCAA%20D1/NBA-Academy-Logo.png" class="marquee-logo" alt="NBA Academy"></span>
     </div>
   </div>
 </div>
@@ -681,9 +682,8 @@
 <section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
   <div class="container">
     <div class="section-head">
-      <div class="section-label">Solutions</div>
-      <h2 class="section-title">Everything your program needs</h2>
-      <p class="section-subtitle">Three core products built to connect athletes with coaches, support game-day performance, and drive recruiting results.</p>
+      <h2 class="section-title">Three core products.<br>Everything your <span style="white-space:nowrap;">program needs.</span></h2>
+      <p class="section-subtitle">Built to connect athletes with coaches, support game-day performance, and drive recruiting results.</p>
     </div>
     <div class="solution-badges">
       <a href="software.html" class="solution-badge">
@@ -862,19 +862,6 @@
 
         <div class="tc-slide">
           <div class="testimonial-card">
-            <p class="testimonial-quote">We've tried other platforms  -  including the most well-known  -  but I still choose ScoreBreak because <strong>the breakdown interface is simply better.</strong> ScoreBreak makes it easy to analyze clips, and it's the best platform we've found for film study.</p>
-            <div class="testimonial-author">
-              <img src="NCAA D1/pennsbury.png" alt="Pennsbury" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-              <div>
-                <div class="testimonial-name">Dean Curtis</div>
-                <div class="testimonial-title">Head Coach, Pennsbury HS Boys Lacrosse</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tc-slide">
-          <div class="testimonial-card">
             <p class="testimonial-quote"><strong>ScoreBreak has been a total game changer for our staff and players.</strong> If I told you we used ScoreBreak 10,000x a day we would probably be underestimating. We are completely obsessed with it and it seems like every year the product has gotten better.</p>
             <div class="testimonial-author">
               <img src="NCAA D1/Brown.png" alt="Brown" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
@@ -940,11 +927,11 @@
 <section class="section-sm">
   <div class="container">
     <div class="cta-section">
-      <h2>Ready to take your program to the next level?</h2>
-      <p>Join thousands of coaches, athletes, and leagues already using ScoreBreak to outperform the competition.</p>
+      <h2>See what ScoreBreak can do for your program.</h2>
+      <p>Talk to our team — no commitment required.</p>
       <div class="hero-actions" style="justify-content:center;">
         <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
-        <a href="lacrosse.html" class="btn btn-outline btn-lg">Explore Lacrosse →</a>
+        <a href="solutions.html" class="btn btn-outline btn-lg">Explore Solutions →</a>
       </div>
     </div>
   </div>
@@ -980,7 +967,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -988,6 +975,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -999,7 +987,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
@@ -1010,20 +998,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -1116,7 +1102,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">

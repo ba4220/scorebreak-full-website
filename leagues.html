@@ -19,7 +19,7 @@
 
     /* ── Hero ─────────────────────────────── */
     .lg-hero {
-      padding: calc(var(--nav-h) + 6rem) 0 6rem;
+      padding: calc(var(--nav-h) + 4.5rem) 0 4rem;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -335,9 +335,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -362,11 +364,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -441,7 +445,7 @@
 ════════════════════════════════════════════════════════════ -->
 <section class="section" style="padding:3.75rem 0;">
   <div class="container">
-    <div class="lg-two-col" style="align-items:center;gap:3.75rem;grid-template-columns:1.2fr 1fr;">
+    <div class="lg-two-col" style="align-items:start;gap:3.75rem;grid-template-columns:1.2fr 1fr;">
       <div style="background:var(--card-bg);border:1px solid var(--border-sub);border-radius:var(--radius-lg);overflow:hidden;">
         <img src="Software/league_exchange.png" alt="ScoreBreak Film Exchange  -  league-wide film access for every team" style="width:100%;height:auto;display:block;">
       </div>
@@ -479,7 +483,7 @@
 ════════════════════════════════════════════════════════════ -->
 <section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);border-bottom:1px solid var(--border-sub);">
   <div class="container">
-    <div class="lg-two-col reverse">
+    <div class="lg-two-col reverse" style="align-items:start;">
       <div class="lg-section-text">
         <span class="section-label" style="margin-bottom:1rem;display:inline-block;">Public League Hub</span>
         <h2>An interactive stats site for your league.</h2>
@@ -618,17 +622,9 @@
         <span class="trusted-badge-label">Juniors Open</span>
       </div>
 
-      <div class="trusted-badge" style="padding:.75rem 1.5rem;">
-        <span class="trusted-badge-label" style="font-size:.9rem;letter-spacing:.04em;">Showcase X</span>
-      </div>
-
       <div class="trusted-badge">
         <img src="NCAA D1/NBA-Academy-Logo.png" alt="NBA Academy Games">
         <span class="trusted-badge-label">NBA Academy Games</span>
-      </div>
-
-      <div class="trusted-badge">
-        <img src="NCAA D1/Unrivalled_(basketball_league).svg.png" alt="Unrivaled" class="unrivaled-logo">
       </div>
 
       <div class="trusted-more">and more</div>
@@ -643,7 +639,7 @@
 <section class="section-sm">
   <div class="container">
     <div class="cta-section">
-      <h2>Ready to bring ScoreBreak to your league?</h2>
+      <h2>Bring ScoreBreak to your league.</h2>
       <p>Whether you're running a weekend tournament or a full season league, ScoreBreak has the tools to run a better operation for administrators, coaches, fans, and scouts.</p>
       <div class="hero-actions" style="justify-content:center;">
         <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
@@ -683,7 +679,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -691,6 +687,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -702,7 +699,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -712,20 +709,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -805,7 +800,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">

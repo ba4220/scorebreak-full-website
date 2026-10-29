@@ -15,87 +15,12 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ── Hero ─────────────────────────────────────────────── */
-    .sw-hero {
-      padding: calc(var(--nav-h) + 5rem) 0 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .sw-hero::before {
-      content: '';
-      position: absolute;
-      top: -100px; left: 50%;
-      transform: translateX(-50%);
-      width: 900px; height: 600px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.09) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .sw-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .sw-hero-text .section-label { margin-bottom: .75rem; }
-    .sw-hero-text h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 900;
-      letter-spacing: -.04em;
-      line-height: 1.08;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-    .sw-hero-text .hero-sub {
-      font-size: 1.08rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 500px;
-      margin-bottom: 2rem;
-    }
-    /* Device mockup */
-    .sw-hero-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      transform: translateX(28px);
-    }
+    /* Hero mockup keeps its gentle float; layout comes from .split-hero in styles.css */
     @keyframes deviceFloat {
       from { transform: translateY(0px); }
       to   { transform: translateY(-4px); }
     }
-    .device-mockup-scene {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
-      cursor: default;
-    }
-    .device-mockup-scene:hover {
-      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
-    }
-    .sw-hero-img {
-      width: 114%;
-      height: auto;
-      display: block;
-      animation: deviceFloat 3s ease-in-out infinite alternate;
-    }
-    .device-mockup-scene:hover .sw-hero-img {
-      animation-play-state: paused;
-    }
-    .device-mockup-glow {
-      width: 240px;
-      height: 14px;
-      background: rgba(86,199,255,.12);
-      border-radius: 50%;
-      filter: blur(10px);
-      margin-top: 10px;
-      animation: deviceFloat 3s ease-in-out infinite alternate;
-    }
-    .device-mockup-scene:hover .device-mockup-glow {
-      animation-play-state: paused;
-    }
+    .sw-hero-img { animation: deviceFloat 3s ease-in-out infinite alternate; }
 
     /* ── Film Analysis Section ────────────────────────────── */
     .film-grid {
@@ -124,6 +49,19 @@
       background: #0D1526;
       position: relative;
       overflow: hidden;
+    }
+    /* Raw app-window screenshots, placed to match the window baked into the other card images */
+    .film-card-img--window { background: #E1EFFE; }
+    [data-theme="light"] .film-card-img.film-card-img--window { background: #E1EFFE; }
+    .film-card-img--window img {
+      position: absolute;
+      left: 4.4%;
+      top: 12.5%;
+      height: 73.7%;
+      width: auto;
+      max-width: none;
+      border-radius: 3px;
+      box-shadow: 0 6px 18px rgba(20,40,70,.35);
     }
     .film-card-img::after {
       content: '';
@@ -322,122 +260,17 @@
       border-color: var(--border);
     }
 
-    /* ── Reports — Coming Soon (de-emphasized: roadmap item, not a gap) ── */
-    .coming-soon-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .3rem .85rem;
-      background: rgba(86,199,255,.1);
-      border: 1px solid rgba(86,199,255,.4);
-      border-radius: 999px;
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1.25rem;
-    }
-    .coming-soon-badge .cs-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--blue);
-      animation: reportsPulse 2s infinite;
-      flex-shrink: 0;
-    }
-    @keyframes reportsPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: .5; transform: scale(.7); }
-    }
-    .reports-card {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(86,199,255,.07) 0%, var(--card-bg) 60%);
-      border: 1px solid rgba(86,199,255,.18);
-      border-radius: var(--radius-lg);
-      padding: 2.25rem;
-      box-shadow: 0 0 0 1px rgba(86,199,255,.06), 0 20px 50px rgba(86,199,255,.08);
-    }
-    .reports-card::before {
-      content: '';
-      position: absolute;
-      top: -60%; left: 50%;
-      transform: translateX(-50%);
-      width: 380px; height: 260px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .reports-card-body {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 1.75rem;
-    }
-    .reports-card-body .section-title {
-      font-size: 1.4rem;
-      margin-bottom: .6rem;
-    }
-    .reports-card-body p {
-      font-size: .92rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-    .reports-features {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .reports-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: .85rem;
-    }
-    .reports-feature-icon {
-      width: 34px; height: 34px;
-      flex-shrink: 0;
-      background: rgba(86,199,255,.12);
-      border: 1px solid rgba(86,199,255,.25);
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--blue);
-    }
-    .reports-feature:hover .reports-feature-icon {
-      background: rgba(86,199,255,.18);
-      border-color: rgba(86,199,255,.4);
-    }
-    .reports-feature-icon svg { width: 17px; height: 17px; }
-    .reports-feature h3 {
-      font-size: .92rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .3rem;
-    }
-    .reports-feature p {
-      font-size: .84rem;
-      color: var(--text-dim);
-      line-height: 1.55;
-    }
-
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 1024px) {
       .film-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 900px) {
-      .sw-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .sw-hero-text h1 { font-size: clamp(2rem, 6vw, 3rem); }
-      .sw-hero-visual { transform: none; }
-      .sw-hero-img { width: 100%; }
       .handoff-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .fed-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .reports-card { padding: 2.75rem; }
     }
     @media (max-width: 600px) {
-      .sw-hero-text h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
       .film-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr !important; max-width: 420px !important; }
-      .reports-card { padding: 2rem 1.5rem; }
-      .reports-features { gap: 1.5rem; }
     }
     [data-theme="light"] .film-card {
       background: var(--card-bg);
@@ -475,9 +308,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -502,11 +337,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -522,23 +359,20 @@
 <!-- ═══════════════════════════════════════════════════════════
      HERO
 ════════════════════════════════════════════════════════════ -->
-<section class="sw-hero">
+<section class="split-hero">
   <div class="container">
-    <div class="sw-hero-inner">
-      <div class="sw-hero-text">
-        <span class="section-label">Team Software</span>
-        <h1>A Complete Film Solution</h1>
-        <p class="hero-sub">ScoreBreak is the complete film analysis tool  -  built with an obsessive focus on ease of use. Tagging, playback, sharing, and collaboration are designed to be intuitive from day one, so coaches spend less time navigating software and more time coaching.</p>
+    <div class="split-hero-inner">
+      <div class="split-hero-text">
+        <div class="split-hero-eyebrow">Team Software</div>
+        <h1>A Complete<br><span class="accent">Film Solution</span></h1>
+        <p class="hero-sub">ScoreBreak is film analysis software built with an obsessive focus on ease of use. Tagging, playback, sharing, and collaboration are designed to be intuitive from day one, so coaches spend less time navigating software and more time coaching.</p>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
           <a href="#film-analysis" class="btn btn-outline btn-lg">Learn More ↓</a>
         </div>
       </div>
-      <div class="sw-hero-visual">
-        <div class="device-mockup-scene">
-          <img src="Software/final_software_mockup.png" alt="ScoreBreak film analysis software" class="sw-hero-img">
-          <div class="device-mockup-glow"></div>
-        </div>
+      <div class="split-hero-media split-hero-media--device">
+        <img src="Software/final_software_mockup_basketball.png?v=1" alt="ScoreBreak film analysis software" class="sw-hero-img">
       </div>
     </div>
   </div>
@@ -551,18 +385,18 @@
   <div class="container">
     <div class="section-head">
       <h2 class="section-title">Film Analysis Made Simple</h2>
-      <p class="section-subtitle">Capture and organize film so coaches can map team data with ease.</p>
+      <p class="section-subtitle">Cut, organize, and share film with your staff and players, from Mac, iPad, iPhone, or the web.</p>
     </div>
     <div class="film-grid">
 
       <!-- Interactive Stats -->
       <div class="film-card">
-        <div class="film-card-img">
-          <img src="Software/interactive-stats-software.png" alt="Interactive stats" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <div class="film-card-img film-card-img--window">
+          <img src="Software/interactive_stats_basketball_window.png" alt="ScoreBreak basketball box score with live stats beside the game video and tagged timeline">
         </div>
         <div class="film-card-body">
           <h3>Interactive Stats</h3>
-          <p>Tag live stats during games with no custom setup  -  the interface is ready in every account. Basketball stats were built with the Unrivaled league.</p>
+          <p>Tag live stats during games with no custom setup  -  the interface is ready in every account.</p>
         </div>
       </div>
 
@@ -591,7 +425,7 @@
       <!-- AI Analysis -->
       <div class="film-card">
         <div class="film-card-img">
-          <img src="Software/AI-location-charting.png" alt="AI analysis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Software/location_chart_bball.png" alt="AI analysis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="film-card-body">
           <h3>AI Analysis</h3>
@@ -599,14 +433,14 @@
         </div>
       </div>
 
-      <!-- Film Sharing -->
+      <!-- Data Reporting -->
       <div class="film-card">
-        <div class="film-card-img">
-          <img src="Software/film-sharing-software.png" alt="Film sharing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <div class="film-card-img film-card-img--window">
+          <img src="Software/reports_screenshot_edited.png?v=2" alt="Data reporting">
         </div>
         <div class="film-card-body">
-          <h3>Film Sharing</h3>
-          <p>Share game film and playlists with your entire program instantly  -  coaches, players, and staff all in one place. Anyone can access the film via a direct link without needing a separate account.</p>
+          <h3>Data Reporting</h3>
+          <p>An interactive matrix of statistics and tagged data built from your film. Every data point links directly back to the clip that created it — go from a number in a report to the play on the field in one click.</p>
         </div>
       </div>
 
@@ -643,50 +477,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     REPORTS — COMING SOON
-════════════════════════════════════════════════════════════ -->
-<section class="section" id="reports">
-  <div class="container">
-    <div class="reports-card">
-      <div class="reports-card-body">
-        <span class="coming-soon-badge"><span class="cs-dot"></span>Coming Soon</span>
-        <h2 class="section-title">Reporting for Today's Coach.</h2>
-        <p>Your staff collects the data through how they tag film. ScoreBreak does the rest  -  visualizing, analyzing, and presenting it as cumulative stats, efficiency metrics, visual reports, and more. Every data point links back to the video behind it, so your staff can go from a report to the film in one click. Professional-grade reporting without the manual workload, and AI to help build smarter data collection workflows.</p>
-      </div>
-      <div class="reports-features">
-        <div class="reports-feature">
-          <div class="reports-feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
-          </div>
-          <div>
-            <h3>Visual reports from your tags</h3>
-            <p>Generated directly from your film and your tagging system.</p>
-          </div>
-        </div>
-        <div class="reports-feature">
-          <div class="reports-feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V9M12 21V3M20 21v-7"/></svg>
-          </div>
-          <div>
-            <h3>Flexible by design</h3>
-            <p>Reports reflect your terminology, your workflow, and what your staff actually tracks.</p>
-          </div>
-        </div>
-        <div class="reports-feature">
-          <div class="reports-feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a5 5 0 015 5c0 2-1 3-2 4l-.5.5c-.5.5-.5 1-.5 1.5v1h-4v-1c0-.5 0-1-.5-1.5L9 11c-1-1-2-2-2-4a5 5 0 015-5z"/><path d="M9.5 18h5M10 21h4"/></svg>
-          </div>
-          <div>
-            <h3>AI-assisted workflow building</h3>
-            <p>Get suggestions for smarter tagging setups so your data collection is report-ready from day one.</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -732,7 +522,7 @@
       <div class="pricing-card">
         <div class="pricing-name">Recruiting Network</div>
         <div class="pricing-price">
-          <span class="pricing-amount">$499</span>
+          <span class="pricing-amount">$599</span>
           <span class="pricing-period">/team</span>
         </div>
         <div class="pricing-note">Multi-team discounts available</div>
@@ -765,7 +555,7 @@
           <span class="pricing-amount">$1,299</span>
           <span class="pricing-period">/yr</span>
         </div>
-        <div class="pricing-desc">For elite high school and elite club</div>
+        <div class="pricing-desc">For competitive high schools and elite clubs</div>
         <ul class="pricing-features">
           <li class="pricing-feature">
             <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
@@ -849,7 +639,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -857,6 +647,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -868,7 +659,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -878,20 +669,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -975,7 +764,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources | ScoreBreak Legal and Compliance Documents</title>
+  <meta name="description" content="Official ScoreBreak legal and compliance documents for partners, vendors, and compliance teams: W-9, VPAT, SOC 2 report, Privacy Policy, and Terms and Conditions." />
+  <meta property="og:title" content="Resources | ScoreBreak" />
+  <meta property="og:description" content="Official ScoreBreak documents for partners, vendors, and compliance teams." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/resources.html" />
+  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Resources | ScoreBreak" />
+  <meta name="twitter:description" content="Official ScoreBreak documents for partners, vendors, and compliance teams." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Hero ── */
+    .resources-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .resources-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.12;
+      max-width: 760px;
+      margin: 1rem auto 1.5rem;
+      position: relative;
+    }
+    .resources-hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ── Document cards ── */
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .doc-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .doc-icon {
+      width: 44px;
+      height: 44px;
+      color: var(--blue);
+      margin-bottom: 1.1rem;
+    }
+    .doc-icon svg { width: 100%; height: 100%; display: block; }
+    .doc-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: .55rem;
+      line-height: 1.3;
+    }
+    .doc-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      flex: 1;
+    }
+    .doc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ── CTA (no box) ── */
+    .resources-cta { text-align: center; }
+    .resources-cta h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .resources-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+      .doc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" id="dd-sports">
+        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html">Football</a>
+          <a href="other-sports.html">Other Sports</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="dd-solutions">
+        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
+          <a href="portal.html">Recruiting Network</a>
+          <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="lacrosse.html">Lacrosse</a>
+    <a href="basketball.html">Basketball</a>
+    <a href="football.html">Football</a>
+    <a href="other-sports.html">Other Sports</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
+    <a href="software.html">Team Software</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
+    <a href="portal.html">Recruiting Network</a>
+    <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="support.html">Support</a>
+    <a href="demo.html">Request a Demo</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="resources-hero">
+  <div class="container">
+    <div class="section-label">Resources</div>
+    <h1>Legal and compliance documents.</h1>
+    <p class="resources-hero-sub">Official ScoreBreak documents for partners, vendors, and compliance teams.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     DOCUMENTS
+══════════════════════════════════════ -->
+<section class="section" style="padding-top:1rem;">
+  <div class="container">
+    <div class="doc-grid">
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>W-9</h3>
+        <p>IRS Request for Taxpayer Identification Number</p>
+        <div class="doc-actions">
+          <a href="Resources/ScoreBreak%202024%20fw9.pdf" class="btn btn-outline" download>Download PDF</a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>VPAT — Voluntary Product Accessibility Template</h3>
+        <p>Accessibility conformance report for ScoreBreak software</p>
+        <div class="doc-actions">
+          <a href="Resources/ScoreBreak%20VPAT2.4Rev508%28March2022%29.pdf" class="btn btn-outline" download>Download PDF</a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>SOC 2 Report</h3>
+        <p>Security and availability compliance certification</p>
+        <div class="doc-actions">
+          <button type="button" class="btn btn-outline" onclick="sbOpenSoc2Modal()">Request Document</button>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>Privacy Policy</h3>
+        <p>How ScoreBreak collects, uses, and protects your data</p>
+        <div class="doc-actions">
+          <a href="Resources/Privacy_policy_ScoreBreak.pdf" class="btn btn-outline" download>Download PDF</a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>Terms and Conditions</h3>
+        <p>Terms of service governing use of the ScoreBreak platform</p>
+        <div class="doc-actions">
+          <a href="Resources/ScoreBreak%2BWebsite%2BTerms%2Band%2BConditions%2B%28June%2B2024%29.pdf" class="btn btn-outline" download>Download PDF</a>
+          <a href="Resources/ScoreBreak%2BWebsite%2BTerms%2Band%2BConditions%2B%28June%2B2024%29.docx" class="btn btn-outline" download>Download Word</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container resources-cta">
+    <h2>Need a document that isn't listed?</h2>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Static copy of the SOC 2 request form so Netlify detects it at deploy time.
+     Netlify dashboard: Forms > Form notifications — make sure the "soc2-request"
+     form is set to email ben@scorebreak.io on each submission. -->
+<form name="soc2-request" netlify data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="soc2-request">
+  <input type="email" name="email">
+  <input type="text" name="bot-field">
+</form>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="ScoreBreak Home">
+          <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+          <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+        </a>
+        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/scorebreak" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.8 0 5.5 0 4.7.1 3.9.1 3.3.3 2.9.5 2.4.7 2 1 1.5 1.5 1 2 .7 2.4.5 2.9.3 3.3.1 3.9.1 4.7 0 5.5 0 5.8 0 8s0 2.5.1 3.3c0 .8.2 1.4.4 1.8.2.5.5.9 1 1.4.5.5.9.8 1.4 1 .4.2 1 .4 1.8.4C5.5 16 5.8 16 8 16s2.5 0 3.3-.1c.8 0 1.4-.2 1.8-.4.5-.2.9-.5 1.4-1 .5-.5.8-.9 1-1.4.2-.4.4-1 .4-1.8.1-.8.1-1.1.1-3.3s0-2.5-.1-3.3c0-.8-.2-1.4-.4-1.8-.2-.5-.5-.9-1-1.4-.5-.5-.9-.8-1.4-1C12.6.3 12 .1 11.2.1 10.5 0 10.2 0 8 0zm0 1.4c2.2 0 2.4 0 3.3.1.8 0 1.2.2 1.5.3.4.1.6.3.9.6.3.3.5.5.6.9.1.3.3.7.3 1.5.1.9.1 1.1.1 3.2s0 2.4-.1 3.2c0 .8-.2 1.2-.3 1.5-.1.4-.3.6-.6.9-.3.3-.5.5-.9.6-.3.1-.7.3-1.5.3-.9.1-1.1.1-3.3.1s-2.4 0-3.3-.1c-.8 0-1.2-.2-1.5-.3-.4-.1-.6-.3-.9-.6-.3-.3-.5-.5-.6-.9-.1-.3-.3-.7-.3-1.5C1.4 10.4 1.4 10.2 1.4 8s0-2.4.1-3.2c0-.8.2-1.2.3-1.5.1-.4.3-.6.6-.9.3-.3.5-.5.9-.6.3-.1.7-.3 1.5-.3.9-.1 1.1-.1 3.2-.1zm0 2.4C5.6 3.8 3.8 5.6 3.8 8s1.8 4.2 4.2 4.2 4.2-1.8 4.2-4.2S10.4 3.8 8 3.8zm0 7c-1.5 0-2.8-1.3-2.8-2.8S6.5 5.2 8 5.2 10.8 6.5 10.8 8 9.5 10.8 8 10.8zm5.5-7.1c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCMXxJoJUFUS-QXnHz1Qa8Uw" class="footer-social-link" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sports</h4>
+        <ul>
+          <li><a href="lacrosse.html">Lacrosse</a></li>
+          <li><a href="basketball.html">Basketball</a></li>
+          <li><a href="football.html">Football</a></li>
+          <li><a href="other-sports.html">Other Sports</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
+          <li><a href="software.html">Team Software</a></li>
+          <li><a href="airborne.html">Airborne</a></li>
+          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="leagues.html">League Solutions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
+          <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     CONTACT SALES MODAL
+══════════════════════════════════════ -->
+<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+  <div class="sb-modal">
+    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <h2 id="sbModalTitle">Get in Touch</h2>
+    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+
+    <div id="sbModalFormWrap">
+      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact-sales">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+
+        <div class="sb-form-row">
+          <div class="sb-form-group">
+            <label for="sbFirstName">First Name</label>
+            <input type="text" id="sbFirstName" name="firstName" required>
+          </div>
+          <div class="sb-form-group">
+            <label for="sbLastName">Last Name</label>
+            <input type="text" id="sbLastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbEmail">Email</label>
+          <input type="email" id="sbEmail" name="email" required>
+        </div>
+        <div class="sb-form-group">
+          <label for="sbMessage">Message</label>
+          <textarea id="sbMessage" name="message" rows="4" placeholder="Tell us about your program and what you're looking for..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary sb-form-submit">Send Message</button>
+      </form>
+
+      <div class="sb-modal-divider"><span>or</span></div>
+
+      <div class="sb-modal-options">
+        <a href="demo.html" class="sb-modal-option">
+          <div class="sb-modal-option-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="sb-modal-option-label">Request a Demo</div>
+            <div class="sb-modal-option-detail">See the full platform in a 20-minute walkthrough.</div>
+          </div>
+        </a>
+      </div>
+
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
+    </div>
+
+    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+      <div class="sb-modal-confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SOC 2 REQUEST MODAL
+══════════════════════════════════════ -->
+<div class="sb-modal-backdrop" id="sbSoc2Modal" role="dialog" aria-modal="true" aria-labelledby="sbSoc2Title">
+  <div class="sb-modal">
+    <button class="sb-modal-close" onclick="sbCloseSoc2Modal()" aria-label="Close">✕</button>
+    <h2 id="sbSoc2Title">Request SOC 2 Report</h2>
+    <p class="sb-modal-sub">Enter your email and we'll send you the report directly.</p>
+
+    <div id="sbSoc2FormWrap">
+      <form id="sbSoc2Form" name="soc2-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="soc2-request">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+        <div class="sb-form-group">
+          <label for="sbSoc2Email">Email</label>
+          <input type="email" id="sbSoc2Email" name="email" placeholder="your@email.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary sb-form-submit">Send Request</button>
+      </form>
+    </div>
+
+    <div id="sbSoc2Confirm" class="sb-modal-confirm" style="display:none;">
+      <div class="sb-modal-confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p id="sbSoc2ConfirmText">Request received.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function sbOpenModal() {
+  document.getElementById('sbContactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('sbModalFormWrap').style.display = '';
+  document.getElementById('sbModalConfirm').style.display = 'none';
+  var f = document.getElementById('sbContactForm');
+  if (f) f.reset();
+}
+function sbCloseModal() {
+  document.getElementById('sbContactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('sbContactModal').addEventListener('click', function(e) {
+  if (e.target === this) sbCloseModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sbCloseModal();
+});
+var sbContactForm = document.getElementById('sbContactForm');
+if (sbContactForm) {
+  sbContactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(sbContactForm);
+    var firstName = (data.get('firstName') || '').toString().trim();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    }).finally(function() {
+      document.getElementById('sbModalFormWrap').style.display = 'none';
+      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
+      document.getElementById('sbModalConfirm').style.display = 'block';
+    });
+  });
+}
+
+function sbOpenSoc2Modal() {
+  document.getElementById('sbSoc2Modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('sbSoc2FormWrap').style.display = '';
+  document.getElementById('sbSoc2Confirm').style.display = 'none';
+  var f = document.getElementById('sbSoc2Form');
+  if (f) f.reset();
+}
+function sbCloseSoc2Modal() {
+  document.getElementById('sbSoc2Modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('sbSoc2Modal').addEventListener('click', function(e) {
+  if (e.target === this) sbCloseSoc2Modal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') sbCloseSoc2Modal();
+});
+var sbSoc2Form = document.getElementById('sbSoc2Form');
+if (sbSoc2Form) {
+  sbSoc2Form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(sbSoc2Form);
+    var email = (data.get('email') || '').toString().trim();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    }).finally(function() {
+      document.getElementById('sbSoc2FormWrap').style.display = 'none';
+      document.getElementById('sbSoc2ConfirmText').textContent = "Request received. We'll send the SOC 2 report to " + email + ' shortly.';
+      document.getElementById('sbSoc2Confirm').style.display = 'block';
+    });
+  });
+}
+</script>
+
+<script>
+(function() {
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    var btn = dd.querySelector('.nav-drop-btn');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+      if (!isOpen) dd.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
+  });
+  var ham = document.getElementById('navHamburger');
+  var mob = document.getElementById('navMobile');
+  ham.addEventListener('click', function() {
+    mob.classList.toggle('open');
+    ham.classList.toggle('active');
+  });
+  mob.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mob.classList.remove('open');
+      ham.classList.remove('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,2 +1,14 @@
 .DS_Store
 .claude/
+
+# Files over GitHub's 100 MB limit (raw recordings / unoptimized exports)
+Screen Recording*.mov
+website_demo4.mp4
+website_demo5.mp4
+website_demo6.mp4
+website_demo7.mp4
+website_demo8.mp4
+Website_demo.gif
+
+# Confidential: SOC 2 report is distributed on request only (see soc2-request form on resources.html)
+Resources/*SOC 2*

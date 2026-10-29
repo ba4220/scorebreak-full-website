@@ -17,89 +17,6 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ── Hero ─────────────────────────────────────────────── */
-    .portal-hero {
-      padding: calc(var(--nav-h) + 5rem) 0 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .portal-hero::before {
-      content: '';
-      position: absolute;
-      top: -80px; right: -100px;
-      width: 700px; height: 700px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.08) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .portal-hero .container { max-width: 1500px; }
-    .portal-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      align-items: center;
-      gap: 4rem;
-    }
-    .portal-hero-text h1 {
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      font-weight: 900;
-      letter-spacing: -.04em;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-    .portal-hero-text h1 span { color: var(--blue); }
-    .portal-hero-text .hero-sub {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 2rem;
-    }
-    .portal-hero-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .portal-hero-visual::before {
-      content: '';
-      position: absolute;
-      inset: -8%;
-      background: radial-gradient(ellipse at center, rgba(10,14,26,.55) 0%, rgba(10,14,26,.28) 45%, transparent 72%);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .portal-hero-visual img {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    @keyframes deviceFloat {
-      from { transform: translateY(0px); }
-      to   { transform: translateY(-4px); }
-    }
-    .portal-mockup-scene {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
-      cursor: default;
-    }
-    .portal-mockup-scene:hover {
-      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
-    }
-    .portal-hero-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: var(--radius-lg);
-      animation: deviceFloat 3s ease-in-out infinite alternate;
-    }
-    .portal-mockup-scene:hover .portal-hero-img {
-      animation-play-state: paused;
-    }
-
     /* ── Portal Features Section ──────────────────────────── */
     .portal-features-section { background: var(--bg2); }
     /* Reuse .feature-grid (3-col from styles.css) */
@@ -302,14 +219,9 @@
 
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 900px) {
-      .portal-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .portal-hero-text h1 { font-size: clamp(2rem, 6vw, 3rem); }
-      .portal-hero-visual { order: 1; }
-      .portal-hero-visual img { max-width: 90%; }
       .portal-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
       .phone-showcase { grid-template-columns: 1fr; gap: 3rem; }
       .phone-scene { margin: 0 auto; }
-      .portal-mockup-scene:hover { transform: none; }
     }
     @media (max-width: 600px) {
       .portal-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -342,9 +254,11 @@
         <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
-          <a href="airborne.html">Airborne</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="portal.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
@@ -369,11 +283,13 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <div class="nav-mobile-label">Solutions</div>
+    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
-    <a href="airborne.html">Airborne</a>
+    <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="portal.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="support.html">Support</a>
@@ -389,20 +305,20 @@
 <!-- ═══════════════════════════════════════════════════════════
      HERO
 ════════════════════════════════════════════════════════════ -->
-<section class="portal-hero">
+<section class="split-hero split-hero--portrait">
   <div class="container">
-    <div class="portal-hero-inner">
-      <div class="portal-hero-text">
-        <h1>ScoreBreak Recruiting Network: <span>Get in front of college coaches — on the platform they already use.</span></h1>
-        <p class="hero-sub">With a team subscription, every athlete's recruiting profile is unlocked and ready to build  -  athletes add their own film and self-clipped highlights in just a few taps. College coaches already use ScoreBreak for film work, so discovering your players is just a couple clicks away from where they already spend their time. It also doubles as the film and communication hub for the team.</p>
+    <div class="split-hero-inner">
+      <div class="split-hero-text">
+        <div class="split-hero-eyebrow">Recruiting Network</div>
+        <h1>Get in front of <span style="white-space:nowrap;">college coaches.</span><br><span class="accent">On the platform <span style="white-space:nowrap;">they already use.</span></span></h1>
+        <p class="hero-sub">Every athlete on a team subscription gets a recruiting profile with their own film and self-clipped highlights. College coaches already use ScoreBreak for film work, so your players are a couple of clicks away.</p>
         <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
           <a href="#features" class="btn btn-outline btn-lg">Learn More ↓</a>
         </div>
       </div>
-      <div class="portal-hero-visual">
-        <div class="portal-mockup-scene">
-          <img src="Portal/ScoreBreak_mockup_L4.png" alt="ScoreBreak player profile and game film shown on two iPhones" class="portal-hero-img">
-        </div>
+      <div class="split-hero-media split-hero-media--device">
+        <img src="Portal/portal_hero_iphone.png" alt="ScoreBreak athlete recruiting profile on an iPhone">
       </div>
     </div>
   </div>
@@ -504,10 +420,10 @@
       <div class="testimonial-card">
         <p class="testimonial-quote">ScoreBreak Recruiting Network offers an unmatched experience, giving us <strong>unprecedented access to watch club film when we're unable to attend tournaments.</strong></p>
         <div class="testimonial-author">
-          <img src="NCAA D1/Mercer.png" alt="Mercer" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:var(--card-bg2);padding:4px;flex-shrink:0;">
+          <img src="NCAA D1/OSU_best.png" alt="Ohio State" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:var(--card-bg2);padding:4px;flex-shrink:0;">
           <div>
             <div class="testimonial-name">Ryan Danehy</div>
-            <div class="testimonial-title">Head Coach, Mercer Men's Lacrosse</div>
+            <div class="testimonial-title">Assistant Coach, Ohio State Men's Lacrosse</div>
           </div>
         </div>
       </div>
@@ -540,7 +456,7 @@
         <span class="pricing-badge">Team Plan</span>
         <div class="pricing-name">ScoreBreak Recruiting Network</div>
         <div class="pricing-price">
-          <span class="pricing-amount">$499</span>
+          <span class="pricing-amount">$599</span>
           <span class="pricing-period">/team/yr</span>
         </div>
         <div class="pricing-note">Multi-team discounts available</div>
@@ -603,7 +519,7 @@
         <ul>
           <li><a href="lacrosse.html">Lacrosse</a></li>
           <li><a href="basketball.html">Basketball</a></li>
-          <li><a href="football.html">Gridiron</a></li>
+          <li><a href="football.html">Football</a></li>
           <li><a href="other-sports.html">Other Sports</a></li>
         </ul>
       </div>
@@ -611,6 +527,7 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
+          <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
           <li><a href="portal.html">Recruiting Network</a></li>
@@ -622,7 +539,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://www.scorebreak.io/blog">Blog</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -632,20 +549,18 @@
         <ul>
           <li><a href="https://intercom.help/scorebreakhelp/en/" target="_blank" rel="noopener">Help Center</a></li>
           <li><a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener">Downloads</a></li>
+          <li><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 ScoreBreak, Inc. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -729,7 +644,7 @@
         </a>
       </div>
 
-      <p class="sb-modal-phone">Or call us: <a href="tel:18006092102">1-800-609-2102</a></p>
+      <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
     <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
