@@ -37,7 +37,7 @@ gcloud storage buckets update gs://<bucket> --web-main-page-suffix=index.html --
 
 One-time setup: `npm install && npx playwright install chromium`. Node 22.12+.
 
-- `npm run dev`: dev server with live reload at http://localhost:4321. Page URLs need their trailing slash there (`/about/`; `/about` is a 404 in dev, a redirect on the bucket). Restart it after changing `src/content.config.ts` (it is only read at startup; until then the blog shows no posts).
+- `npm run dev`: dev server with live reload at http://localhost:4321. Restart it after changing `src/content.config.ts` (it is only read at startup; until then the blog shows no posts).
 - `npm run build`: builds the site into `dist/`. `npm run preview` serves the build.
 - `npm run check`: type-checks the `.astro` and `.ts` files.
 

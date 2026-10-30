@@ -1,6 +1,7 @@
 ---
 // aria-current="page" marks every nav link to the page being rendered.
-const current = (href: string) => (href === Astro.url.pathname ? 'page' : undefined);
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const current = (href: string) => (href === path ? 'page' : undefined);
 ---
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
