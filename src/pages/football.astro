@@ -1,20 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist',
+  description: 'ScoreBreak Gridiron brings professional football film analysis and sideline replay technology to high school and college programs. Join the waitlist for early access.',
+  keywords: 'football film analysis software, Hudl alternative football, football coaching software, sideline replay football, high school football film, football video analysis, football recruiting software, ScoreBreak Gridiron',
+  ogTitle: 'ScoreBreak Gridiron | Football Film Analysis Platform',
+  ogDescription: 'Professional football film analysis and sideline replay technology for high school and college programs. Join the waitlist for early access.',
+  twitterTitle: 'ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist',
+  twitterDescription: 'Professional football film analysis and sideline replay technology for high school and college programs.',
+};
 ---
-<Layout sharedStyles={false}>
-<Fragment slot="meta">
-  <title>ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist</title>
-  <meta name="description" content="ScoreBreak Gridiron brings professional football film analysis and sideline replay technology to high school and college programs. Join the waitlist for early access." />
-  <meta name="keywords" content="football film analysis software, Hudl alternative football, football coaching software, sideline replay football, high school football film, football video analysis, football recruiting software, ScoreBreak Gridiron" />
-  <meta property="og:title" content="ScoreBreak Gridiron | Football Film Analysis Platform" />
-  <meta property="og:description" content="Professional football film analysis and sideline replay technology for high school and college programs. Join the waitlist for early access." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scorebreak.io/football.html" />
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist" />
-  <meta name="twitter:description" content="Professional football film analysis and sideline replay technology for high school and college programs." />
-</Fragment>
+<Layout seo={seo} sharedStyles={false}>
 <Fragment slot="head">
   <style is:inline>
     /* ── Reset & base ── */

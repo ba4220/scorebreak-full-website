@@ -1,20 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const seo = {
+  title: 'ScoreBreak League Solutions | Platform for Leagues and Federations',
+  description: 'ScoreBreak gives leagues and federations the infrastructure to standardize film, stream game day operations, and create a professional experience  -  from public stats sites to officiating replay and film exchange.',
+  keywords: 'lacrosse league platform, sports federation software, league stats site, film exchange platform, officiating replay, league management software, ScoreBreak leagues',
+  ogDescription: 'From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure to standardize film, streamline game day operations, and create a professional experience.',
+  twitterTitle: 'ScoreBreak League Solutions | Platform for Leagues and Federations',
+  twitterDescription: 'From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure they need.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>ScoreBreak League Solutions | Platform for Leagues and Federations</title>
-  <meta name="description" content="ScoreBreak gives leagues and federations the infrastructure to standardize film, stream game day operations, and create a professional experience  -  from public stats sites to officiating replay and film exchange." />
-  <meta name="keywords" content="lacrosse league platform, sports federation software, league stats site, film exchange platform, officiating replay, league management software, ScoreBreak leagues" />
-  <meta property="og:title" content="ScoreBreak League Solutions | Platform for Leagues and Federations" />
-  <meta property="og:description" content="From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure to standardize film, streamline game day operations, and create a professional experience." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scorebreak.io/leagues.html" />
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ScoreBreak League Solutions | Platform for Leagues and Federations" />
-  <meta name="twitter:description" content="From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure they need." />
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
 
@@ -508,16 +505,6 @@ import Layout from '../layouts/Layout.astro';
 <!-- ═══════════════════════════════════════════════════════════
      CTA
 ════════════════════════════════════════════════════════════ -->
-<section class="section-sm">
-  <div class="container">
-    <div class="cta-section">
-      <h2 style="margin-bottom:2rem;">Bring ScoreBreak to your league.</h2>
-      <div class="hero-actions" style="justify-content:center;">
-        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
-        <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo →</a>
-      </div>
-    </div>
-  </div>
-</section>
+<CtaSection title="Bring ScoreBreak to your league." titleStyle="margin-bottom:2rem;" secondaryLabel="Request a Demo →" />
 
 </Layout>

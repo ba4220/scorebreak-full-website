@@ -1,0 +1,30 @@
+---
+// Testimonial carousel (behaviour in scripts/carousel.ts). The default slot is the heading above it.
+import Testimonial from './Testimonial.astro';
+import type { TestimonialId } from '../data/testimonials';
+
+interface Props {
+  ids: TestimonialId[];
+}
+const { ids } = Astro.props;
+---
+<div class="container" data-carousel>
+  <slot />
+  <div class="tc-wrap">
+    <div class="tc-track" data-carousel-track>
+      {ids.map((id) => (
+        <div class="tc-slide">
+          <Testimonial id={id} />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="tc-controls">
+    <button class="tc-btn" data-carousel-prev aria-label="Previous">←</button>
+    <div class="tc-dots" data-carousel-dots></div>
+    <button class="tc-btn" data-carousel-next aria-label="Next">→</button>
+  </div>
+</div>
+
+<script>import '../scripts/carousel';</script>

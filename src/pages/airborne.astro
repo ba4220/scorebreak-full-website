@@ -1,18 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'Airborne Sideline Replay System | ScoreBreak Hardware for Coaches',
+  description: 'Airborne by ScoreBreak is the premier sideline replay system for lacrosse and football. Portable Airborne R for away games, Airborne Stadium for permanent installations. No internet required.',
+  keywords: 'sideline replay system, lacrosse replay system, football sideline replay, Airborne replay, ScoreBreak Airborne, coaching hardware, Daktronics integration',
+  ogTitle: 'Airborne Sideline Replay | ScoreBreak',
+  ogDescription: 'Instant sideline replay for coaches  -  portable or permanently installed. Ultra-low latency, no internet required.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>Airborne Sideline Replay System | ScoreBreak Hardware for Coaches</title>
-  <meta name="description" content="Airborne by ScoreBreak is the premier sideline replay system for lacrosse and football. Portable Airborne R for away games, Airborne Stadium for permanent installations. No internet required.">
-  <meta name="keywords" content="sideline replay system, lacrosse replay system, football sideline replay, Airborne replay, ScoreBreak Airborne, coaching hardware, Daktronics integration">
-  <meta property="og:title" content="Airborne Sideline Replay | ScoreBreak">
-  <meta property="og:description" content="Instant sideline replay for coaches  -  portable or permanently installed. Ultra-low latency, no internet required.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://scorebreak.io/airborne.html">
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png">
-  <meta name="twitter:card" content="summary_large_image">
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     /* ═══════════════════════════════════════════════

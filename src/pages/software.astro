@@ -1,18 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'ScoreBreak Team Software | Film Analysis Platform for Competitive Sports Teams',
+  description: 'ScoreBreak Team Software is a professional film analysis platform built for competitive sports teams — custom tagging workflows, AI analysis, playlists, Handoff breakdowns, and more.',
+  keywords: 'lacrosse film analysis software, football film analysis software, Hudl alternative, coaching software, sports video analysis, tag boards, AI film analysis, ScoreBreak',
+  ogTitle: 'ScoreBreak Team Software | Film Analysis for Coaches',
+  ogDescription: 'The complete film analysis platform for competitive programs  -  interactive stats, AI analysis, playlists, and pro Handoff breakdowns.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>ScoreBreak Team Software | Film Analysis Platform for Competitive Sports Teams</title>
-  <meta name="description" content="ScoreBreak Team Software is a professional film analysis platform built for competitive sports teams — custom tagging workflows, AI analysis, playlists, Handoff breakdowns, and more.">
-  <meta name="keywords" content="lacrosse film analysis software, football film analysis software, Hudl alternative, coaching software, sports video analysis, tag boards, AI film analysis, ScoreBreak">
-  <meta property="og:title" content="ScoreBreak Team Software | Film Analysis for Coaches">
-  <meta property="og:description" content="The complete film analysis platform for competitive programs  -  interactive stats, AI analysis, playlists, and pro Handoff breakdowns.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://scorebreak.io/software.html">
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png">
-  <meta name="twitter:card" content="summary_large_image">
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     /* ── Hero ─────────────────────────────────────────────── */

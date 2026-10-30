@@ -1,18 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const seo = {
+  title: 'ScoreBreak Solutions | Film Software, Sideline Replay, Recruiting & League Tools',
+  description: 'Explore every ScoreBreak product in one place  -  Team Software for film analysis, Airborne sideline replay, the Recruiting Network, and League Solutions for federations and conferences.',
+  keywords: 'ScoreBreak solutions, film analysis software, sideline replay, recruiting network, league solutions, sports technology platform',
+  ogTitle: 'ScoreBreak Solutions | Every Product, One Platform',
+  ogDescription: 'Team Software, Airborne Sideline Replay, Recruiting Network, and League Solutions  -  the complete ScoreBreak platform.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>ScoreBreak Solutions | Film Software, Sideline Replay, Recruiting &amp; League Tools</title>
-  <meta name="description" content="Explore every ScoreBreak product in one place  -  Team Software for film analysis, Airborne sideline replay, the Recruiting Network, and League Solutions for federations and conferences.">
-  <meta name="keywords" content="ScoreBreak solutions, film analysis software, sideline replay, recruiting network, league solutions, sports technology platform">
-  <meta property="og:title" content="ScoreBreak Solutions | Every Product, One Platform">
-  <meta property="og:description" content="Team Software, Airborne Sideline Replay, Recruiting Network, and League Solutions  -  the complete ScoreBreak platform.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://scorebreak.io/solutions.html">
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png">
-  <meta name="twitter:card" content="summary_large_image">
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     /* ── Solutions page-specific styles (card pattern mirrors lacrosse.html) ── */
@@ -223,16 +221,6 @@ import Layout from '../layouts/Layout.astro';
 <!-- ══════════════════════════════════════
      CTA
 ══════════════════════════════════════ -->
-<section class="section-sm">
-  <div class="container">
-    <div class="cta-section">
-      <h2>Not sure where to start? We'll help.</h2>
-      <div class="hero-actions" style="justify-content:center;">
-        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
-        <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo</a>
-      </div>
-    </div>
-  </div>
-</section>
+<CtaSection title="Not sure where to start? We'll help." />
 
 </Layout>

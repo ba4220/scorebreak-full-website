@@ -1,0 +1,26 @@
+---
+import { testimonials, type TestimonialId } from '../data/testimonials';
+
+interface Props {
+  id: TestimonialId;
+  // Show the logo on a square backdrop tile of this size, even if the logo doesn't need one.
+  tileSize?: number;
+  style?: string;
+}
+const { id, tileSize, style } = Astro.props;
+const t = testimonials[id];
+const size = tileSize ?? (('tile' in t && t.tile) ? 36 : undefined);
+const logoStyle = size
+  ? `width:${size}px;height:${size}px;object-fit:contain;border-radius:6px;background:var(--card-bg2);padding:4px;flex-shrink:0;`
+  : 'height:36px;width:auto;object-fit:contain;flex-shrink:0;';
+---
+<div class="testimonial-card" style={style}>
+  <p class="testimonial-quote" set:html={t.quote} />
+  <div class="testimonial-author">
+    <img src={t.logo} alt={t.logoAlt} style={logoStyle}>
+    <div>
+      <div class="testimonial-name">{t.name}</div>
+      <div class="testimonial-title" set:html={t.role} />
+    </div>
+  </div>
+</div>

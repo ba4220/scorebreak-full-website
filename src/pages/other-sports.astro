@@ -1,18 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'ScoreBreak for Soccer, Hockey & More | Film Analysis for Any Sport',
+  description: 'ScoreBreak\'s professional film analysis platform works for soccer, ice hockey, field hockey, and more. The same tools used by elite programs — built for any coaching staff.',
+  keywords: 'soccer film analysis, ice hockey video analysis, field hockey coaching software, sports film analysis platform, coaching video software, ScoreBreak',
+  ogTitle: 'ScoreBreak for Other Sports | Film Analysis for Any Sport',
+  ogDescription: 'Professional film analysis and collaboration tools built for any coaching staff, any sport.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>ScoreBreak for Soccer, Hockey & More | Film Analysis for Any Sport</title>
-  <meta name="description" content="ScoreBreak's professional film analysis platform works for soccer, ice hockey, field hockey, and more. The same tools used by elite programs — built for any coaching staff." />
-  <meta name="keywords" content="soccer film analysis, ice hockey video analysis, field hockey coaching software, sports film analysis platform, coaching video software, ScoreBreak" />
-  <meta property="og:title" content="ScoreBreak for Other Sports | Film Analysis for Any Sport" />
-  <meta property="og:description" content="Professional film analysis and collaboration tools built for any coaching staff, any sport." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scorebreak.io/other-sports.html" />
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     /* ── Other Sports page-specific styles ── */

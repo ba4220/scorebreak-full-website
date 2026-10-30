@@ -1,25 +1,27 @@
 ---
 // Every page: shared head, nav, footer, contact modal and site scripts.
-// Slots: "meta" (title + meta tags), "head" (page <style>s, after the shared stylesheets),
+// Props: seo (title + meta tags, see Seo.astro). Slots: "head" (page <style>s, after the shared stylesheets),
 // default (page content), "modals" (page modals, after the contact modal).
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ContactModal from '../components/ContactModal.astro';
+import Seo, { type SeoProps } from '../components/Seo.astro';
 import stylesHref from '../styles/styles.css?url';
 import componentsHref from '../styles/components.css?url';
 
 interface Props {
+  seo: SeoProps;
   // football.astro skips styles.css; its own styles conflict with it.
   sharedStyles?: boolean;
 }
-const { sharedStyles = true } = Astro.props;
+const { seo, sharedStyles = true } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <slot name="meta" />
+  <Seo {...seo} />
   <link rel="icon" type="image/png" href="/favicon.png" />
   {sharedStyles && <link rel="stylesheet" href={stylesHref} />}
   <link rel="stylesheet" href={componentsHref} />

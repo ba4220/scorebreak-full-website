@@ -1,19 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getPosts, formatDate, isoDate } from '../../lib/blog';
+
+const posts = await getPosts();
+
+const seo = {
+  title: 'Blog | ScoreBreak',
+  description: 'Updates, announcements, and insights from the ScoreBreak team.',
+  twitterTitle: 'Blog | ScoreBreak',
+  twitterDescription: 'Updates, announcements, and insights from the ScoreBreak team.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>Blog | ScoreBreak</title>
-  <meta name="description" content="Updates, announcements, and insights from the ScoreBreak team." />
-  <meta property="og:title" content="Blog | ScoreBreak" />
-  <meta property="og:description" content="Updates, announcements, and insights from the ScoreBreak team." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scorebreak.io/blog/index.html" />
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Blog | ScoreBreak" />
-  <meta name="twitter:description" content="Updates, announcements, and insights from the ScoreBreak team." />
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     /* ── Hero ── */
@@ -89,41 +87,13 @@ import Layout from '../../layouts/Layout.astro';
 <section class="section" style="padding-top:1rem;">
   <div class="container">
     <div class="post-list">
-      <article class="post-entry">
-        <div class="post-entry-meta"><time datetime="2023-04-02">April 2, 2023</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
-        <h2><a href="v6-recordable-film-sessions.html">v6 - Recordable Film Sessions</a></h2>
-        <p class="post-entry-excerpt">Today, we&#x27;re introducing version 6 of ScoreBreak for iOS, iPadOS, and macOS.</p>
-      </article>
-      <article class="post-entry">
-        <div class="post-entry-meta"><time datetime="2023-04-02">April 2, 2023</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
-        <h2><a href="scorebreak-version-60-recordable-film-sessions.html">ScoreBreak version 6.0 to enhance coaching solutions with Recordable Film Sessions</a></h2>
-        <p class="post-entry-excerpt">ScoreBreak, a leading sports technology startup, has announced the release of version 6 of its iOS, iPadOS, and macOS software, featuring an innovative recordable film session feature.</p>
-      </article>
-      <article class="post-entry">
-        <div class="post-entry-meta"><time datetime="2023-03-29">March 29, 2023</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
-        <h2><a href="looking-back-at-scorebreak-version-5.html">Looking back at ScoreBreak version 5: A comprehensive update</a></h2>
-        <p class="post-entry-excerpt">ScoreBreak version 5 was active from December 29, 2021, to March 30, 2023, for a total of 457 days.</p>
-      </article>
-      <article class="post-entry">
-        <div class="post-entry-meta"><time datetime="2022-11-29">November 29, 2022</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
-        <h2><a href="notes-all-over.html">Notes all over</a></h2>
-        <p class="post-entry-excerpt">ScoreBreak version 5.2 focuses on the experience of taking notes on clips.</p>
-      </article>
-      <article class="post-entry">
-        <div class="post-entry-meta"><time datetime="2022-06-02">June 2, 2022</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
-        <h2><a href="scorebreak-chat-v2.html">ScoreBreak Chat v2</a></h2>
-        <p class="post-entry-excerpt">Staying in communication is instrumental to your team&#x27;s development, organization, and performance.</p>
-      </article>
-      <article class="post-entry">
-        <div class="post-entry-meta"><time datetime="2022-01-24">January 24, 2022</time> <span aria-hidden="true">&middot;</span> Tommy Wright</div>
-        <h2><a href="scorebreak-web-v4.html">ScoreBreak Web v4</a></h2>
-        <p class="post-entry-excerpt">ScoreBreak Web App v4 is an update focused on power user tools for content creation and advanced editing interactions.</p>
-      </article>
-      <article class="post-entry">
-        <div class="post-entry-meta"><time datetime="2022-01-04">January 4, 2022</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
-        <h2><a href="scorebreak-v5.html">ScoreBreak v5</a></h2>
-        <p class="post-entry-excerpt">An ode to professional coaches, Version 5 extends upon ScoreBreak&#x27;s foundation with powerful new features and functionalities.</p>
-      </article>
+      {posts.map((post) => (
+        <article class="post-entry">
+          <div class="post-entry-meta"><time datetime={isoDate(post.data.date)}>{formatDate(post.data.date)}</time> <span aria-hidden="true">&middot;</span> {post.data.author}</div>
+          <h2><a href={`${post.id}.html`}>{post.data.title}</a></h2>
+          <p class="post-entry-excerpt">{post.data.description}</p>
+        </article>
+      ))}
     </div>
   </div>
 </section>

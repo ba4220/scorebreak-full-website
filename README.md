@@ -8,9 +8,11 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 - Built with [Astro](https://astro.build) and TypeScript into a fully static site: `npm run build` writes plain HTML, CSS, JS and assets to `dist/`, which any static host can serve. URLs keep their `.html` names (`about.html`, `blog/index.html`).
 - Layout:
-  - `src/pages/`: one `.astro` file per page (`blog/` included). Each wraps its content in `src/layouts/Layout.astro`, passing its `<title>`/meta tags (`slot="meta"`) and its page-specific `<style is:inline>` block (`slot="head"`).
+  - `src/pages/`: one `.astro` file per page. Each sets its `seo` (title, description, social tags; see `src/components/Seo.astro`) and wraps its content in `src/layouts/Layout.astro`, passing its page-specific `<style is:inline>` block in `slot="head"`.
   - `src/layouts/Layout.astro`: the shared `<head>`, nav, footer, contact modal and site script. Edit those once there and every page gets the change.
-  - `src/components/`: `Nav.astro` (sets `aria-current="page"` on links to the current page automatically), `Footer.astro`, `ContactModal.astro`.
+  - `src/components/`: `Nav` (sets `aria-current="page"` automatically), `Footer`, `ContactModal`, `Seo`, `Testimonial` / `TestimonialCarousel`, `CtaSection` (the closing "Contact Us" band).
+  - `src/data/`: `testimonials.ts` (every coach quote, used by id on index, lacrosse, basketball and recruiting-network; edit a quote once) and `school-logos.ts` (homepage logo marquee).
+  - `src/content/blog/`: one Markdown file per post (`title`, `description`, `date`, `author` frontmatter). `src/pages/blog/[slug].astro` publishes each as `blog/<slug>.html` through `src/layouts/BlogPost.astro`; the blog index and the Newer/Older links are generated, newest first. To add a post, add a Markdown file. Straight quotes stay straight (smart quotes are off).
   - `src/styles/`: `styles.css` (shared styles) and `components.css` (what `football.html` also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
   - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
   - `public/`: images, video, PDFs and the favicon, copied to the site root as-is.
@@ -98,7 +100,7 @@ Source files are `src/pages/<name>.astro`; each builds `<name>.html`.
 | `recruiting-network.html` | Recruiting Network (formerly `portal.html`) |
 | `leagues.html` | League solutions |
 | `about.html`, `demo.html`, `support.html`, `resources.html` | Company, demo request, support, documents |
-| `blog/` | Blog index and 7 posts |
+| `blog/` | Blog index and 7 posts (posts are in `src/content/blog/`) |
 
 ## Brand
 

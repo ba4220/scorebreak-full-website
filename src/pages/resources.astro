@@ -1,19 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'Resources | ScoreBreak Legal and Compliance Documents',
+  description: 'Official ScoreBreak legal and compliance documents for partners, vendors, and compliance teams: W-9, VPAT, SOC 2 report, Privacy Policy, and Terms and Conditions.',
+  ogTitle: 'Resources | ScoreBreak',
+  ogDescription: 'Official ScoreBreak documents for partners, vendors, and compliance teams.',
+  twitterTitle: 'Resources | ScoreBreak',
+  twitterDescription: 'Official ScoreBreak documents for partners, vendors, and compliance teams.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>Resources | ScoreBreak Legal and Compliance Documents</title>
-  <meta name="description" content="Official ScoreBreak legal and compliance documents for partners, vendors, and compliance teams: W-9, VPAT, SOC 2 report, Privacy Policy, and Terms and Conditions." />
-  <meta property="og:title" content="Resources | ScoreBreak" />
-  <meta property="og:description" content="Official ScoreBreak documents for partners, vendors, and compliance teams." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scorebreak.io/resources.html" />
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Resources | ScoreBreak" />
-  <meta name="twitter:description" content="Official ScoreBreak documents for partners, vendors, and compliance teams." />
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     /* ── Hero ── */

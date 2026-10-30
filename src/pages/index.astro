@@ -1,20 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { schoolLogos } from '../data/school-logos';
+import CtaSection from '../components/CtaSection.astro';
+import TestimonialCarousel from '../components/TestimonialCarousel.astro';
+
+const seo = {
+  title: 'ScoreBreak | Film Analysis and Sideline Replay for Competitive Sports Programs',
+  description: 'Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.',
+  keywords: 'Hudl alternative, football film analysis software, lacrosse film analysis, sideline replay system, sports video analysis platform, high school coaching software, Recruiting Network for lacrosse, ScoreBreak, Airborne sideline replay',
+  ogTitle: 'ScoreBreak | Film Analysis, Sideline Replay & Recruiting Platform',
+  twitterTitle: 'ScoreBreak | Film Analysis, Sideline Replay & Recruiting Platform',
+  twitterDescription: 'Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.',
+  url: 'https://scorebreak.io',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>ScoreBreak | Film Analysis and Sideline Replay for Competitive Sports Programs</title>
-  <meta name="description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
-  <meta name="keywords" content="Hudl alternative, football film analysis software, lacrosse film analysis, sideline replay system, sports video analysis platform, high school coaching software, Recruiting Network for lacrosse, ScoreBreak, Airborne sideline replay">
-  <meta property="og:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
-  <meta property="og:description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://scorebreak.io">
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
-  <meta name="twitter:description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     /* ── Homepage-specific styles ── */
@@ -458,55 +458,9 @@ import Layout from '../layouts/Layout.astro';
   <div class="logos-strip-label">Trusted by programs nationwide</div>
   <div class="marquee-wrapper">
     <div class="marquee-track">
-      <span class="logo-cell"><img src="ncaa-d1/denver2.png"              class="marquee-logo logo-denver2" alt="Denver"></span>
-      <span class="logo-cell"><img src="ncaa-d1/duke2.png"                class="marquee-logo" alt="Duke"></span>
-      <span class="logo-cell"><img src="ncaa-d1/yale.png"                 class="marquee-logo" alt="Yale"></span>
-      <span class="logo-cell"><img src="ncaa-d1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
-      <span class="logo-cell"><img src="ncaa-d1/unc.png"                  class="marquee-logo" alt="UNC"></span>
-      <span class="logo-cell"><img src="ncaa-d1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
-      <span class="logo-cell"><img src="ncaa-d1/army.png"                 class="marquee-logo" alt="Army"></span>
-      <span class="logo-cell"><img src="ncaa-d1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
-      <span class="logo-cell"><img src="ncaa-d1/cornell.png"              class="marquee-logo logo-cornell" alt="Cornell"></span>
-      <span class="logo-cell"><img src="ncaa-d1/marquette.png"            class="marquee-logo" alt="Marquette"></span>
-      <span class="logo-cell"><img src="ncaa-d1/first-class.png"          class="marquee-logo logo-first-class" alt="First Class Lacrosse"></span>
-      <span class="logo-cell"><img src="ncaa-d1/princeton.png"            class="marquee-logo" alt="Princeton"></span>
-      <span class="logo-cell"><img src="ncaa-d1/brown.png"                class="marquee-logo" alt="Brown"></span>
-      <span class="logo-cell"><img src="ncaa-d1/rutgers.png"              class="marquee-logo" alt="Rutgers"></span>
-      <span class="logo-cell"><img src="ncaa-d1/northwestern.png"         class="marquee-logo" alt="Northwestern"></span>
-      <span class="logo-cell"><img src="ncaa-d1/syracuse.png"             class="marquee-logo" alt="Syracuse"></span>
-      <span class="logo-cell"><img src="ncaa-d1/new-towson.png"           class="marquee-logo logo-new-towson" alt="Towson"></span>
-      <span class="logo-cell"><img src="ncaa-d1/umd.png"                  class="marquee-logo" alt="Maryland"></span>
-      <span class="logo-cell"><img src="ncaa-d1/culver.png"               class="marquee-logo logo-culver" alt="Culver"></span>
-      <span class="logo-cell"><img src="ncaa-d1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
-      <span class="logo-cell"><img src="ncaa-d1/saint-josephs.png"     class="marquee-logo" alt="Saint Joseph's"></span>
-      <span class="logo-cell"><img src="ncaa-d1/mercer.png"               class="marquee-logo" alt="Mercer"></span>
-      <span class="logo-cell"><img src="ncaa-d1/osu-best.png"                 class="marquee-logo" alt="Ohio State"></span>
-      <span class="logo-cell"><img src="ncaa-d1/nba-academy-logo.png" class="marquee-logo" alt="NBA Academy"></span>
-      <!-- Duplicate for seamless loop -->
-      <span class="logo-cell"><img src="ncaa-d1/denver2.png"              class="marquee-logo logo-denver2" alt="Denver"></span>
-      <span class="logo-cell"><img src="ncaa-d1/duke2.png"                class="marquee-logo" alt="Duke"></span>
-      <span class="logo-cell"><img src="ncaa-d1/yale.png"                 class="marquee-logo" alt="Yale"></span>
-      <span class="logo-cell"><img src="ncaa-d1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
-      <span class="logo-cell"><img src="ncaa-d1/unc.png"                  class="marquee-logo" alt="UNC"></span>
-      <span class="logo-cell"><img src="ncaa-d1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
-      <span class="logo-cell"><img src="ncaa-d1/army.png"                 class="marquee-logo" alt="Army"></span>
-      <span class="logo-cell"><img src="ncaa-d1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
-      <span class="logo-cell"><img src="ncaa-d1/cornell.png"              class="marquee-logo logo-cornell" alt="Cornell"></span>
-      <span class="logo-cell"><img src="ncaa-d1/marquette.png"            class="marquee-logo" alt="Marquette"></span>
-      <span class="logo-cell"><img src="ncaa-d1/first-class.png"          class="marquee-logo logo-first-class" alt="First Class Lacrosse"></span>
-      <span class="logo-cell"><img src="ncaa-d1/princeton.png"            class="marquee-logo" alt="Princeton"></span>
-      <span class="logo-cell"><img src="ncaa-d1/brown.png"                class="marquee-logo" alt="Brown"></span>
-      <span class="logo-cell"><img src="ncaa-d1/rutgers.png"              class="marquee-logo" alt="Rutgers"></span>
-      <span class="logo-cell"><img src="ncaa-d1/northwestern.png"         class="marquee-logo" alt="Northwestern"></span>
-      <span class="logo-cell"><img src="ncaa-d1/syracuse.png"             class="marquee-logo" alt="Syracuse"></span>
-      <span class="logo-cell"><img src="ncaa-d1/new-towson.png"           class="marquee-logo logo-new-towson" alt="Towson"></span>
-      <span class="logo-cell"><img src="ncaa-d1/umd.png"                  class="marquee-logo" alt="Maryland"></span>
-      <span class="logo-cell"><img src="ncaa-d1/culver.png"               class="marquee-logo logo-culver" alt="Culver"></span>
-      <span class="logo-cell"><img src="ncaa-d1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
-      <span class="logo-cell"><img src="ncaa-d1/saint-josephs.png"     class="marquee-logo" alt="Saint Joseph's"></span>
-      <span class="logo-cell"><img src="ncaa-d1/mercer.png"               class="marquee-logo" alt="Mercer"></span>
-      <span class="logo-cell"><img src="ncaa-d1/osu-best.png"                 class="marquee-logo" alt="Ohio State"></span>
-      <span class="logo-cell"><img src="ncaa-d1/nba-academy-logo.png" class="marquee-logo" alt="NBA Academy"></span>
+      {[...schoolLogos, ...schoolLogos].map((logo) => (
+        <span class="logo-cell"><img src={logo.src} class={['marquee-logo', logo.className].filter(Boolean).join(' ')} alt={logo.alt}></span>
+      ))}
     </div>
   </div>
 </div>
@@ -685,81 +639,19 @@ import Layout from '../layouts/Layout.astro';
      TESTIMONIALS
 ══════════════════════════════════════ -->
 <section class="section">
-  <div class="container" data-carousel>
+  <TestimonialCarousel ids={['mikey-thompson', 'jana-drummond', 'jon-torpey']}>
     <div class="section-head">
       <div class="section-label">Testimonials</div>
       <h2 class="section-title">What coaches are saying</h2>
     </div>
-    <div class="tc-wrap">
-      <div class="tc-track" data-carousel-track>
-
-        <div class="tc-slide">
-          <div class="testimonial-card">
-            <p class="testimonial-quote">ScoreBreak was a pleasure for our staff and athletes this season... <strong>by far the best platform I've ever used.</strong> I loved being able to tag and organize clips however I liked to be able to tell a story to our players. My favorite part about the platform is the chat feature.</p>
-            <div class="testimonial-author">
-              <img src="ncaa-d1/cnu.png" alt="Christopher Newport" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-              <div>
-                <div class="testimonial-name">Mikey Thompson</div>
-                <div class="testimonial-title">Head Coach, Christopher Newport Men's Lacrosse</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tc-slide">
-          <div class="testimonial-card">
-            <p class="testimonial-quote">Our best film sessions happen when we can pause, split into groups, and review in real time. Offense goes with one coach, defense with another, and <strong>we pull up the play on our iPads to say, 'This is the change we need to make.'</strong></p>
-            <div class="testimonial-author">
-              <img src="ncaa-d1/oregon.png" alt="Oregon" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-              <div>
-                <div class="testimonial-name">Jana Drummond</div>
-                <div class="testimonial-title">Head Coach, Oregon Women's Lacrosse</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tc-slide">
-          <div class="testimonial-card">
-            <p class="testimonial-quote"><strong>ScoreBreak has been a total game changer for our staff and players.</strong> If I told you we used ScoreBreak 10,000x a day we would probably be underestimating. We are completely obsessed with it and it seems like every year the product has gotten better.</p>
-            <div class="testimonial-author">
-              <img src="ncaa-d1/brown.png" alt="Brown" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
-              <div>
-                <div class="testimonial-name">Jon Torpey</div>
-                <div class="testimonial-title">Head Coach, Brown Men's Lacrosse</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="tc-controls">
-      <button class="tc-btn" data-carousel-prev aria-label="Previous">←</button>
-      <div class="tc-dots" data-carousel-dots></div>
-      <button class="tc-btn" data-carousel-next aria-label="Next">→</button>
-    </div>
-
-  </div>
+  </TestimonialCarousel>
 </section>
 
 
 <!-- ══════════════════════════════════════
      FINAL CTA
 ══════════════════════════════════════ -->
-<section class="section-sm">
-  <div class="container">
-    <div class="cta-section">
-      <h2>See what ScoreBreak can do for your program.</h2>
-      <p>Talk to our team — no commitment required.</p>
-      <div class="hero-actions" style="justify-content:center;">
-        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
-        <a href="solutions.html" class="btn btn-outline btn-lg">Explore Solutions →</a>
-      </div>
-    </div>
-  </div>
-</section>
+<CtaSection title="See what ScoreBreak can do for your program." subtitle="Talk to our team — no commitment required." secondaryHref="solutions.html" secondaryLabel="Explore Solutions →" />
 
 <style is:inline>
 @keyframes pulse {
@@ -768,6 +660,5 @@ import Layout from '../layouts/Layout.astro';
 }
 </style>
 
-<script>import '../scripts/carousel';</script>
 <script>import '../scripts/hero-video';</script>
 </Layout>

@@ -1,20 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'Support | ScoreBreak Help Center & Customer Service',
+  description: 'ScoreBreak support  -  Help Center, app downloads, and direct contact. Get help with film analysis, Airborne sideline replay, and Recruiting Network.',
+  keywords: 'ScoreBreak support, ScoreBreak help, film analysis support, Airborne support, sideline replay help, ScoreBreak contact',
+  ogTitle: 'Support | ScoreBreak Help Center',
+  ogDescription: 'ScoreBreak support  -  Help Center, app downloads, and direct contact. We show up when it counts.',
+  twitterTitle: 'Support | ScoreBreak Help Center',
+  twitterDescription: 'Get help with ScoreBreak  -  film analysis, Airborne sideline replay, and Recruiting Network.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>Support | ScoreBreak Help Center &amp; Customer Service</title>
-  <meta name="description" content="ScoreBreak support  -  Help Center, app downloads, and direct contact. Get help with film analysis, Airborne sideline replay, and Recruiting Network." />
-  <meta name="keywords" content="ScoreBreak support, ScoreBreak help, film analysis support, Airborne support, sideline replay help, ScoreBreak contact" />
-  <meta property="og:title" content="Support | ScoreBreak Help Center" />
-  <meta property="og:description" content="ScoreBreak support  -  Help Center, app downloads, and direct contact. We show up when it counts." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scorebreak.io/support.html" />
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Support | ScoreBreak Help Center" />
-  <meta name="twitter:description" content="Get help with ScoreBreak  -  film analysis, Airborne sideline replay, and Recruiting Network." />
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     .support-hero {

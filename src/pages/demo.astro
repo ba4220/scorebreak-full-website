@@ -1,20 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'Request a Demo | ScoreBreak Film Analysis & Recruiting Platform',
+  description: 'See ScoreBreak in action. Request a personalized demo of our film analysis software, Airborne sideline replay system, and Recruiting Network.',
+  keywords: 'ScoreBreak demo, film analysis software demo, sideline replay demo, lacrosse recruiting demo, Hudl alternative demo, sports coaching software demo',
+  ogTitle: 'Request a Demo | ScoreBreak',
+  ogDescription: 'See ScoreBreak in action. Get a personalized walkthrough of film analysis, sideline replay, and recruiting tools built for your program.',
+  twitterTitle: 'Request a Demo | ScoreBreak',
+  twitterDescription: 'See ScoreBreak in action. Get a personalized walkthrough of film analysis, sideline replay, and recruiting tools.',
+};
 ---
-<Layout>
-<Fragment slot="meta">
-  <title>Request a Demo | ScoreBreak Film Analysis &amp; Recruiting Platform</title>
-  <meta name="description" content="See ScoreBreak in action. Request a personalized demo of our film analysis software, Airborne sideline replay system, and Recruiting Network." />
-  <meta name="keywords" content="ScoreBreak demo, film analysis software demo, sideline replay demo, lacrosse recruiting demo, Hudl alternative demo, sports coaching software demo" />
-  <meta property="og:title" content="Request a Demo | ScoreBreak" />
-  <meta property="og:description" content="See ScoreBreak in action. Get a personalized walkthrough of film analysis, sideline replay, and recruiting tools built for your program." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scorebreak.io/demo.html" />
-  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Request a Demo | ScoreBreak" />
-  <meta name="twitter:description" content="See ScoreBreak in action. Get a personalized walkthrough of film analysis, sideline replay, and recruiting tools." />
-</Fragment>
+<Layout seo={seo}>
 <Fragment slot="head">
   <style is:inline>
     .demo-page {
