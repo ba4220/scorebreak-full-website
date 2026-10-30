@@ -48,11 +48,11 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 **Known issues**
 - Nav dropdown: `aria-expanded` doesn't toggle when the Solutions menu opens and closes.
-- Open Graph image path (`Logos/logo-nav.png`) needs checking.
+- Open Graph image path (`logos/logo-nav.png`) needs checking.
 - `football.html` doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). The mobile menu styles it needs were added to the page itself, and the page has been checked at desktop and phone widths. Keep this in mind when changing shared styles.
 - `AUDIT.md` and `AI-TELLS-AUDIT.md` list further findings. Many copy and design items in `AI-TELLS-AUDIT.md` have already been addressed.
 
-**Optional cleanup.** Some file names contain spaces (e.g. `field hockey.jpg`), and images are split between the root and folders. Feel free to reorganize, but update all paths if you do.
+**File names.** Asset files and folders use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host. Images are still split between the root and folders. Feel free to reorganize, but update all paths if you do.
 
 ## Notes on content
 
