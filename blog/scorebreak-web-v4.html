@@ -9,11 +9,13 @@
   <meta property="og:description" content="ScoreBreak Web App v4 is an update focused on power user tools for content creation and advanced editing interactions." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://scorebreak.io/blog/scorebreak-web-v4.html" />
-  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ScoreBreak Web v4 | ScoreBreak Blog" />
   <meta name="twitter:description" content="ScoreBreak Web App v4 is an update focused on power user tools for content creation and advanced editing interactions." />
+  <link rel="icon" type="image/png" href="../favicon.png" />
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../components.css" />
   <style>
     /* ── Hero ── */
     .blog-hero {
@@ -134,12 +136,12 @@
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a href="../index.html" class="nav-logo" aria-label="ScoreBreak Home">
-      <img src="../Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
-      <img src="../Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+      <img src="../logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="../logos/4-nav.png" class="logo-light" alt="ScoreBreak">
     </a>
     <div class="nav-center">
-      <div class="nav-dropdown" id="dd-sports">
-        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="nav-dropdown" data-dropdown id="dd-sports">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="../lacrosse.html">Lacrosse</a>
           <a href="../basketball.html">Basketball</a>
@@ -147,8 +149,8 @@
           <a href="../other-sports.html">Other Sports</a>
         </div>
       </div>
-      <div class="nav-dropdown" id="dd-solutions">
-        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="nav-dropdown" data-dropdown id="dd-solutions">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="../software.html">Team Software</a>
           <a href="../airborne.html">Airborne Sideline Replay</a>
@@ -166,7 +168,7 @@
       <a href="../football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+    <button class="nav-hamburger" id="navHamburger" data-nav-toggle aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -180,7 +182,7 @@
     <a href="../other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <a href="../solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
+    <a href="../solutions.html" class="nav-mobile-label">Solutions</a>
     <a href="../software.html">Team Software</a>
     <a href="../airborne.html">Airborne Sideline Replay</a>
     <a href="../recruiting-network.html">Recruiting Network</a>
@@ -194,8 +196,8 @@
     <a href="../about.html">About Us</a>
   </div>
   <div class="nav-mobile-section nav-mobile-actions">
-    <a href="../football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
-    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+    <a href="../football.html" class="nav-mobile-btn nav-mobile-btn--gridiron">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="nav-mobile-btn nav-mobile-btn--login" target="_blank" rel="noopener">Log In</a>
   </div>
 </div>
 
@@ -244,8 +246,8 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="../index.html" class="footer-logo" aria-label="ScoreBreak Home">
-          <img src="../Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
-          <img src="../Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+          <img src="../logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+          <img src="../logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
         <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
@@ -287,7 +289,7 @@
         <ul>
           <li><a href="../about.html">About Us</a></li>
           <li><a href="../blog/index.html">Blog</a></li>
-          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+          <li><a href="#" data-modal-open="sbContactModal">Contact Us</a></li>
         </ul>
       </div>
 
@@ -315,16 +317,15 @@
 <!-- ══════════════════════════════════════
      CONTACT SALES MODAL
 ══════════════════════════════════════ -->
-<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+<div class="sb-modal-backdrop" id="sbContactModal" data-modal role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
   <div class="sb-modal">
-    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <button class="sb-modal-close" data-modal-close aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
     <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
-      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact-sales">
-        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+      <form id="sbContactForm" name="contact-sales" method="POST" data-form="contact-sales" data-form-hide="#sbModalFormWrap" data-form-confirm="#sbModalConfirm">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
         <div class="sb-form-row">
           <div class="sb-form-group">
@@ -364,80 +365,16 @@
       <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
-    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+    <div id="sbModalConfirm" class="sb-modal-confirm" hidden>
       <div class="sb-modal-confirm-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+      <p id="sbModalConfirmText">Thanks <span data-field="firstName"></span>, we'll be in touch shortly.</p>
     </div>
   </div>
 </div>
 
-<script>
-function sbOpenModal() {
-  document.getElementById('sbContactModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('sbModalFormWrap').style.display = '';
-  document.getElementById('sbModalConfirm').style.display = 'none';
-  var f = document.getElementById('sbContactForm');
-  if (f) f.reset();
-}
-function sbCloseModal() {
-  document.getElementById('sbContactModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('sbContactModal').addEventListener('click', function(e) {
-  if (e.target === this) sbCloseModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') sbCloseModal();
-});
-var sbContactForm = document.getElementById('sbContactForm');
-if (sbContactForm) {
-  sbContactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var data = new FormData(sbContactForm);
-    var firstName = (data.get('firstName') || '').toString().trim();
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data).toString()
-    }).finally(function() {
-      document.getElementById('sbModalFormWrap').style.display = 'none';
-      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
-      document.getElementById('sbModalConfirm').style.display = 'block';
-    });
-  });
-}
-</script>
-
-<script>
-(function() {
-  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
-    var btn = dd.querySelector('.nav-drop-btn');
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = dd.classList.contains('open');
-      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-      if (!isOpen) dd.classList.add('open');
-    });
-  });
-  document.addEventListener('click', function() {
-    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-  });
-  var ham = document.getElementById('navHamburger');
-  var mob = document.getElementById('navMobile');
-  ham.addEventListener('click', function() {
-    mob.classList.toggle('open');
-    ham.classList.toggle('active');
-  });
-  mob.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      mob.classList.remove('open');
-      ham.classList.remove('active');
-    });
-  });
-})();
-</script>
+<script src="../js/api.js"></script>
+<script src="../js/site.js"></script>
 </body>
 </html>

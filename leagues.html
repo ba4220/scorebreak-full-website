@@ -10,11 +10,13 @@
   <meta property="og:description" content="From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure to standardize film, streamline game day operations, and create a professional experience." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://scorebreak.io/leagues.html" />
-  <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ScoreBreak League Solutions | Platform for Leagues and Federations" />
   <meta name="twitter:description" content="From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure they need." />
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="components.css" />
   <style>
 
     /* ── Hero ─────────────────────────────── */
@@ -284,12 +286,12 @@
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
-      <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
-      <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+      <img src="logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="logos/4-nav.png" class="logo-light" alt="ScoreBreak">
     </a>
     <div class="nav-center">
-      <div class="nav-dropdown" id="dd-sports">
-        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="nav-dropdown" data-dropdown id="dd-sports">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="lacrosse.html">Lacrosse</a>
           <a href="basketball.html">Basketball</a>
@@ -297,13 +299,13 @@
           <a href="other-sports.html">Other Sports</a>
         </div>
       </div>
-      <div class="nav-dropdown" id="dd-solutions">
-        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="nav-dropdown" data-dropdown id="dd-solutions">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
           <a href="airborne.html">Airborne Sideline Replay</a>
           <a href="recruiting-network.html">Recruiting Network</a>
-          <a href="leagues.html">League Solutions</a>
+          <a href="leagues.html" aria-current="page">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
           <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
@@ -316,7 +318,7 @@
       <a href="football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+    <button class="nav-hamburger" id="navHamburger" data-nav-toggle aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -330,11 +332,11 @@
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
+    <a href="solutions.html" class="nav-mobile-label">Solutions</a>
     <a href="software.html">Team Software</a>
     <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="recruiting-network.html">Recruiting Network</a>
-    <a href="leagues.html">League Solutions</a>
+    <a href="leagues.html" aria-current="page">League Solutions</a>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
     <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
   </div>
@@ -344,8 +346,8 @@
     <a href="about.html">About Us</a>
   </div>
   <div class="nav-mobile-section nav-mobile-actions">
-    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
-    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+    <a href="football.html" class="nav-mobile-btn nav-mobile-btn--gridiron">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="nav-mobile-btn nav-mobile-btn--login" target="_blank" rel="noopener">Log In</a>
   </div>
 </div>
 
@@ -360,7 +362,7 @@
     <h1>An All-in-One Platform for<br><span>Leagues and Federations.</span></h1>
     <p class="lg-hero-sub">From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure to standardize film, streamline game day operations, and create a professional experience for administrators, coaches, officials, and scouts alike.</p>
     <div class="hero-actions" style="justify-content:center;">
-      <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
+      <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
     </div>
   </div>
 </section>
@@ -411,7 +413,7 @@
   <div class="container">
     <div class="lg-two-col" style="align-items:center;gap:3.75rem;grid-template-columns:1.2fr 1fr;">
       <div style="background:var(--card-bg);border:1px solid var(--border-sub);border-radius:var(--radius-lg);overflow:hidden;">
-        <img src="Software/league_exchange.png" alt="ScoreBreak Film Exchange  -  league-wide film access for every team" style="width:100%;height:auto;display:block;">
+        <img src="software/league-exchange.png" alt="ScoreBreak Film Exchange  -  league-wide film access for every team" style="width:100%;height:auto;display:block;">
       </div>
 
       <div class="lg-section-text">
@@ -484,7 +486,7 @@
 
         <!-- LILJ Partnership card -->
         <a href="https://app.scorebreak.io/federation/239/main" target="_blank" rel="noopener" class="lg-partnership">
-          <img src="NCAA D1/LILJ.png" alt="Long Island Lacrosse Journal" style="height:44px;width:auto;object-fit:contain;flex-shrink:0;">
+          <img src="ncaa-d1/lilj.png" alt="Long Island Lacrosse Journal" style="height:44px;width:auto;object-fit:contain;flex-shrink:0;">
           <div class="lg-partnership-divider"></div>
           <div>
             <p>In partnership with the Long Island Lacrosse Journal, explore a live sample of our league platform  -  powered by the Juniors Open.</p>
@@ -495,7 +497,7 @@
 
       <!-- Mockup image -->
       <div class="lg-visual">
-        <img src="league_site_mockup.png" alt="ScoreBreak League Sites  -  branded league hub with live standings, stats, and film-linked video">
+        <img src="league-site-mockup.png" alt="ScoreBreak League Sites  -  branded league hub with live standings, stats, and film-linked video">
       </div>
     </div>
   </div>
@@ -562,12 +564,12 @@
     <div class="trusted-row">
 
       <div class="trusted-badge">
-        <img src="NCAA D1/LILJ.png" alt="Long Island Lacrosse Journal / Juniors Open">
+        <img src="ncaa-d1/lilj.png" alt="Long Island Lacrosse Journal / Juniors Open">
         <span class="trusted-badge-label">Juniors Open</span>
       </div>
 
       <div class="trusted-badge">
-        <img src="NCAA D1/NBA-Academy-Logo.png" alt="NBA Academy Games">
+        <img src="ncaa-d1/nba-academy-logo.png" alt="NBA Academy Games">
         <span class="trusted-badge-label">NBA Academy Games</span>
       </div>
 
@@ -585,7 +587,7 @@
     <div class="cta-section">
       <h2 style="margin-bottom:2rem;">Bring ScoreBreak to your league.</h2>
       <div class="hero-actions" style="justify-content:center;">
-        <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
+        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
         <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo →</a>
       </div>
     </div>
@@ -600,8 +602,8 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="index.html" class="footer-logo" aria-label="ScoreBreak Home">
-          <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
-          <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+          <img src="logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+          <img src="logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
         <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
@@ -643,7 +645,7 @@
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="blog/index.html">Blog</a></li>
-          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+          <li><a href="#" data-modal-open="sbContactModal">Contact Us</a></li>
         </ul>
       </div>
 
@@ -668,45 +670,15 @@
   </div>
 </footer>
 
-<script>
-(function() {
-  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
-    var btn = dd.querySelector('.nav-drop-btn');
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = dd.classList.contains('open');
-      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-      if (!isOpen) dd.classList.add('open');
-    });
-  });
-  document.addEventListener('click', function() {
-    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-  });
-  var ham = document.getElementById('navHamburger');
-  var mob = document.getElementById('navMobile');
-  ham.addEventListener('click', function() {
-    mob.classList.toggle('open');
-    ham.classList.toggle('active');
-  });
-  mob.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      mob.classList.remove('open');
-      ham.classList.remove('active');
-    });
-  });
-})();
-</script>
-
-<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+<div class="sb-modal-backdrop" id="sbContactModal" data-modal role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
   <div class="sb-modal">
-    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <button class="sb-modal-close" data-modal-close aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
     <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
-      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact-sales">
-        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+      <form id="sbContactForm" name="contact-sales" method="POST" data-form="contact-sales" data-form-hide="#sbModalFormWrap" data-form-confirm="#sbModalConfirm">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
         <div class="sb-form-row">
           <div class="sb-form-group">
@@ -746,51 +718,16 @@
       <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
-    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+    <div id="sbModalConfirm" class="sb-modal-confirm" hidden>
       <div class="sb-modal-confirm-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+      <p id="sbModalConfirmText">Thanks <span data-field="firstName"></span>, we'll be in touch shortly.</p>
     </div>
   </div>
 </div>
 
-<script>
-function sbOpenModal() {
-  document.getElementById('sbContactModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('sbModalFormWrap').style.display = '';
-  document.getElementById('sbModalConfirm').style.display = 'none';
-  var f = document.getElementById('sbContactForm');
-  if (f) f.reset();
-}
-function sbCloseModal() {
-  document.getElementById('sbContactModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('sbContactModal').addEventListener('click', function(e) {
-  if (e.target === this) sbCloseModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') sbCloseModal();
-});
-var sbContactForm = document.getElementById('sbContactForm');
-if (sbContactForm) {
-  sbContactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var data = new FormData(sbContactForm);
-    var firstName = (data.get('firstName') || '').toString().trim();
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data).toString()
-    }).finally(function() {
-      document.getElementById('sbModalFormWrap').style.display = 'none';
-      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
-      document.getElementById('sbModalConfirm').style.display = 'block';
-    });
-  });
-}
-</script>
+<script src="js/api.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>

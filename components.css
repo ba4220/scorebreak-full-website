@@ -1,0 +1,697 @@
+/* ============================================================
+   ScoreBreak — shared foundation for every page, including football.html
+   (which doesn't load styles.css): design tokens, nav, footer, modals and
+   modal forms.
+   ============================================================ */
+
+/* 2. CSS Variables — Dark Theme (default) */
+:root {
+  --bg:          #0A0E1A;
+  --bg2:         #0F1525;
+  --bg3:         #141929;
+  --bg4:         #1A2035;
+  --text:        #FFFFFF;
+  --text-muted:  #8A95A8;
+  --text-dim:    #5A6478;
+  --blue:        #56C7FF;
+  --blue-dim:    rgba(86,199,255,.10);
+  --blue-mid:    rgba(86,199,255,.20);
+  --blue-glow:   rgba(86,199,255,.30);
+  --border:      rgba(86,199,255,.15);
+  --border-sub:  rgba(255,255,255,.06);
+  --card-bg:     rgba(255,255,255,.04);
+  --card-bg2:    rgba(255,255,255,.07);
+  --nav-bg:      rgba(10,14,26,.92);
+  --shadow:      0 4px 24px rgba(0,0,0,.4);
+  --shadow-blue: 0 4px 24px rgba(86,199,255,.15);
+  --font:        -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --max-w:       1200px;
+  --nav-h:       72px;
+  --radius:      12px;
+  --radius-lg:   20px;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg:         #FFFFFF;
+  --bg2:        #F4F6FA;
+  --bg3:        #EBEEf5;
+  --bg4:        #E2E6F0;
+  --text:       #0A0E1A;
+  --text-muted: #5A6478;
+  --text-dim:   #8A95A8;
+  --blue:       #0EA5D6;
+  --blue-dim:   rgba(14,165,214,.08);
+  --blue-mid:   rgba(14,165,214,.15);
+  --blue-glow:  rgba(14,165,214,.20);
+  --border:     rgba(10,14,26,.10);
+  --border-sub: rgba(10,14,26,.05);
+  --card-bg:    rgba(10,14,26,.03);
+  --card-bg2:   rgba(10,14,26,.06);
+  --nav-bg:     rgba(255,255,255,.95);
+  --shadow:     0 4px 24px rgba(0,0,0,.10);
+  --shadow-blue:0 4px 24px rgba(14,165,214,.12);
+  color-scheme: light;
+}
+
+[hidden] { display: none !important; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-sub);
+  transition: background .25s;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+  gap: 1rem;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: auto;
+  text-decoration: none;
+}
+.nav-logo img {
+  height: 44px;
+  width: auto;
+}
+.logo-dark,
+.logo-light {
+  height: 44px !important;
+  width: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+.logo-dark  { display: block !important; }
+.logo-light { display: none  !important; }
+[data-theme="light"] .logo-dark  { display: none  !important; }
+[data-theme="light"] .logo-light { display: block !important; }
+
+/* Center nav links */
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+/* Dropdown wrapper */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-drop-btn {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .5rem .8rem;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text);
+  border-radius: 8px;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.nav-drop-btn:hover { background: var(--card-bg); color: var(--blue); }
+.nav-drop-btn svg { width: 12px; height: 12px; transition: transform .2s; flex-shrink: 0; }
+.nav-dropdown.open .nav-drop-btn svg { transform: rotate(180deg); }
+
+.nav-drop-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .5rem;
+  min-width: 220px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity .15s, transform .15s;
+}
+.nav-dropdown.open .nav-drop-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-drop-menu a {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .6rem .9rem;
+  font-size: .87rem;
+  font-weight: 600;
+  color: var(--text);
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.nav-drop-menu a:hover { background: var(--blue-dim); color: var(--blue); }
+.nav-drop-menu a .drop-icon {
+  width: 20px; height: 20px;
+  background: var(--blue-dim);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: .7rem;
+}
+
+/* Right-side nav */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-left: .5rem;
+}
+
+.nav-link {
+  padding: .5rem .75rem;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: 8px;
+  transition: color .15s, background .15s;
+  white-space: nowrap;
+}
+.nav-link:hover { color: var(--text); background: var(--card-bg); }
+
+/* Gridiron pill */
+.nav-gridiron {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem 1rem;
+  background: linear-gradient(135deg, var(--blue) 0%, #0080CC 100%);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  border-radius: 999px;
+  transition: opacity .2s, transform .2s;
+  white-space: nowrap;
+}
+.nav-gridiron:hover { opacity: .88; transform: translateY(-1px); }
+
+/* Log In button */
+.nav-login {
+  display: inline-flex;
+  align-items: center;
+  padding: .5rem 1.1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: .88rem;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: background .15s, border-color .15s;
+  white-space: nowrap;
+}
+.nav-login:hover { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background .15s;
+}
+.nav-hamburger:hover { background: var(--card-bg); }
+.nav-hamburger span {
+  display: block;
+  width: 100%; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .2s, opacity .2s;
+}
+.nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: var(--nav-h);
+  left: 0; right: 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem;
+  max-height: calc(100vh - var(--nav-h));
+  overflow-y: auto;
+  z-index: 199;
+}
+.nav-mobile.open { display: block; }
+
+.nav-mobile-section {
+  padding: .5rem 0;
+  border-bottom: 1px solid var(--border-sub);
+  margin-bottom: .5rem;
+}
+.nav-mobile-section:last-child { border-bottom: none; margin-bottom: 0; }
+.nav-mobile a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: .65rem .75rem;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--text);
+  border-radius: 8px;
+  transition: background .15s, color .15s;
+}
+.nav-mobile a:hover { background: var(--blue-dim); color: var(--blue); }
+.nav-mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding-top: .5rem;
+}
+
+/* Section headings in the mobile menu (Sports, Solutions): same look whether or not they're links. */
+.nav-mobile .nav-mobile-label {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: .65rem .75rem;
+  font-size: .95rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  border-radius: 8px;
+}
+
+/* Gridiron / Log In buttons at the bottom of the mobile menu. */
+.nav-mobile .nav-mobile-btn {
+  justify-content: center;
+  gap: .5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.nav-mobile .nav-mobile-btn--gridiron,
+.nav-mobile .nav-mobile-btn--gridiron:hover {
+  background: linear-gradient(135deg, var(--blue) 0%, #0080CC 100%);
+  color: #fff;
+}
+.nav-mobile .nav-mobile-btn--login { border: 1.5px solid var(--border); }
+.nav-mobile .nav-mobile-btn--login:hover { border-color: var(--blue); }
+
+/* Current page: links to the page you're on carry aria-current="page". */
+.nav-link[aria-current="page"] { color: var(--blue); }
+.nav-drop-menu a[aria-current="page"] { color: var(--blue); background: var(--blue-dim); }
+.nav-mobile-section:not(.nav-mobile-actions) a[aria-current="page"] { color: var(--blue); }
+
+/* Resets the nav relies on (styles.css has them globally; football.html doesn't). */
+:where(.site-nav, .nav-mobile) a { text-decoration: none; color: inherit; }
+:where(.site-nav) button { cursor: pointer; border: none; background: none; font: inherit; }
+:where(.site-nav) img { max-width: 100%; height: auto; display: block; }
+
+@media (max-width: 900px) {
+  .nav-center, .nav-right { display: none; }
+  .nav-hamburger { display: flex; margin-left: auto; }
+  .nav-logo { margin-right: 0; }
+  .nav-inner { padding: 0 1.5rem; gap: .5rem; }
+
+  /* Touch target: hamburger gets a comfortable hit area on mobile */
+  .nav-hamburger {
+    width: 44px; height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root { --nav-h: 60px; }
+  .nav-inner { padding: 0 1.25rem; }
+
+  /* Logo shrinks on small screens so it never crowds the hamburger/toggle */
+  .logo-dark, .logo-light { height: 34px !important; }
+}
+
+/* Submit button after a failed send (set by js/site.js). */
+form[data-form] [type="submit"].is-error { outline: 2px solid #FF5A5A; outline-offset: 2px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--bg2, #0F1525);
+  border-top: 1px solid var(--border-sub, rgba(255,255,255,.06));
+  padding: 4rem 0 2rem;
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-sub, rgba(255,255,255,.06));
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.footer-tagline {
+  font-size: .88rem;
+  color: var(--text-muted, #8A95A8);
+  line-height: 1.65;
+  max-width: 340px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: .75rem;
+}
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  background: var(--card-bg, rgba(255,255,255,.04));
+  border: 1px solid var(--border-sub, rgba(255,255,255,.06));
+  border-radius: 8px;
+  color: var(--text-muted, #8A95A8);
+  transition: background .15s, color .15s, border-color .15s;
+}
+.footer-social-link:hover { background: var(--blue-dim, rgba(86,199,255,.10)); color: var(--blue, #56C7FF); border-color: var(--border, rgba(86,199,255,.15)); }
+.footer-social-link svg { width: 16px; height: 16px; }
+
+.footer-col h4 {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-dim, #5A6478);
+  margin-bottom: 1rem;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: .5rem; }
+.footer-col ul a {
+  font-size: .9rem;
+  color: var(--text-muted, #8A95A8);
+  transition: color .15s;
+}
+.footer-col ul a:hover { color: var(--blue, #56C7FF); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  font-size: .82rem;
+  color: var(--text-dim, #5A6478);
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { color: var(--text-dim, #5A6478); transition: color .15s; }
+.footer-legal a:hover { color: var(--text-muted, #8A95A8); }
+
+/* Resets the footer relies on (styles.css has them globally; football.html doesn't). */
+:where(.site-footer) .container { max-width: var(--max-w, 1200px); margin: 0 auto; padding: 0 2rem; }
+:where(.site-footer) a { text-decoration: none; color: inherit; }
+:where(.site-footer) ul { list-style: none; }
+
+/* ============================================================
+   CONTACT SALES MODAL
+   ============================================================ */
+.sb-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+.sb-modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+.sb-modal {
+  background: #0D1526;
+  border: 1px solid rgba(86, 199, 255, 0.2);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(12px);
+  transition: transform .22s ease;
+}
+.sb-modal-backdrop.open .sb-modal {
+  transform: translateY(0);
+}
+.sb-modal-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #8A95A8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: background .15s, color .15s;
+}
+.sb-modal-close:hover { background: rgba(255,255,255,.06); color: #fff; }
+.sb-modal h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: #fff;
+  margin-bottom: .5rem;
+}
+.sb-modal-sub {
+  font-size: .93rem;
+  color: #8A95A8;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+.sb-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.sb-modal-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .18s, background .18s;
+}
+.sb-modal-option:hover {
+  border-color: rgba(86, 199, 255, 0.4);
+  background: rgba(86, 199, 255, 0.05);
+}
+.sb-modal-option-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(86, 199, 255, 0.1);
+  border: 1px solid rgba(86, 199, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #56C7FF;
+}
+.sb-modal-option-icon svg { width: 20px; height: 20px; }
+.sb-modal-option-label {
+  font-size: .9rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .2rem;
+}
+.sb-modal-option-detail {
+  font-size: .82rem;
+  color: #56C7FF;
+}
+.sb-modal-option:last-child .sb-modal-option-detail {
+  color: #8A95A8;
+}
+
+/* Modal forms */
+.sb-hidden-field { position: absolute; left: -9999px; top: -9999px; }
+.sb-form-row {
+  display: flex;
+  gap: .75rem;
+}
+.sb-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 1rem;
+}
+.sb-form-group label {
+  font-size: .78rem;
+  font-weight: 700;
+  color: #8A95A8;
+  letter-spacing: .02em;
+}
+.sb-form-group input,
+.sb-form-group textarea {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  padding: .65rem .85rem;
+  font-size: .9rem;
+  font-family: inherit;
+  color: #fff;
+  width: 100%; /* otherwise inputs keep the browser's ~20-character default width and side-by-side fields overflow */
+  transition: border-color .15s, background .15s;
+}
+.sb-form-group input:focus,
+.sb-form-group textarea:focus {
+  outline: none;
+  border-color: #56C7FF;
+  background: rgba(86,199,255,.05);
+}
+.sb-form-group textarea { resize: vertical; min-height: 90px; }
+.sb-form-submit {
+  width: 100%;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: .25rem;
+}
+
+.sb-modal-divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 1.5rem 0;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #5A6478;
+}
+.sb-modal-divider::before,
+.sb-modal-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,.08);
+}
+
+.sb-modal-phone {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: .85rem;
+  color: #8A95A8;
+}
+.sb-modal-phone a {
+  color: #56C7FF;
+  font-weight: 700;
+}
+
+.sb-modal-confirm {
+  text-align: center;
+  padding: 1rem 0 .5rem;
+}
+.sb-modal-confirm-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(86,199,255,.12);
+  border: 1px solid rgba(86,199,255,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #56C7FF;
+  margin: 0 auto 1.25rem;
+}
+.sb-modal-confirm-icon svg { width: 26px; height: 26px; }
+#sbModalConfirmText {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Modal light mode overrides */
+[data-theme="light"] .sb-modal {
+  background: #fff;
+  border-color: rgba(10,14,26,0.12);
+}
+[data-theme="light"] .sb-modal h2 { color: #0A0E1A; }
+[data-theme="light"] .sb-modal-sub { color: #5A6478; }
+[data-theme="light"] .sb-modal-close { color: #5A6478; }
+[data-theme="light"] .sb-modal-close:hover { background: rgba(10,14,26,.06); color: #0A0E1A; }
+[data-theme="light"] .sb-modal-option {
+  background: rgba(10,14,26,.03);
+  border-color: rgba(10,14,26,.1);
+}
+[data-theme="light"] .sb-modal-option-label { color: #0A0E1A; }
+[data-theme="light"] .sb-modal-option:last-child .sb-modal-option-detail { color: #5A6478; }
+[data-theme="light"] .sb-form-group label { color: #5A6478; }
+[data-theme="light"] .sb-form-group input,
+[data-theme="light"] .sb-form-group textarea { border-color: rgba(10,14,26,.15); }
+[data-theme="light"] .sb-form-group input:focus,
+[data-theme="light"] .sb-form-group textarea:focus { border-color: #0EA5D6; background: rgba(14,165,214,.06); }
+[data-theme="light"] .sb-modal-divider { color: #8A95A8; }
+[data-theme="light"] .sb-modal-divider::before,
+[data-theme="light"] .sb-modal-divider::after { background: rgba(10,14,26,.1); }
+[data-theme="light"] .sb-modal-phone { color: #5A6478; }
+[data-theme="light"] #sbModalConfirmText { color: #0A0E1A; }
+
+
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  :where(.site-footer) .container { padding: 0 1.25rem; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-legal { justify-content: center; }
+}
