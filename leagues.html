@@ -24,24 +24,9 @@
       position: relative;
       overflow: hidden;
     }
-    .lg-hero::before {
-      content: '';
-      position: absolute;
-      top: -120px; left: 50%;
-      transform: translateX(-50%);
-      width: 900px; height: 600px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
     .lg-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .35rem .9rem;
-      background: var(--blue-dim);
-      border: 1px solid rgba(86,199,255,.2);
-      border-radius: 999px;
-      font-size: .75rem;
+      display: inline-block;
+      font-size: .9rem;
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -263,19 +248,8 @@
     .lg-exchange-cards {
       display: flex;
       flex-direction: column;
-      gap: .75rem;
+      gap: 1.25rem;
       margin-top: 1.5rem;
-    }
-    .lg-exchange-card {
-      padding: 1rem 1.25rem;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 10px;
-      transition: background .2s, border-color .2s;
-    }
-    .lg-exchange-card:hover {
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.13);
     }
     .lg-exchange-card strong {
       display: block;
@@ -301,14 +275,6 @@
       .lg-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
       .lg-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
       .trusted-row { gap: .75rem; }
-    }
-    [data-theme="light"] .lg-exchange-card {
-      background: var(--card-bg);
-      border-color: var(--border-sub);
-    }
-    [data-theme="light"] .lg-exchange-card:hover {
-      background: var(--card-bg2);
-      border-color: var(--border);
     }
   </style>
 </head>
@@ -336,7 +302,7 @@
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
           <a href="airborne.html">Airborne Sideline Replay</a>
-          <a href="portal.html">Recruiting Network</a>
+          <a href="recruiting-network.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
           <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -367,7 +333,7 @@
     <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
     <a href="airborne.html">Airborne Sideline Replay</a>
-    <a href="portal.html">Recruiting Network</a>
+    <a href="recruiting-network.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
     <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -389,14 +355,12 @@
 <section class="lg-hero">
   <div class="container">
     <div class="lg-hero-badge">
-      <span style="width:6px;height:6px;border-radius:50%;background:var(--blue);display:inline-block;flex-shrink:0;"></span>
       League Solutions
     </div>
-    <h1>The Complete Platform for<br><span>Leagues and Federations.</span></h1>
+    <h1>An All-in-One Platform for<br><span>Leagues and Federations.</span></h1>
     <p class="lg-hero-sub">From film exchange to public stats sites  -  ScoreBreak gives leagues and federations the infrastructure to standardize film, streamline game day operations, and create a professional experience for administrators, coaches, officials, and scouts alike.</p>
     <div class="hero-actions" style="justify-content:center;">
       <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
-      <a href="https://app.scorebreak.io/federation/239/main" class="btn btn-outline btn-lg" target="_blank" rel="noopener">View a Live Example →</a>
     </div>
   </div>
 </section>
@@ -445,7 +409,7 @@
 ════════════════════════════════════════════════════════════ -->
 <section class="section" style="padding:3.75rem 0;">
   <div class="container">
-    <div class="lg-two-col" style="align-items:start;gap:3.75rem;grid-template-columns:1.2fr 1fr;">
+    <div class="lg-two-col" style="align-items:center;gap:3.75rem;grid-template-columns:1.2fr 1fr;">
       <div style="background:var(--card-bg);border:1px solid var(--border-sub);border-radius:var(--radius-lg);overflow:hidden;">
         <img src="Software/league_exchange.png" alt="ScoreBreak Film Exchange  -  league-wide film access for every team" style="width:100%;height:auto;display:block;">
       </div>
@@ -483,13 +447,15 @@
 ════════════════════════════════════════════════════════════ -->
 <section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);border-bottom:1px solid var(--border-sub);">
   <div class="container">
-    <div class="lg-two-col reverse" style="align-items:start;">
+    <div class="lg-two-col reverse" style="align-items:center;">
       <div class="lg-section-text">
         <span class="section-label" style="margin-bottom:1rem;display:inline-block;">Public League Hub</span>
         <h2>An interactive stats site for your league.</h2>
-        <p>ScoreBreak builds fully branded, public-facing league sites that serve as the official hub for your tournament or federation. Live standings, schedules, player profiles with headshots, and comprehensive statistics  -  all linked directly to video clips.</p>
-        <p style="font-weight:600;color:var(--text);">Click any stat, watch the play.</p>
-        <div class="lg-checklist">
+        <div class="lg-checklist" style="margin-top:1.25rem;">
+          <div class="lg-check-item">
+            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+            <span>Fully branded with your league's name and logo</span>
+          </div>
           <div class="lg-check-item">
             <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
             <span>Live standings and schedules</span>
@@ -513,10 +479,6 @@
           <div class="lg-check-item">
             <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
             <span>Publicly accessible for fans, coaches, and scouts</span>
-          </div>
-          <div class="lg-check-item">
-            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-            <span>Save stats as PDF</span>
           </div>
         </div>
 
@@ -562,27 +524,9 @@
       <div class="lg-section-text">
         <span class="section-label" style="margin-bottom:1rem;display:inline-block;">Integrations</span>
         <h2>Connect your existing infrastructure.</h2>
-        <p>ScoreBreak integrates with your league's existing technology stack via API. Connect your statistics provider, scoring systems, and data feeds directly into the ScoreBreak platform for automated data flow.</p>
-        <div class="lg-checklist">
-          <div class="lg-check-item">
-            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-            <span>Statistics provider API integration</span>
-          </div>
-          <div class="lg-check-item">
-            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-            <span>Live scoring system connections</span>
-          </div>
-          <div class="lg-check-item">
-            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-            <span>Automated stat sync with video</span>
-          </div>
-          <div class="lg-check-item">
-            <div class="lg-check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-            <span>Custom data feeds</span>
-          </div>
-        </div>
+        <p style="margin-bottom:0;text-wrap:balance;">ScoreBreak integrates with your league's existing technology stack via API.</p>
       </div>
-      <div style="background:var(--card-bg);border:1px solid var(--border-sub);border-radius:var(--radius-lg);padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem;justify-content:center;">
+      <div style="display:flex;flex-direction:column;gap:1.25rem;justify-content:center;">
         <div style="display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--card-bg2);border:1px solid var(--border-sub);border-radius:10px;">
           <div style="width:44px;height:44px;background:var(--blue-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue);">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
@@ -639,8 +583,7 @@
 <section class="section-sm">
   <div class="container">
     <div class="cta-section">
-      <h2>Bring ScoreBreak to your league.</h2>
-      <p>Whether you're running a weekend tournament or a full season league, ScoreBreak has the tools to run a better operation for administrators, coaches, fans, and scouts.</p>
+      <h2 style="margin-bottom:2rem;">Bring ScoreBreak to your league.</h2>
       <div class="hero-actions" style="justify-content:center;">
         <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
         <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo →</a>
@@ -660,7 +603,7 @@
           <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
           <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
@@ -690,7 +633,7 @@
           <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
-          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="recruiting-network.html">Recruiting Network</a></li>
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
@@ -758,7 +701,7 @@
   <div class="sb-modal">
     <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
-    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+    <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
       <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">

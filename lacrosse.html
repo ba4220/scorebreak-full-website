@@ -68,10 +68,7 @@
       flex-direction: column;
     }
     .product-card:hover {
-      background: var(--card-bg2);
       border-color: var(--border);
-      box-shadow: var(--shadow);
-      transform: translateY(-3px);
     }
 
     .product-card-img {
@@ -180,50 +177,22 @@
 
     /* Purpose-Built section */
     .purpose-feature-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      align-items: stretch;
-    }
-    .purpose-feature-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: var(--radius);
-      padding: 1.75rem 2rem;
       display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: background .2s, border-color .2s;
-    }
-    .purpose-feature-item:hover {
-      background: var(--card-bg2);
-      border-color: var(--border);
-    }
-    .purpose-feature-icon {
-      width: 46px;
-      height: 46px;
-      background: var(--blue-dim);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-      flex-shrink: 0;
-    }
-    .purpose-feature-icon svg {
-      width: 22px;
-      height: 22px;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 640px;
+      margin: 0 auto;
     }
     .purpose-feature-text h3 {
-      font-size: .97rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: .3rem;
+      margin-bottom: .25rem;
     }
     .purpose-feature-text p {
-      font-size: .87rem;
+      font-size: 1rem;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     /* Testimonials carousel */
@@ -324,7 +293,7 @@
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
           <a href="airborne.html">Airborne Sideline Replay</a>
-          <a href="portal.html">Recruiting Network</a>
+          <a href="recruiting-network.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
           <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -355,7 +324,7 @@
     <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
     <a href="airborne.html">Airborne Sideline Replay</a>
-    <a href="portal.html">Recruiting Network</a>
+    <a href="recruiting-network.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
     <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -376,7 +345,7 @@
   <div class="container">
     <div class="lax-hero-inner">
       <h1>End to End <span class="accent">Lacrosse.</span></h1>
-      <p class="hero-sub">First look to final whistle, the complete platform for recruiting, coaching, and growing our game.</p>
+      <p class="hero-sub">Coaching, recruiting, and league tools built for every level, used by 85%+ of D1 men's and 65% of D1 women's programs, along with competitive high school and club teams.</p>
     </div>
   </div>
 </section>
@@ -411,9 +380,9 @@
       </a>
 
       <!-- Card 3: ScoreBreak Recruiting Network -->
-      <a href="portal.html" class="product-card">
+      <a href="recruiting-network.html" class="product-card">
         <div class="product-card-img">
-          <img src="Portal/portal-player.png" alt="ScoreBreak Recruiting Network" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Recruiting-Network/portal-player.png" alt="ScoreBreak Recruiting Network" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="product-card-body">
           <div class="product-card-title">ScoreBreak Recruiting Network <span class="product-card-arrow">→</span></div>
@@ -425,7 +394,7 @@
       <!-- Card 4: League and Tournament Solutions -->
       <a href="leagues.html" class="product-card">
         <div class="product-card-img">
-          <img src="Portal/recruiting.png" alt="Lacrosse league solutions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="Recruiting-Network/recruiting.png" alt="Lacrosse league solutions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="product-card-body">
           <div class="product-card-title">League Solutions <span class="product-card-arrow">→</span></div>
@@ -444,19 +413,12 @@
     <div class="section-head">
       <span class="section-label">Platform</span>
       <h2 class="section-title">Purpose-Built for Coaches, Players, and Leagues</h2>
-      <p class="section-subtitle">Every feature of ScoreBreak is designed specifically for the lacrosse ecosystem  -  from grassroots recruiting to elite competition.</p>
     </div>
 
     <div class="purpose-feature-grid">
 
       <!-- 1: Analysis & Reporting -->
       <div class="purpose-feature-item">
-        <div class="purpose-feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="23 7 16 12 23 17 23 7"/>
-            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-          </svg>
-        </div>
         <div class="purpose-feature-text">
           <h3>Analysis &amp; Reporting</h3>
           <p>Tag plays, build custom workflows, and turn your film into data. ScoreBreak visualizes and analyzes it into reports you can act on.</p>
@@ -465,13 +427,6 @@
 
       <!-- 2: Scouting & Team Preparation -->
       <div class="purpose-feature-item">
-        <div class="purpose-feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-            <path d="M11 8v6M8 11h6"/>
-          </svg>
-        </div>
         <div class="purpose-feature-text">
           <h3>Scouting &amp; Team Preparation</h3>
           <p>Filter recruits by position, class year, and academics, then let expert Handoff breakdowns build your scouting reports  -  your staff focuses on execution, not film work.</p>
@@ -480,12 +435,6 @@
 
       <!-- 3: Integrated Sideline Replay -->
       <div class="purpose-feature-item">
-        <div class="purpose-feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
-          </svg>
-        </div>
         <div class="purpose-feature-text">
           <h3>Integrated Sideline Replay</h3>
           <p>Airborne™ streams instant sideline video replay directly into ScoreBreak  -  deployed in minutes for games and practice alike.</p>
@@ -494,12 +443,6 @@
 
       <!-- 4: Recruiting Profiles -->
       <div class="purpose-feature-item">
-        <div class="purpose-feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M20 21a8 8 0 10-16 0"/>
-          </svg>
-        </div>
         <div class="purpose-feature-text">
           <h3>Recruiting Profiles</h3>
           <p>Athlete-built recruiting profiles with highlights, stats, and footage  -  visible to college coaches and always current.</p>
@@ -508,11 +451,6 @@
 
       <!-- 5: Effortless Communication -->
       <div class="purpose-feature-item">
-        <div class="purpose-feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-        </div>
         <div class="purpose-feature-text">
           <h3>Effortless Communication</h3>
           <p>Athletes, coaches, and parents stay connected with built-in messaging and automatic notifications.</p>
@@ -528,7 +466,7 @@
   <div class="container">
     <div class="section-head">
       <span class="section-label">From the Field</span>
-      <h2 class="section-title">What Coaches Are Saying</h2>
+      <h2 class="section-title">What coaches are saying</h2>
     </div>
 
     <div class="tc-wrap">
@@ -695,7 +633,7 @@
           <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
           <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
@@ -725,7 +663,7 @@
           <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
-          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="recruiting-network.html">Recruiting Network</a></li>
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
@@ -767,7 +705,7 @@
   <div class="sb-modal">
     <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
-    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+    <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
       <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">

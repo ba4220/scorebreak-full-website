@@ -21,6 +21,10 @@
       to   { transform: translateY(-4px); }
     }
     .sw-hero-img { animation: deviceFloat 3s ease-in-out infinite alternate; }
+    /* Wider image column than the shared split hero; mobile stacking still comes from styles.css */
+    @media (min-width: 901px) {
+      .split-hero-inner { grid-template-columns: 1fr 1.1fr; gap: 3.5rem; }
+    }
 
     /* ── Film Analysis Section ────────────────────────────── */
     .film-grid {
@@ -37,11 +41,6 @@
       transition: border-color .2s, box-shadow .2s, transform .2s;
       display: flex;
       flex-direction: column;
-    }
-    .film-card:hover {
-      border-color: rgba(86,199,255,0.3);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 32px rgba(86,199,255,0.07);
-      transform: translateY(-4px);
     }
     .film-card-img {
       width: 100%;
@@ -120,10 +119,6 @@
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      background: var(--blue-dim);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: .35rem 1rem;
       font-size: .8rem;
       font-weight: 700;
       color: var(--blue);
@@ -277,10 +272,6 @@
       border-color: rgba(10,14,26,0.1);
     }
     [data-theme="light"] .film-card-img { background: rgba(10,14,26,0.06); }
-    [data-theme="light"] .film-card:hover {
-      border-color: rgba(10,14,26,0.2);
-      box-shadow: 0 8px 32px rgba(10,14,26,0.1);
-    }
   </style>
 </head>
 <body>
@@ -309,7 +300,7 @@
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
           <a href="airborne.html">Airborne Sideline Replay</a>
-          <a href="portal.html">Recruiting Network</a>
+          <a href="recruiting-network.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
           <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -340,7 +331,7 @@
     <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
     <a href="airborne.html">Airborne Sideline Replay</a>
-    <a href="portal.html">Recruiting Network</a>
+    <a href="recruiting-network.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
     <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -384,7 +375,7 @@
 <section class="section" id="film-analysis">
   <div class="container">
     <div class="section-head">
-      <h2 class="section-title">Film Analysis Made Simple</h2>
+      <h2 class="section-title">Analysis made simple</h2>
       <p class="section-subtitle">Cut, organize, and share film with your staff and players, from Mac, iPad, iPhone, or the web.</p>
     </div>
     <div class="film-grid">
@@ -620,7 +611,7 @@
           <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
           <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
@@ -650,7 +641,7 @@
           <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
-          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="recruiting-network.html">Recruiting Network</a></li>
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
@@ -722,7 +713,7 @@
   <div class="sb-modal">
     <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
-    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+    <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
       <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">

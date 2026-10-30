@@ -22,15 +22,7 @@
       position: relative;
       overflow: hidden;
     }
-    .blog-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 900px; height: 600px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
+    .blog-hero .section-label { font-size: .9rem; }
     .blog-hero h1 {
       font-size: clamp(2rem, 4.5vw, 3.4rem);
       font-weight: 900;
@@ -107,7 +99,7 @@
         <div class="nav-drop-menu">
           <a href="../software.html">Team Software</a>
           <a href="../airborne.html">Airborne Sideline Replay</a>
-          <a href="../portal.html">Recruiting Network</a>
+          <a href="../recruiting-network.html">Recruiting Network</a>
           <a href="../leagues.html">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
           <a href="../solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -138,7 +130,7 @@
     <a href="../solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="../software.html">Team Software</a>
     <a href="../airborne.html">Airborne Sideline Replay</a>
-    <a href="../portal.html">Recruiting Network</a>
+    <a href="../recruiting-network.html">Recruiting Network</a>
     <a href="../leagues.html">League Solutions</a>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
     <a href="../solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -221,7 +213,7 @@
           <img src="../Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="../Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
           <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
@@ -251,7 +243,7 @@
           <li><a href="../solutions.html">All Solutions</a></li>
           <li><a href="../software.html">Team Software</a></li>
           <li><a href="../airborne.html">Airborne</a></li>
-          <li><a href="../portal.html">Recruiting Network</a></li>
+          <li><a href="../recruiting-network.html">Recruiting Network</a></li>
           <li><a href="../leagues.html">League Solutions</a></li>
         </ul>
       </div>
@@ -293,7 +285,7 @@
   <div class="sb-modal">
     <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
-    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+    <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
       <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">

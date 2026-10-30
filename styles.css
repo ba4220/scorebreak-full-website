@@ -825,14 +825,8 @@ body {
   align-items: center;
 }
 .split-hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .3rem .9rem;
-  background: var(--blue-dim);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: .78rem;
+  display: inline-block;
+  font-size: .9rem;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -840,8 +834,6 @@ body {
   margin-bottom: 1.75rem;
 }
 .split-hero-eyebrow--orange {
-  background: rgba(255,160,60,.12);
-  border-color: rgba(255,160,60,.3);
   color: #FFA03C;
 }
 .split-hero h1 {

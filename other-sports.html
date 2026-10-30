@@ -94,11 +94,6 @@
       overflow: hidden;
       transition: border-color .2s, box-shadow .2s, transform .2s;
     }
-    .os-sport-card:hover {
-      border-color: var(--border);
-      box-shadow: var(--shadow);
-      transform: translateY(-3px);
-    }
     .os-sport-card-img {
       width: 100%;
       aspect-ratio: 16 / 10;
@@ -114,24 +109,14 @@
       object-fit: cover;
       transition: transform .4s ease;
     }
-    .os-sport-card:hover .os-sport-card-img img {
-      transform: scale(1.04);
-    }
     .os-sport-card-body {
-      padding: 1.4rem 1.5rem 1.6rem;
+      padding: 1.1rem 1.5rem;
     }
     .os-sport-card-name {
       font-size: 1.15rem;
       font-weight: 800;
       color: var(--text);
-      margin-bottom: .5rem;
       letter-spacing: -.02em;
-    }
-    .os-sport-card-desc {
-      font-size: .92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin: 0;
     }
 
     /* Feature Cards */
@@ -195,13 +180,7 @@
     }
     .os-airborne-text { flex: 1; }
     .os-airborne-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .25rem .75rem;
-      background: rgba(86,199,255,.12);
-      border: 1px solid rgba(86,199,255,.25);
-      border-radius: 999px;
+      display: inline-block;
       font-size: .72rem;
       font-weight: 700;
       letter-spacing: .12em;
@@ -280,13 +259,7 @@
 
     /* Section badge shared */
     .os-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .25rem .75rem;
-      background: var(--blue-dim);
-      border: 1px solid var(--border);
-      border-radius: 999px;
+      display: inline-block;
       font-size: .72rem;
       font-weight: 700;
       letter-spacing: .12em;
@@ -339,7 +312,7 @@
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
           <a href="airborne.html">Airborne Sideline Replay</a>
-          <a href="portal.html">Recruiting Network</a>
+          <a href="recruiting-network.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
           <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -370,7 +343,7 @@
     <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
     <a href="airborne.html">Airborne Sideline Replay</a>
-    <a href="portal.html">Recruiting Network</a>
+    <a href="recruiting-network.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
     <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -415,7 +388,6 @@
         </div>
         <div class="os-sport-card-body">
           <div class="os-sport-card-name">Soccer</div>
-          <p class="os-sport-card-desc">Film analysis and collaboration tools for soccer programs at every level.</p>
         </div>
       </div>
 
@@ -426,7 +398,6 @@
         </div>
         <div class="os-sport-card-body">
           <div class="os-sport-card-name">Ice Hockey</div>
-          <p class="os-sport-card-desc">Break down shifts, systems, and special teams with the same tools used by professional programs.</p>
         </div>
       </div>
 
@@ -437,7 +408,6 @@
         </div>
         <div class="os-sport-card-body">
           <div class="os-sport-card-name">Field Hockey</div>
-          <p class="os-sport-card-desc">Review possessions, set pieces, and defensive structure with customizable tagging workflows.</p>
         </div>
       </div>
 
@@ -450,8 +420,8 @@
   <div class="container">
     <div style="text-align:center; margin-bottom:3.5rem;">
       <div class="os-badge">What's Included</div>
-      <h2 class="section-title">Everything your staff needs.<br>Nothing you don't.</h2>
-      <p class="section-subtitle" style="max-width:580px; margin:0 auto;">ScoreBreak gives your coaching staff a complete film analysis platform — built to fit your system, your terminology, and your workflow.</p>
+      <h2 class="section-title">Everything your staff needs.</h2>
+      <p class="section-subtitle" style="max-width:580px; margin:0 auto;">ScoreBreak is built to fit your system, your terminology, and your workflow.</p>
     </div>
 
     <div class="os-features-grid">
@@ -548,7 +518,7 @@
           <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
           <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
@@ -578,7 +548,7 @@
           <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
-          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="recruiting-network.html">Recruiting Network</a></li>
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
@@ -618,7 +588,7 @@
   <div class="sb-modal">
     <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
-    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+    <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
       <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">

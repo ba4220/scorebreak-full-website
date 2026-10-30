@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ScoreBreak | A Modern Hudl Alternative for Film Analysis &amp; Sideline Replay</title>
-  <meta name="description" content="ScoreBreak is the modern Hudl alternative for high school and club programs  -  AI-powered film analysis, sideline replay hardware (Airborne), and a lacrosse Recruiting Network. Built for coaches who want more.">
+  <title>ScoreBreak | Film Analysis and Sideline Replay for Competitive Sports Programs</title>
+  <meta name="description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
   <meta name="keywords" content="Hudl alternative, football film analysis software, lacrosse film analysis, sideline replay system, sports video analysis platform, high school coaching software, Recruiting Network for lacrosse, ScoreBreak, Airborne sideline replay">
   <meta property="og:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
-  <meta property="og:description" content="Professional film analysis, sideline replay, and recruiting tools built for competitive sports programs. Everything your coaching staff needs  -  in one platform.">
+  <meta property="og:description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://scorebreak.io">
   <meta property="og:image" content="https://scorebreak.io/Logos/logo-nav.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
-  <meta name="twitter:description" content="Professional film analysis, sideline replay, and recruiting tools built for competitive sports programs.">
+  <meta name="twitter:description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ── Homepage-specific styles ── */
@@ -34,33 +34,9 @@
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -20%;
-      left: -10%;
-      width: 700px; height: 700px;
-      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
 
     .hero-content { position: relative; z-index: 1; }
 
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .3rem .85rem;
-      background: var(--blue-dim);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1.5rem;
-    }
 
     .hero h1 {
       font-size: clamp(2.4rem, 5vw, 4rem);
@@ -208,37 +184,6 @@
     .marquee-logo.logo-denver2     { height: 63px; }
     .marquee-logo.logo-new-towson  { height: 91px; }
 
-    /* Solution product badges */
-    .solution-badges {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-    .solution-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .45rem 1rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background .2s, border-color .2s;
-    }
-    .solution-badge:hover { background: var(--card-bg2); border-color: var(--border); }
-    .solution-badge img { height: 18px; width: auto; display: block; }
-    .solution-badge-text {
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-    .solution-badge-text span { color: var(--blue); }
-
     /* Sports section */
     .sports-grid {
       display: grid;
@@ -261,7 +206,6 @@
       color: #fff;
       transition: transform .3s;
     }
-    .sport-card:hover { transform: translateY(-4px); }
     .sport-card-bg {
       position: absolute;
       inset: 0;
@@ -323,7 +267,7 @@
       font-size: 1rem;
       transition: background .2s, transform .2s;
     }
-    .sport-card:hover .sport-card-arrow { background: rgba(255,255,255,.2); transform: translate(2px,-2px); }
+    .sport-card:hover .sport-card-arrow { background: rgba(255,255,255,.2); }
 
     /* Products grid */
     .products-grid {
@@ -342,7 +286,7 @@
       display: flex;
       flex-direction: column;
     }
-    .product-card:hover { background: var(--card-bg2); border-color: var(--border); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .product-card:hover { border-color: var(--border); }
     .product-icon {
       width: 52px; height: 52px;
       background: var(--blue-dim);
@@ -450,7 +394,6 @@
       .hero-replay-btn { font-size: .85rem; padding: .55rem 1.3rem; opacity: 1; }
       .sport-card { min-height: 200px; }
       .products-grid { grid-template-columns: 1fr; }
-      .solution-badges { gap: .75rem; margin-bottom: 2rem; }
       .marquee-logo { height: 40px; }
       .marquee-logo.logo-stanford    { height: 54px; }
       .marquee-logo.logo-first-class { height: 56px; }
@@ -493,7 +436,7 @@
         <div class="nav-drop-menu">
           <a href="software.html">Team Software</a>
           <a href="airborne.html">Airborne Sideline Replay</a>
-          <a href="portal.html">Recruiting Network</a>
+          <a href="recruiting-network.html">Recruiting Network</a>
           <a href="leagues.html">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
           <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -528,7 +471,7 @@
     <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
     <a href="software.html">Team Software</a>
     <a href="airborne.html">Airborne Sideline Replay</a>
-    <a href="portal.html">Recruiting Network</a>
+    <a href="recruiting-network.html">Recruiting Network</a>
     <a href="leagues.html">League Solutions</a>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
     <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
@@ -551,7 +494,7 @@
   <div class="container">
     <div class="hero">
       <div class="hero-content">
-        <h1>See every play.<br><span class="accent">Analyze every moment.</span><br>Scout like the pros.</h1>
+        <h1>Powerful film analysis and sideline replay<br><span class="accent">for every level.</span></h1>
         <p class="hero-sub">Professional, easy-to-use film analysis, sideline replay, and recruiting tools built for competitive sports programs. Everything your coaching staff needs  -  in one platform.</p>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
@@ -563,7 +506,7 @@
         </video>
         <div class="hero-fade-overlay" id="heroFadeOverlay"></div>
         <div class="hero-endcard" id="heroEndcard">
-          <img src="Software/final_software_mockup.png" alt="ScoreBreak Software" class="hero-endcard-mockup">
+          <img src="Software/final_software_mockup_basketball.png" alt="ScoreBreak Software" class="hero-endcard-mockup">
           <button class="hero-replay-btn" id="heroReplayBtn" aria-label="Replay demo">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0E1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
             Replay Demo
@@ -641,11 +584,10 @@
   <div class="container">
     <div class="section-head">
       <h2 class="section-title">Built for your sport</h2>
-      <p class="section-subtitle">Purpose-built platforms for lacrosse and basketball programs  -  with football coming soon through ScoreBreak Gridiron.</p>
     </div>
     <div class="sports-grid">
       <a href="lacrosse.html" class="sport-card sport-card-lacrosse">
-        <div class="sport-card-bg"><img src="airborne r/UMD_ipad.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;"></div>
+        <div class="sport-card-bg"><img src="Airborne R/UMD_ipad.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;"></div>
         <div class="sport-card-arrow">→</div>
         <div class="sport-card-content">
           <h3>Lacrosse</h3>
@@ -682,22 +624,7 @@
 <section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
   <div class="container">
     <div class="section-head">
-      <h2 class="section-title">Three core products.<br>Everything your <span style="white-space:nowrap;">program needs.</span></h2>
-      <p class="section-subtitle">Built to connect athletes with coaches, support game-day performance, and drive recruiting results.</p>
-    </div>
-    <div class="solution-badges">
-      <a href="software.html" class="solution-badge">
-        <span style="width:8px;height:8px;border-radius:50%;background:#56C7FF;display:inline-block;flex-shrink:0;"></span>
-        <span class="solution-badge-text">SCOREBREAK <span>Software</span></span>
-      </a>
-      <a href="airborne.html" class="solution-badge">
-        <span style="width:8px;height:8px;border-radius:50%;background:#56C7FF;display:inline-block;flex-shrink:0;"></span>
-        <span class="solution-badge-text">SCOREBREAK <span>Airborne</span></span>
-      </a>
-      <a href="portal.html" class="solution-badge">
-        <span style="width:8px;height:8px;border-radius:50%;background:#56C7FF;display:inline-block;flex-shrink:0;"></span>
-        <span class="solution-badge-text">SCOREBREAK <span>Recruiting Network</span></span>
-      </a>
+      <h2 class="section-title">Core products</h2>
     </div>
     <div class="products-grid">
       <a href="software.html" class="product-card">
@@ -709,7 +636,7 @@
           </svg>
         </div>
         <h3>Team Software</h3>
-        <p>The ultimate film analysis platform  -  interactive stats, custom tagging workflows, playlists, AI analysis, and professional Handoff breakdowns in 24 hours.</p>
+        <p>A do-it-all film analysis platform  -  interactive stats, custom tagging workflows, playlists, AI analysis, and professional Handoff breakdowns in 24 hours.</p>
         <span class="product-link">Explore Software →</span>
       </a>
 
@@ -722,11 +649,11 @@
           </svg>
         </div>
         <h3>Airborne Sideline Replay</h3>
-        <p>Powerful sideline replay systems  -  portable Airborne R for away games and Airborne Stadium for permanent home installations with Daktronics integration.</p>
+        <p>Two replay systems: portable Airborne R for away games and Airborne Stadium for permanent home installations with Daktronics integration.</p>
         <span class="product-link">Explore Airborne →</span>
       </a>
 
-      <a href="portal.html" class="product-card">
+      <a href="recruiting-network.html" class="product-card">
         <div class="product-icon">
           <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M17 22v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/>
@@ -750,7 +677,6 @@
     <div class="section-head">
       <div class="section-label">Why ScoreBreak</div>
       <h2 class="section-title">Purpose-Built for Coaches, Players, and Leagues</h2>
-      <p class="section-subtitle">The tools, film, hardware, and league platforms that keep coaches, players, and organizations ahead  -  all in one place.</p>
     </div>
     <div class="feature-grid">
 
@@ -829,7 +755,6 @@
     <div class="section-head">
       <div class="section-label">Testimonials</div>
       <h2 class="section-title">What coaches are saying</h2>
-      <p class="section-subtitle">Hear from the coaches and athletes who've used ScoreBreak to reach the next level.</p>
     </div>
     <div class="tc-wrap">
       <div class="tc-track" id="tcTrack">
@@ -948,7 +873,7 @@
           <img src="Logos/white word logo.png?v=2" class="logo-dark" alt="ScoreBreak">
           <img src="Logos/4-nav.png" class="logo-light" alt="ScoreBreak">
         </a>
-        <p class="footer-tagline">We are ScoreBreak  -  the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
+        <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">
           <a href="https://x.com/scorebreak" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 1h2.4L9.7 6.9 15.8 15h-3.7l-3.8-5-4.4 5H1.6l5.7-6.5L1 1h3.8l3.4 4.5L12.6 1zm-.8 12.6h1.3L4.4 2.3H3L11.8 13.6z"/></svg>
@@ -978,7 +903,7 @@
           <li><a href="solutions.html">All Solutions</a></li>
           <li><a href="software.html">Team Software</a></li>
           <li><a href="airborne.html">Airborne</a></li>
-          <li><a href="portal.html">Recruiting Network</a></li>
+          <li><a href="recruiting-network.html">Recruiting Network</a></li>
           <li><a href="leagues.html">League Solutions</a></li>
         </ul>
       </div>
@@ -1060,7 +985,7 @@
   <div class="sb-modal">
     <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
-    <p class="sb-modal-sub">Have questions? We're happy to help  -  no commitment required.</p>
+    <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
       <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
