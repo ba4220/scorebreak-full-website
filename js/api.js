@@ -6,8 +6,17 @@
    - replyTo:  the submitter's email, so a reply goes straight to them
    - body:     plain-text email body, one "Label: value" line per field
    - fields:   the raw values, keyed by input name
+   - turnstileToken: Cloudflare Turnstile token; the API must verify it with Siteverify before sending
    Wire the real API call in SB.api.send. */
 window.SB = window.SB || {};
+
+SB.config = {
+  // Cloudflare Turnstile site key (public). Its secret key belongs only on the API. The real key only works on
+  // the hostnames registered for the widget, so local development uses Cloudflare's always-passing test key.
+  turnstileSiteKey: /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)
+    ? '1x00000000000000000000AA'
+    : '0x4AAAAAAFsh1-4bXRbaMMU5'
+};
 
 (function() {
   var MAIL = {
@@ -60,8 +69,10 @@ window.SB = window.SB || {};
       });
     },
 
-    submitForm: function(formName, entries) {
-      return SB.api.send(buildMessage(formName, entries));
+    submitForm: function(formName, entries, turnstileToken) {
+      var message = buildMessage(formName, entries);
+      message.turnstileToken = turnstileToken || null;
+      return SB.api.send(message);
     }
   };
 })();

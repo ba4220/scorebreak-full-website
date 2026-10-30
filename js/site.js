@@ -3,8 +3,8 @@
    - [data-nav-toggle]: opens/closes the #navMobile menu
    - [data-modal] (optional data-modal-class, default "open"), opened by [data-modal-open="<id>"],
      closed by [data-modal-close], a backdrop click, or Escape
-   - form[data-form="<name>"]: submitted through SB.api.submitForm (js/api.js), which formats the email.
-     A filled honeypot field (bot-field) skips sending. Optional
+   - form[data-form="<name>"]: checked with Cloudflare Turnstile, then submitted through SB.api.submitForm
+     (js/api.js), which formats the email. A filled honeypot field (bot-field) skips both. Optional
      data-form-confirm="<selector>" is revealed on success (its [data-field] spans are filled
      from the submitted values) and data-form-hide="<selector>" is hidden (defaults to the form).
      A failed send keeps the form filled and outlines its submit button red (.is-error) until a send succeeds.
@@ -54,6 +54,80 @@ window.SB = window.SB || {};
   window.matchMedia('(max-width: 900px)').addEventListener('change', function(e) {
     if (!e.matches) setOpen(false);
   });
+})();
+
+/* ── Bot check: Cloudflare Turnstile ──
+   Loaded on first use, one widget per form. The check runs at submit and yields a single-use token;
+   visitors only see a challenge if Cloudflare asks for interaction. */
+SB.turnstile = (function() {
+  var SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+  var loading = null;
+  var widgets = new WeakMap();
+
+  function load() {
+    if (window.turnstile) return Promise.resolve(window.turnstile);
+    if (!loading) {
+      loading = new Promise(function(resolve, reject) {
+        var script = document.createElement('script');
+        script.src = SCRIPT;
+        script.async = true;
+        script.onload = function() { resolve(window.turnstile); };
+        script.onerror = function() {
+          loading = null;
+          reject(new Error('Turnstile failed to load'));
+        };
+        document.head.appendChild(script);
+      });
+    }
+    return loading;
+  }
+
+  function widgetFor(form, ts) {
+    var widget = widgets.get(form);
+    if (widget) return widget;
+    var box = document.createElement('div');
+    box.className = 'sb-turnstile';
+    var submit = form.querySelector('[type="submit"]');
+    submit.parentNode.insertBefore(box, submit);
+    widget = { pending: null, used: false };
+    function settle(err, token) {
+      var pending = widget.pending;
+      widget.pending = null;
+      if (pending) err ? pending.reject(err) : pending.resolve(token);
+    }
+    widget.id = ts.render(box, {
+      sitekey: SB.config.turnstileSiteKey,
+      execution: 'execute',
+      appearance: 'interaction-only',
+      theme: 'dark',
+      callback: function(token) { settle(null, token); },
+      'error-callback': function(code) { settle(new Error('Turnstile error ' + code)); return true; },
+      'timeout-callback': function() { settle(new Error('Turnstile challenge timed out')); }
+    });
+    widgets.set(form, widget);
+    return widget;
+  }
+
+  // Loads the script and renders the widget ahead of submit (called on first focus in a form).
+  function prepare(form) {
+    return load().then(function(ts) { widgetFor(form, ts); });
+  }
+
+  // Resolves with a fresh token for this form; tokens are single-use, so every call runs a new check.
+  function token(form) {
+    if (!SB.config.turnstileSiteKey) return Promise.resolve(null);
+    return load().then(function(ts) {
+      var widget = widgetFor(form, ts);
+      return new Promise(function(resolve, reject) {
+        widget.pending = { resolve: resolve, reject: reject };
+        if (widget.used) ts.reset(widget.id);
+        widget.used = true;
+        ts.execute(widget.id);
+      });
+    });
+  }
+
+  return { prepare: prepare, token: token };
 })();
 
 /* ── Forms ── */
@@ -123,6 +197,9 @@ SB.forms = (function() {
 
   document.querySelectorAll('form[data-form]').forEach(function(form) {
     var name = form.getAttribute('data-form');
+    form.addEventListener('focusin', function() {
+      if (SB.config.turnstileSiteKey) SB.turnstile.prepare(form).catch(function() {});
+    }, { once: true });
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var hook = hooks[name] || {};
@@ -136,7 +213,10 @@ SB.forms = (function() {
       // Started inside .then so an error thrown while building or sending the message also reaches .catch.
       Promise.resolve().then(function() {
         // Bots that fill the hidden honeypot field get a fake success and nothing is sent.
-        return trap && trap.value ? { ok: true } : SB.api.submitForm(name, entries);
+        if (trap && trap.value) return { ok: true };
+        return SB.turnstile.token(form).then(function(token) {
+          return SB.api.submitForm(name, entries, token);
+        });
       }).then(function(result) {
         setError(form, false);
         showConfirmation(form, fields);
