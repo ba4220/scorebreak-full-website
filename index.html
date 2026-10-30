@@ -187,6 +187,8 @@
     .marquee-logo.logo-new-towson  { height: 91px; }
 
     /* Sports section */
+    .sports-more-link { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s ease; }
+    .sports-more-link:hover { color: #fff; }
     .sports-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -491,7 +493,7 @@
         <h1>Powerful film analysis and sideline replay<br><span class="accent">for every level.</span></h1>
         <p class="hero-sub">Professional, easy-to-use film analysis, sideline replay, and recruiting tools built for competitive sports programs. Everything your coaching staff needs  -  in one platform.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
+          <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
         </div>
       </div>
       <div class="hero-image">
@@ -607,7 +609,7 @@
       </a>
     </div>
     <div style="text-align:center; margin-top: 32px;">
-      <a href="other-sports.html" style="font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; transition: color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">and other sports <span style="color:#56C7FF;">→</span></a>
+      <a href="other-sports.html" class="sports-more-link">and other sports <span style="color:#56C7FF;">→</span></a>
     </div>
   </div>
 </section>
@@ -745,13 +747,13 @@
      TESTIMONIALS
 ══════════════════════════════════════ -->
 <section class="section">
-  <div class="container">
+  <div class="container" data-carousel>
     <div class="section-head">
       <div class="section-label">Testimonials</div>
       <h2 class="section-title">What coaches are saying</h2>
     </div>
     <div class="tc-wrap">
-      <div class="tc-track" id="tcTrack">
+      <div class="tc-track" data-carousel-track>
 
         <div class="tc-slide">
           <div class="testimonial-card">
@@ -796,49 +798,14 @@
     </div>
 
     <div class="tc-controls">
-      <button class="tc-btn" id="tcPrev" aria-label="Previous">←</button>
-      <div class="tc-dots" id="tcDots"></div>
-      <button class="tc-btn" id="tcNext" aria-label="Next">→</button>
+      <button class="tc-btn" data-carousel-prev aria-label="Previous">←</button>
+      <div class="tc-dots" data-carousel-dots></div>
+      <button class="tc-btn" data-carousel-next aria-label="Next">→</button>
     </div>
 
   </div>
 </section>
 
-<script>
-(function() {
-  var track = document.getElementById('tcTrack');
-  var dotsWrap = document.getElementById('tcDots');
-  var slides = track.querySelectorAll('.tc-slide');
-  var current = 0;
-  var timer;
-
-  slides.forEach(function(_, i) {
-    var dot = document.createElement('button');
-    dot.className = 'tc-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-    dot.addEventListener('click', function() { goTo(i); resetTimer(); });
-    dotsWrap.appendChild(dot);
-  });
-
-  function goTo(n) {
-    current = (n + slides.length) % slides.length;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dotsWrap.querySelectorAll('.tc-dot').forEach(function(d, i) {
-      d.classList.toggle('active', i === current);
-    });
-  }
-
-  function resetTimer() {
-    clearInterval(timer);
-    timer = setInterval(function() { goTo(current + 1); }, 15000);
-  }
-
-  document.getElementById('tcPrev').addEventListener('click', function() { goTo(current - 1); resetTimer(); });
-  document.getElementById('tcNext').addEventListener('click', function() { goTo(current + 1); resetTimer(); });
-
-  resetTimer();
-})();
-</script>
 
 <!-- ══════════════════════════════════════
      FINAL CTA
@@ -849,7 +816,7 @@
       <h2>See what ScoreBreak can do for your program.</h2>
       <p>Talk to our team — no commitment required.</p>
       <div class="hero-actions" style="justify-content:center;">
-        <a href="#" class="btn btn-primary btn-lg" onclick="sbOpenModal();return false;">Contact Us</a>
+        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
         <a href="solutions.html" class="btn btn-outline btn-lg">Explore Solutions →</a>
       </div>
     </div>
@@ -908,7 +875,7 @@
           <li><a href="about.html">About Us</a></li>
           <li><a href="blog/index.html">Blog</a></li>
           
-          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+          <li><a href="#" data-modal-open="sbContactModal">Contact Us</a></li>
         </ul>
       </div>
 
@@ -933,41 +900,6 @@
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════ -->
-<script>
-(function() {
-  // Dropdowns
-  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
-    var btn = dd.querySelector('.nav-drop-btn');
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = dd.classList.contains('open');
-      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-      if (!isOpen) dd.classList.add('open');
-    });
-  });
-  document.addEventListener('click', function() {
-    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-  });
-
-  // Mobile menu
-  var ham = document.getElementById('navHamburger');
-  var mob = document.getElementById('navMobile');
-  ham.addEventListener('click', function() {
-    mob.classList.toggle('open');
-    ham.classList.toggle('active');
-  });
-  mob.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      mob.classList.remove('open');
-      ham.classList.remove('active');
-    });
-  });
-})();
-</script>
-
 <style>
 @keyframes pulse {
   0%,100%{opacity:1;transform:scale(1)}
@@ -975,16 +907,15 @@
 }
 </style>
 
-<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+<div class="sb-modal-backdrop" id="sbContactModal" data-modal role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
   <div class="sb-modal">
-    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <button class="sb-modal-close" data-modal-close aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
     <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
-      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact-sales">
-        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+      <form id="sbContactForm" name="contact-sales" method="POST" data-form="contact-sales" data-form-hide="#sbModalFormWrap" data-form-confirm="#sbModalConfirm">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
         <div class="sb-form-row">
           <div class="sb-form-group">
@@ -1024,86 +955,18 @@
       <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
-    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+    <div id="sbModalConfirm" class="sb-modal-confirm" hidden>
       <div class="sb-modal-confirm-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+      <p id="sbModalConfirmText">Thanks <span data-field="firstName"></span>, we'll be in touch shortly.</p>
     </div>
   </div>
 </div>
 
-<script>
-function sbOpenModal() {
-  document.getElementById('sbContactModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('sbModalFormWrap').style.display = '';
-  document.getElementById('sbModalConfirm').style.display = 'none';
-  var f = document.getElementById('sbContactForm');
-  if (f) f.reset();
-}
-function sbCloseModal() {
-  document.getElementById('sbContactModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('sbContactModal').addEventListener('click', function(e) {
-  if (e.target === this) sbCloseModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') sbCloseModal();
-});
-var sbContactForm = document.getElementById('sbContactForm');
-if (sbContactForm) {
-  sbContactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var data = new FormData(sbContactForm);
-    var firstName = (data.get('firstName') || '').toString().trim();
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data).toString()
-    }).finally(function() {
-      document.getElementById('sbModalFormWrap').style.display = 'none';
-      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
-      document.getElementById('sbModalConfirm').style.display = 'block';
-    });
-  });
-}
-
-const heroVideo = document.getElementById('heroVideo');
-const heroFadeOverlay = document.getElementById('heroFadeOverlay');
-const heroEndcard = document.getElementById('heroEndcard');
-const heroReplayBtn = document.getElementById('heroReplayBtn');
-if (heroVideo) {
-  heroVideo.playbackRate = 0.75;
-  heroVideo.addEventListener('loadedmetadata', () => {
-    heroVideo.playbackRate = 0.75;
-  });
-}
-if (heroVideo && heroFadeOverlay && heroEndcard && heroReplayBtn) {
-  heroVideo.addEventListener('timeupdate', () => {
-    if (heroVideo.currentTime >= 22.43) {
-      heroFadeOverlay.classList.add('fading');
-    }
-  });
-  heroVideo.addEventListener('ended', () => {
-    heroEndcard.classList.add('visible');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        heroEndcard.classList.add('fade-in');
-      });
-    });
-  });
-  heroReplayBtn.addEventListener('click', () => {
-    heroEndcard.classList.remove('fade-in');
-    heroFadeOverlay.classList.remove('fading');
-    setTimeout(() => {
-      heroEndcard.classList.remove('visible');
-      heroVideo.currentTime = 0;
-      heroVideo.play();
-    }, 600);
-  });
-}
-</script>
+<script src="js/api.js"></script>
+<script src="js/site.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/hero-video.js"></script>
 </body>
 </html>

@@ -182,11 +182,9 @@
 
     /* Confirmation */
     .form-confirm {
-      display: none;
       text-align: center;
       padding: 2rem 1rem;
     }
-    .form-confirm.visible { display: block; }
     .confirm-icon {
       width: 64px; height: 64px;
       background: var(--blue-dim);
@@ -350,7 +348,7 @@
         <p>Fill out the form below and a member of our team will reach out within 1 business day.</p>
 
         <!-- The form -->
-        <form id="demoForm" novalidate>
+        <form id="demoForm" novalidate data-form="demo-request" data-form-confirm="#formConfirm">
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name</label>
@@ -406,11 +404,11 @@
         </form>
 
         <!-- Confirmation message -->
-        <div class="form-confirm" id="formConfirm">
+        <div class="form-confirm" id="formConfirm" hidden>
           <div class="confirm-icon">
             <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 16l7 7 13-13"/></svg>
           </div>
-          <h3>Thanks, <span id="confirmName"></span>!</h3>
+          <h3>Thanks, <span data-field="firstName"></span>!</h3>
           <p>Your demo request has been received. Our team will be in touch within <strong>1 business day</strong> to schedule your personalized walkthrough.</p>
           <a href="index.html" class="btn btn-outline">Back to Home</a>
         </div>
@@ -469,7 +467,7 @@
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="blog/index.html">Blog</a></li>
-          <li><a href="#" onclick="sbOpenModal();return false;">Contact Us</a></li>
+          <li><a href="#" data-modal-open="sbContactModal">Contact Us</a></li>
         </ul>
       </div>
 
@@ -497,15 +495,14 @@
 <!-- ══════════════════════════════════════
      CONTACT SALES MODAL
 ══════════════════════════════════════ -->
-<div class="sb-modal-backdrop" id="sbContactModal" role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
+<div class="sb-modal-backdrop" id="sbContactModal" data-modal role="dialog" aria-modal="true" aria-labelledby="sbModalTitle">
   <div class="sb-modal">
-    <button class="sb-modal-close" onclick="sbCloseModal()" aria-label="Close">✕</button>
+    <button class="sb-modal-close" data-modal-close aria-label="Close">✕</button>
     <h2 id="sbModalTitle">Get in Touch</h2>
     <p class="sb-modal-sub">Have questions? We're happy to help, no commitment required.</p>
 
     <div id="sbModalFormWrap">
-      <form id="sbContactForm" name="contact-sales" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact-sales">
+      <form id="sbContactForm" name="contact-sales" method="POST" data-form="contact-sales" data-form-hide="#sbModalFormWrap" data-form-confirm="#sbModalConfirm">
         <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
 
         <div class="sb-form-row">
@@ -546,95 +543,16 @@
       <p class="sb-modal-phone">Or call us: <a href="tel:18008092102">1.800.809.2102</a></p>
     </div>
 
-    <div id="sbModalConfirm" class="sb-modal-confirm" style="display:none;">
+    <div id="sbModalConfirm" class="sb-modal-confirm" hidden>
       <div class="sb-modal-confirm-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <p id="sbModalConfirmText">Thanks, we'll be in touch shortly.</p>
+      <p id="sbModalConfirmText">Thanks <span data-field="firstName"></span>, we'll be in touch shortly.</p>
     </div>
   </div>
 </div>
 
-<script>
-function sbOpenModal() {
-  document.getElementById('sbContactModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('sbModalFormWrap').style.display = '';
-  document.getElementById('sbModalConfirm').style.display = 'none';
-  var f = document.getElementById('sbContactForm');
-  if (f) f.reset();
-}
-function sbCloseModal() {
-  document.getElementById('sbContactModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('sbContactModal').addEventListener('click', function(e) {
-  if (e.target === this) sbCloseModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') sbCloseModal();
-});
-var sbContactForm = document.getElementById('sbContactForm');
-if (sbContactForm) {
-  sbContactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var data = new FormData(sbContactForm);
-    var firstName = (data.get('firstName') || '').toString().trim();
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data).toString()
-    }).finally(function() {
-      document.getElementById('sbModalFormWrap').style.display = 'none';
-      document.getElementById('sbModalConfirmText').textContent = 'Thanks ' + firstName + ", we'll be in touch shortly.";
-      document.getElementById('sbModalConfirm').style.display = 'block';
-    });
-  });
-}
-</script>
-
-
-<script>
-(function() {
-  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
-    var btn = dd.querySelector('.nav-drop-btn');
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = dd.classList.contains('open');
-      document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-      if (!isOpen) dd.classList.add('open');
-    });
-  });
-  document.addEventListener('click', function() {
-    document.querySelectorAll('.nav-dropdown').forEach(function(d){ d.classList.remove('open'); });
-  });
-  var ham = document.getElementById('navHamburger');
-  var mob = document.getElementById('navMobile');
-  ham.addEventListener('click', function() {
-    mob.classList.toggle('open');
-    ham.classList.toggle('active');
-  });
-  mob.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      mob.classList.remove('open');
-      ham.classList.remove('active');
-    });
-  });
-
-  // Form submission
-  var form = document.getElementById('demoForm');
-  var confirm = document.getElementById('formConfirm');
-  var confirmName = document.getElementById('confirmName');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var firstName = document.getElementById('firstName').value.trim();
-    if (!firstName) { document.getElementById('firstName').focus(); return; }
-    confirmName.textContent = firstName;
-    form.style.display = 'none';
-    confirm.classList.add('visible');
-    confirm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
-})();
-</script>
+<script src="js/api.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
