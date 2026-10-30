@@ -423,6 +423,7 @@
       <div class="contact-form-card">
         <h3>Send us a message</h3>
         <form id="contactForm" novalidate data-form="support-request" data-form-confirm="#contactConfirm">
+          <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div class="form-group">
             <label for="cName">Your Name</label>
             <input type="text" id="cName" name="name" placeholder="Jane Smith" required />
@@ -531,7 +532,7 @@
 
     <div id="sbModalFormWrap">
       <form id="sbContactForm" name="contact-sales" method="POST" data-form="contact-sales" data-form-hide="#sbModalFormWrap" data-form-confirm="#sbModalConfirm">
-        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
         <div class="sb-form-row">
           <div class="sb-form-group">
