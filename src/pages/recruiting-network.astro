@@ -1,0 +1,403 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+<Fragment slot="meta">
+  <title>ScoreBreak Recruiting Network | Lacrosse Recruiting Profiles for College Coaches</title>
+  <meta name="description" content="ScoreBreak Recruiting Network unlocks a college recruiting profile for every athlete on your roster. Coaches subscribe, athletes build their own and get discovered. Game film, highlights, stats, and academics all in one place." />
+  <meta name="keywords" content="lacrosse recruiting portal, college lacrosse recruiting, lacrosse athlete profiles, recruiting software lacrosse, college coach recruiting platform, lacrosse player profiles, high school lacrosse recruiting, ScoreBreak Recruiting Network" />
+  <meta property="og:title" content="ScoreBreak Recruiting Network | Lacrosse Recruiting Profiles for College Coaches" />
+  <meta property="og:description" content="Every athlete on your roster can unlock a college recruiting profile and build it themselves. Game film, highlights, stats, and academics all in one place for college coaches to discover." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/recruiting-network.html" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ScoreBreak Recruiting Network | Lacrosse Recruiting Profiles" />
+  <meta name="twitter:description" content="Every athlete on your roster can unlock a college recruiting profile and build it themselves. Game film, highlights, stats, and academics all in one place." />
+</Fragment>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Hero ─────────────────────────────────────────────── */
+    /* ── Portal Features Section ──────────────────────────── */
+    .portal-features-section { background: var(--bg2); }
+    /* Reuse .feature-grid (3-col from styles.css) */
+
+    /* ── Stats Section ────────────────────────────────────── */
+    .portal-stats-section {
+      background: var(--bg3);
+      border-top: 1px solid var(--border-sub);
+      border-bottom: 1px solid var(--border-sub);
+    }
+    .portal-stats-inner {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+    .portal-stats-inner .section-title {
+      margin-bottom: 3rem;
+    }
+    .portal-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .portal-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+    }
+    .portal-stat-value {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .portal-stat-label {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-top: .1rem;
+    }
+
+    /* ── Pricing Section ──────────────────────────────────── */
+    .portal-pricing-section { background: var(--bg2); }
+    .pricing-compare-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.75rem;
+      font-size: .92rem;
+      color: var(--blue);
+      font-weight: 600;
+      transition: opacity .2s;
+      cursor: pointer;
+    }
+    .pricing-compare-link:hover { opacity: .75; }
+
+    /* ── Support Section ──────────────────────────────────── */
+    .support-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .support-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(86,199,255,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .support-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .support-inner .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      margin-bottom: 1.25rem;
+    }
+    .support-inner p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Interactive Phone Showcase ──────────────────────── */
+    .phone-showcase {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 5rem;
+      align-items: center;
+    }
+    .phone-showcase-text .section-label { margin-bottom: .75rem; display: block; }
+    .phone-showcase-text h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .phone-showcase-text > p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      max-width: 460px;
+    }
+    .phone-bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .phone-bullet-list li {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .93rem;
+      color: var(--text-muted);
+    }
+    .phone-bullet-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--blue-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+    .phone-bullet-icon svg { width: 11px; height: 11px; }
+
+    @keyframes phoneFloat {
+      from { transform: translateY(0px); }
+      to   { transform: translateY(-4px); }
+    }
+    .phone-scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+      cursor: default;
+    }
+    .phone-float {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow:
+        0 30px 60px rgba(86,199,255,.15),
+        0 20px 50px rgba(0,0,0,.55),
+        0 0 0 1px rgba(86,199,255,.1);
+      animation: phoneFloat 3s ease-in-out infinite alternate;
+    }
+    .phone-scene:hover .phone-float {
+      animation-play-state: paused;
+    }
+    .phone-float img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .phone-glow-shadow {
+      width: 160px;
+      height: 14px;
+      background: rgba(86,199,255,.18);
+      border-radius: 50%;
+      filter: blur(10px);
+      margin-top: 6px;
+      animation: phoneFloat 3s ease-in-out infinite alternate;
+    }
+    .phone-scene:hover .phone-glow-shadow {
+      animation-play-state: paused;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .portal-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .phone-showcase { grid-template-columns: 1fr; gap: 3rem; }
+      .phone-scene { margin: 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .portal-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .testimonials-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</Fragment>
+
+<section class="split-hero split-hero--portrait">
+  <div class="container">
+    <div class="split-hero-inner">
+      <div class="split-hero-text">
+        <div class="split-hero-eyebrow">Recruiting Network</div>
+        <h1>Get in front of <span style="white-space:nowrap;">college coaches.</span><br><span class="accent">On the platform <span style="white-space:nowrap;">they already use.</span></span></h1>
+        <p class="hero-sub">Every athlete on a team subscription gets a recruiting profile with their own film and self-clipped highlights. College coaches already use ScoreBreak for film work, so your players are a couple of clicks away.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+          <a href="#features" class="btn btn-outline btn-lg">Learn More ↓</a>
+        </div>
+      </div>
+      <div class="split-hero-media split-hero-media--device">
+        <img src="recruiting-network/portal-hero-iphone.png" alt="ScoreBreak athlete recruiting profile on an iPhone">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PORTAL FEATURES
+════════════════════════════════════════════════════════════ -->
+<section class="section portal-features-section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">How the Recruiting Network Works</h2>
+      <p class="section-subtitle">One team subscription. Every athlete can build a profile. College coaches discover talent.</p>
+    </div>
+    <div class="feature-grid">
+
+      <!-- Recruiting Profiles, Unlocked -->
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <h3>Recruiting Profiles, Unlocked</h3>
+        <p>Once your team's on ScoreBreak, build your own profile in a few taps  -  your film and highlights are ready to pull right in.</p>
+      </div>
+
+      <!-- Easy Clipping for Athletes -->
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            <line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/>
+          </svg>
+        </div>
+        <h3>Easy Clipping for Athletes</h3>
+        <p>Clip your best plays right from the game film automatically sorted by type. Coaches see exactly what matters.</p>
+      </div>
+
+      <!-- College Coach Discovery -->
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3>College Coach Discovery</h3>
+        <p>College coaches search and filter by class, position, and status (such as uncommitted)  -  so the right coaches find you.</p>
+      </div>
+
+      <!-- Full Game Film Access -->
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <h3>Full Game Film Access</h3>
+        <p>Coaches can watch your full games, not just highlights  -  all linked right to your profile.</p>
+      </div>
+
+      <!-- Highlight Reels -->
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3>Highlight Reels</h3>
+        <p>Easily compile your best plays into a highlight reel  -  available right on your profile.</p>
+      </div>
+
+      <!-- Shareable Profile Links -->
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+          </svg>
+        </div>
+        <h3>Share Profiles Anywhere</h3>
+        <p>Share your profile with any coach using one simple link  -  no login needed.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════════════ -->
+<section class="section" style="border-top:1px solid var(--border-sub);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">What Coaches Are Saying</div>
+      <h2 class="section-title">Trusted by coaches and programs nationwide</h2>
+    </div>
+    <div class="testimonials-grid" style="grid-template-columns:repeat(2,1fr);">
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">ScoreBreak Recruiting Network offers an unmatched experience, giving us <strong>unprecedented access to watch club film when we're unable to attend tournaments.</strong></p>
+        <div class="testimonial-author">
+          <img src="ncaa-d1/osu-best.png" alt="Ohio State" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:var(--card-bg2);padding:4px;flex-shrink:0;">
+          <div>
+            <div class="testimonial-name">Ryan Danehy</div>
+            <div class="testimonial-title">Assistant Coach, Ohio State Men's Lacrosse</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">The expansion of ScoreBreak into club lacrosse with ScoreBreak Recruiting Network is a game-changer for us at Mad Dog. <strong>The additional exposure our players gain by having their film available for NCAA coaches to view is tremendous.</strong> Plus, being able to review game film with our teams is another invaluable tool in our player-development toolbox.</p>
+        <div class="testimonial-author">
+          <img src="ncaa-d1/mad-dog.png" alt="Mad Dog Lacrosse" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:var(--card-bg2);padding:4px;flex-shrink:0;">
+          <div>
+            <div class="testimonial-name">Mike Hungerford</div>
+            <div class="testimonial-title">Director, Mad Dog Lacrosse</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PRICING
+════════════════════════════════════════════════════════════ -->
+<section class="section portal-pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Simple team pricing</h2>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <div class="pricing-card featured" style="max-width:480px;width:100%;">
+        <span class="pricing-badge">Team Plan</span>
+        <div class="pricing-name">ScoreBreak Recruiting Network</div>
+        <div class="pricing-price">
+          <span class="pricing-amount">$599</span>
+          <span class="pricing-period">/team/yr</span>
+        </div>
+        <div class="pricing-note">Multi-team discounts available</div>
+        <div class="pricing-desc">Full Recruiting Network access for your entire program. Coaches and directors sign their team up once  -  every athlete on the roster can build their own profile.</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Unlimited athlete profiles  -  unlocked for the full roster
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Game film &amp; highlight reel hosting
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Simple clipping and highlight reel tools
+          </li>
+          <li class="pricing-feature">
+            <span class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></span>
+            Discoverable by college coaches nationwide
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+      <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo →</a>
+    </div>
+  </div>
+</section>
+
+</Layout>

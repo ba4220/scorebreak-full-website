@@ -1,0 +1,350 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+<Fragment slot="meta">
+  <title>Request a Demo | ScoreBreak Film Analysis &amp; Recruiting Platform</title>
+  <meta name="description" content="See ScoreBreak in action. Request a personalized demo of our film analysis software, Airborne sideline replay system, and Recruiting Network." />
+  <meta name="keywords" content="ScoreBreak demo, film analysis software demo, sideline replay demo, lacrosse recruiting demo, Hudl alternative demo, sports coaching software demo" />
+  <meta property="og:title" content="Request a Demo | ScoreBreak" />
+  <meta property="og:description" content="See ScoreBreak in action. Get a personalized walkthrough of film analysis, sideline replay, and recruiting tools built for your program." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/demo.html" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Request a Demo | ScoreBreak" />
+  <meta name="twitter:description" content="See ScoreBreak in action. Get a personalized walkthrough of film analysis, sideline replay, and recruiting tools." />
+</Fragment>
+<Fragment slot="head">
+  <style is:inline>
+    .demo-page {
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 4rem) 0 4rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .demo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 960px;
+      width: 100%;
+    }
+    .demo-info {}
+    .demo-info .section-label { font-size: .9rem; }
+    .demo-info .section-label { margin-bottom: .75rem; }
+    .demo-info h1 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.12;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .demo-info h1 span { color: var(--blue); }
+    .demo-info p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .demo-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .demo-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+    }
+    .demo-benefit-icon {
+      width: 36px; height: 36px;
+      flex-shrink: 0;
+      background: var(--blue-dim);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .demo-benefit-icon svg { width: 18px; height: 18px; }
+    .demo-benefit-text strong {
+      display: block;
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .2rem;
+    }
+    .demo-benefit-text span {
+      font-size: .85rem;
+      color: var(--text-muted);
+    }
+
+    /* Form card */
+    .demo-form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .demo-form-card h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: .4rem;
+      color: var(--text);
+    }
+    .demo-form-card p {
+      font-size: .88rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group:last-of-type { margin-bottom: 1.5rem; }
+    .form-group label {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .02em;
+    }
+    .form-group label span { color: var(--text-dim); font-weight: 400; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: .7rem 1rem;
+      background: var(--bg);
+      border: 1.5px solid var(--border-sub);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: .92rem;
+      font-family: var(--font);
+      transition: border-color .15s, box-shadow .15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-dim);
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238A95A8' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-dim); }
+    [data-theme="light"] .form-group input,
+    [data-theme="light"] .form-group select,
+    [data-theme="light"] .form-group textarea { background: #fff; }
+    [data-theme="light"] .form-group select {
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235A6478' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+    }
+    .form-submit-btn {
+      width: 100%;
+      padding: .9rem;
+      background: var(--blue);
+      color: #0A0E1A;
+      font-size: 1rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+      letter-spacing: .02em;
+    }
+    [data-theme="light"] .form-submit-btn { color: #fff; }
+    .form-submit-btn:hover { opacity: .9; transform: translateY(-1px); }
+    .form-privacy {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: .78rem;
+      color: var(--text-dim);
+    }
+
+    /* Confirmation */
+    .form-confirm {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .confirm-icon {
+      width: 64px; height: 64px;
+      background: var(--blue-dim);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--blue);
+    }
+    .confirm-icon svg { width: 32px; height: 32px; }
+    .form-confirm h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: .75rem;
+    }
+    .form-confirm p {
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .demo-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .demo-form-card { padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .demo-page { padding: calc(var(--nav-h) + 2rem) 0 3rem; }
+      .demo-form-card { padding: 1.5rem 1.25rem; border-radius: 16px; }
+      .demo-info h1 { font-size: clamp(1.6rem, 7vw, 2rem); }
+      .demo-info p { margin-bottom: 2rem; }
+    }
+  </style>
+</Fragment>
+
+<div class="demo-page">
+  <div class="container">
+    <div class="demo-wrap">
+
+      <!-- Info Column -->
+      <div class="demo-info">
+        <div class="section-label">Get Started</div>
+        <h1>See <span>ScoreBreak</span> in Action.</h1>
+        <p>Request a demo and we'll show you exactly how ScoreBreak can work for your program  -  from film analysis to sideline replay to recruiting.</p>
+        <div class="demo-benefits">
+          <div class="demo-benefit">
+            <div class="demo-benefit-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg>
+            </div>
+            <div class="demo-benefit-text">
+              <strong>Response within 1 business day</strong>
+              <span>Our team responds quickly to every demo request.</span>
+            </div>
+          </div>
+          <div class="demo-benefit">
+            <div class="demo-benefit-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M6 9h6M9 6v6"/></svg>
+            </div>
+            <div class="demo-benefit-text">
+              <strong>Personalized to your sport &amp; program</strong>
+              <span>We tailor every demo to your team's specific needs.</span>
+            </div>
+          </div>
+          <div class="demo-benefit">
+            <div class="demo-benefit-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9l4 4 6-7"/></svg>
+            </div>
+            <div class="demo-benefit-text">
+              <strong>No commitment required</strong>
+              <span>See the platform in action before making any decisions.</span>
+            </div>
+          </div>
+          <div class="demo-benefit">
+            <div class="demo-benefit-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2H6a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2z"/><path d="M9 13a2 2 0 100-4 2 2 0 000 4z"/></svg>
+            </div>
+            <div class="demo-benefit-text">
+              <strong>Live product walkthrough</strong>
+              <span>A real human shows you the software  -  not just a video.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Column -->
+      <div class="demo-form-card">
+        <h2>Request a Demo</h2>
+        <p>Fill out the form below and a member of our team will reach out within 1 business day.</p>
+
+        <!-- The form -->
+        <form id="demoForm" novalidate data-form="demo-request" data-form-confirm="#formConfirm">
+          <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@school.edu" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone <span>(optional)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+          </div>
+          <div class="form-group">
+            <label for="organization">School or Organization</label>
+            <input type="text" id="organization" name="organization" placeholder="Jefferson Academy" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sport">Sport</label>
+              <select id="sport" name="sport" required>
+                <option value="" disabled selected>Select a sport</option>
+                <option value="lacrosse">Lacrosse</option>
+                <option value="football">Football</option>
+                <option value="basketball">Basketball</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="role">Role</label>
+              <select id="role" name="role" required>
+                <option value="" disabled selected>Select your role</option>
+                <option value="head-coach">Head Coach</option>
+                <option value="assistant-coach">Assistant Coach</option>
+                <option value="athletic-director">Athletic Director</option>
+                <option value="league-admin">League Administrator</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message <span>(optional)</span></label>
+            <textarea id="message" name="message" placeholder="Tell us about your program and what you're hoping to accomplish with ScoreBreak..."></textarea>
+          </div>
+          <button type="submit" class="form-submit-btn">Request a Demo →</button>
+          <p style="text-align:center; margin-top:1.25rem; font-size:.95rem; color:var(--text-muted);">Or call us at <a href="tel:18008092102" style="color:var(--blue); font-weight:600; text-decoration:none;">1.800.809.2102</a></p>
+          <p class="form-privacy">By submitting, you agree to our <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener" style="color:var(--blue)">Privacy Policy</a> and <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener" style="color:var(--blue)">Terms &amp; Conditions</a>.</p>
+        </form>
+
+        <!-- Confirmation message -->
+        <div class="form-confirm" id="formConfirm" hidden>
+          <div class="confirm-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 16l7 7 13-13"/></svg>
+          </div>
+          <h3>Thanks, <span data-field="firstName"></span>!</h3>
+          <p>Your demo request has been received. Our team will be in touch within <strong>1 business day</strong> to schedule your personalized walkthrough.</p>
+          <a href="index.html" class="btn btn-outline">Back to Home</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</Layout>

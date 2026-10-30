@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout>
+<Fragment slot="meta">
+  <title>Blog | ScoreBreak</title>
+  <meta name="description" content="Updates, announcements, and insights from the ScoreBreak team." />
+  <meta property="og:title" content="Blog | ScoreBreak" />
+  <meta property="og:description" content="Updates, announcements, and insights from the ScoreBreak team." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/blog/index.html" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog | ScoreBreak" />
+  <meta name="twitter:description" content="Updates, announcements, and insights from the ScoreBreak team." />
+</Fragment>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Hero ── */
+    .blog-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero .section-label { font-size: .9rem; }
+    .blog-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.12;
+      margin: 1rem auto 1.25rem;
+      position: relative;
+    }
+    .blog-hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ── Post list ── */
+    .post-list { max-width: 760px; margin: 0 auto; }
+    .post-entry { padding: 2rem 0; border-top: 1px solid var(--border-sub); }
+    .post-entry:last-child { border-bottom: 1px solid var(--border-sub); }
+    .post-entry-meta {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: .6rem;
+    }
+    .post-entry h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.3;
+      margin-bottom: .6rem;
+    }
+    .post-entry h2 a { transition: color .2s; }
+    .post-entry h2 a:hover { color: var(--blue); }
+    .post-entry-excerpt {
+      font-size: .98rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 600px) {
+      .blog-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+      .post-entry h2 { font-size: 1.25rem; }
+    }
+  </style>
+</Fragment>
+
+<section class="blog-hero">
+  <div class="container">
+    <div class="section-label">Blog</div>
+    <h1>Make the Change.</h1>
+    <p class="blog-hero-sub">Updates, announcements, and insights from the ScoreBreak team.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     POSTS
+══════════════════════════════════════ -->
+<section class="section" style="padding-top:1rem;">
+  <div class="container">
+    <div class="post-list">
+      <article class="post-entry">
+        <div class="post-entry-meta"><time datetime="2023-04-02">April 2, 2023</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
+        <h2><a href="v6-recordable-film-sessions.html">v6 - Recordable Film Sessions</a></h2>
+        <p class="post-entry-excerpt">Today, we&#x27;re introducing version 6 of ScoreBreak for iOS, iPadOS, and macOS.</p>
+      </article>
+      <article class="post-entry">
+        <div class="post-entry-meta"><time datetime="2023-04-02">April 2, 2023</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
+        <h2><a href="scorebreak-version-60-recordable-film-sessions.html">ScoreBreak version 6.0 to enhance coaching solutions with Recordable Film Sessions</a></h2>
+        <p class="post-entry-excerpt">ScoreBreak, a leading sports technology startup, has announced the release of version 6 of its iOS, iPadOS, and macOS software, featuring an innovative recordable film session feature.</p>
+      </article>
+      <article class="post-entry">
+        <div class="post-entry-meta"><time datetime="2023-03-29">March 29, 2023</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
+        <h2><a href="looking-back-at-scorebreak-version-5.html">Looking back at ScoreBreak version 5: A comprehensive update</a></h2>
+        <p class="post-entry-excerpt">ScoreBreak version 5 was active from December 29, 2021, to March 30, 2023, for a total of 457 days.</p>
+      </article>
+      <article class="post-entry">
+        <div class="post-entry-meta"><time datetime="2022-11-29">November 29, 2022</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
+        <h2><a href="notes-all-over.html">Notes all over</a></h2>
+        <p class="post-entry-excerpt">ScoreBreak version 5.2 focuses on the experience of taking notes on clips.</p>
+      </article>
+      <article class="post-entry">
+        <div class="post-entry-meta"><time datetime="2022-06-02">June 2, 2022</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
+        <h2><a href="scorebreak-chat-v2.html">ScoreBreak Chat v2</a></h2>
+        <p class="post-entry-excerpt">Staying in communication is instrumental to your team&#x27;s development, organization, and performance.</p>
+      </article>
+      <article class="post-entry">
+        <div class="post-entry-meta"><time datetime="2022-01-24">January 24, 2022</time> <span aria-hidden="true">&middot;</span> Tommy Wright</div>
+        <h2><a href="scorebreak-web-v4.html">ScoreBreak Web v4</a></h2>
+        <p class="post-entry-excerpt">ScoreBreak Web App v4 is an update focused on power user tools for content creation and advanced editing interactions.</p>
+      </article>
+      <article class="post-entry">
+        <div class="post-entry-meta"><time datetime="2022-01-04">January 4, 2022</time> <span aria-hidden="true">&middot;</span> Jordan Hendry</div>
+        <h2><a href="scorebreak-v5.html">ScoreBreak v5</a></h2>
+        <p class="post-entry-excerpt">An ode to professional coaches, Version 5 extends upon ScoreBreak&#x27;s foundation with powerful new features and functionalities.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</Layout>

@@ -1,0 +1,773 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+<Fragment slot="meta">
+  <title>ScoreBreak | Film Analysis and Sideline Replay for Competitive Sports Programs</title>
+  <meta name="description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
+  <meta name="keywords" content="Hudl alternative, football film analysis software, lacrosse film analysis, sideline replay system, sports video analysis platform, high school coaching software, Recruiting Network for lacrosse, ScoreBreak, Airborne sideline replay">
+  <meta property="og:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
+  <meta property="og:description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scorebreak.io">
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ScoreBreak | Film Analysis, Sideline Replay &amp; Recruiting Platform">
+  <meta name="twitter:description" content="Film analysis, live stats, and sideline replay for competitive sports programs. Custom tagging, AI reporting, and recruiting profiles for programs at every level.">
+</Fragment>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Homepage-specific styles ── */
+
+    /* Wider container for homepage  -  overrides styles.css default 1200px */
+    .container {
+      max-width: 1400px;
+      padding: 0 2.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      align-items: center;
+      gap: 2.5rem;
+      padding: calc(var(--nav-h) + 4.5rem) 0 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+
+    .hero h1 {
+      font-size: clamp(2.232rem, 4.65vw, 3.72rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .hero h1 .accent { color: var(--blue); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 3664/2160;
+      background: transparent;
+      border-radius: 8px;
+    }
+
+    .hero-fade-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 9;
+      border-radius: 8px;
+    }
+    .hero-fade-overlay.fading {
+      opacity: 1;
+    }
+
+    .hero-endcard {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      background: var(--bg);
+      opacity: 0;
+      transition: opacity .5s ease-in-out;
+      z-index: 10;
+      border-radius: 8px;
+      overflow: visible;
+      padding: 2rem;
+    }
+    .hero-endcard.visible { display: flex; }
+    .hero-endcard.fade-in { opacity: 1; }
+    /* Hide the layers under the end card once it covers them, so nothing bleeds through its rounded edges */
+    .hero-image:has(.hero-endcard.fade-in) .hero-fade-overlay { opacity: 0; }
+    .hero-image:has(.hero-endcard.fade-in) #heroVideo { visibility: hidden; }
+    .hero-endcard-mockup {
+      width: 520px;
+      max-width: 85%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .hero-replay-btn {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .6rem 1.4rem;
+      background: #56C7FF;
+      color: #0A0E1A;
+      border: none;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      opacity: 1 !important;
+      transition: background .2s ease;
+    }
+    .hero-replay-btn:hover {
+      background: #3db8f5;
+      opacity: 1 !important;
+    }
+
+
+    /* Logos strip  -  school logos marquee */
+    .logos-strip {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border-sub);
+      border-bottom: 1px solid var(--border-sub);
+      overflow: hidden;
+    }
+    .logos-strip-label {
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+    }
+    .marquee-wrapper {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      width: max-content;
+      animation: marqueeScroll 65s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .logo-cell {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    /* Baseline logo height. Some logo files have significant built-in
+       canvas padding around the actual mark, so those get a taller
+       override below to make the visible mark read at the same size. */
+    .marquee-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      transition: opacity .2s;
+    }
+    .marquee-logo:hover { opacity: .8; }
+    .marquee-logo.logo-stanford    { height: 70px; }
+    .marquee-logo.logo-first-class { height: 73px; }
+    .marquee-logo.logo-culver      { height: 60px; }
+    .marquee-logo.logo-cornell     { height: 57px; }
+    .marquee-logo.logo-denver2     { height: 63px; }
+    .marquee-logo.logo-new-towson  { height: 91px; }
+
+    /* Sports section */
+    .sports-more-link { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s ease; }
+    .sports-more-link:hover { color: #fff; }
+    .sports-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .sport-card-basketball .sport-card-bg {
+      background: linear-gradient(135deg, #1A0D00 0%, #2D1800 50%, #3D2000 100%);
+    }
+    .sport-card-basketball .sport-card-tag { background: rgba(255,160,60,.25); color: #FFA03C; }
+    /* 16:9 by default, but taller when the text needs it. That only works while the card itself doesn't
+       clip (overflow: visible), so the background layers below clip and round themselves instead. */
+    .sport-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      aspect-ratio: 16/9;
+      width: 100%;
+      min-width: 0; /* keep the column width; only the height may grow */
+      align-self: stretch;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      text-decoration: none;
+      color: #fff;
+      transition: transform .3s;
+    }
+    .sport-card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border-radius: inherit;
+      overflow: hidden;
+    }
+    .sport-card-lacrosse .sport-card-bg {
+      background: linear-gradient(135deg, #0A0E1A 0%, #0F2040 50%, #1A3060 100%);
+    }
+    .sport-card-football .sport-card-bg {
+      background-color: #111D2E;
+      background-image:
+        linear-gradient(rgba(86, 199, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(86, 199, 255, 0.1) 1px, transparent 1px);
+      background-size: 40px 20px;
+    }
+    .sport-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
+      border-radius: inherit;
+      z-index: 1;
+    }
+    .sport-card-content {
+      position: relative;
+      z-index: 2;
+    }
+    /* Keeps the first line clear of the arrow when the text fills the card (no effect when there's room) */
+    .sport-card-content::before {
+      content: '';
+      float: right;
+      width: 2.25rem;
+      height: 1.75rem;
+    }
+    .sport-card-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      margin-bottom: .75rem;
+    }
+    .sport-card-lacrosse .sport-card-tag { background: rgba(86,199,255,.25); color: #56C7FF; }
+    .sport-card-football .sport-card-tag { background: linear-gradient(135deg, var(--blue) 0%, #0080CC 100%); color: #fff; }
+    .sport-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+    }
+    .sport-card p {
+      font-size: .9rem;
+      opacity: .8;
+      line-height: 1.5;
+      max-width: 320px;
+    }
+    .sport-card-arrow {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      z-index: 2;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: background .2s, transform .2s;
+    }
+    .sport-card:hover .sport-card-arrow { background: rgba(255,255,255,.2); }
+
+    /* Products grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: background .2s, border-color .2s, transform .2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover { border-color: var(--border); }
+    .product-icon {
+      width: 52px; height: 52px;
+      background: var(--blue-dim);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--blue);
+    }
+    .product-icon svg { width: 26px; height: 26px; }
+    .product-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .5rem; letter-spacing: -.01em; }
+    .product-card p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem; flex: 1; }
+    .product-link {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    /* Purpose-built */
+    .purpose-section { background: var(--bg2); }
+
+    /* Testimonials with scroll */
+    .testimonials-scroll {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Testimonials carousel */
+    .tc-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .tc-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    .tc-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .tc-slide .testimonial-card {
+      max-width: 680px;
+      width: 100%;
+    }
+    .tc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .tc-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .tc-btn:hover { background: var(--card-bg2); border-color: var(--border); }
+    .tc-dots {
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+    }
+    .tc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s, transform .2s;
+    }
+    .tc-dot.active {
+      background: var(--blue);
+      transform: scale(1.4);
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; gap: 2.5rem; }
+      .hero-image { aspect-ratio: 3664/2160; }
+      .sports-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-scroll { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: calc(var(--nav-h) + 3rem); }
+      .hero h1 { font-size: clamp(1.767rem, 7.44vw, 2.232rem); }
+      .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
+      .hero-endcard-mockup { width: 100%; max-width: 100%; }
+      .hero-replay-btn { font-size: .85rem; padding: .55rem 1.3rem; opacity: 1; }
+      /* 200px minimum height, as a spacer: a min-height on the card would stop it growing to fit its text */
+      .sport-card::before { content: ''; height: calc(200px - 4rem); }
+      .products-grid { grid-template-columns: 1fr; }
+      .marquee-logo { height: 40px; }
+      .marquee-logo.logo-stanford    { height: 54px; }
+      .marquee-logo.logo-first-class { height: 56px; }
+      .marquee-logo.logo-culver      { height: 46px; }
+      .marquee-logo.logo-cornell     { height: 44px; }
+      .marquee-logo.logo-denver2     { height: 48px; }
+      .marquee-logo.logo-new-towson  { height: 70px; }
+      .tc-btn { width: 44px; height: 44px; }
+    }
+  </style>
+</Fragment>
+
+<section style="padding: 0;">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Powerful film analysis and sideline replay<br><span class="accent">for every level.</span></h1>
+        <p class="hero-sub">Professional, easy-to-use film analysis, sideline replay, and recruiting tools built for competitive sports programs. Everything your coaching staff needs  -  in one platform.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <video autoplay muted playsinline id="heroVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0E1A;border-radius:8px;">
+          <source src="website-demo8-optimized.mp4" type="video/mp4">
+        </video>
+        <div class="hero-fade-overlay" id="heroFadeOverlay"></div>
+        <div class="hero-endcard" id="heroEndcard">
+          <img src="software/final-software-mockup-basketball.png" alt="ScoreBreak Software" class="hero-endcard-mockup">
+          <button class="hero-replay-btn" id="heroReplayBtn" aria-label="Replay demo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0E1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+            Replay Demo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     LOGOS STRIP
+══════════════════════════════════════ -->
+<div class="logos-strip">
+  <div class="logos-strip-label">Trusted by programs nationwide</div>
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <span class="logo-cell"><img src="ncaa-d1/denver2.png"              class="marquee-logo logo-denver2" alt="Denver"></span>
+      <span class="logo-cell"><img src="ncaa-d1/duke2.png"                class="marquee-logo" alt="Duke"></span>
+      <span class="logo-cell"><img src="ncaa-d1/yale.png"                 class="marquee-logo" alt="Yale"></span>
+      <span class="logo-cell"><img src="ncaa-d1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
+      <span class="logo-cell"><img src="ncaa-d1/unc.png"                  class="marquee-logo" alt="UNC"></span>
+      <span class="logo-cell"><img src="ncaa-d1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
+      <span class="logo-cell"><img src="ncaa-d1/army.png"                 class="marquee-logo" alt="Army"></span>
+      <span class="logo-cell"><img src="ncaa-d1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
+      <span class="logo-cell"><img src="ncaa-d1/cornell.png"              class="marquee-logo logo-cornell" alt="Cornell"></span>
+      <span class="logo-cell"><img src="ncaa-d1/marquette.png"            class="marquee-logo" alt="Marquette"></span>
+      <span class="logo-cell"><img src="ncaa-d1/first-class.png"          class="marquee-logo logo-first-class" alt="First Class Lacrosse"></span>
+      <span class="logo-cell"><img src="ncaa-d1/princeton.png"            class="marquee-logo" alt="Princeton"></span>
+      <span class="logo-cell"><img src="ncaa-d1/brown.png"                class="marquee-logo" alt="Brown"></span>
+      <span class="logo-cell"><img src="ncaa-d1/rutgers.png"              class="marquee-logo" alt="Rutgers"></span>
+      <span class="logo-cell"><img src="ncaa-d1/northwestern.png"         class="marquee-logo" alt="Northwestern"></span>
+      <span class="logo-cell"><img src="ncaa-d1/syracuse.png"             class="marquee-logo" alt="Syracuse"></span>
+      <span class="logo-cell"><img src="ncaa-d1/new-towson.png"           class="marquee-logo logo-new-towson" alt="Towson"></span>
+      <span class="logo-cell"><img src="ncaa-d1/umd.png"                  class="marquee-logo" alt="Maryland"></span>
+      <span class="logo-cell"><img src="ncaa-d1/culver.png"               class="marquee-logo logo-culver" alt="Culver"></span>
+      <span class="logo-cell"><img src="ncaa-d1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
+      <span class="logo-cell"><img src="ncaa-d1/saint-josephs.png"     class="marquee-logo" alt="Saint Joseph's"></span>
+      <span class="logo-cell"><img src="ncaa-d1/mercer.png"               class="marquee-logo" alt="Mercer"></span>
+      <span class="logo-cell"><img src="ncaa-d1/osu-best.png"                 class="marquee-logo" alt="Ohio State"></span>
+      <span class="logo-cell"><img src="ncaa-d1/nba-academy-logo.png" class="marquee-logo" alt="NBA Academy"></span>
+      <!-- Duplicate for seamless loop -->
+      <span class="logo-cell"><img src="ncaa-d1/denver2.png"              class="marquee-logo logo-denver2" alt="Denver"></span>
+      <span class="logo-cell"><img src="ncaa-d1/duke2.png"                class="marquee-logo" alt="Duke"></span>
+      <span class="logo-cell"><img src="ncaa-d1/yale.png"                 class="marquee-logo" alt="Yale"></span>
+      <span class="logo-cell"><img src="ncaa-d1/notre-dame.png"           class="marquee-logo" alt="Notre Dame"></span>
+      <span class="logo-cell"><img src="ncaa-d1/unc.png"                  class="marquee-logo" alt="UNC"></span>
+      <span class="logo-cell"><img src="ncaa-d1/stanford.png"             class="marquee-logo logo-stanford" alt="Stanford"></span>
+      <span class="logo-cell"><img src="ncaa-d1/army.png"                 class="marquee-logo" alt="Army"></span>
+      <span class="logo-cell"><img src="ncaa-d1/alabama.png"              class="marquee-logo" alt="Alabama"></span>
+      <span class="logo-cell"><img src="ncaa-d1/cornell.png"              class="marquee-logo logo-cornell" alt="Cornell"></span>
+      <span class="logo-cell"><img src="ncaa-d1/marquette.png"            class="marquee-logo" alt="Marquette"></span>
+      <span class="logo-cell"><img src="ncaa-d1/first-class.png"          class="marquee-logo logo-first-class" alt="First Class Lacrosse"></span>
+      <span class="logo-cell"><img src="ncaa-d1/princeton.png"            class="marquee-logo" alt="Princeton"></span>
+      <span class="logo-cell"><img src="ncaa-d1/brown.png"                class="marquee-logo" alt="Brown"></span>
+      <span class="logo-cell"><img src="ncaa-d1/rutgers.png"              class="marquee-logo" alt="Rutgers"></span>
+      <span class="logo-cell"><img src="ncaa-d1/northwestern.png"         class="marquee-logo" alt="Northwestern"></span>
+      <span class="logo-cell"><img src="ncaa-d1/syracuse.png"             class="marquee-logo" alt="Syracuse"></span>
+      <span class="logo-cell"><img src="ncaa-d1/new-towson.png"           class="marquee-logo logo-new-towson" alt="Towson"></span>
+      <span class="logo-cell"><img src="ncaa-d1/umd.png"                  class="marquee-logo" alt="Maryland"></span>
+      <span class="logo-cell"><img src="ncaa-d1/culver.png"               class="marquee-logo logo-culver" alt="Culver"></span>
+      <span class="logo-cell"><img src="ncaa-d1/salisbury.png"            class="marquee-logo" alt="Salisbury"></span>
+      <span class="logo-cell"><img src="ncaa-d1/saint-josephs.png"     class="marquee-logo" alt="Saint Joseph's"></span>
+      <span class="logo-cell"><img src="ncaa-d1/mercer.png"               class="marquee-logo" alt="Mercer"></span>
+      <span class="logo-cell"><img src="ncaa-d1/osu-best.png"                 class="marquee-logo" alt="Ohio State"></span>
+      <span class="logo-cell"><img src="ncaa-d1/nba-academy-logo.png" class="marquee-logo" alt="NBA Academy"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SPORTS SECTION
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Built for your sport</h2>
+    </div>
+    <div class="sports-grid">
+      <a href="lacrosse.html" class="sport-card sport-card-lacrosse">
+        <div class="sport-card-bg"><img src="airborne-r/umd-ipad.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;"></div>
+        <div class="sport-card-arrow">→</div>
+        <div class="sport-card-content">
+          <h3>Lacrosse</h3>
+          <p>The complete end-to-end platform for lacrosse programs  -  from recruitment to game day and everything in between.</p>
+        </div>
+      </a>
+      <a href="basketball.html" class="sport-card sport-card-basketball">
+        <div class="sport-card-bg"><img src="basketball/scorebreak-basketball.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25;"></div>
+        <div class="sport-card-arrow">→</div>
+        <div class="sport-card-content">
+          <h3>Basketball</h3>
+          <p>Film analysis, sideline replay, and officiating tools for basketball programs at every level.</p>
+        </div>
+      </a>
+      <a href="football.html" class="sport-card sport-card-football">
+        <div class="sport-card-bg"></div>
+        <div class="sport-card-arrow">→</div>
+        <div class="sport-card-content">
+          <div class="sport-card-tag">Coming Soon  -  Gridiron</div>
+          <h3>Football</h3>
+          <p>ScoreBreak Gridiron is on its way. Join the pre-launch waitlist and be first to experience the future of football technology.</p>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top: 32px;">
+      <a href="other-sports.html" class="sports-more-link">and other sports <span style="color:#56C7FF;">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PRODUCTS OVERVIEW
+══════════════════════════════════════ -->
+<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Core products</h2>
+    </div>
+    <div class="products-grid">
+      <a href="software.html" class="product-card">
+        <div class="product-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="22" height="15" rx="2"/>
+            <path d="M8 23h10M13 19v4"/>
+            <path d="M6 10l3 3-3 3M13 16h4"/>
+          </svg>
+        </div>
+        <h3>Team Software</h3>
+        <p>A do-it-all film analysis platform  -  interactive stats, custom tagging workflows, playlists, AI analysis, and professional Handoff breakdowns in 24 hours.</p>
+        <span class="product-link">Explore Software →</span>
+      </a>
+
+      <a href="airborne.html" class="product-card">
+        <div class="product-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="13" cy="13" r="10"/>
+            <path d="M13 3 C13 3 20 8 20 13 C20 18 13 23 13 23 C13 23 6 18 6 13 C6 8 13 3 13 3Z"/>
+            <path d="M3 13h20M13 3v20"/>
+          </svg>
+        </div>
+        <h3>Airborne Sideline Replay</h3>
+        <p>Two replay systems: portable Airborne R for away games and Airborne Stadium for permanent home installations with Daktronics integration.</p>
+        <span class="product-link">Explore Airborne →</span>
+      </a>
+
+      <a href="recruiting-network.html" class="product-card">
+        <div class="product-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 22v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/>
+            <circle cx="10" cy="8" r="4"/>
+            <polyline points="17 11 19 13 23 9"/>
+          </svg>
+        </div>
+        <h3>Recruiting Network</h3>
+        <p>The recruiting platform for high school and club teams  -  players build optimized profiles, college coaches discover talent, and connections happen faster.</p>
+        <span class="product-link">Explore Recruiting Network →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PURPOSE-BUILT SECTION
+══════════════════════════════════════ -->
+<section class="section purpose-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Why ScoreBreak</div>
+      <h2 class="section-title">Purpose-Built for Coaches, Players, and Leagues</h2>
+    </div>
+    <div class="feature-grid">
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="18" height="12" rx="2"/><path d="M8 20h6M11 16v4"/>
+            <path d="M6 9l3 3-3 3"/>
+          </svg>
+        </div>
+        <h3>Game Film Analysis</h3>
+        <p>Tag plays with custom boards, build playlists that mix video and drawings, and share film with your staff and players instantly.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="6" width="18" height="12" rx="2"/><path d="M16 6V4a2 2 0 00-2-2h-6a2 2 0 00-2 2v2"/>
+            <circle cx="11" cy="12" r="2"/>
+          </svg>
+        </div>
+        <h3>Integrated Hardware</h3>
+        <p>Airborne™ delivers instant sideline replay at any venue — portable for away games and practice, permanent for your home stadium.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 17H5a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v5"/>
+            <path d="M17 11l4 4-4 4M21 15h-8"/>
+          </svg>
+        </div>
+        <h3>Scouting &amp; Team Preparation</h3>
+        <p>Organize opponent film, build cutups, and assemble game plans that combine video, diagrams, and notes into one shareable presentation.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <h3>Effortless Communication</h3>
+        <p>Send clips to individual players the moment you spot something. Built-in chat keeps all feedback in context — no separate apps needed.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="11" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3>Recruiting</h3>
+        <p>Every athlete on a subscribed team can build a profile with game film and highlights — right where college coaches are already looking.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 13 12 13 22"/>
+          </svg>
+        </div>
+        <h3>League Infrastructure</h3>
+        <p>Power your league with film exchange, public stats sites where every stat links to video, and officiating replay tools.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container" data-carousel>
+    <div class="section-head">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What coaches are saying</h2>
+    </div>
+    <div class="tc-wrap">
+      <div class="tc-track" data-carousel-track>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">ScoreBreak was a pleasure for our staff and athletes this season... <strong>by far the best platform I've ever used.</strong> I loved being able to tag and organize clips however I liked to be able to tell a story to our players. My favorite part about the platform is the chat feature.</p>
+            <div class="testimonial-author">
+              <img src="ncaa-d1/cnu.png" alt="Christopher Newport" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Mikey Thompson</div>
+                <div class="testimonial-title">Head Coach, Christopher Newport Men's Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">Our best film sessions happen when we can pause, split into groups, and review in real time. Offense goes with one coach, defense with another, and <strong>we pull up the play on our iPads to say, 'This is the change we need to make.'</strong></p>
+            <div class="testimonial-author">
+              <img src="ncaa-d1/oregon.png" alt="Oregon" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Jana Drummond</div>
+                <div class="testimonial-title">Head Coach, Oregon Women's Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc-slide">
+          <div class="testimonial-card">
+            <p class="testimonial-quote"><strong>ScoreBreak has been a total game changer for our staff and players.</strong> If I told you we used ScoreBreak 10,000x a day we would probably be underestimating. We are completely obsessed with it and it seems like every year the product has gotten better.</p>
+            <div class="testimonial-author">
+              <img src="ncaa-d1/brown.png" alt="Brown" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+              <div>
+                <div class="testimonial-name">Jon Torpey</div>
+                <div class="testimonial-title">Head Coach, Brown Men's Lacrosse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tc-controls">
+      <button class="tc-btn" data-carousel-prev aria-label="Previous">←</button>
+      <div class="tc-dots" data-carousel-dots></div>
+      <button class="tc-btn" data-carousel-next aria-label="Next">→</button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FINAL CTA
+══════════════════════════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-section">
+      <h2>See what ScoreBreak can do for your program.</h2>
+      <p>Talk to our team — no commitment required.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+        <a href="solutions.html" class="btn btn-outline btn-lg">Explore Solutions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:inline>
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.7)}
+}
+</style>
+
+<script>import '../scripts/carousel';</script>
+<script>import '../scripts/hero-video';</script>
+</Layout>

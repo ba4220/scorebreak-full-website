@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout>
+<Fragment slot="meta">
+  <title>Looking back at ScoreBreak version 5: A comprehensive update | ScoreBreak Blog</title>
+  <meta name="description" content="ScoreBreak version 5 was active from December 29, 2021, to March 30, 2023, for a total of 457 days." />
+  <meta property="og:title" content="Looking back at ScoreBreak version 5: A comprehensive update | ScoreBreak Blog" />
+  <meta property="og:description" content="ScoreBreak version 5 was active from December 29, 2021, to March 30, 2023, for a total of 457 days." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://scorebreak.io/blog/looking-back-at-scorebreak-version-5.html" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Looking back at ScoreBreak version 5: A comprehensive update | ScoreBreak Blog" />
+  <meta name="twitter:description" content="ScoreBreak version 5 was active from December 29, 2021, to March 30, 2023, for a total of 457 days." />
+</Fragment>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Hero ── */
+    .blog-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .post-wrap { max-width: 720px; margin: 0 auto; position: relative; }
+    .post-back {
+      display: inline-flex;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+    .post-back:hover { text-decoration: underline; }
+    .post-hero { text-align: left; padding-bottom: 2rem; }
+    .post-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .post-byline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+    .post-byline strong { color: var(--text); font-weight: 700; }
+
+    /* ── Body ── */
+    .post-body {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-sub);
+      font-size: 1.05rem;
+      line-height: 1.82;
+      color: var(--text-muted);
+    }
+    .post-body > * + * { margin-top: 1.35rem; }
+    .post-body strong { color: var(--text); }
+    .post-body h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+    .post-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+    .post-body ul { list-style: disc; padding-left: 1.4rem; }
+    .post-body li + li { margin-top: .5rem; }
+    .post-body blockquote {
+      border-left: 3px solid var(--blue);
+      padding: .25rem 0 .25rem 1.25rem;
+      color: var(--text);
+      font-style: italic;
+    }
+    .post-body kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .85em;
+      padding: .1em .4em;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg2);
+      color: var(--text);
+    }
+    .post-kicker {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .post-about { font-size: .92rem; padding-top: 1.35rem; border-top: 1px solid var(--border-sub); }
+
+    /* ── Prev / next ── */
+    .post-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .post-nav a {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      transition: border-color .2s;
+    }
+    .post-nav a:hover { border-color: var(--border); }
+    .post-nav-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .post-nav-title { font-size: .95rem; font-weight: 700; line-height: 1.4; color: var(--text); }
+    .post-nav-next { grid-column: 2; text-align: right; }
+
+    @media (max-width: 600px) {
+      .post-nav { grid-template-columns: 1fr; }
+      .post-nav-next { grid-column: auto; }
+    }
+  </style>
+</Fragment>
+
+<article>
+  <header class="blog-hero post-hero">
+    <div class="container">
+      <div class="post-wrap">
+        <a href="index.html" class="post-back">&larr; All posts</a>
+        <h1>Looking back at ScoreBreak version 5: A comprehensive update</h1>
+        <div class="post-byline"><strong>Jordan Hendry</strong><span aria-hidden="true">·</span><time datetime="2023-03-29">March 29, 2023</time></div>
+      </div>
+    </div>
+  </header>
+  <div class="container" style="padding-bottom:4rem;">
+    <div class="post-wrap">
+      <div class="post-body">
+      <p>ScoreBreak version 5 was active from December 29, 2021, to March 30, 2023, for a total of 457 days. During this period, ScoreBreak released four major updates with a total of 48 releases, adding 75 new features.</p>
+      <p>One of the marquee features introduced in ScoreBreak version 5 was Tagging Boards. This feature allowed coaches to intuitively add additional objective and subjective data for self-review and opponent analysis. These tags can then be used to quickly navigate through the video footage and extract trends and analytics.</p>
+      <p>ScoreBreak version 5 also added support for the Elite Remote, a powerful tool that allows coaches to control their video playback from a dependable, responsive remote — invaluable for coaches who want to control their video from a distance without disrupting their presentation flow.</p>
+      <p>The redesigned chat system was another major highlight. The new chat system featured message reactions, GIPHY integration, and the ability to send files. The clip notes system was also redesigned with more features to help users capture and organize notes for different plays and strategies.</p>
+      <p>ScoreBreak version 5 introduced support for capturing video from network IP cameras and other locally connected cameras. Other significant additions included a new Files section for cloud storage of team preparation materials and a new split view for watching multiple angles at once.</p>
+      <p>ScoreBreak version 5 also added support for two new sports: field hockey and ice hockey.</p>
+      <p>We look forward to the launch of version 6 on Thursday, March 30, 2023.</p>
+      </div>
+      <nav class="post-nav" aria-label="More posts">
+      <a href="scorebreak-version-60-recordable-film-sessions.html" class="post-nav-prev">
+        <span class="post-nav-label">&larr; Newer</span>
+        <span class="post-nav-title">ScoreBreak version 6.0 to enhance coaching solutions with Recordable Film Sessions</span>
+      </a>
+      <a href="notes-all-over.html" class="post-nav-next">
+        <span class="post-nav-label">Older &rarr;</span>
+        <span class="post-nav-title">Notes all over</span>
+      </a>
+      </nav>
+    </div>
+  </div>
+</article>
+
+</Layout>

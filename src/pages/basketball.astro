@@ -1,0 +1,401 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+<Fragment slot="meta">
+  <title>ScoreBreak for Basketball | Film Analysis &amp; Sideline Replay Platform</title>
+  <meta name="description" content="ScoreBreak brings professional basketball film analysis, sideline coaching replay, and officiating tools to high school, college, and professional programs. The Hudl alternative built for basketball." />
+  <meta name="keywords" content="basketball film analysis, Hudl alternative basketball, basketball coaching software, sideline replay basketball, basketball video analysis, officiating replay, basketball recruiting software, high school basketball film, ScoreBreak basketball" />
+  <meta property="og:title" content="ScoreBreak for Basketball | Film Analysis &amp; Sideline Replay" />
+  <meta property="og:description" content="Professional basketball film analysis, sideline replay, and officiating tools for modern coaching staffs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/basketball.html" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ScoreBreak for Basketball | Film Analysis &amp; Sideline Replay" />
+  <meta name="twitter:description" content="Professional basketball film analysis, sideline replay, and officiating tools for modern coaching staffs." />
+</Fragment>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Basketball hero ── */
+
+    /* ── Feature sections ── */
+    .bball-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .bball-feature.reverse { direction: rtl; }
+    .bball-feature.reverse > * { direction: ltr; }
+    .bball-feature-visual {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+    }
+    .bball-feature-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .bball-feature-visual-placeholder {
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      background: linear-gradient(135deg, #0d1f35 0%, #0a1428 60%, #060e1c 100%);
+    }
+    .bball-feature-eyebrow {
+      display: inline-block;
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.25rem;
+    }
+    .bball-feature-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .bball-feature-text p {
+      font-size: .97rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Feature bullets ── */
+    .bball-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+      margin-bottom: 2rem;
+    }
+    .bball-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .93rem;
+      color: var(--text-muted);
+    }
+    .bball-bullet-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--blue-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .bball-bullet-icon svg {
+      width: 12px;
+      height: 12px;
+      color: var(--blue);
+    }
+
+    /* Film Analysis bullets: single stacked list, larger text */
+    #film-analysis .bball-bullets { gap: 0; }
+    #film-analysis .bball-bullet { font-size: 1rem; line-height: 1.6; padding: .6rem 0; }
+    #film-analysis .bball-bullet strong { color: var(--text); font-weight: 700; }
+
+    /* ── Comparison table ── */
+    .vs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .93rem;
+    }
+    .vs-table th {
+      padding: .75rem 1rem;
+      text-align: left;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-sub);
+    }
+    .vs-table th:nth-child(2),
+    .vs-table th:nth-child(3) { text-align: center; }
+    .vs-table td {
+      padding: .85rem 1rem;
+      border-bottom: 1px solid var(--border-sub);
+      color: var(--text-muted);
+    }
+    .vs-table td:nth-child(2),
+    .vs-table td:nth-child(3) { text-align: center; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-check { color: #4ade80; font-size: 1.1rem; }
+    .vs-x { color: #ef4444; font-size: 1.1rem; }
+    .vs-table th.highlight { color: var(--blue); }
+    .vs-table td.highlight { color: var(--text); font-weight: 600; }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: .05em;
+      color: var(--text-muted);
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    /* ── CTA section ── */
+    .bball-cta {
+      text-align: center;
+      padding: 2.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .bball-cta h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      margin-bottom: 1rem;
+    }
+    .bball-cta p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.65;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .bball-feature { grid-template-columns: 1fr; gap: 2rem; }
+      .bball-feature.reverse { direction: ltr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .stats-bar { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.75rem 1.25rem; }
+      .stat-label { white-space: normal; }
+    }
+  </style>
+</Fragment>
+
+<section class="split-hero">
+  <div class="container">
+    <div class="split-hero-inner">
+      <div class="split-hero-text">
+        <div class="split-hero-eyebrow split-hero-eyebrow--orange">Basketball</div>
+        <h1>Custom film analysis.<br>Live bench replay.<br><span class="accent">One cloud platform.</span></h1>
+        <p class="hero-sub">Intuitive tagging, organized film libraries, and presentation tools for coaching staffs that work fast.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+          <a href="software.html" class="btn btn-outline btn-lg">Explore Software</a>
+        </div>
+      </div>
+      <div class="split-hero-media">
+        <img src="basketball/scorebreak-basketball.png" alt="ScoreBreak basketball platform interface">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="section" style="padding-top:0;padding-bottom:3rem;">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Cloud-Based Software</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">&lt;6s</div>
+        <div class="stat-label">Bench Replay Latency</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">∞</div>
+        <div class="stat-label">Unlimited Cloud Storage</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">1</div>
+        <div class="stat-label">License for the Whole Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FILM ANALYSIS ═══ -->
+<section class="section" id="film-analysis">
+  <div class="container">
+    <div class="bball-feature" style="grid-template-columns:1fr;">
+      <div class="bball-feature-text">
+        <div class="bball-feature-eyebrow">Film Analysis</div>
+        <h2>A comprehensive set of tools built for efficiency and customization.</h2>
+        <p>ScoreBreak's film analysis platform is built to fit your system. Coaches customize their own tagging workflows, organize film the way their staff thinks, and access everything from Mac, iPad, and iPhone.</p>
+        <div class="bball-bullets">
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span><strong>Custom tagging workflows</strong> — build a system around your terminology, sets, and coaching style, and tag live, online or offline</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span><strong>Advanced analytics</strong> — multi-tag plays to generate tendency reports, location data, and shot charts automatically</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span><strong>Player and team film sessions</strong> — build personal breakdowns for individual athletes or full staff game plans with clips, notes, and drawings</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span><strong>Instant clip sharing</strong> — get film to players the moment you see something worth coaching, from within the app</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span><strong>AI Reporting</strong> — visual reports and stats generated from your tagged film, tailored to your data and what you want to see</span>
+          </div>
+        </div>
+        <a href="software.html" class="btn btn-primary">Explore Team Software →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SIDELINE REPLAY ═══ -->
+<section class="section" id="sideline-replay" style="background:var(--bg2);">
+  <div class="container">
+    <div class="bball-feature reverse">
+      <div class="bball-feature-text">
+        <div class="bball-feature-eyebrow">Bench Replay</div>
+        <h2>Real-time replay in the gym. No delays, no excuses.</h2>
+        <p>ScoreBreak Airborne brings broadcast-quality bench replay to basketball arenas and gyms of every size. Show your players exactly what you're coaching in real time  -  with instant, wireless replay at your fingertips.</p>
+        <div class="bball-bullets">
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Under 6-second live delay  -  coach with real video, not your memory</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Wireless iPad-based system  -  set up anywhere in the gym in minutes</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Full game recording synced automatically to ScoreBreak's film platform</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Works at home and away venues  -  portable, self-contained hardware</span>
+          </div>
+        </div>
+        <a href="airborne.html" class="btn btn-primary">Explore Airborne →</a>
+      </div>
+      <div class="bball-feature-visual">
+        <img src="basketball/basketball.png" alt="ScoreBreak sideline replay on iPad" style="aspect-ratio:1.55; object-fit:cover; object-position:100% 50%;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OFFICIATING REPLAY ═══ -->
+<section class="section" id="officiating-replay">
+  <div class="container">
+    <div class="bball-feature">
+      <div class="bball-feature-text">
+        <div class="bball-feature-eyebrow">Officiating Replay</div>
+        <h2>Officiating replay at the highest levels of basketball.</h2>
+        <p>ScoreBreak powers officiating replay at the highest levels of basketball. Live stats from your statistics provider sync automatically with multiple camera angles, enabling synchronized multi-angle playback for officials and coaches in real time.</p>
+        <div class="bball-bullets">
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Live stats sync automatically from your statistics provider</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Multiple camera angles with synchronized multi-angle playback</span>
+          </div>
+          <div class="bball-bullet">
+            <div class="bball-bullet-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
+            </div>
+            <span>Frame-accurate scrubbing for precise call review in real time</span>
+          </div>
+        </div>
+        <a href="airborne.html#airborne-stadium" class="btn btn-outline">See Airborne Stadium →</a>
+      </div>
+      <div class="bball-feature-visual" style="overflow:hidden;border-radius:var(--radius-lg);">
+        <img src="basketball/officiating-replay-unrivaled-enhanced.png" alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section" style="padding-top:2.75rem;">
+  <div class="container">
+    <div class="testimonial-card" style="max-width:760px;margin:0 auto;">
+      <p class="testimonial-quote">Coming from the Nerd Ball tree of John Andrzejek and the Kyle Smith family, there's a version of the game I see analytically. ScoreBreak allows me to tag, record, and clip in the same facets as HUDL Sportscode — everything I need for post-game film, scouting, and live film review. The best part is I can host my analytical database in the same app and use its AI features to formulate reports based off the data I'm collecting. <strong>One stop shop for film review, analysis, and interpretation.</strong> High-level teaching tool.</p>
+      <div class="testimonial-author">
+        <img src="ncaa-d1/cc.png" alt="Connecticut College" style="height:36px;width:auto;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div class="testimonial-name">Josh Arruda</div>
+          <div class="testimonial-title">Assistant Coach, Connecticut College<br>Former Director of Analytics, Campbell University</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="bball-cta">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-label" style="margin-bottom:1rem;">Get Started</div>
+    <h2>See what ScoreBreak can do for your program.</h2>
+    <p>Get a personalized demo. We'll walk you through film analysis and bench replay tools built for your program.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+      <a href="software.html" class="btn btn-outline btn-lg">Explore Software</a>
+    </div>
+  </div>
+</section>
+
+</Layout>

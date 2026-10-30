@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+<Fragment slot="meta">
+  <title>About ScoreBreak | Sports Technology for Competitive Programs</title>
+  <meta name="description" content="ScoreBreak is a sports technology company building film analysis, sideline replay, and recruiting tools for competitive programs. Founded in 2015 by Jordan Hendry." />
+  <meta name="keywords" content="ScoreBreak about, sports technology company, Jordan Hendry, lacrosse technology, film analysis company, sideline replay, coaching software" />
+  <meta property="og:title" content="About ScoreBreak | Sports Technology Company" />
+  <meta property="og:description" content="ScoreBreak builds professional-grade film analysis, sideline replay, and recruiting tools for competitive sports programs. Founded by Jordan Hendry." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scorebreak.io/about.html" />
+  <meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About ScoreBreak | Sports Technology Company" />
+  <meta name="twitter:description" content="Building professional-grade film analysis, sideline replay, and recruiting tools for competitive sports programs." />
+</Fragment>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Hero ── */
+    .about-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero .section-label { font-size: .9rem; }
+    .about-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.12;
+      max-width: 760px;
+      margin: 1rem auto 1.5rem;
+      position: relative;
+    }
+    .about-hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ── Mission body text ── */
+    .mission-body {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+      max-width: 700px;
+      margin: 1.25rem auto 0;
+      text-align: center;
+    }
+
+    /* ── Sport cards ── */
+    .sport-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .sport-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .sport-card-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .sport-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: .75rem;
+      line-height: 1.3;
+    }
+    .sport-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      flex: 1;
+    }
+    .sport-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      margin-top: 1.25rem;
+    }
+    .sport-card-link:hover { text-decoration: underline; }
+
+    /* ── Commitment grid ── */
+    .commitment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .commitment-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .commitment-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: .65rem;
+    }
+    .commitment-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+    }
+
+    /* ── Founder ── */
+    .founder-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .founder-photo-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .founder-photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      box-shadow: 0 0 0 3px rgba(86,199,255,0.3);
+      display: block;
+    }
+    .founder-text-col {
+      text-align: left;
+    }
+    .founder-headline {
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin: .6rem 0 1rem;
+    }
+    .founder-name {
+      font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      margin-bottom: .3rem;
+    }
+    .founder-title {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .founder-bio {
+      font-size: .98rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+    }
+    .founder-bio + .founder-bio { margin-top: 1.1rem; }
+    @media (max-width: 700px) {
+      .founder-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+      .founder-text-col { text-align: center; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .sport-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .about-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+      .sport-cards { grid-template-columns: 1fr; }
+      .commitment-grid { grid-template-columns: 1fr; }
+      .founder-photo { width: 160px; height: 160px; }
+    }
+  </style>
+</Fragment>
+
+<section class="about-hero">
+  <div class="container">
+    <div class="section-label">Our Story</div>
+    <h1>Built for the Coaches Who Demand More.</h1>
+    <p class="about-hero-sub">ScoreBreak is the sports technology company connecting athletes with coaches, giving teams the tools to outperform on film and on the field, and serving leagues and professional organizations across multiple sports.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOUNDING / FOUNDER
+══════════════════════════════════════ -->
+<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="founder-inner">
+      <div class="founder-photo-col">
+        <img src="jordan-hendry.webp" alt="Jordan Hendry  -  Founder & CEO of ScoreBreak" class="founder-photo">
+      </div>
+      <div class="founder-text-col">
+        <div class="section-label">Our Founding</div>
+        <h2 class="founder-headline">Founded from Inside the Locker Room Out.</h2>
+        <div class="founder-name">Jordan Hendry</div>
+        <div class="founder-title">Founder &amp; CEO</div>
+        <p class="founder-bio">ScoreBreak was founded in 2015 by Jordan Hendry  -  a retired professional lacrosse player for the Denver Outlaws and former collegiate athlete at the University of Denver. Jordan built ScoreBreak because he lived the problem firsthand: coaches needed better tools, faster film, and real intelligence on the sideline and in the film room.</p>
+        <p class="founder-bio">What started as a solution for lacrosse has grown into a complete sports technology platform serving programs across lacrosse, basketball, and football.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MISSION
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Our Mission</div>
+      <h2 class="section-title">Professional tools. Built for everyone.</h2>
+    </div>
+    <p class="mission-body">ScoreBreak brings professional-grade technology that any coach, at any level, can pick up and use. From a first-year high school coach to a Division 1 program with a full staff, ScoreBreak meets you where you are. We believe every coaching staff deserves access to the same quality of tools that the pros use.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMMITMENTS
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Our Commitment</div>
+      <h2 class="section-title">What we stand for.</h2>
+    </div>
+    <div class="commitment-grid">
+
+      <div class="commitment-card">
+        <h3>Innovation</h3>
+        <p>Pushing the boundaries of sports technology  -  from AI-powered film analysis to live stat integration and automated reporting.</p>
+      </div>
+
+      <div class="commitment-card">
+        <h3>Support</h3>
+        <p>Support is part of the product. Direct access to a real team that knows the sport and the software.</p>
+      </div>
+
+      <div class="commitment-card">
+        <h3>Accessibility</h3>
+        <p>Professional-grade technology shouldn't require a professional-grade budget  -  simple enough for a first-time coach, capable enough for a D1 staff.</p>
+      </div>
+
+      <div class="commitment-card">
+        <h3>Community</h3>
+        <p>We show up at tournaments, talk to coaches on the sideline, and build lasting relationships with the programs that trust us.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-section">
+      <h2>See what ScoreBreak can do for your program.</h2>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+        <a href="demo.html" class="btn btn-outline btn-lg">Request a Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</Layout>

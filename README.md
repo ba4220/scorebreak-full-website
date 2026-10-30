@@ -6,28 +6,42 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 ## Overview
 
-- Static HTML, CSS, and JavaScript. No framework or build step.
-- Shared styles live in `styles.css`, except what `football.html` also needs: the design tokens (colour variables), nav, footer, modals and modal forms live in `components.css`, which every page loads. Many pages also have page-specific styles in a `<style>` block in the page itself.
-- All JavaScript lives in `js/`; pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`). See [JavaScript](#javascript).
-- The site was built and edited with Claude Code. Netlify was used for prototyping only. The site will not be hosted on Netlify.
+- Built with [Astro](https://astro.build) and TypeScript into a fully static site: `npm run build` writes plain HTML, CSS, JS and assets to `dist/`, which any static host can serve. URLs keep their `.html` names (`about.html`, `blog/index.html`).
+- Layout:
+  - `src/pages/`: one `.astro` file per page (`blog/` included). Each wraps its content in `src/layouts/Layout.astro`, passing its `<title>`/meta tags (`slot="meta"`) and its page-specific `<style is:inline>` block (`slot="head"`).
+  - `src/layouts/Layout.astro`: the shared `<head>`, nav, footer, contact modal and site script. Edit those once there and every page gets the change.
+  - `src/components/`: `Nav.astro` (sets `aria-current="page"` on links to the current page automatically), `Footer.astro`, `ContactModal.astro`.
+  - `src/styles/`: `styles.css` (shared styles) and `components.css` (what `football.html` also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
+  - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
+  - `public/`: images, video, PDFs and the favicon, copied to the site root as-is.
+- Pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`).
+- Netlify was used for prototyping only; the site will not be hosted on Netlify. The Netlify GitHub app still builds deploy previews for PRs, configured in `netlify.toml`.
 
 ## Testing
 
-The site has no build step; `package.json` only holds dev tooling. One-time setup: `npm install && npx playwright install chromium`.
+One-time setup: `npm install && npx playwright install chromium`. Node 22.12+.
 
-- `npm run test:static`: under a second, no browser. Broken or wrong-case file paths (they 404 on Linux hosts), file naming, script wiring, no inline JavaScript, `data-*` hooks pointing at real elements, footer/contact modal markup drifting between pages, footer/modal CSS living only in `components.css`, the nav being identical on every page with `aria-current="page"` on exactly the links to that page, and balanced CSS comments.
+- `npm run dev`: dev server with live reload at http://localhost:4321.
+- `npm run build`: builds the site into `dist/`. `npm run preview` serves the build.
+- `npm run check`: type-checks the `.astro` and `.ts` files.
+
+Both test suites run against `dist/`, so build first (`npm test` does it for you):
+
+- `npm run test:static`: under a second, no browser. Broken or wrong-case file paths (they 404 on Linux hosts), file naming in `public/`, every page loading only bundled scripts, no inline JavaScript, `data-*` hooks pointing at real elements, footer/modal CSS living only in `components.css`, `aria-current="page"` on exactly the nav links to that page, and balanced CSS comments.
 - `npm run test:browser`: about a minute, headless Chromium. On every page: no script errors or broken files, nav dropdown, mobile menu, contact modal (open, close, Escape, backdrop) and its form, footer layout, and no sideways scroll on phones. Every form: blocked when invalid (including spaces-only input), the exact email message sent, its confirmation shown; a failed send keeps the input and outlines the submit button red until a retry succeeds; honeypots send nothing. Plus the carousels and hero video.
-- `npm test` runs both. `npm run serve` serves the site at http://127.0.0.1:8080.
+- `npm test` runs `check`, `build`, then both suites.
 
 ## JavaScript
 
+All in `src/scripts/`. Pages load them with `<script>import '../scripts/<name>';</script>`; Astro bundles them into hashed files under `/_astro/`. `site.ts` also exposes everything on `window.SB` (`SB.api`, `SB.forms`, `SB.modal`, `SB.config`) for page scripts and tests.
+
 | File | Loaded by | What it does |
 |---|---|---|
-| `js/api.js` | every page | **The one place form data leaves the page.** Turns each submission into a ready-to-send email and hands it to `SB.api.send`, currently a fake that logs and resolves; wire the real API there. |
-| `js/site.js` | every page | Nav dropdowns, mobile menu, modals, and form handling, driven by `data-*` attributes (documented at the top of the file). |
-| `js/carousel.js` | `index.html`, `lacrosse.html` | Testimonial carousels (`[data-carousel]`). |
-| `js/hero-video.js` | `index.html` | Homepage hero video speed, fade and end card. |
-| `js/waitlist.js` | `football.html` | Waitlist validation and the referral-link confirmation overlay. |
+| `api.ts` | every page (via `site.ts`) | **The one place form data leaves the page.** Turns each submission into a ready-to-send email and hands it to `SB.api.send`, currently a fake that logs and resolves; wire the real API there. |
+| `site.ts` | every page (`Layout.astro`) | Nav dropdowns, mobile menu, modals, and form handling, driven by `data-*` attributes (documented at the top of the file). |
+| `carousel.ts` | `index`, `lacrosse` | Testimonial carousels (`[data-carousel]`). |
+| `hero-video.ts` | `index` | Homepage hero video speed, fade and end card. |
+| `waitlist.ts` | `football` | Waitlist validation and the referral-link confirmation overlay. |
 
 Every form has `data-form="<name>"`. On submit, the API receives one JSON-ready object:
 
@@ -43,7 +57,7 @@ Every form has `data-form="<name>"`. On submit, the API receives one JSON-ready 
 }
 ```
 
-The body has one `Label: value` line per field, using the labels visitors see (and an option's text, not its code); messages go on their own lines and empty optional fields show `—`. Categories and titles are set per form in the `MAIL` table in `js/api.js`, and `npm run test:static` fails if a form has no entry there.
+The body has one `Label: value` line per field, using the labels visitors see (and an option's text, not its code); messages go on their own lines and empty optional fields show `—`. Categories and titles are set per form in the `MAIL` table in `src/scripts/api.ts`, and `npm run test:static` fails if a form has no entry there.
 
 | Form | `data-form` | Category | Title | Fields |
 |---|---|---|---|---|
@@ -58,17 +72,19 @@ The body has one `Label: value` line per field, using the labels visitors see (a
 Two layers on every form:
 
 - **Honeypot**: a hidden `bot-field` input (off-screen, skipped by Tab, ignored by autofill). If it's filled, the visitor sees the normal success message and nothing is sent.
-- **Cloudflare Turnstile**: `js/site.js` loads Cloudflare's script the first time someone uses a form, runs an invisible check on submit, and adds the resulting token to the message. Visitors only see a "Verify you are human" box if Cloudflare asks for interaction.
+- **Cloudflare Turnstile**: `site.ts` loads Cloudflare's script the first time someone uses a form, runs an invisible check on submit, and adds the resulting token to the message. Visitors only see a "Verify you are human" box if Cloudflare asks for interaction.
 
 Setup when wiring the real API:
 
 1. Create a Turnstile widget in the Cloudflare dashboard (free, no Cloudflare hosting needed) with the site's hostnames, including any test bucket's domain.
-2. Its **site key** is set in `SB.config.turnstileSiteKey` in `js/api.js` (`0x4AAAAAAFsh1-4bXRbaMMU5`). On `localhost`/`127.0.0.1` the site switches to Cloudflare's always-passing test key automatically, because the real key only works on the hostnames registered for the widget. A test deploy on any other hostname needs that hostname added to the widget (or its own widget).
+2. Its **site key** is set in `config.turnstileSiteKey` in `src/scripts/api.ts` (`0x4AAAAAAFsh1-4bXRbaMMU5`). On `localhost`/`127.0.0.1` the site switches to Cloudflare's always-passing test key automatically, because the real key only works on the hostnames registered for the widget. A test deploy on any other hostname needs that hostname added to the widget (or its own widget).
 3. Keep the **secret key** on the API only. For every message, the API must verify `turnstileToken` with Cloudflare's Siteverify endpoint (and check the returned hostname) before sending any email. Without this server-side check, Turnstile gives no protection. Tokens are single-use and expire after 5 minutes; the site gets a fresh one on every send.
 
 Turnstile is a third-party script from `challenges.cloudflare.com`, which may need a mention in the privacy policy.
 
 ## Pages
+
+Source files are `src/pages/<name>.astro`; each builds `<name>.html`.
 
 | File | Page |
 |---|---|
@@ -95,7 +111,7 @@ Turnstile is a third-party script from `challenges.cloudflare.com`, which may ne
 
 ## To do
 
-**Forms.** Every form builds its email in `js/api.js` and hands it to `SB.api.send`, which is currently a fake (nothing is sent). Wire it to the real API, which maps each category to an inbox:
+**Forms.** Every form builds its email in `src/scripts/api.ts` and hands it to `SB.api.send`, which is currently a fake (nothing is sent). Wire it to the real API, which maps each category to an inbox:
 
 | Form | Send to |
 |---|---|
@@ -109,10 +125,10 @@ Turnstile is a third-party script from `challenges.cloudflare.com`, which may ne
 
 **Known issues**
 - Open Graph image path (`logos/logo-nav.png`) needs checking.
-- `football.html` doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
+- `football.html` doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
 - `AUDIT.md` and `AI-TELLS-AUDIT.md` list further findings. Many copy and design items in `AI-TELLS-AUDIT.md` have already been addressed.
 
-**File names.** Asset files and folders use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Images are still split between the root and folders. Feel free to reorganize, but update all paths if you do.
+**File names.** Asset files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Images are still split between the `public/` root and folders. Feel free to reorganize, but update all paths if you do.
 
 ## Notes on content
 
