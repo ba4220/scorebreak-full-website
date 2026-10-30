@@ -17,7 +17,6 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
   - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
   - `public/`: images, video, PDFs and the favicon, copied to the site root as-is.
 - Pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`).
-- Netlify was used for prototyping only; the site will not be hosted on Netlify. The Netlify GitHub app still builds deploy previews for PRs, configured in `netlify.toml`.
 
 ## Hosting (Google Cloud Storage)
 
