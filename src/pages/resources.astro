@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'Resources | ScoreBreak Legal and Compliance Documents',
+  description: 'Official ScoreBreak legal and compliance documents for partners, vendors, and compliance teams: W-9, VPAT, SOC 2 report, Privacy Policy, and Terms and Conditions.',
+  ogTitle: 'Resources | ScoreBreak',
+  ogDescription: 'Official ScoreBreak documents for partners, vendors, and compliance teams.',
+  twitterTitle: 'Resources | ScoreBreak',
+  twitterDescription: 'Official ScoreBreak documents for partners, vendors, and compliance teams.',
+};
+---
+<Layout seo={seo}>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Hero ── */
+    .resources-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .resources-hero .section-label { font-size: .9rem; }
+    .resources-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.12;
+      max-width: 760px;
+      margin: 1rem auto 1.5rem;
+      position: relative;
+    }
+    .resources-hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ── Document cards ── */
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .doc-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .doc-icon {
+      width: 44px;
+      height: 44px;
+      color: var(--blue);
+      margin-bottom: 1.1rem;
+    }
+    .doc-icon svg { width: 100%; height: 100%; display: block; }
+    .doc-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: .55rem;
+      line-height: 1.3;
+    }
+    .doc-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      flex: 1;
+    }
+    .doc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ── CTA (no box) ── */
+    .resources-cta { text-align: center; }
+    .resources-cta h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .resources-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+      .doc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</Fragment>
+
+<section class="resources-hero">
+  <div class="container">
+    <div class="section-label">Resources</div>
+    <h1>Legal and compliance documents.</h1>
+    <p class="resources-hero-sub">Official ScoreBreak documents for partners, vendors, and compliance teams.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     DOCUMENTS
+══════════════════════════════════════ -->
+<section class="section" style="padding-top:1rem;">
+  <div class="container">
+    <div class="doc-grid">
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>W-9</h3>
+        <p>IRS Request for Taxpayer Identification Number</p>
+        <div class="doc-actions">
+          <a href="/resources/scorebreak-2024-fw9.pdf" class="btn btn-outline" download>Download PDF</a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>VPAT — Voluntary Product Accessibility Template</h3>
+        <p>Accessibility conformance report for ScoreBreak software</p>
+        <div class="doc-actions">
+          <a href="/resources/scorebreak-vpat2.4rev508-march2022.pdf" class="btn btn-outline" download>Download PDF</a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>SOC 2 Report</h3>
+        <p>Security and availability compliance certification</p>
+        <div class="doc-actions">
+          <button type="button" class="btn btn-outline" data-modal-open="sbSoc2Modal">Request Document</button>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>Privacy Policy</h3>
+        <p>How ScoreBreak collects, uses, and protects your data</p>
+        <div class="doc-actions">
+          <a href="/resources/privacy-policy-scorebreak.pdf" class="btn btn-outline" download>Download PDF</a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="12" y="17.5" text-anchor="middle" font-size="5.2" font-weight="800" font-family="inherit" fill="currentColor" stroke="none">PDF</text></svg></div>
+        <h3>Terms and Conditions</h3>
+        <p>Terms of service governing use of the ScoreBreak platform</p>
+        <div class="doc-actions">
+          <a href="/resources/scorebreak-website-terms-and-conditions-june-2024.pdf" class="btn btn-outline" download>Download PDF</a>
+          <a href="/resources/scorebreak-website-terms-and-conditions-june-2024.docx" class="btn btn-outline" download>Download Word</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container resources-cta">
+    <h2>Need a document that isn't listed?</h2>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<Fragment slot="modals">
+<!-- SOC 2 REQUEST MODAL -->
+<div class="sb-modal-backdrop" id="sbSoc2Modal" data-modal role="dialog" aria-modal="true" aria-labelledby="sbSoc2Title">
+  <div class="sb-modal">
+    <button class="sb-modal-close" data-modal-close aria-label="Close">✕</button>
+    <h2 id="sbSoc2Title">Request SOC 2 Report</h2>
+    <p class="sb-modal-sub">Enter your email and we'll send you the report directly.</p>
+
+    <div id="sbSoc2FormWrap">
+      <form id="sbSoc2Form" name="soc2-request" method="POST" data-form="soc2-request" data-form-hide="#sbSoc2FormWrap" data-form-confirm="#sbSoc2Confirm">
+        <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="sb-form-group">
+          <label for="sbSoc2Email">Email</label>
+          <input type="email" id="sbSoc2Email" name="email" placeholder="your@email.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary sb-form-submit">Send Request</button>
+      </form>
+    </div>
+
+    <div id="sbSoc2Confirm" class="sb-modal-confirm" hidden>
+      <div class="sb-modal-confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p id="sbSoc2ConfirmText">Request received. We'll send the SOC 2 report to <span data-field="email"></span> shortly.</p>
+    </div>
+  </div>
+</div>
+</Fragment>
+
+</Layout>

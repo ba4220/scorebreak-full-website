@@ -6,28 +6,58 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 ## Overview
 
-- Static HTML, CSS, and JavaScript. No framework or build step.
-- Shared styles live in `styles.css`, except what `football.html` also needs: the design tokens (colour variables), nav, footer, modals and modal forms live in `components.css`, which every page loads. Many pages also have page-specific styles in a `<style>` block in the page itself.
-- All JavaScript lives in `js/`; pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`). See [JavaScript](#javascript).
-- The site was built and edited with Claude Code. Netlify was used for prototyping only. The site will not be hosted on Netlify.
+- Built with [Astro](https://astro.build) and TypeScript into a fully static site: `npm run build` writes plain HTML, CSS, JS and assets to `dist/`, which any static host can serve. Pages have clean URLs with a trailing slash (`/about/`, `/blog/notes-all-over/`), built as `about/index.html` etc.; every internal link and asset path is site-root absolute (`/demo/`, `/logos/…`).
+- Layout:
+  - `src/pages/`: one `.astro` file per page. Each sets its `seo` (title, description, social tags; see `src/components/Seo.astro`) and wraps its content in `src/layouts/Layout.astro`, passing its page-specific `<style is:inline>` block in `slot="head"`.
+  - `src/layouts/Layout.astro`: the shared `<head>`, nav, footer, contact modal and site script. Edit those once there and every page gets the change.
+  - `src/components/`: `Nav` (sets `aria-current="page"` automatically), `Footer`, `ContactModal`, `Seo`, `Testimonial` / `TestimonialCarousel`, `CtaSection` (the closing "Contact Us" band).
+  - `src/data/`: `testimonials.ts` (every coach quote, used by id on index, lacrosse, basketball and recruiting-network; edit a quote once) and `school-logos.ts` (homepage logo marquee).
+  - `src/content/blog/`: one Markdown file per post (`title`, `description`, `date`, `author` frontmatter). `src/pages/blog/[slug].astro` publishes each at `/blog/<slug>/` through `src/layouts/BlogPost.astro`; the blog index and the Newer/Older links are generated, newest first. To add a post, add a Markdown file. Straight quotes stay straight (smart quotes are off).
+  - `src/styles/`: `styles.css` (shared styles) and `components.css` (what the football page also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
+  - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
+  - `public/`: images, video, PDFs and the favicon, copied to the site root as-is.
+- Pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`).
+- Production is a Google Cloud Storage bucket (see [Hosting](#hosting-google-cloud-storage)). Netlify only builds deploy previews for PRs on this repo, configured in `netlify.toml`; drop both when the repo moves to ScoreBreak's GitHub.
+
+## Hosting (Google Cloud Storage)
+
+The site is hosted from a Google Cloud Storage bucket configured as a static website. Deploying is uploading `dist/`:
+
+```sh
+npm run build
+gcloud storage rsync dist gs://<bucket> --recursive --delete-unmatched-destination-objects
+gcloud storage buckets update gs://<bucket> --web-main-page-suffix=index.html --web-error-page=404.html   # once
+```
+
+- `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`, and `/about` redirects to `/about/`. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
+- Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML should stay short-cached so updates show up.
+- A bucket can't redirect old URLs (e.g. a live `/portal`); that needs the load balancer's URL map or a small stub page.
 
 ## Testing
 
-The site has no build step; `package.json` only holds dev tooling. One-time setup: `npm install && npx playwright install chromium`.
+One-time setup: `npm install && npx playwright install chromium`. Node 22.12+.
 
-- `npm run test:static`: under a second, no browser. Broken or wrong-case file paths (they 404 on Linux hosts), file naming, script wiring, no inline JavaScript, `data-*` hooks pointing at real elements, footer/contact modal markup drifting between pages, footer/modal CSS living only in `components.css`, the nav being identical on every page with `aria-current="page"` on exactly the links to that page, and balanced CSS comments.
+- `npm run dev`: dev server with live reload at http://localhost:4321. Restart it after changing `src/content.config.ts` (it is only read at startup; until then the blog shows no posts).
+- `npm run build`: builds the site into `dist/`. `npm run preview` serves the build.
+- `npm run check`: type-checks the `.astro` and `.ts` files.
+
+Both test suites run against `dist/`, so build first (`npm test` does it for you):
+
+- `npm run test:static`: under a second, no browser. Broken or wrong-case file paths (they 404 on Linux hosts), file naming in `public/`, every page loading only bundled scripts, no inline JavaScript, `data-*` hooks pointing at real elements, footer/modal CSS living only in `components.css`, `aria-current="page"` on exactly the nav links to that page, and balanced CSS comments.
 - `npm run test:browser`: about a minute, headless Chromium. On every page: no script errors or broken files, nav dropdown, mobile menu, contact modal (open, close, Escape, backdrop) and its form, footer layout, and no sideways scroll on phones. Every form: blocked when invalid (including spaces-only input), the exact email message sent, its confirmation shown; a failed send keeps the input and outlines the submit button red until a retry succeeds; honeypots send nothing. Plus the carousels and hero video.
-- `npm test` runs both. `npm run serve` serves the site at http://127.0.0.1:8080.
+- `npm test` runs `check`, `build`, then both suites.
 
 ## JavaScript
 
+All in `src/scripts/`. Pages load them with `<script>import '../scripts/<name>';</script>`; Astro bundles them into hashed files under `/_astro/`. `site.ts` also exposes everything on `window.SB` (`SB.api`, `SB.forms`, `SB.modal`, `SB.config`) for page scripts and tests.
+
 | File | Loaded by | What it does |
 |---|---|---|
-| `js/api.js` | every page | **The one place form data leaves the page.** Turns each submission into a ready-to-send email and hands it to `SB.api.send`, currently a fake that logs and resolves; wire the real API there. |
-| `js/site.js` | every page | Nav dropdowns, mobile menu, modals, and form handling, driven by `data-*` attributes (documented at the top of the file). |
-| `js/carousel.js` | `index.html`, `lacrosse.html` | Testimonial carousels (`[data-carousel]`). |
-| `js/hero-video.js` | `index.html` | Homepage hero video speed, fade and end card. |
-| `js/waitlist.js` | `football.html` | Waitlist validation and the referral-link confirmation overlay. |
+| `api.ts` | every page (via `site.ts`) | **The one place form data leaves the page.** Turns each submission into a ready-to-send email and hands it to `SB.api.send`, currently a fake that logs and resolves; wire the real API there. |
+| `site.ts` | every page (`Layout.astro`) | Nav dropdowns, mobile menu, modals, and form handling, driven by `data-*` attributes (documented at the top of the file). |
+| `carousel.ts` | `index`, `lacrosse` | Testimonial carousels (`[data-carousel]`). |
+| `hero-video.ts` | `index` | Homepage hero video speed, fade and end card. |
+| `waitlist.ts` | `football` | Waitlist validation and the referral-link confirmation overlay. |
 
 Every form has `data-form="<name>"`. On submit, the API receives one JSON-ready object:
 
@@ -37,52 +67,55 @@ Every form has `data-form="<name>"`. On submit, the API receives one JSON-ready 
   category: 'sales',                    // which ScoreBreak inbox it lands in
   title: 'Demo request: Test Academy',  // email subject
   replyTo: 'test@example.com',          // the submitter's email
-  body: 'First Name: Test\nLast Name: User\n…\n\nSent from: https://…/demo.html',  // plain-text email body
+  body: 'First Name: Test\nLast Name: User\n…\n\nSent from: https://…/demo/',  // plain-text email body
   fields: { firstName: 'Test', … },     // raw values, keyed by input name
   turnstileToken: '…'                   // Cloudflare Turnstile token, see Bot protection
 }
 ```
 
-The body has one `Label: value` line per field, using the labels visitors see (and an option's text, not its code); messages go on their own lines and empty optional fields show `—`. Categories and titles are set per form in the `MAIL` table in `js/api.js`, and `npm run test:static` fails if a form has no entry there.
+The body has one `Label: value` line per field, using the labels visitors see (and an option's text, not its code); messages go on their own lines and empty optional fields show `—`. Categories and titles are set per form in the `MAIL` table in `src/scripts/api.ts`, and `npm run test:static` fails if a form has no entry there.
 
 | Form | `data-form` | Category | Title | Fields |
 |---|---|---|---|---|
 | Contact modal ("Get in Touch", every page) | `contact-sales` | `sales` | Contact request: *first last* | `firstName`, `lastName`, `email`, `message` |
-| SOC 2 request modal (`resources.html`) | `soc2-request` | `sales` | SOC 2 report request: *email* | `email` |
-| Demo request (`demo.html`) | `demo-request` | `sales` | Demo request: *organization* | `firstName`, `lastName`, `email`, `phone`, `organization`, `sport`, `role`, `message` |
-| Support form (`support.html`) | `support-request` | `support` | Support request: *name* | `name`, `email`, `message` |
-| Gridiron waitlist (`football.html`) | `waitlist` | `gridiron-waitlist` | Gridiron waitlist: *first last, school* | `first_name`, `last_name`, `email`, `school`, `position` |
+| SOC 2 request modal (`/resources/`) | `soc2-request` | `sales` | SOC 2 report request: *email* | `email` |
+| Demo request (`/demo/`) | `demo-request` | `sales` | Demo request: *organization* | `firstName`, `lastName`, `email`, `phone`, `organization`, `sport`, `role`, `message` |
+| Support form (`/support/`) | `support-request` | `support` | Support request: *name* | `name`, `email`, `message` |
+| Gridiron waitlist (`/football/`) | `waitlist` | `gridiron-waitlist` | Gridiron waitlist: *first last, school* | `first_name`, `last_name`, `email`, `school`, `position` |
 
 ## Bot protection
 
 Two layers on every form:
 
 - **Honeypot**: a hidden `bot-field` input (off-screen, skipped by Tab, ignored by autofill). If it's filled, the visitor sees the normal success message and nothing is sent.
-- **Cloudflare Turnstile**: `js/site.js` loads Cloudflare's script the first time someone uses a form, runs an invisible check on submit, and adds the resulting token to the message. Visitors only see a "Verify you are human" box if Cloudflare asks for interaction.
+- **Cloudflare Turnstile**: `site.ts` loads Cloudflare's script the first time someone uses a form, runs an invisible check on submit, and adds the resulting token to the message. Visitors only see a "Verify you are human" box if Cloudflare asks for interaction.
 
 Setup when wiring the real API:
 
 1. Create a Turnstile widget in the Cloudflare dashboard (free, no Cloudflare hosting needed) with the site's hostnames, including any test bucket's domain.
-2. Its **site key** is set in `SB.config.turnstileSiteKey` in `js/api.js` (`0x4AAAAAAFsh1-4bXRbaMMU5`). On `localhost`/`127.0.0.1` the site switches to Cloudflare's always-passing test key automatically, because the real key only works on the hostnames registered for the widget. A test deploy on any other hostname needs that hostname added to the widget (or its own widget).
+2. Its **site key** is set in `config.turnstileSiteKey` in `src/scripts/api.ts` (`0x4AAAAAAFsh1-4bXRbaMMU5`). On `localhost`/`127.0.0.1` the site switches to Cloudflare's always-passing test key automatically, because the real key only works on the hostnames registered for the widget. A test deploy on any other hostname needs that hostname added to the widget (or its own widget).
 3. Keep the **secret key** on the API only. For every message, the API must verify `turnstileToken` with Cloudflare's Siteverify endpoint (and check the returned hostname) before sending any email. Without this server-side check, Turnstile gives no protection. Tokens are single-use and expire after 5 minutes; the site gets a fresh one on every send.
 
 Turnstile is a third-party script from `challenges.cloudflare.com`, which may need a mention in the privacy policy.
 
 ## Pages
 
+Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, served at `/<name>/`.
+
 | File | Page |
 |---|---|
-| `index.html` | Homepage (hero demo video with end card) |
-| `lacrosse.html`, `basketball.html` | Sport pages |
-| `football.html` | ScoreBreak Gridiron (football, coming soon / early access) |
-| `other-sports.html` | Soccer, ice hockey, field hockey, and other sports |
-| `solutions.html` | All solutions overview |
-| `software.html` | Team Software |
-| `airborne.html` | Airborne sideline replay (Airborne R portable, Airborne Stadium installed) |
-| `recruiting-network.html` | Recruiting Network (formerly `portal.html`) |
-| `leagues.html` | League solutions |
-| `about.html`, `demo.html`, `support.html`, `resources.html` | Company, demo request, support, documents |
-| `blog/` | Blog index and 7 posts |
+| `/` | Homepage (hero demo video with end card) |
+| `/lacrosse/`, `/basketball/` | Sport pages |
+| `/football/` | ScoreBreak Gridiron (football, coming soon / early access) |
+| `/other-sports/` | Soccer, ice hockey, field hockey, and other sports |
+| `/solutions/` | All solutions overview |
+| `/software/` | Team Software |
+| `/airborne/` | Airborne sideline replay (Airborne R portable, Airborne Stadium installed) |
+| `/recruiting-network/` | Recruiting Network (formerly `portal.html`) |
+| `/leagues/` | League solutions |
+| `/about/`, `/demo/`, `/support/`, `/resources/` | Company, demo request, support, documents |
+| `/blog/` | Blog index and 7 posts (posts are in `src/content/blog/`) |
+| `/404.html` | Not-found page; the bucket serves it for any unknown URL |
 
 ## Brand
 
@@ -95,30 +128,30 @@ Turnstile is a third-party script from `challenges.cloudflare.com`, which may ne
 
 ## To do
 
-**Forms.** Every form builds its email in `js/api.js` and hands it to `SB.api.send`, which is currently a fake (nothing is sent). Wire it to the real API, which maps each category to an inbox:
+**Forms.** Every form builds its email in `src/scripts/api.ts` and hands it to `SB.api.send`, which is currently a fake (nothing is sent). Wire it to the real API, which maps each category to an inbox:
 
 | Form | Send to |
 |---|---|
-| Support form (`support.html`) | support@scorebreak.io |
-| Demo request (`demo.html`) | ben@scorebreak.io |
+| Support form (`/support/`) | support@scorebreak.io |
+| Demo request (`/demo/`) | ben@scorebreak.io |
 | Contact modal ("Get in Touch", every page) | ben@scorebreak.io |
-| SOC 2 request modal (`resources.html`) | ben@scorebreak.io |
-| Gridiron waitlist (`football.html`) | Not decided yet. Its confirmation shows a referral link (`scorebreakgridiron.com/ref/<code>`) whose code is random and isn't stored anywhere. |
+| SOC 2 request modal (`/resources/`) | ben@scorebreak.io |
+| Gridiron waitlist (`/football/`) | Not decided yet. Its confirmation shows a referral link (`scorebreakgridiron.com/ref/<code>`) whose code is random and isn't stored anywhere. |
 
-**Redirects.** `portal.html` was renamed to `recruiting-network.html`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
+**Redirects.** `portal.html` was renamed to `/recruiting-network/`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
 
 **Known issues**
 - Open Graph image path (`logos/logo-nav.png`) needs checking.
-- `football.html` doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
+- The football page doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
 - `AUDIT.md` and `AI-TELLS-AUDIT.md` list further findings. Many copy and design items in `AI-TELLS-AUDIT.md` have already been addressed.
 
-**File names.** Asset files and folders use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Images are still split between the root and folders. Feel free to reorganize, but update all paths if you do.
+**File names.** Asset files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Images are still split between the `public/` root and folders. Feel free to reorganize, but update all paths if you do.
 
 ## Notes on content
 
 - Copy has been carefully edited. Please check with Ben before changing any wording.
 - Screenshots such as `software/reports-screenshot-edited.png` use made-up player names on purpose. Don't replace them with screenshots containing real player data.
-- The Josh Arruda testimonial on `basketball.html` mentions HUDL Sportscode. That is intentional. Competitors are not named anywhere else on the site.
+- The Josh Arruda testimonial on the basketball page mentions HUDL Sportscode. That is intentional. Competitors are not named anywhere else on the site.
 
 ## Repo
 

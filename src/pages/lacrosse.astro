@@ -1,0 +1,402 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TestimonialCarousel from '../components/TestimonialCarousel.astro';
+
+const seo = {
+  title: 'ScoreBreak for Lacrosse | End-to-End Film Analysis & Recruiting Platform',
+  description: 'ScoreBreak is the leading lacrosse technology platform  -  AI-powered film analysis, sideline replay hardware, and Recruiting Network profiles for college coaches. The Hudl alternative built for lacrosse programs.',
+  keywords: 'lacrosse film analysis, lacrosse Recruiting Network, Hudl alternative lacrosse, lacrosse coaching software, sideline replay lacrosse, college lacrosse recruiting, lacrosse video analysis, high school lacrosse software, ScoreBreak lacrosse',
+  ogTitle: 'ScoreBreak for Lacrosse | Film Analysis, Sideline Replay & Recruiting',
+  ogDescription: 'The complete lacrosse technology platform  -  film analysis, sideline replay, and a Recruiting Network that gets your athletes in front of college coaches.',
+  twitterTitle: 'ScoreBreak for Lacrosse | Film Analysis & Recruiting Platform',
+  twitterDescription: 'The complete lacrosse technology platform  -  film analysis, sideline replay, and a Recruiting Network that gets your athletes in front of college coaches.',
+};
+---
+<Layout seo={seo}>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Lacrosse page-specific styles ── */
+
+    /* Hero */
+    .lax-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .lax-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .lax-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .lax-hero h1 .accent { color: var(--blue); }
+    .lax-hero .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      border-color: var(--border);
+    }
+
+    .product-card-img {
+      height: 156px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .product-card-img-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-card-img-icon {
+      font-size: 3rem;
+      opacity: .35;
+    }
+
+    /* Individual card gradient themes */
+    .product-card:nth-child(1) .product-card-img {
+      background: linear-gradient(135deg, #0d1f35 0%, #0a2040 40%, #051525 100%);
+    }
+    .product-card:nth-child(1) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(86,199,255,.18) 0%, transparent 55%);
+    }
+    .product-card:nth-child(2) .product-card-img {
+      background: linear-gradient(135deg, #1a1035 0%, #120d28 40%, #0a0820 100%);
+    }
+    .product-card:nth-child(2) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(120,86,255,.18) 0%, transparent 55%);
+    }
+    .product-card:nth-child(3) .product-card-img {
+      background: linear-gradient(135deg, #0d2535 0%, #091d2e 40%, #051018 100%);
+    }
+    .product-card:nth-child(3) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,180,255,.16) 0%, transparent 55%);
+    }
+    .product-card:nth-child(4) .product-card-img {
+      background: linear-gradient(135deg, #1a2810 0%, #152008 40%, #0e1806 100%);
+    }
+    .product-card:nth-child(4) .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(100,200,60,.14) 0%, transparent 55%);
+    }
+
+    .product-card-body {
+      padding: 16px 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      flex: 1;
+    }
+
+    .product-card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -.02em;
+      transition: color .15s;
+    }
+    .product-card:hover .product-card-title {
+      color: var(--blue);
+    }
+    .product-card-arrow {
+      color: var(--blue);
+    }
+
+    .product-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .product-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transform: translateX(-4px);
+      transition: opacity .2s, transform .2s, max-height .2s, padding-top .2s;
+    }
+    .product-card:hover .product-card-link {
+      opacity: 1;
+      transform: translateX(0);
+      max-height: 2rem;
+      padding-top: .5rem;
+    }
+
+    /* Purpose-Built section */
+    .purpose-feature-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .purpose-feature-text h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .25rem;
+    }
+    .purpose-feature-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Testimonials carousel */
+    .tc-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .tc-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    .tc-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .tc-slide .testimonial-card {
+      max-width: 680px;
+      width: 100%;
+    }
+    .tc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .tc-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .tc-btn:hover { background: var(--card-bg2); border-color: var(--border); }
+    .tc-dots {
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+    }
+    .tc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s, transform .2s;
+    }
+    .tc-dot.active {
+      background: var(--blue);
+      transform: scale(1.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .lax-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
+      .lax-hero h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
+      .lax-hero .hero-sub { font-size: 1.02rem; }
+      .tc-btn { width: 44px; height: 44px; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</Fragment>
+
+<section class="lax-hero">
+  <div class="container">
+    <div class="lax-hero-inner">
+      <h1>End to End <span class="accent">Lacrosse.</span></h1>
+      <p class="hero-sub">Coaching, recruiting, and league tools built for every level, used by 85%+ of D1 men's and 65% of D1 women's programs, along with competitive high school and club teams.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT GRID ═══ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="product-grid">
+
+      <!-- Card 1: Team Software -->
+      <a href="/software/" class="product-card">
+        <div class="product-card-img">
+          <img src="/software/final-software-mockup.png" alt="ScoreBreak Team Software" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;transform:scale(1.05);">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Team Software &amp; Breakdown Services <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">ScoreBreak's tagging tools and Handoff breakdown service give your staff professional-grade film analysis  -  expert breakdowns delivered within 24 hours so coaches can focus on coaching.</p>
+          <span class="product-card-link">Explore Team Software →</span>
+        </div>
+      </a>
+
+      <!-- Card 2: Sideline Video Replay -->
+      <a href="/airborne/" class="product-card">
+        <div class="product-card-img">
+          <img src="/airborne-r/ipad-airborne-sideline.png" alt="Airborne sideline replay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:bottom;">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Airborne: Sideline Video Replay <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">Sideline video replay hardware that connects directly to ScoreBreak  -  no extra configuration required. Deploys in minutes at any venue, with ultra-low 6-second latency.</p>
+          <span class="product-card-link">Explore Airborne →</span>
+        </div>
+      </a>
+
+      <!-- Card 3: ScoreBreak Recruiting Network -->
+      <a href="/recruiting-network/" class="product-card">
+        <div class="product-card-img">
+          <img src="/recruiting-network/portal-player.png" alt="ScoreBreak Recruiting Network" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">ScoreBreak Recruiting Network <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">Every athlete on your roster gets a recruiting profile unlocked  -  athletes build their own with game film and highlights for college coaches to discover.</p>
+          <span class="product-card-link">Explore the Network →</span>
+        </div>
+      </a>
+
+      <!-- Card 4: League and Tournament Solutions -->
+      <a href="/leagues/" class="product-card">
+        <div class="product-card-img">
+          <img src="/recruiting-network/recruiting.png" alt="Lacrosse league solutions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">League Solutions <span class="product-card-arrow">→</span></div>
+          <p class="product-card-desc">Connect your league or federation with ScoreBreak for film exchange, league-wide stats, and custom public-facing league sites  -  all managed from one platform.</p>
+          <span class="product-card-link">Explore League Solutions →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PURPOSE-BUILT SECTION ═══ -->
+<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Platform</span>
+      <h2 class="section-title">Purpose-Built for Coaches, Players, and Leagues</h2>
+    </div>
+
+    <div class="purpose-feature-grid">
+
+      <!-- 1: Analysis & Reporting -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-text">
+          <h3>Analysis &amp; Reporting</h3>
+          <p>Tag plays, build custom workflows, and turn your film into data. ScoreBreak visualizes and analyzes it into reports you can act on.</p>
+        </div>
+      </div>
+
+      <!-- 2: Scouting & Team Preparation -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-text">
+          <h3>Scouting &amp; Team Preparation</h3>
+          <p>Filter recruits by position, class year, and academics, then let expert Handoff breakdowns build your scouting reports  -  your staff focuses on execution, not film work.</p>
+        </div>
+      </div>
+
+      <!-- 3: Integrated Sideline Replay -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-text">
+          <h3>Integrated Sideline Replay</h3>
+          <p>Airborne™ streams instant sideline video replay directly into ScoreBreak  -  deployed in minutes for games and practice alike.</p>
+        </div>
+      </div>
+
+      <!-- 4: Recruiting Profiles -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-text">
+          <h3>Recruiting Profiles</h3>
+          <p>Athlete-built recruiting profiles with highlights, stats, and footage  -  visible to college coaches and always current.</p>
+        </div>
+      </div>
+
+      <!-- 5: Effortless Communication -->
+      <div class="purpose-feature-item">
+        <div class="purpose-feature-text">
+          <h3>Effortless Communication</h3>
+          <p>Athletes, coaches, and parents stay connected with built-in messaging and automatic notifications.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section">
+  <TestimonialCarousel ids={['liza-kelly', 'jon-torpey', 'mikey-thompson', 'jana-drummond', 'dean-curtis', 'tatum-lewis', 'ryan-danehy', 'mike-hungerford']}>
+    <div class="section-head">
+      <span class="section-label">From the Field</span>
+      <h2 class="section-title">What coaches are saying</h2>
+    </div>
+  </TestimonialCarousel>
+</section>
+
+</Layout>

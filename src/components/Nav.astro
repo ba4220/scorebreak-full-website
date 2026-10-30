@@ -1,0 +1,72 @@
+---
+// aria-current="page" marks every nav link to the page being rendered.
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const current = (href: string) => (href === path ? 'page' : undefined);
+---
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="/" aria-current={current('/')} class="nav-logo" aria-label="ScoreBreak Home">
+      <img src="/logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
+      <img src="/logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+    </a>
+    <div class="nav-center">
+      <div class="nav-dropdown" data-dropdown id="dd-sports">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="/lacrosse/" aria-current={current('/lacrosse/')}>Lacrosse</a>
+          <a href="/basketball/" aria-current={current('/basketball/')}>Basketball</a>
+          <a href="/football/" aria-current={current('/football/')}>Football</a>
+          <a href="/other-sports/" aria-current={current('/other-sports/')}>Other Sports</a>
+        </div>
+      </div>
+      <div class="nav-dropdown" data-dropdown id="dd-solutions">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="/software/" aria-current={current('/software/')}>Team Software</a>
+          <a href="/airborne/" aria-current={current('/airborne/')}>Airborne Sideline Replay</a>
+          <a href="/recruiting-network/" aria-current={current('/recruiting-network/')}>Recruiting Network</a>
+          <a href="/leagues/" aria-current={current('/leagues/')}>League Solutions</a>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+          <a href="/solutions/" aria-current={current('/solutions/')} style="color:var(--blue);font-weight:700;">All Solutions</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="/support/" aria-current={current('/support/')} class="nav-link">Support</a>
+      <a href="/about/" aria-current={current('/about/')} class="nav-link">About</a>
+      <a href="/demo/" aria-current={current('/demo/')} class="nav-link">Request a Demo</a>
+      <a href="/football/" aria-current={current('/football/')} class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" data-nav-toggle aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-section">
+    <div class="nav-mobile-label">Sports</div>
+    <a href="/lacrosse/" aria-current={current('/lacrosse/')}>Lacrosse</a>
+    <a href="/basketball/" aria-current={current('/basketball/')}>Basketball</a>
+    <a href="/football/" aria-current={current('/football/')}>Football</a>
+    <a href="/other-sports/" aria-current={current('/other-sports/')}>Other Sports</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="/solutions/" aria-current={current('/solutions/')} class="nav-mobile-label">Solutions</a>
+    <a href="/software/" aria-current={current('/software/')}>Team Software</a>
+    <a href="/airborne/" aria-current={current('/airborne/')}>Airborne Sideline Replay</a>
+    <a href="/recruiting-network/" aria-current={current('/recruiting-network/')}>Recruiting Network</a>
+    <a href="/leagues/" aria-current={current('/leagues/')}>League Solutions</a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
+    <a href="/solutions/" aria-current={current('/solutions/')} style="color:var(--blue);font-weight:700;">All Solutions</a>
+  </div>
+  <div class="nav-mobile-section">
+    <a href="/support/" aria-current={current('/support/')}>Support</a>
+    <a href="/demo/" aria-current={current('/demo/')}>Request a Demo</a>
+    <a href="/about/" aria-current={current('/about/')}>About Us</a>
+  </div>
+  <div class="nav-mobile-section nav-mobile-actions">
+    <a href="/football/" aria-current={current('/football/')} class="nav-mobile-btn nav-mobile-btn--gridiron">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="nav-mobile-btn nav-mobile-btn--login" target="_blank" rel="noopener">Log In</a>
+  </div>
+</div>

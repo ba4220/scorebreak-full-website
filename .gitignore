@@ -17,3 +17,7 @@ Website_demo.gif
 node_modules/
 test-results/
 playwright-report/
+
+# Astro
+dist/
+.astro/

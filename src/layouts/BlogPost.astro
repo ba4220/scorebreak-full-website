@@ -1,0 +1,164 @@
+---
+// A blog post page: hero with byline, the Markdown body, and links to the newer/older posts.
+import Layout from './Layout.astro';
+import { formatDate, isoDate, type Post } from '../lib/blog';
+
+interface Props {
+  post: Post;
+  newer?: Post;
+  older?: Post;
+}
+const { post, newer, older } = Astro.props;
+const { title, description, date, author } = post.data;
+const pageTitle = `${title} | ScoreBreak Blog`;
+const seo = { title: pageTitle, description, ogType: 'article' as const, twitterTitle: pageTitle, twitterDescription: description };
+---
+<Layout seo={seo}>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Hero ── */
+    .blog-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .post-wrap { max-width: 720px; margin: 0 auto; position: relative; }
+    .post-back {
+      display: inline-flex;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+    .post-back:hover { text-decoration: underline; }
+    .post-hero { text-align: left; padding-bottom: 2rem; }
+    .post-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .post-byline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+    .post-byline strong { color: var(--text); font-weight: 700; }
+
+    /* ── Body ── */
+    .post-body {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-sub);
+      font-size: 1.05rem;
+      line-height: 1.82;
+      color: var(--text-muted);
+    }
+    .post-body > * + * { margin-top: 1.35rem; }
+    .post-body strong { color: var(--text); }
+    .post-body h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+    .post-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+    .post-body ul { list-style: disc; padding-left: 1.4rem; }
+    .post-body li + li { margin-top: .5rem; }
+    .post-body blockquote {
+      border-left: 3px solid var(--blue);
+      padding: .25rem 0 .25rem 1.25rem;
+      color: var(--text);
+      font-style: italic;
+    }
+    .post-body kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .85em;
+      padding: .1em .4em;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg2);
+      color: var(--text);
+    }
+    .post-kicker {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .post-about { font-size: .92rem; padding-top: 1.35rem; border-top: 1px solid var(--border-sub); }
+
+    /* ── Prev / next ── */
+    .post-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .post-nav a {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      transition: border-color .2s;
+    }
+    .post-nav a:hover { border-color: var(--border); }
+    .post-nav-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .post-nav-title { font-size: .95rem; font-weight: 700; line-height: 1.4; color: var(--text); }
+    .post-nav-next { grid-column: 2; text-align: right; }
+
+    @media (max-width: 600px) {
+      .post-nav { grid-template-columns: 1fr; }
+      .post-nav-next { grid-column: auto; }
+    }
+  </style>
+</Fragment>
+
+<article>
+  <header class="blog-hero post-hero">
+    <div class="container">
+      <div class="post-wrap">
+        <a href="/blog/" class="post-back">&larr; All posts</a>
+        <h1>{title}</h1>
+        <div class="post-byline"><strong>{author}</strong><span aria-hidden="true">·</span><time datetime={isoDate(date)}>{formatDate(date)}</time></div>
+      </div>
+    </div>
+  </header>
+  <div class="container" style="padding-bottom:4rem;">
+    <div class="post-wrap">
+      <div class="post-body">
+        <slot />
+      </div>
+      <nav class="post-nav" aria-label="More posts">
+        {newer && (
+          <a href={`/blog/${newer.id}/`} class="post-nav-prev">
+            <span class="post-nav-label">&larr; Newer</span>
+            <span class="post-nav-title">{newer.data.title}</span>
+          </a>
+        )}
+        {older && (
+          <a href={`/blog/${older.id}/`} class="post-nav-next">
+            <span class="post-nav-label">Older &rarr;</span>
+            <span class="post-nav-title">{older.data.title}</span>
+          </a>
+        )}
+      </nav>
+    </div>
+  </div>
+</article>
+
+</Layout>

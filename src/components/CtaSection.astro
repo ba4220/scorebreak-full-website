@@ -1,0 +1,23 @@
+---
+// Closing call to action: "Contact Us" (opens the contact modal) plus one secondary link.
+interface Props {
+  title: string;
+  titleStyle?: string;
+  subtitle?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+const { title, titleStyle, subtitle, secondaryHref = '/demo/', secondaryLabel = 'Request a Demo' } = Astro.props;
+---
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-section">
+      <h2 style={titleStyle}>{title}</h2>
+      {subtitle && <p>{subtitle}</p>}
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+        <a href={secondaryHref} class="btn btn-outline btn-lg">{secondaryLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const seo = {
+  title: 'ScoreBreak Solutions | Film Software, Sideline Replay, Recruiting & League Tools',
+  description: 'Explore every ScoreBreak product in one place  -  Team Software for film analysis, Airborne sideline replay, the Recruiting Network, and League Solutions for federations and conferences.',
+  keywords: 'ScoreBreak solutions, film analysis software, sideline replay, recruiting network, league solutions, sports technology platform',
+  ogTitle: 'ScoreBreak Solutions | Every Product, One Platform',
+  ogDescription: 'Team Software, Airborne Sideline Replay, Recruiting Network, and League Solutions  -  the complete ScoreBreak platform.',
+};
+---
+<Layout seo={seo}>
+<Fragment slot="head">
+  <style is:inline>
+    /* ── Solutions page-specific styles (card pattern mirrors lacrosse.html) ── */
+
+    /* Hero */
+    .sol-hero {
+      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sol-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .sol-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .sol-hero h1 .accent { color: var(--blue); }
+    .sol-hero .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Solution rows */
+    .sol-row {
+      display: grid;
+      grid-template-columns: 52fr 48fr;
+      align-items: center;
+      padding: 4rem 0;
+      border-top: 1px solid var(--border-sub);
+    }
+    .sol-row:first-child { border-top: none; padding-top: 1rem; }
+    .sol-row:last-child { padding-bottom: 1rem; }
+    .sol-row-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sol-row-img img {
+      display: block;
+      max-width: 100%;
+      max-height: 420px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+    .sol-row-text { padding-left: 3rem; }
+    .sol-row--reverse { grid-template-columns: 48fr 52fr; }
+    .sol-row--reverse .sol-row-img { order: 2; }
+    .sol-row--reverse .sol-row-text { padding-left: 0; padding-right: 3rem; }
+    .sol-row-text h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .sol-row-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .sol-row-list li {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .sol-row-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: .6em;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+    .sol-row-link {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .sol-row-link:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .sol-row,
+      .sol-row--reverse { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
+      .sol-row--reverse .sol-row-img { order: 0; }
+      .sol-row-text,
+      .sol-row--reverse .sol-row-text { padding: 0; }
+      .sol-row-img img { max-height: 360px; }
+    }
+    @media (max-width: 600px) {
+      .sol-hero { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
+      .sol-hero h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
+      .sol-hero .hero-sub { font-size: 1.02rem; }
+    }
+  </style>
+</Fragment>
+
+<section class="sol-hero">
+  <div class="container">
+    <div class="sol-hero-inner">
+      <h1>Solutions for teams, athletes, and leagues.</h1>
+      <p class="hero-sub">From game film to sideline replay, recruiting exposure to league management, every ScoreBreak product is intertwined.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SOLUTION ROWS
+══════════════════════════════════════ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+
+    <!-- Row 1: Team Software -->
+    <div class="sol-row">
+      <div class="sol-row-img">
+        <img src="/software/scorebreak-software-lacrosse.png" alt="ScoreBreak Team Software on desktop, laptop, and mobile">
+      </div>
+      <div class="sol-row-text">
+        <div class="section-label">Team Software</div>
+        <h2>Easy-to-use tools built for efficiency and custom workflows.</h2>
+        <ul class="sol-row-list">
+          <li>Custom tag boards built to your program's exact terminology</li>
+          <li>Stats and box scores generated automatically from your tags</li>
+          <li>Share clips and playlists instantly with players, staff, and recruits</li>
+          <li>Handoff  -  expert film breakdowns delivered within 24 hours</li>
+        </ul>
+        <a href="/software/" class="sol-row-link">Explore Team Software →</a>
+      </div>
+    </div>
+
+    <!-- Row 2: Airborne Sideline Replay -->
+    <div class="sol-row sol-row--reverse">
+      <div class="sol-row-img">
+        <img src="/airborne-r/airborne-home-page.png" alt="Airborne sideline replay unit on the sideline">
+      </div>
+      <div class="sol-row-text">
+        <div class="section-label">Airborne Sideline Replay</div>
+        <h2>Reliable sideline replay without the complex setup.</h2>
+        <ul class="sol-row-list">
+          <li>Footage on iPad within 6 seconds of it happening on the field</li>
+          <li>Self-contained local network  -  works at any venue, any conditions</li>
+          <li>Compatible with any camera setup, no extra configuration</li>
+          <li>Syncs automatically to your ScoreBreak film library after the game</li>
+        </ul>
+        <a href="/airborne/" class="sol-row-link">Explore Airborne →</a>
+      </div>
+    </div>
+
+    <!-- Row 3: Recruiting Network -->
+    <div class="sol-row">
+      <div class="sol-row-img">
+        <img src="/recruiting-network/portal-hero-iphone.png" alt="ScoreBreak athlete recruiting profile on an iPhone" style="max-height:460px;object-position:top center;">
+      </div>
+      <div class="sol-row-text">
+        <div class="section-label">Recruiting Network</div>
+        <h2>Every athlete. A recruiting profile. Accessible to every college coach.</h2>
+        <ul class="sol-row-list">
+          <li>Every rostered athlete gets a profile the moment they're added to ScoreBreak</li>
+          <li>Athletes build highlight reels directly from tagged game film</li>
+          <li>College coaches already on ScoreBreak can browse and watch film without needing a link</li>
+          <li>Profiles update automatically as new games are tagged and uploaded</li>
+        </ul>
+        <a href="/recruiting-network/" class="sol-row-link">Explore the Recruiting Network →</a>
+      </div>
+    </div>
+
+    <!-- Row 4: League Solutions -->
+    <div class="sol-row sol-row--reverse">
+      <div class="sol-row-img">
+        <img src="/league-site-mockup.png" alt="ScoreBreak league site with stats, standings, and film">
+      </div>
+      <div class="sol-row-text">
+        <div class="section-label">League Solutions</div>
+        <h2>Film sharing, stats, and league management for leagues and events.</h2>
+        <ul class="sol-row-list">
+          <li>Film automatically exchanged between opponents after each game</li>
+          <li>League-wide stats, standings, and analytics from one dashboard</li>
+          <li>Custom public-facing league sites with live scores and schedules</li>
+          <li>Scales from small conferences to full professional organizations</li>
+        </ul>
+        <a href="/leagues/" class="sol-row-link">Explore League Solutions →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<CtaSection title="Not sure where to start? We'll help." />
+
+</Layout>

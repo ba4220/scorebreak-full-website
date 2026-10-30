@@ -1,0 +1,31 @@
+---
+// <title> plus description, keywords, Open Graph and Twitter tags. og:url is this page's URL.
+export interface SeoProps {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: 'website' | 'article';
+  // Pages that omit these get only twitter:card, and Twitter falls back to the og: tags.
+  twitterTitle?: string;
+  twitterDescription?: string;
+  // Overrides the default og:url for this page.
+  url?: string;
+}
+type Props = SeoProps;
+
+const { title, description, keywords, ogTitle = title, ogDescription = description, ogType = 'website', twitterTitle, twitterDescription } = Astro.props;
+const url = Astro.props.url ?? new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content="https://scorebreak.io/logos/logo-nav.png" />
+<meta name="twitter:card" content="summary_large_image" />
+{twitterTitle && <meta name="twitter:title" content={twitterTitle} />}
+{twitterDescription && <meta name="twitter:description" content={twitterDescription} />}
