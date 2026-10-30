@@ -7,7 +7,7 @@ interface Props {
   secondaryHref?: string;
   secondaryLabel?: string;
 }
-const { title, titleStyle, subtitle, secondaryHref = 'demo.html', secondaryLabel = 'Request a Demo' } = Astro.props;
+const { title, titleStyle, subtitle, secondaryHref = '/demo/', secondaryLabel = 'Request a Demo' } = Astro.props;
 ---
 <section class="section-sm">
   <div class="container">

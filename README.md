@@ -6,24 +6,38 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 ## Overview
 
-- Built with [Astro](https://astro.build) and TypeScript into a fully static site: `npm run build` writes plain HTML, CSS, JS and assets to `dist/`, which any static host can serve. URLs keep their `.html` names (`about.html`, `blog/index.html`).
+- Built with [Astro](https://astro.build) and TypeScript into a fully static site: `npm run build` writes plain HTML, CSS, JS and assets to `dist/`, which any static host can serve. Pages have clean URLs with a trailing slash (`/about/`, `/blog/notes-all-over/`), built as `about/index.html` etc.; every internal link and asset path is site-root absolute (`/demo/`, `/logos/…`).
 - Layout:
   - `src/pages/`: one `.astro` file per page. Each sets its `seo` (title, description, social tags; see `src/components/Seo.astro`) and wraps its content in `src/layouts/Layout.astro`, passing its page-specific `<style is:inline>` block in `slot="head"`.
   - `src/layouts/Layout.astro`: the shared `<head>`, nav, footer, contact modal and site script. Edit those once there and every page gets the change.
   - `src/components/`: `Nav` (sets `aria-current="page"` automatically), `Footer`, `ContactModal`, `Seo`, `Testimonial` / `TestimonialCarousel`, `CtaSection` (the closing "Contact Us" band).
   - `src/data/`: `testimonials.ts` (every coach quote, used by id on index, lacrosse, basketball and recruiting-network; edit a quote once) and `school-logos.ts` (homepage logo marquee).
-  - `src/content/blog/`: one Markdown file per post (`title`, `description`, `date`, `author` frontmatter). `src/pages/blog/[slug].astro` publishes each as `blog/<slug>.html` through `src/layouts/BlogPost.astro`; the blog index and the Newer/Older links are generated, newest first. To add a post, add a Markdown file. Straight quotes stay straight (smart quotes are off).
-  - `src/styles/`: `styles.css` (shared styles) and `components.css` (what `football.html` also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
+  - `src/content/blog/`: one Markdown file per post (`title`, `description`, `date`, `author` frontmatter). `src/pages/blog/[slug].astro` publishes each at `/blog/<slug>/` through `src/layouts/BlogPost.astro`; the blog index and the Newer/Older links are generated, newest first. To add a post, add a Markdown file. Straight quotes stay straight (smart quotes are off).
+  - `src/styles/`: `styles.css` (shared styles) and `components.css` (what the football page also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
   - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
   - `public/`: images, video, PDFs and the favicon, copied to the site root as-is.
 - Pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`).
 - Netlify was used for prototyping only; the site will not be hosted on Netlify. The Netlify GitHub app still builds deploy previews for PRs, configured in `netlify.toml`.
 
+## Hosting (Google Cloud Storage)
+
+The site is hosted from a Google Cloud Storage bucket configured as a static website. Deploying is uploading `dist/`:
+
+```sh
+npm run build
+gcloud storage rsync dist gs://<bucket> --recursive --delete-unmatched-destination-objects
+gcloud storage buckets update gs://<bucket> --web-main-page-suffix=index.html --web-error-page=404.html   # once
+```
+
+- `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`, and `/about` redirects to `/about/`. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
+- Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML should stay short-cached so updates show up.
+- A bucket can't redirect old URLs (e.g. a live `/portal`); that needs the load balancer's URL map or a small stub page.
+
 ## Testing
 
 One-time setup: `npm install && npx playwright install chromium`. Node 22.12+.
 
-- `npm run dev`: dev server with live reload at http://localhost:4321. Restart it after changing `src/content.config.ts` (it is only read at startup; until then the blog shows no posts).
+- `npm run dev`: dev server with live reload at http://localhost:4321. Page URLs need their trailing slash there (`/about/`; `/about` is a 404 in dev, a redirect on the bucket). Restart it after changing `src/content.config.ts` (it is only read at startup; until then the blog shows no posts).
 - `npm run build`: builds the site into `dist/`. `npm run preview` serves the build.
 - `npm run check`: type-checks the `.astro` and `.ts` files.
 
@@ -53,7 +67,7 @@ Every form has `data-form="<name>"`. On submit, the API receives one JSON-ready 
   category: 'sales',                    // which ScoreBreak inbox it lands in
   title: 'Demo request: Test Academy',  // email subject
   replyTo: 'test@example.com',          // the submitter's email
-  body: 'First Name: Test\nLast Name: User\n…\n\nSent from: https://…/demo.html',  // plain-text email body
+  body: 'First Name: Test\nLast Name: User\n…\n\nSent from: https://…/demo/',  // plain-text email body
   fields: { firstName: 'Test', … },     // raw values, keyed by input name
   turnstileToken: '…'                   // Cloudflare Turnstile token, see Bot protection
 }
@@ -64,10 +78,10 @@ The body has one `Label: value` line per field, using the labels visitors see (a
 | Form | `data-form` | Category | Title | Fields |
 |---|---|---|---|---|
 | Contact modal ("Get in Touch", every page) | `contact-sales` | `sales` | Contact request: *first last* | `firstName`, `lastName`, `email`, `message` |
-| SOC 2 request modal (`resources.html`) | `soc2-request` | `sales` | SOC 2 report request: *email* | `email` |
-| Demo request (`demo.html`) | `demo-request` | `sales` | Demo request: *organization* | `firstName`, `lastName`, `email`, `phone`, `organization`, `sport`, `role`, `message` |
-| Support form (`support.html`) | `support-request` | `support` | Support request: *name* | `name`, `email`, `message` |
-| Gridiron waitlist (`football.html`) | `waitlist` | `gridiron-waitlist` | Gridiron waitlist: *first last, school* | `first_name`, `last_name`, `email`, `school`, `position` |
+| SOC 2 request modal (`/resources/`) | `soc2-request` | `sales` | SOC 2 report request: *email* | `email` |
+| Demo request (`/demo/`) | `demo-request` | `sales` | Demo request: *organization* | `firstName`, `lastName`, `email`, `phone`, `organization`, `sport`, `role`, `message` |
+| Support form (`/support/`) | `support-request` | `support` | Support request: *name* | `name`, `email`, `message` |
+| Gridiron waitlist (`/football/`) | `waitlist` | `gridiron-waitlist` | Gridiron waitlist: *first last, school* | `first_name`, `last_name`, `email`, `school`, `position` |
 
 ## Bot protection
 
@@ -86,22 +100,22 @@ Turnstile is a third-party script from `challenges.cloudflare.com`, which may ne
 
 ## Pages
 
-Source files are `src/pages/<name>.astro`; each builds `<name>.html`.
+Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, served at `/<name>/`.
 
 | File | Page |
 |---|---|
-| `index.html` | Homepage (hero demo video with end card) |
-| `lacrosse.html`, `basketball.html` | Sport pages |
-| `football.html` | ScoreBreak Gridiron (football, coming soon / early access) |
-| `other-sports.html` | Soccer, ice hockey, field hockey, and other sports |
-| `solutions.html` | All solutions overview |
-| `software.html` | Team Software |
-| `airborne.html` | Airborne sideline replay (Airborne R portable, Airborne Stadium installed) |
-| `recruiting-network.html` | Recruiting Network (formerly `portal.html`) |
-| `leagues.html` | League solutions |
-| `about.html`, `demo.html`, `support.html`, `resources.html` | Company, demo request, support, documents |
-| `blog/` | Blog index and 7 posts (posts are in `src/content/blog/`) |
-| `404.html` | Not-found page; static hosts serve it for any unknown URL |
+| `/` | Homepage (hero demo video with end card) |
+| `/lacrosse/`, `/basketball/` | Sport pages |
+| `/football/` | ScoreBreak Gridiron (football, coming soon / early access) |
+| `/other-sports/` | Soccer, ice hockey, field hockey, and other sports |
+| `/solutions/` | All solutions overview |
+| `/software/` | Team Software |
+| `/airborne/` | Airborne sideline replay (Airborne R portable, Airborne Stadium installed) |
+| `/recruiting-network/` | Recruiting Network (formerly `portal.html`) |
+| `/leagues/` | League solutions |
+| `/about/`, `/demo/`, `/support/`, `/resources/` | Company, demo request, support, documents |
+| `/blog/` | Blog index and 7 posts (posts are in `src/content/blog/`) |
+| `/404.html` | Not-found page; the bucket serves it for any unknown URL |
 
 ## Brand
 
@@ -118,17 +132,17 @@ Source files are `src/pages/<name>.astro`; each builds `<name>.html`.
 
 | Form | Send to |
 |---|---|
-| Support form (`support.html`) | support@scorebreak.io |
-| Demo request (`demo.html`) | ben@scorebreak.io |
+| Support form (`/support/`) | support@scorebreak.io |
+| Demo request (`/demo/`) | ben@scorebreak.io |
 | Contact modal ("Get in Touch", every page) | ben@scorebreak.io |
-| SOC 2 request modal (`resources.html`) | ben@scorebreak.io |
-| Gridiron waitlist (`football.html`) | Not decided yet. Its confirmation shows a referral link (`scorebreakgridiron.com/ref/<code>`) whose code is random and isn't stored anywhere. |
+| SOC 2 request modal (`/resources/`) | ben@scorebreak.io |
+| Gridiron waitlist (`/football/`) | Not decided yet. Its confirmation shows a referral link (`scorebreakgridiron.com/ref/<code>`) whose code is random and isn't stored anywhere. |
 
-**Redirects.** `portal.html` was renamed to `recruiting-network.html`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
+**Redirects.** `portal.html` was renamed to `/recruiting-network/`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
 
 **Known issues**
 - Open Graph image path (`logos/logo-nav.png`) needs checking.
-- `football.html` doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
+- The football page doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
 - `AUDIT.md` and `AI-TELLS-AUDIT.md` list further findings. Many copy and design items in `AI-TELLS-AUDIT.md` have already been addressed.
 
 **File names.** Asset files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Images are still split between the `public/` root and folders. Feel free to reorganize, but update all paths if you do.
@@ -137,7 +151,7 @@ Source files are `src/pages/<name>.astro`; each builds `<name>.html`.
 
 - Copy has been carefully edited. Please check with Ben before changing any wording.
 - Screenshots such as `software/reports-screenshot-edited.png` use made-up player names on purpose. Don't replace them with screenshots containing real player data.
-- The Josh Arruda testimonial on `basketball.html` mentions HUDL Sportscode. That is intentional. Competitors are not named anywhere else on the site.
+- The Josh Arruda testimonial on the basketball page mentions HUDL Sportscode. That is intentional. Competitors are not named anywhere else on the site.
 
 ## Repo
 

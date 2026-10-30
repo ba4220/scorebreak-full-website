@@ -3,10 +3,10 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname, normalize } from 'node:path';
-import { ROOT, DIST, PAGES, STANDALONE } from './pages.mjs';
+import { ROOT, DIST, PAGES, STANDALONE, fileOf } from './pages.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
-const html = Object.fromEntries(PAGES.map((p) => [p, readFileSync(join(DIST, p), 'utf8')]));
+const html = Object.fromEntries(PAGES.map((p) => [p, readFileSync(join(DIST, fileOf(p)), 'utf8')]));
 const builtCss = readdirSync(join(DIST, '_astro')).filter((f) => f.endsWith('.css'));
 const SITE_CSS = { 'src/styles/styles.css': read('src/styles/styles.css'), 'src/styles/components.css': read('src/styles/components.css') };
 const pageStyles = (page) => [...html[page].matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
@@ -46,7 +46,9 @@ test('every local href/src/url() points at a file that exists (case-sensitive)',
   const missing = [];
   for (const page of PAGES) {
     for (const ref of localRefs(html[page])) {
-      const target = ref.startsWith('/') ? ref.slice(1) : join(dirname(page), ref);
+      // A page link (/about/) must reach that page's index.html.
+      const path = ref.endsWith('/') ? `${ref}index.html` : ref;
+      const target = path.startsWith('/') ? path.slice(1) : join(dirname(fileOf(page)), path);
       if (!existsExact(target)) {
         missing.push(`${page} → ${ref}`);
       }
@@ -83,8 +85,8 @@ test('published file and folder names in public/ are lowercase-hyphenated', () =
 });
 
 test('every page loads the shared site script, and only bundled module scripts', () => {
-  const shared = html['index.html'].match(/<script type="module" src="(\/_astro\/Layout\.[^"]+\.js)"><\/script>/);
-  assert.ok(shared, 'index.html has no Layout script');
+  const shared = html['/'].match(/<script type="module" src="(\/_astro\/Layout\.[^"]+\.js)"><\/script>/);
+  assert.ok(shared, '/ has no Layout script');
   for (const page of PAGES) {
     const scripts = [...html[page].matchAll(/<script\b[^>]*>/g)].map((m) => m[0]);
     assert.ok(scripts.includes(`<script type="module" src="${shared[1]}">`), `${page} lacks the shared site script`);
@@ -172,9 +174,16 @@ test('nav links carry aria-current="page" exactly when they point at the current
     const source = html[page];
     const actions = source.indexOf('<div class="nav-mobile-section nav-mobile-actions">');
     const nav = source.slice(source.indexOf('<nav'), source.indexOf('</div>', actions));
-    const self = `/${page}`;
     for (const [, href, current] of nav.matchAll(/<a href="([^"]+)"( aria-current="page")?/g)) {
-      assert.equal(Boolean(current), href === self, `${page}: link to ${href} ${current ? 'wrongly has' : 'lacks'} aria-current`);
+      assert.equal(Boolean(current), href === page, `${page}: link to ${href} ${current ? 'wrongly has' : 'lacks'} aria-current`);
+    }
+  }
+});
+
+test('internal page links use clean URLs (/about/), not .html files', () => {
+  for (const page of PAGES) {
+    for (const ref of localRefs(html[page])) {
+      assert.doesNotMatch(ref, /\.html$/, `${page} links to ${ref}`);
     }
   }
 });

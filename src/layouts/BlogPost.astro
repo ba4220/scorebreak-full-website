@@ -132,7 +132,7 @@ const seo = { title: pageTitle, description, ogType: 'article' as const, twitter
   <header class="blog-hero post-hero">
     <div class="container">
       <div class="post-wrap">
-        <a href="index.html" class="post-back">&larr; All posts</a>
+        <a href="/blog/" class="post-back">&larr; All posts</a>
         <h1>{title}</h1>
         <div class="post-byline"><strong>{author}</strong><span aria-hidden="true">·</span><time datetime={isoDate(date)}>{formatDate(date)}</time></div>
       </div>
@@ -145,13 +145,13 @@ const seo = { title: pageTitle, description, ogType: 'article' as const, twitter
       </div>
       <nav class="post-nav" aria-label="More posts">
         {newer && (
-          <a href={`${newer.id}.html`} class="post-nav-prev">
+          <a href={`/blog/${newer.id}/`} class="post-nav-prev">
             <span class="post-nav-label">&larr; Newer</span>
             <span class="post-nav-title">{newer.data.title}</span>
           </a>
         )}
         {older && (
-          <a href={`${older.id}.html`} class="post-nav-next">
+          <a href={`/blog/${older.id}/`} class="post-nav-next">
             <span class="post-nav-label">Older &rarr;</span>
             <span class="post-nav-title">{older.data.title}</span>
           </a>

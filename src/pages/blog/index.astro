@@ -90,7 +90,7 @@ const seo = {
       {posts.map((post) => (
         <article class="post-entry">
           <div class="post-entry-meta"><time datetime={isoDate(post.data.date)}>{formatDate(post.data.date)}</time> <span aria-hidden="true">&middot;</span> {post.data.author}</div>
-          <h2><a href={`${post.id}.html`}>{post.data.title}</a></h2>
+          <h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
           <p class="post-entry-excerpt">{post.data.description}</p>
         </article>
       ))}

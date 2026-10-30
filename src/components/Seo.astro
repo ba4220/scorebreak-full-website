@@ -16,8 +16,7 @@ export interface SeoProps {
 type Props = SeoProps;
 
 const { title, description, keywords, ogTitle = title, ogDescription = description, ogType = 'website', twitterTitle, twitterDescription } = Astro.props;
-// Index routes report a trailing-slash path ("/blog/"); the published file is index.html.
-const url = Astro.props.url ?? new URL(Astro.url.pathname.replace(/\/$/, '/index.html'), Astro.site).href;
+const url = Astro.props.url ?? new URL(Astro.url.pathname, Astro.site).href;
 ---
 <title>{title}</title>
 <meta name="description" content={description} />

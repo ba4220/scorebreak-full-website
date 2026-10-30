@@ -2,7 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// Blog posts: src/content/blog/<slug>.md, published at /blog/<slug>.html.
+// Blog posts: src/content/blog/<slug>.md, published at /blog/<slug>/.
 const blog = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/blog' }),
   schema: z.object({
