@@ -101,6 +101,7 @@ Source files are `src/pages/<name>.astro`; each builds `<name>.html`.
 | `leagues.html` | League solutions |
 | `about.html`, `demo.html`, `support.html`, `resources.html` | Company, demo request, support, documents |
 | `blog/` | Blog index and 7 posts (posts are in `src/content/blog/`) |
+| `404.html` | Not-found page; static hosts serve it for any unknown URL |
 
 ## Brand
 

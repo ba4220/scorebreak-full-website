@@ -1,0 +1,58 @@
+---
+// Served for any unknown URL (by static hosts and `npm run dev`), so every link here is site-root absolute.
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  title: 'Page Not Found | ScoreBreak',
+  description: "The page you're looking for doesn't exist or has moved.",
+};
+---
+<Layout seo={seo}>
+<Fragment slot="head">
+  <meta name="robots" content="noindex" />
+  <style is:inline>
+    .nf-hero {
+      min-height: calc(100vh - 220px);
+      padding: calc(var(--nav-h) + 5rem) 0 5rem;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+    .nf-code {
+      font-size: clamp(5rem, 16vw, 9rem);
+      font-weight: 900;
+      letter-spacing: -.06em;
+      line-height: 1;
+      color: var(--blue);
+      text-shadow: 0 0 48px var(--blue-glow);
+      margin-bottom: 1rem;
+    }
+    .nf-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .nf-hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 2.25rem;
+    }
+    .nf-hero .hero-actions { justify-content: center; }
+  </style>
+</Fragment>
+
+<section class="nf-hero">
+  <div class="container">
+    <div class="nf-code" aria-hidden="true">404</div>
+    <h1>This page is out of bounds.</h1>
+    <p>The page you're looking for doesn't exist or has moved. Head back to the homepage, or get in touch and we'll point you in the right direction.</p>
+    <div class="hero-actions">
+      <a href="/index.html" class="btn btn-primary btn-lg">Back to Home</a>
+      <a href="#" class="btn btn-outline btn-lg" data-modal-open="sbContactModal">Contact Us</a>
+    </div>
+  </div>
+</section>
+</Layout>
