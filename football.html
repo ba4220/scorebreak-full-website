@@ -15,20 +15,21 @@
   <meta name="twitter:title" content="ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist" />
   <meta name="twitter:description" content="Professional football film analysis and sideline replay technology for high school and college programs." />
   <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="components.css" />
   <style>
     /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --blue:   #56C7FF;
-      --blue-dim: rgba(86,199,255,.15);
-      --blue-glow: rgba(86,199,255,.35);
+      --gridiron-blue-dim: rgba(86,199,255,.15);
+      --gridiron-blue-glow: rgba(86,199,255,.35);
       --dark:   #0A0E1A;
       --dark2:  #0F1525;
       --dark3:  #141929;
       --white:  #FFFFFF;
       --gray:   #8A95A8;
-      --border: rgba(86,199,255,.2);
+      --gridiron-border: rgba(86,199,255,.2);
     }
 
     html { scroll-behavior: smooth; }
@@ -40,63 +41,6 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-
-    /* ── Nav ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(10,14,26,.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-      margin-right: auto;
-      text-decoration: none;
-    }
-    .logo-dark  { display: block !important; height: 44px; width: auto; }
-    .logo-light { display: none  !important; height: 44px; width: auto; }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .5rem 1.1rem;
-      background: var(--blue);
-      color: var(--dark);
-      font-weight: 700;
-      font-size: .85rem;
-      letter-spacing: .02em;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: opacity .2s;
-    }
-    .nav-cta:hover { opacity: .85; }
-
-    .nav-gridiron {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .45rem 1rem;
-      background: linear-gradient(135deg, var(--blue) 0%, #0080CC 100%);
-      color: #fff;
-      font-size: .82rem;
-      font-weight: 700;
-      letter-spacing: .04em;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: opacity .2s, transform .2s;
-      white-space: nowrap;
-    }
-    .nav-gridiron:hover { opacity: .88; transform: translateY(-1px); }
 
     /* ── Hero ── */
     .hero {
@@ -126,14 +70,14 @@
       align-items: center;
       gap: .45rem;
       padding: .35rem .9rem;
-      border: 1px solid var(--border);
+      border: 1px solid var(--gridiron-border);
       border-radius: 999px;
       font-size: .78rem;
       font-weight: 600;
       letter-spacing: .08em;
       text-transform: uppercase;
       color: var(--blue);
-      background: var(--blue-dim);
+      background: var(--gridiron-blue-dim);
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
@@ -210,11 +154,11 @@
       border: none;
       cursor: pointer;
       transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 0 0 0 var(--blue-glow);
+      box-shadow: 0 0 0 0 var(--gridiron-blue-glow);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px var(--blue-glow);
+      box-shadow: 0 8px 32px var(--gridiron-blue-glow);
     }
     .btn-primary:active { transform: translateY(0); }
 
@@ -235,7 +179,7 @@
     }
     .btn-ghost:hover {
       border-color: var(--blue);
-      background: var(--blue-dim);
+      background: var(--gridiron-blue-dim);
     }
 
     .hero-stats {
@@ -312,7 +256,7 @@
 
     .feature-card {
       background: var(--dark3);
-      border: 1px solid var(--border);
+      border: 1px solid var(--gridiron-border);
       border-radius: 12px;
       padding: 2rem;
       position: relative;
@@ -332,8 +276,8 @@
 
     .feature-icon {
       width: 48px; height: 48px;
-      background: var(--blue-dim);
-      border: 1px solid var(--border);
+      background: var(--gridiron-blue-dim);
+      border: 1px solid var(--gridiron-border);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -385,7 +329,7 @@
 
     .waitlist-card {
       background: var(--dark3);
-      border: 1px solid var(--border);
+      border: 1px solid var(--gridiron-border);
       border-radius: 16px;
       padding: 2.5rem 2rem;
       margin-top: 2.5rem;
@@ -484,7 +428,7 @@
 
     .confirm-box {
       background: var(--dark3);
-      border: 1px solid var(--border);
+      border: 1px solid var(--gridiron-border);
       border-radius: 20px;
       padding: 3rem 2.5rem;
       max-width: 520px;
@@ -500,8 +444,8 @@
 
     .confirm-icon {
       width: 64px; height: 64px;
-      background: var(--blue-dim);
-      border: 1px solid var(--border);
+      background: var(--gridiron-blue-dim);
+      border: 1px solid var(--gridiron-border);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -527,7 +471,7 @@
 
     .referral-box {
       background: var(--dark2);
-      border: 1px solid var(--border);
+      border: 1px solid var(--gridiron-border);
       border-radius: 10px;
       padding: 1.2rem 1.2rem .9rem;
       margin-bottom: 1.5rem;
@@ -581,7 +525,7 @@
       margin-top: 1rem;
       padding: .8rem 1rem;
       background: rgba(86,199,255,.06);
-      border: 1px solid var(--border);
+      border: 1px solid var(--gridiron-border);
       border-radius: 8px;
       font-size: .84rem;
       color: var(--gray);
@@ -626,8 +570,6 @@
     }
 
     @media (max-width: 600px) {
-      nav { padding: .85rem 1.2rem; }
-      .nav-cta { display: none; }
       section { padding: 2.5rem 1.25rem; }
       .hero { padding: 6.5rem 1.25rem 3.5rem; }
       .hero h1 { font-size: clamp(1.9rem, 9vw, 2.6rem); }
@@ -685,73 +627,56 @@
 <!-- ══════════════════════════════════════
      NAV (shared site nav)
 ═══════════════════════════════════════ -->
-<nav class="site-nav" id="siteNav" style="position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;background:rgba(10,14,26,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);box-sizing:border-box;">
-  <div style="display:flex;align-items:center;width:100%;padding:0 2rem;gap:1rem;box-sizing:border-box;">
-    <!-- Logo -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="ScoreBreak Home">
       <img src="logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
       <img src="logos/4-nav.png" class="logo-light" alt="ScoreBreak">
     </a>
-
-    <!-- Desktop center nav -->
-    <div class="sb-nav-center" style="display:flex;align-items:center;gap:.25rem;">
-      <!-- Sports dropdown -->
-      <div class="sb-dd" style="position:relative;">
-        <button class="sb-dd-btn" style="display:flex;align-items:center;gap:.35rem;padding:.5rem .8rem;font-size:.88rem;font-weight:600;color:#fff;border-radius:8px;background:none;border:none;cursor:pointer;white-space:nowrap;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.04)'" onmouseout="this.style.background='none'">
-          Sports <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg>
-        </button>
-        <div class="sb-dd-menu" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#0F1525;border:1px solid rgba(86,199,255,.15);border-radius:12px;padding:.5rem;min-width:180px;box-shadow:0 4px 24px rgba(0,0,0,.4);z-index:300;">
-          <a href="lacrosse.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Lacrosse</a>
-          <a href="basketball.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Basketball</a>
-          <a href="football.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#56C7FF;border-radius:8px;text-decoration:none;background:rgba(86,199,255,.1);">Football</a>
-          <a href="other-sports.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Other Sports</a>
+    <div class="nav-center">
+      <div class="nav-dropdown" data-dropdown id="dd-sports">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="lacrosse.html">Lacrosse</a>
+          <a href="basketball.html">Basketball</a>
+          <a href="football.html" aria-current="page">Football</a>
+          <a href="other-sports.html">Other Sports</a>
         </div>
       </div>
-
-      <!-- Solutions dropdown -->
-      <div class="sb-dd" style="position:relative;">
-        <button class="sb-dd-btn" style="display:flex;align-items:center;gap:.35rem;padding:.5rem .8rem;font-size:.88rem;font-weight:600;color:#fff;border-radius:8px;background:none;border:none;cursor:pointer;white-space:nowrap;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.04)'" onmouseout="this.style.background='none'">
-          Solutions <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg>
-        </button>
-        <div class="sb-dd-menu" style="display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#0F1525;border:1px solid rgba(86,199,255,.15);border-radius:12px;padding:.5rem;min-width:200px;box-shadow:0 4px 24px rgba(0,0,0,.4);z-index:300;">
-          <a href="software.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Team Software</a>
-          <a href="airborne.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;white-space:nowrap;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Airborne Sideline Replay</a>
-          <a href="recruiting-network.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">Recruiting Network</a>
-          <a href="leagues.html" style="display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;font-size:.87rem;font-weight:600;color:#fff;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)';this.style.color='#56C7FF'" onmouseout="this.style.background='none';this.style.color='#fff'">League Solutions</a>
+      <div class="nav-dropdown" data-dropdown id="dd-solutions">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="nav-drop-menu">
+          <a href="software.html">Team Software</a>
+          <a href="airborne.html">Airborne Sideline Replay</a>
+          <a href="recruiting-network.html">Recruiting Network</a>
+          <a href="leagues.html">League Solutions</a>
           <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
-          <a href="solutions.html" style="display:block;padding:.6rem .9rem;font-size:.87rem;font-weight:700;color:#56C7FF;border-radius:8px;text-decoration:none;" onmouseover="this.style.background='rgba(86,199,255,.1)'" onmouseout="this.style.background='none'">All Solutions</a>
+          <a href="solutions.html" style="color:var(--blue);font-weight:700;">All Solutions</a>
         </div>
       </div>
     </div>
-
-    <!-- Right side -->
-    <div class="sb-nav-right" style="display:flex;align-items:center;gap:.5rem;">
-      <a href="support.html" style="padding:.5rem .75rem;font-size:.88rem;font-weight:600;color:#8A95A8;border-radius:8px;text-decoration:none;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A95A8'">Support</a>
-      <a href="about.html" style="padding:.5rem .75rem;font-size:.88rem;font-weight:600;color:#8A95A8;border-radius:8px;text-decoration:none;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A95A8'">About</a>
-      <a href="demo.html" style="padding:.5rem .75rem;font-size:.88rem;font-weight:600;color:#8A95A8;border-radius:8px;text-decoration:none;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A95A8'">Request a Demo</a>
-      <a href="football.html" class="nav-gridiron">Gridiron</a>
-      <a href="https://app.scorebreak.io" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:.5rem 1.1rem;background:rgba(255,255,255,.04);border:1px solid rgba(86,199,255,.15);color:#fff;font-size:.88rem;font-weight:700;border-radius:8px;text-decoration:none;white-space:nowrap;">Log In</a>
+    <div class="nav-right">
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="demo.html" class="nav-link">Request a Demo</a>
+      <a href="football.html" aria-current="page" class="nav-gridiron">Gridiron</a>
+      <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
     </div>
-
-    <!-- Mobile hamburger -->
-    <button id="sbHam" onclick="document.getElementById('navMobile').classList.toggle('open')" style="display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;padding:6px;border-radius:8px;background:none;border:none;cursor:pointer;margin-left:auto;">
-      <span style="display:block;width:100%;height:2px;background:#fff;border-radius:2px;"></span>
-      <span style="display:block;width:100%;height:2px;background:#fff;border-radius:2px;"></span>
-      <span style="display:block;width:100%;height:2px;background:#fff;border-radius:2px;"></span>
+    <button class="nav-hamburger" id="navHamburger" data-nav-toggle aria-label="Open menu">
+      <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-
 <div class="nav-mobile" id="navMobile">
   <div class="nav-mobile-section">
     <div class="nav-mobile-label">Sports</div>
     <a href="lacrosse.html">Lacrosse</a>
     <a href="basketball.html">Basketball</a>
-    <a href="football.html">Football</a>
+    <a href="football.html" aria-current="page">Football</a>
     <a href="other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <a href="solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
+    <a href="solutions.html" class="nav-mobile-label">Solutions</a>
     <a href="software.html">Team Software</a>
     <a href="airborne.html">Airborne Sideline Replay</a>
     <a href="recruiting-network.html">Recruiting Network</a>
@@ -765,60 +690,10 @@
     <a href="about.html">About Us</a>
   </div>
   <div class="nav-mobile-section nav-mobile-actions">
-    <a href="football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
-    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+    <a href="football.html" aria-current="page" class="nav-mobile-btn nav-mobile-btn--gridiron">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="nav-mobile-btn nav-mobile-btn--login" target="_blank" rel="noopener">Log In</a>
   </div>
 </div>
-
-<style>
-/* Mobile menu (this page doesn't load styles.css, so the shared .nav-mobile rules live here) */
-#navMobile { display: none; position: fixed; top: 72px; left: 0; right: 0; background: #0F1525; border-bottom: 1px solid rgba(86,199,255,.1); padding: 1rem; z-index: 199; max-height: calc(100vh - 72px); overflow-y: auto; }
-#navMobile.open { display: block; }
-#navMobile .nav-mobile-section { padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.06); margin-bottom: .5rem; }
-#navMobile .nav-mobile-section:last-child { border-bottom: none; margin-bottom: 0; }
-#navMobile .nav-mobile-label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #5A6478; padding: .4rem .75rem; }
-#navMobile a { display: block; padding: .65rem .75rem; font-size: .95rem; font-weight: 600; color: #fff; border-radius: 8px; text-decoration: none; }
-#navMobile a:hover { background: rgba(86,199,255,.1); color: #56C7FF; }
-#navMobile a.nav-mobile-label { font-size: .75rem; font-weight: 700; padding: .4rem .75rem; }
-#navMobile .nav-mobile-actions { display: flex; flex-direction: column; gap: .5rem; padding-top: .5rem; }
-#navMobile .nav-mobile-actions a { font-weight: 700; text-align: center; }
-#navMobile .nav-mobile-actions .btn-outline { color: #56C7FF; border: 1px solid rgba(86,199,255,.2); }
-
-/* Show hamburger on mobile, hide desktop center/right */
-@media (max-width: 900px) {
-  .sb-nav-center, .sb-nav-right { display: none !important; }
-  #sbHam { display: flex !important; width: 44px !important; height: 44px !important; }
-}
-@media (max-width: 600px) {
-  #siteNav > div { padding: 0 1.25rem !important; }
-}
-</style>
-
-<script>
-/* Dropdown toggle for football page */
-document.querySelectorAll('.sb-dd').forEach(function(dd) {
-  var btn = dd.querySelector('.sb-dd-btn');
-  var menu = dd.querySelector('.sb-dd-menu');
-  btn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var isOpen = menu.style.display === 'block';
-    document.querySelectorAll('.sb-dd-menu').forEach(function(m){ m.style.display='none'; });
-    menu.style.display = isOpen ? 'none' : 'block';
-  });
-});
-document.addEventListener('click', function() {
-  document.querySelectorAll('.sb-dd-menu').forEach(function(m){ m.style.display='none'; });
-});
-
-/* Close mobile menu on link click */
-document.querySelectorAll('#navMobile a').forEach(function(link) {
-  link.addEventListener('click', function() {
-    document.getElementById('navMobile').classList.remove('open');
-  });
-});
-</script>
-
-
 <!-- ══════════════════════════════════════
      HERO
 ═══════════════════════════════════════ -->

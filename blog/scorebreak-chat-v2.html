@@ -15,6 +15,7 @@
   <meta name="twitter:description" content="Staying in communication is instrumental to your team&#x27;s development, organization, and performance." />
   <link rel="icon" type="image/png" href="../favicon.png" />
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../components.css" />
   <style>
     /* ── Hero ── */
     .blog-hero {
@@ -139,8 +140,8 @@
       <img src="../logos/4-nav.png" class="logo-light" alt="ScoreBreak">
     </a>
     <div class="nav-center">
-      <div class="nav-dropdown" id="dd-sports">
-        <button class="nav-drop-btn" aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="nav-dropdown" data-dropdown id="dd-sports">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Sports <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="../lacrosse.html">Lacrosse</a>
           <a href="../basketball.html">Basketball</a>
@@ -148,8 +149,8 @@
           <a href="../other-sports.html">Other Sports</a>
         </div>
       </div>
-      <div class="nav-dropdown" id="dd-solutions">
-        <button class="nav-drop-btn" aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="nav-dropdown" data-dropdown id="dd-solutions">
+        <button class="nav-drop-btn" data-dropdown-toggle aria-expanded="false">Solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="nav-drop-menu">
           <a href="../software.html">Team Software</a>
           <a href="../airborne.html">Airborne Sideline Replay</a>
@@ -167,7 +168,7 @@
       <a href="../football.html" class="nav-gridiron">Gridiron</a>
       <a href="https://app.scorebreak.io" class="nav-login" target="_blank" rel="noopener">Log In</a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+    <button class="nav-hamburger" id="navHamburger" data-nav-toggle aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -181,7 +182,7 @@
     <a href="../other-sports.html">Other Sports</a>
   </div>
   <div class="nav-mobile-section">
-    <a href="../solutions.html" class="nav-mobile-label" style="color:var(--blue);">Solutions</a>
+    <a href="../solutions.html" class="nav-mobile-label">Solutions</a>
     <a href="../software.html">Team Software</a>
     <a href="../airborne.html">Airborne Sideline Replay</a>
     <a href="../recruiting-network.html">Recruiting Network</a>
@@ -195,8 +196,8 @@
     <a href="../about.html">About Us</a>
   </div>
   <div class="nav-mobile-section nav-mobile-actions">
-    <a href="../football.html" class="btn btn-sm" style="background:linear-gradient(135deg,var(--blue) 0%,#0080CC 100%);color:#fff;text-align:center;">Gridiron</a>
-    <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" style="text-align:center;">Log In</a>
+    <a href="../football.html" class="nav-mobile-btn nav-mobile-btn--gridiron">Gridiron</a>
+    <a href="https://app.scorebreak.io" class="nav-mobile-btn nav-mobile-btn--login" target="_blank" rel="noopener">Log In</a>
   </div>
 </div>
 
