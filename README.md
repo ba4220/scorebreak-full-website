@@ -23,7 +23,7 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 One-time setup: `npm install && npx playwright install chromium`. Node 22.12+.
 
-- `npm run dev`: dev server with live reload at http://localhost:4321.
+- `npm run dev`: dev server with live reload at http://localhost:4321. Restart it after changing `src/content.config.ts` (it is only read at startup; until then the blog shows no posts).
 - `npm run build`: builds the site into `dist/`. `npm run preview` serves the build.
 - `npm run check`: type-checks the `.astro` and `.ts` files.
 
