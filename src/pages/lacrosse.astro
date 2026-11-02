@@ -1,4 +1,5 @@
 ---
+import PurposeBuilt, { type PurposeItem } from '../components/PurposeBuilt.astro';
 import { Image } from 'astro:assets';
 import finalSoftwareMockupImg from '../assets/software/final-software-mockup.png';
 import ipadAirborneSidelineImg from '../assets/airborne-r/ipad-airborne-sideline.png';
@@ -16,6 +17,14 @@ const seo = {
   twitterTitle: 'ScoreBreak for Lacrosse | Film Analysis & Recruiting Platform',
   twitterDescription: 'The complete lacrosse technology platform  -  film analysis, sideline replay, and a Recruiting Network that gets your athletes in front of college coaches.',
 };
+
+const purposeItems: PurposeItem[] = [
+  { title: 'Analysis & Reporting', text: 'Tag plays, build custom workflows, and turn your film into data. ScoreBreak visualizes and analyzes it into reports you can act on.' },
+  { title: 'Scouting & Team Preparation', text: 'Filter recruits by position, class year, and academics, then let expert Handoff breakdowns build your scouting reports  -  your staff focuses on execution, not film work.' },
+  { title: 'Integrated Sideline Replay', text: 'Airborne™ streams instant sideline video replay directly into ScoreBreak  -  deployed in minutes for games and practice alike.' },
+  { title: 'Recruiting Profiles', text: 'Athlete-built recruiting profiles with highlights, stats, and footage  -  visible to college coaches and always current.' },
+  { title: 'Effortless Communication', text: 'Athletes, coaches, and parents stay connected with built-in messaging and automatic notifications.' },
+];
 ---
 <Layout seo={seo}>
 <Fragment slot="head">
@@ -179,26 +188,6 @@ const seo = {
       padding-top: .5rem;
     }
 
-    /* Purpose-Built section */
-    .purpose-feature-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .purpose-feature-text h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .25rem;
-    }
-    .purpose-feature-text p {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
     /* Testimonials carousel */
     .tc-wrap {
       position: relative;
@@ -340,59 +329,7 @@ const seo = {
   </div>
 </section>
 
-<!-- ═══ PURPOSE-BUILT SECTION ═══ -->
-<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-label">Platform</span>
-      <h2 class="section-title">Purpose-Built for Coaches, Players, and Leagues</h2>
-    </div>
-
-    <div class="purpose-feature-grid">
-
-      <!-- 1: Analysis & Reporting -->
-      <div class="purpose-feature-item">
-        <div class="purpose-feature-text">
-          <h3>Analysis &amp; Reporting</h3>
-          <p>Tag plays, build custom workflows, and turn your film into data. ScoreBreak visualizes and analyzes it into reports you can act on.</p>
-        </div>
-      </div>
-
-      <!-- 2: Scouting & Team Preparation -->
-      <div class="purpose-feature-item">
-        <div class="purpose-feature-text">
-          <h3>Scouting &amp; Team Preparation</h3>
-          <p>Filter recruits by position, class year, and academics, then let expert Handoff breakdowns build your scouting reports  -  your staff focuses on execution, not film work.</p>
-        </div>
-      </div>
-
-      <!-- 3: Integrated Sideline Replay -->
-      <div class="purpose-feature-item">
-        <div class="purpose-feature-text">
-          <h3>Integrated Sideline Replay</h3>
-          <p>Airborne™ streams instant sideline video replay directly into ScoreBreak  -  deployed in minutes for games and practice alike.</p>
-        </div>
-      </div>
-
-      <!-- 4: Recruiting Profiles -->
-      <div class="purpose-feature-item">
-        <div class="purpose-feature-text">
-          <h3>Recruiting Profiles</h3>
-          <p>Athlete-built recruiting profiles with highlights, stats, and footage  -  visible to college coaches and always current.</p>
-        </div>
-      </div>
-
-      <!-- 5: Effortless Communication -->
-      <div class="purpose-feature-item">
-        <div class="purpose-feature-text">
-          <h3>Effortless Communication</h3>
-          <p>Athletes, coaches, and parents stay connected with built-in messaging and automatic notifications.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+<PurposeBuilt label="Platform" items={purposeItems} variant="list" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);" />
 
 <!-- ═══ TESTIMONIALS ═══ -->
 <section class="section">
