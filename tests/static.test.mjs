@@ -9,7 +9,9 @@ const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = Object.fromEntries(PAGES.map((p) => [p, readFileSync(join(DIST, fileOf(p)), 'utf8')]));
 const builtCss = readdirSync(join(DIST, '_astro')).filter((f) => f.endsWith('.css'));
 const SITE_CSS = { 'src/styles/styles.css': read('src/styles/styles.css'), 'src/styles/components.css': read('src/styles/components.css') };
-const pageStyles = (page) => [...html[page].matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
+// Every <style> block in the Astro sources (inline or scoped), by file. Built CSS is minified, so check the sources.
+const ASTRO_FILES = readdirSync(join(ROOT, 'src'), { recursive: true }).filter((f) => f.endsWith('.astro')).map((f) => `src/${f}`);
+const sourceStyles = Object.fromEntries(ASTRO_FILES.map((f) => [f, [...read(f).matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1])]));
 
 // Matches a file path exactly, segment by segment, so wrong-case paths fail here
 // the way they would on a case-sensitive (Linux) host, even when run on macOS.
@@ -120,18 +122,20 @@ test('data-* hooks point at elements that exist on the same page', () => {
   }
 });
 
-test('every page except football links styles.css; every page links components.css after it', () => {
+test('every page except football links styles.css; every page links components.css after it, then its own styles', () => {
   for (const page of PAGES) {
-    const links = [...html[page].matchAll(/<link rel="stylesheet" href="\/_astro\/([a-z]+)\.[\w-]+\.css">/g)].map((m) => m[1]);
-    assert.deepEqual(links, STANDALONE.has(page) ? ['components'] : ['styles', 'components'], page);
+    const links = [...html[page].matchAll(/<link rel="stylesheet" href="\/_astro\/([\w-]+)\.[\w-]+\.css">/g)].map((m) => m[1]);
+    const shared = STANDALONE.has(page) ? ['components'] : ['styles', 'components'];
+    assert.deepEqual(links.slice(0, shared.length), shared, page);
+    assert.ok(!links.slice(shared.length).some((l) => l === 'styles' || l === 'components'), `${page}: ${links}`);
   }
 });
 
 test('footer, modal and modal-form rules live only in components.css', () => {
   const SHARED = /(^|[\s,}])\.(site-footer|footer-[\w-]+|sb-modal[\w-]*|sb-form[\w-]*|sb-hidden-field)\b[^{}]*\{/m;
   assert.doesNotMatch(SITE_CSS['src/styles/styles.css'], SHARED, 'styles.css');
-  for (const page of PAGES) {
-    assert.doesNotMatch(pageStyles(page).join('\n'), SHARED, page);
+  for (const [file, styles] of Object.entries(sourceStyles)) {
+    assert.doesNotMatch(styles.join('\n'), SHARED, file);
   }
 });
 
@@ -147,7 +151,9 @@ test('every form has the honeypot, unfocusable by Tab and ignored by autofill', 
   const HONEYPOT = `<p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>`;
   for (const page of PAGES) {
     for (const [form] of html[page].matchAll(/<form\b[\s\S]*?<\/form>/g)) {
-      assert.ok(form.includes(HONEYPOT), `${page}: ${form.slice(0, 80)}… has no hardened honeypot`);
+      // Forms in a page template carry Astro's scope class (astro-xxxx); it changes nothing about the honeypot.
+      const unscoped = form.replace(/ class="astro-[\w-]+"/g, '').replace(/ astro-[\w-]+(?=")/g, '');
+      assert.ok(unscoped.includes(HONEYPOT), `${page}: ${form.slice(0, 80)}… has no hardened honeypot`);
     }
   }
 });
@@ -160,8 +166,8 @@ test('every page links the favicon', () => {
 
 test('CSS comments are balanced (an orphaned "*/" silently drops the next rule)', () => {
   const sources = { ...SITE_CSS };
-  for (const page of PAGES) {
-    pageStyles(page).forEach((s, i) => { sources[`${page} <style> #${i + 1}`] = s; });
+  for (const [file, styles] of Object.entries(sourceStyles)) {
+    styles.forEach((s, i) => { sources[`${file} <style> #${i + 1}`] = s; });
   }
   for (const [name, source] of Object.entries(sources)) {
     const stripped = source.replace(/\/\*[\s\S]*?\*\//g, '');

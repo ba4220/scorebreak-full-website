@@ -1,0 +1,71 @@
+---
+// "Purpose-Built for Coaches, Players, and Leagues" section. Each page passes its own items:
+// variant "grid" = icon cards (.feature-grid in styles.css), "list" = a narrow text-only column.
+export interface PurposeItem {
+  title: string;
+  text: string;
+  // Inner SVG markup for the 22×22 icon (grid variant only).
+  icon?: string;
+}
+interface Props {
+  label: string;
+  items: PurposeItem[];
+  variant?: 'grid' | 'list';
+  class?: string;
+  style?: string;
+}
+const { label, items, variant = 'grid', class: className, style } = Astro.props;
+---
+<section class:list={['section', className]} style={style}>
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">{label}</span>
+      <h2 class="section-title">Purpose-Built for Coaches, Players, and Leagues</h2>
+    </div>
+    {variant === 'grid' ? (
+      <div class="feature-grid">
+        {items.map((item) => (
+          <div class="feature-item">
+            {item.icon && (
+              <div class="feature-icon">
+                <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" set:html={item.icon} />
+              </div>
+            )}
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="purpose-list">
+        {items.map((item) => (
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .purpose-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .purpose-list h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .25rem;
+  }
+  .purpose-list p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+</style>

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import whiteWordLogoImg from '../assets/logos/white-word-logo.png';
+import _4NavImg from '../assets/logos/4-nav.png';
 // aria-current="page" marks every nav link to the page being rendered.
 const path = Astro.url.pathname.replace(/\/?$/, '/');
 const current = (href: string) => (href === path ? 'page' : undefined);
@@ -6,8 +9,8 @@ const current = (href: string) => (href === path ? 'page' : undefined);
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a href="/" aria-current={current('/')} class="nav-logo" aria-label="ScoreBreak Home">
-      <img src="/logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
-      <img src="/logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+      <Image src={whiteWordLogoImg} width={214} class="logo-dark" alt="ScoreBreak" loading="eager" />
+      <Image src={_4NavImg} width={243} class="logo-light" alt="ScoreBreak" loading="eager" />
     </a>
     <div class="nav-center">
       <div class="nav-dropdown" data-dropdown id="dd-sports">
@@ -26,8 +29,8 @@ const current = (href: string) => (href === path ? 'page' : undefined);
           <a href="/airborne/" aria-current={current('/airborne/')}>Airborne Sideline Replay</a>
           <a href="/recruiting-network/" aria-current={current('/recruiting-network/')}>Recruiting Network</a>
           <a href="/leagues/" aria-current={current('/leagues/')}>League Solutions</a>
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
-          <a href="/solutions/" aria-current={current('/solutions/')} style="color:var(--blue);font-weight:700;">All Solutions</a>
+          <hr class="nav-divider">
+          <a href="/solutions/" aria-current={current('/solutions/')} class="nav-all-solutions">All Solutions</a>
         </div>
       </div>
     </div>
@@ -57,8 +60,8 @@ const current = (href: string) => (href === path ? 'page' : undefined);
     <a href="/airborne/" aria-current={current('/airborne/')}>Airborne Sideline Replay</a>
     <a href="/recruiting-network/" aria-current={current('/recruiting-network/')}>Recruiting Network</a>
     <a href="/leagues/" aria-current={current('/leagues/')}>League Solutions</a>
-    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
-    <a href="/solutions/" aria-current={current('/solutions/')} style="color:var(--blue);font-weight:700;">All Solutions</a>
+    <hr class="nav-divider">
+    <a href="/solutions/" aria-current={current('/solutions/')} class="nav-all-solutions">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="/support/" aria-current={current('/support/')}>Support</a>

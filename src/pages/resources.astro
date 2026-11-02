@@ -11,94 +11,6 @@ const seo = {
 };
 ---
 <Layout seo={seo}>
-<Fragment slot="head">
-  <style is:inline>
-    /* ── Hero ── */
-    .resources-hero {
-      padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .resources-hero .section-label { font-size: .9rem; }
-    .resources-hero h1 {
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 900;
-      letter-spacing: -.04em;
-      line-height: 1.12;
-      max-width: 760px;
-      margin: 1rem auto 1.5rem;
-      position: relative;
-    }
-    .resources-hero-sub {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      max-width: 640px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    /* ── Document cards ── */
-    .doc-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      align-items: stretch;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .doc-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: var(--radius);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .doc-icon {
-      width: 44px;
-      height: 44px;
-      color: var(--blue);
-      margin-bottom: 1.1rem;
-    }
-    .doc-icon svg { width: 100%; height: 100%; display: block; }
-    .doc-card h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      margin-bottom: .55rem;
-      line-height: 1.3;
-    }
-    .doc-card p {
-      font-size: .9rem;
-      color: var(--text-muted);
-      line-height: 1.72;
-      flex: 1;
-    }
-    .doc-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      margin-top: 1.5rem;
-    }
-
-    /* ── CTA (no box) ── */
-    .resources-cta { text-align: center; }
-    .resources-cta h2 {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      .resources-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
-      .doc-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</Fragment>
 
 <section class="resources-hero">
   <div class="container">
@@ -111,7 +23,7 @@ const seo = {
 <!-- ══════════════════════════════════════
      DOCUMENTS
 ══════════════════════════════════════ -->
-<section class="section" style="padding-top:1rem;">
+<section class="section res-list">
   <div class="container">
     <div class="doc-grid">
 
@@ -171,7 +83,7 @@ const seo = {
 <section class="section">
   <div class="container resources-cta">
     <h2>Need a document that isn't listed?</h2>
-    <div class="hero-actions" style="justify-content:center;">
+    <div class="hero-actions hero-actions--center">
       <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
     </div>
   </div>
@@ -207,3 +119,95 @@ const seo = {
 </Fragment>
 
 </Layout>
+
+<style>
+/* ── Hero ── */
+.resources-hero {
+  padding: calc(var(--nav-h) + 4.5rem) 0 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.resources-hero .section-label { font-size: .9rem; }
+.resources-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.12;
+  max-width: 760px;
+  margin: 1rem auto 1.5rem;
+  position: relative;
+}
+.resources-hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ── Document cards ── */
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.doc-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-sub);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.doc-icon {
+  width: 44px;
+  height: 44px;
+  color: var(--blue);
+  margin-bottom: 1.1rem;
+}
+.doc-icon svg { width: 100%; height: 100%; display: block; }
+.doc-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-bottom: .55rem;
+  line-height: 1.3;
+}
+.doc-card p {
+  font-size: .9rem;
+  color: var(--text-muted);
+  line-height: 1.72;
+  flex: 1;
+}
+.doc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1.5rem;
+}
+
+/* ── CTA (no box) ── */
+.resources-cta { text-align: center; }
+.resources-cta h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .resources-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  .doc-grid { grid-template-columns: 1fr; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.res-list {
+  padding-top: 1rem;
+}
+</style>

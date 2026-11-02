@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import scorebreakBasketballImg from '../assets/basketball/scorebreak-basketball.png';
+import basketballImg from '../assets/basketball/basketball.png';
+import officiatingReplayUnrivaledEnhancedImg from '../assets/basketball/officiating-replay-unrivaled-enhanced.png';
 import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
 
@@ -13,190 +17,6 @@ const seo = {
 };
 ---
 <Layout seo={seo}>
-<Fragment slot="head">
-  <style is:inline>
-    /* ── Basketball hero ── */
-
-    /* ── Feature sections ── */
-    .bball-feature {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    .bball-feature.reverse { direction: rtl; }
-    .bball-feature.reverse > * { direction: ltr; }
-    .bball-feature-visual {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-    }
-    .bball-feature-visual img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .bball-feature-visual-placeholder {
-      aspect-ratio: 16/9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      background: linear-gradient(135deg, #0d1f35 0%, #0a1428 60%, #060e1c 100%);
-    }
-    .bball-feature-eyebrow {
-      display: inline-block;
-      font-size: .73rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1.25rem;
-    }
-    .bball-feature-text h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-    .bball-feature-text p {
-      font-size: .97rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ── Feature bullets ── */
-    .bball-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: .65rem;
-      margin-bottom: 2rem;
-    }
-    .bball-bullet {
-      display: flex;
-      align-items: flex-start;
-      gap: .75rem;
-      font-size: .93rem;
-      color: var(--text-muted);
-    }
-    .bball-bullet-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
-      background: var(--blue-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: .1rem;
-    }
-    .bball-bullet-icon svg {
-      width: 12px;
-      height: 12px;
-      color: var(--blue);
-    }
-
-    /* Film Analysis bullets: single stacked list, larger text */
-    #film-analysis .bball-bullets { gap: 0; }
-    #film-analysis .bball-bullet { font-size: 1rem; line-height: 1.6; padding: .6rem 0; }
-    #film-analysis .bball-bullet strong { color: var(--text); font-weight: 700; }
-
-    /* ── Comparison table ── */
-    .vs-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .93rem;
-    }
-    .vs-table th {
-      padding: .75rem 1rem;
-      text-align: left;
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      border-bottom: 1px solid var(--border-sub);
-    }
-    .vs-table th:nth-child(2),
-    .vs-table th:nth-child(3) { text-align: center; }
-    .vs-table td {
-      padding: .85rem 1rem;
-      border-bottom: 1px solid var(--border-sub);
-      color: var(--text-muted);
-    }
-    .vs-table td:nth-child(2),
-    .vs-table td:nth-child(3) { text-align: center; }
-    .vs-table tr:last-child td { border-bottom: none; }
-    .vs-check { color: #4ade80; font-size: 1.1rem; }
-    .vs-x { color: #ef4444; font-size: 1.1rem; }
-    .vs-table th.highlight { color: var(--blue); }
-    .vs-table td.highlight { color: var(--text); font-weight: 600; }
-
-    /* ── Stats bar ── */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem 2rem;
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: -.04em;
-      color: var(--blue);
-      line-height: 1;
-      margin-bottom: .4rem;
-    }
-    .stat-label {
-      font-size: 11px;
-      letter-spacing: .05em;
-      color: var(--text-muted);
-      line-height: 1.3;
-      white-space: nowrap;
-    }
-
-    /* ── CTA section ── */
-    .bball-cta {
-      text-align: center;
-      padding: 2.5rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .bball-cta h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 900;
-      letter-spacing: -.04em;
-      margin-bottom: 1rem;
-    }
-    .bball-cta p {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 500px;
-      margin: 0 auto 2rem;
-      line-height: 1.65;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .bball-feature { grid-template-columns: 1fr; gap: 2rem; }
-      .bball-feature.reverse { direction: ltr; }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .stats-bar { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.75rem 1.25rem; }
-      .stat-label { white-space: normal; }
-    }
-  </style>
-</Fragment>
 
 <section class="split-hero">
   <div class="container">
@@ -211,14 +31,14 @@ const seo = {
         </div>
       </div>
       <div class="split-hero-media">
-        <img src="/basketball/scorebreak-basketball.png" alt="ScoreBreak basketball platform interface">
+        <Image src={scorebreakBasketballImg} width={619} alt="ScoreBreak basketball platform interface" loading="eager" />
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ STATS ═══ -->
-<section class="section" style="padding-top:0;padding-bottom:3rem;">
+<section class="section bball-stats">
   <div class="container">
     <div class="stats-bar">
       <div class="stat-item">
@@ -244,7 +64,7 @@ const seo = {
 <!-- ═══ FILM ANALYSIS ═══ -->
 <section class="section" id="film-analysis">
   <div class="container">
-    <div class="bball-feature" style="grid-template-columns:1fr;">
+    <div class="bball-feature bball-feature--single">
       <div class="bball-feature-text">
         <div class="bball-feature-eyebrow">Film Analysis</div>
         <h2>A comprehensive set of tools built for efficiency and customization.</h2>
@@ -288,7 +108,7 @@ const seo = {
 </section>
 
 <!-- ═══ SIDELINE REPLAY ═══ -->
-<section class="section" id="sideline-replay" style="background:var(--bg2);">
+<section class="section bball-replay" id="sideline-replay">
   <div class="container">
     <div class="bball-feature reverse">
       <div class="bball-feature-text">
@@ -324,7 +144,7 @@ const seo = {
         <a href="/airborne/" class="btn btn-primary">Explore Airborne →</a>
       </div>
       <div class="bball-feature-visual">
-        <img src="/basketball/basketball.png" alt="ScoreBreak sideline replay on iPad" style="aspect-ratio:1.55; object-fit:cover; object-position:100% 50%;">
+        <Image src={basketballImg} width={702} alt="ScoreBreak sideline replay on iPad" class="bball-replay-img" />
       </div>
     </div>
   </div>
@@ -360,15 +180,15 @@ const seo = {
         </div>
         <a href="/airborne/#airborne-stadium" class="btn btn-outline">See Airborne Stadium →</a>
       </div>
-      <div class="bball-feature-visual" style="overflow:hidden;border-radius:var(--radius-lg);">
-        <img src="/basketball/officiating-replay-unrivaled-enhanced.png" alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;">
+      <div class="bball-feature-visual bball-feature-visual--clip">
+        <Image src={officiatingReplayUnrivaledEnhancedImg} width={704} alt="ScoreBreak officiating replay interface" class="img-fluid" />
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ TESTIMONIALS ═══ -->
-<section class="section" style="padding-top:2.75rem;">
+<section class="section bball-testimonial">
   <div class="container">
     <Testimonial id="josh-arruda" style="max-width:760px;margin:0 auto;" />
   </div>
@@ -376,11 +196,11 @@ const seo = {
 
 <!-- ═══ CTA ═══ -->
 <section class="bball-cta">
-  <div class="container" style="position:relative;z-index:1;">
-    <div class="section-label" style="margin-bottom:1rem;">Get Started</div>
+  <div class="container bball-cta-inner">
+    <div class="section-label bball-cta-label">Get Started</div>
     <h2>See what ScoreBreak can do for your program.</h2>
     <p>Get a personalized demo. We'll walk you through film analysis and bench replay tools built for your program.</p>
-    <div class="hero-actions" style="justify-content:center;">
+    <div class="hero-actions hero-actions--center">
       <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
       <a href="/software/" class="btn btn-outline btn-lg">Explore Software</a>
     </div>
@@ -388,3 +208,176 @@ const seo = {
 </section>
 
 </Layout>
+
+<style>
+/* ── Feature sections ── */
+.bball-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.bball-feature.reverse { direction: rtl; }
+.bball-feature.reverse > * { direction: ltr; }
+.bball-feature-visual {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border-sub);
+}
+.bball-feature-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.bball-feature-eyebrow {
+  display: inline-block;
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 1.25rem;
+}
+.bball-feature-text h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.bball-feature-text p {
+  font-size: .97rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Feature bullets ── */
+.bball-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  margin-bottom: 2rem;
+}
+.bball-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  font-size: .93rem;
+  color: var(--text-muted);
+}
+.bball-bullet-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--blue-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+.bball-bullet-icon svg {
+  width: 12px;
+  height: 12px;
+  color: var(--blue);
+}
+
+/* Film Analysis bullets: single stacked list, larger text */
+#film-analysis .bball-bullets { gap: 0; }
+#film-analysis .bball-bullet { font-size: 1rem; line-height: 1.6; padding: .6rem 0; }
+#film-analysis .bball-bullet strong { color: var(--text); font-weight: 700; }
+
+/* ── Stats bar ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-sub);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+}
+.stat-item {
+  text-align: center;
+}
+.stat-value {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* ── CTA section ── */
+.bball-cta {
+  text-align: center;
+  padding: 2.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.bball-cta h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  margin-bottom: 1rem;
+}
+.bball-cta p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.65;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .bball-feature { grid-template-columns: 1fr; gap: 2rem; }
+  .bball-feature.reverse { direction: ltr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .stats-bar { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.75rem 1.25rem; }
+  .stat-label { white-space: normal; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.bball-stats {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+.bball-feature--single {
+  grid-template-columns: 1fr;
+}
+.bball-replay {
+  background: var(--bg2);
+}
+.bball-replay-img {
+  aspect-ratio: 1.55;
+  object-fit: cover;
+  object-position: 100% 50%;
+}
+.bball-feature-visual--clip {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+.bball-testimonial {
+  padding-top: 2.75rem;
+}
+.bball-cta-inner {
+  position: relative;
+  z-index: 1;
+}
+.bball-cta-label {
+  margin-bottom: 1rem;
+}
+</style>

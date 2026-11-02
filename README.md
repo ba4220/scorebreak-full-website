@@ -10,12 +10,13 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 - Layout:
   - `src/pages/`: one `.astro` file per page. Each sets its `seo` (title, description, social tags; see `src/components/Seo.astro`) and wraps its content in `src/layouts/Layout.astro`, passing its page-specific `<style is:inline>` block in `slot="head"`.
   - `src/layouts/Layout.astro`: the shared `<head>`, nav, footer, contact modal and site script. Edit those once there and every page gets the change.
-  - `src/components/`: `Nav` (sets `aria-current="page"` automatically), `Footer`, `ContactModal`, `Seo`, `Testimonial` / `TestimonialCarousel`, `CtaSection` (the closing "Contact Us" band).
+  - `src/components/`: `Nav` (sets `aria-current="page"` automatically), `Footer`, `ContactModal`, `Seo`, `Testimonial` / `TestimonialCarousel`, `CtaSection` (the closing "Contact Us" band), `PurposeBuilt` (the "Purpose-Built for Coaches, Players, and Leagues" section on index and lacrosse; each page passes its own items).
   - `src/data/`: `testimonials.ts` (every coach quote, used by id on index, lacrosse, basketball and recruiting-network; edit a quote once) and `school-logos.ts` (homepage logo marquee).
   - `src/content/blog/`: one Markdown file per post (`title`, `description`, `date`, `author` frontmatter). `src/pages/blog/[slug].astro` publishes each at `/blog/<slug>/` through `src/layouts/BlogPost.astro`; the blog index and the Newer/Older links are generated, newest first. To add a post, add a Markdown file. Straight quotes stay straight (smart quotes are off).
   - `src/styles/`: `styles.css` (shared styles) and `components.css` (what the football page also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
   - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
-  - `public/`: images, video, PDFs and the favicon, copied to the site root as-is.
+  - `src/assets/`: every image the pages show. Import it and render it with `<Image src={img} width={N} … />` from `astro:assets`, where `N` is the largest CSS width it displays at. The build resizes it to WebP and writes a `srcset` up to 2× `N` (`image.layout: 'constrained'` in `astro.config.mjs`), so originals can stay full-size.
+  - `public/`: files served as-is at a fixed URL: video, PDFs, the favicon and `og-image.png` (the 1200×630 link-preview image, same as the app's).
 - Pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`).
 - Production is a Google Cloud Storage bucket (see [Hosting](#hosting-google-cloud-storage)). Netlify only builds deploy previews for PRs on this repo, configured in `netlify.toml`; drop both when the repo moves to ScoreBreak's GitHub.
 
@@ -46,6 +47,8 @@ Both test suites run against `dist/`, so build first (`npm test` does it for you
 - `npm run test:static`: under a second, no browser. Broken or wrong-case file paths (they 404 on Linux hosts), file naming in `public/`, every page loading only bundled scripts, no inline JavaScript, `data-*` hooks pointing at real elements, footer/modal CSS living only in `components.css`, `aria-current="page"` on exactly the nav links to that page, and balanced CSS comments.
 - `npm run test:browser`: about a minute, headless Chromium. On every page: no script errors or broken files, nav dropdown, mobile menu, contact modal (open, close, Escape, backdrop) and its form, footer layout, and no sideways scroll on phones. Every form: blocked when invalid (including spaces-only input), the exact email message sent, its confirmation shown; a failed send keeps the input and outlines the submit button red until a retry succeeds; honeypots send nothing. Plus the carousels and hero video.
 - `npm test` runs `check`, `build`, then both suites.
+
+For CSS refactors that must not change the look: `npm run snapshot:save` on the built site before, `npm run snapshot:compare` after (about 35 s; pass page paths to limit it, e.g. `npm run snapshot:compare -- /about/`). It records every element's computed style and box on every page at 1440/1024/768/390, dark and light, plus the open nav dropdown, contact modal and mobile menu, and fails on any difference. It also lists every CSS rule added or removed (Astro's scoping stripped), which is how `:hover` rules and media queries between those widths are reviewed. Snapshots live in `.style-snapshot/` (git-ignored).
 
 ## JavaScript
 
@@ -141,11 +144,10 @@ Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, serv
 **Redirects.** `portal.html` was renamed to `/recruiting-network/`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
 
 **Known issues**
-- Open Graph image path (`logos/logo-nav.png`) needs checking.
 - The football page doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
-- `AUDIT.md` and `AI-TELLS-AUDIT.md` list further findings. Many copy and design items in `AI-TELLS-AUDIT.md` have already been addressed.
+- `AUDIT.md` and `AI-TELLS-AUDIT.md` list the findings still open (re-checked against the Astro site on 2026-11-02), each tagged code or copy/design, plus what has been fixed.
 
-**File names.** Asset files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Images are still split between the `public/` root and folders. Feel free to reorganize, but update all paths if you do.
+**File names.** Files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Keep the same convention in `src/assets/`.
 
 ## Notes on content
 

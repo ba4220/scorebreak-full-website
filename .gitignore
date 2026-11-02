@@ -17,6 +17,7 @@ Website_demo.gif
 node_modules/
 test-results/
 playwright-report/
+.style-snapshot/
 
 # Astro
 dist/

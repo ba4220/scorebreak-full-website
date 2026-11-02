@@ -12,217 +12,6 @@ const seo = {
 };
 ---
 <Layout seo={seo}>
-<Fragment slot="head">
-  <style is:inline>
-    .support-hero {
-      padding: calc(var(--nav-h) + 4.5rem) 0 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .support-hero .section-label { margin-bottom: .75rem; }
-    .support-hero h1 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      letter-spacing: -.04em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-    .support-hero p {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
-    }
-    .phone-display {
-      display: inline-flex;
-      align-items: center;
-      gap: .75rem;
-      background: var(--blue-dim);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: .9rem 2rem;
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: -.02em;
-      color: var(--blue);
-      text-decoration: none;
-      transition: background .2s, box-shadow .2s;
-    }
-    .phone-display:hover { border-color: var(--blue-mid); }
-    .phone-display svg { width: 24px; height: 24px; }
-    .phone-label {
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      opacity: .7;
-      display: block;
-      margin-top: .75rem;
-    }
-
-    /* Support cards */
-    .support-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      align-items: stretch;
-    }
-    .support-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      text-align: center;
-      transition: background .2s, border-color .2s, box-shadow .2s;
-    }
-    .support-card-icon {
-      width: 56px; height: 56px;
-      background: var(--blue-dim);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.1rem;
-      color: var(--blue);
-    }
-    .support-card-icon svg { width: 28px; height: 28px; }
-    .support-card h3 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      margin-bottom: .45rem;
-      color: var(--text);
-    }
-    .support-card p {
-      font-size: .88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 1.1rem;
-    }
-
-    /* Contact form */
-    .contact-section {
-      background: var(--bg2);
-      border-top: 1px solid var(--border-sub);
-      border-bottom: 1px solid var(--border-sub);
-    }
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .contact-info h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 900;
-      letter-spacing: -.03em;
-      margin-bottom: 1rem;
-    }
-    .contact-info p {
-      font-size: .95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      margin-bottom: 1rem;
-    }
-    .contact-detail-icon {
-      width: 36px; height: 36px;
-      background: var(--blue-dim);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--blue);
-      flex-shrink: 0;
-    }
-    .contact-detail-icon svg { width: 18px; height: 18px; }
-    .contact-detail strong { display: block; font-size: .9rem; font-weight: 700; margin-bottom: .1rem; }
-    .contact-detail span { font-size: .85rem; color: var(--text-muted); }
-
-    .contact-form-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-    }
-    .contact-form-card h3 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: .4rem;
-      margin-bottom: 1rem;
-    }
-    .form-group label {
-      font-size: .82rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .form-group input,
-    .form-group textarea {
-      padding: .7rem 1rem;
-      background: var(--bg);
-      border: 1.5px solid var(--border-sub);
-      border-radius: 10px;
-      color: var(--text);
-      font-size: .92rem;
-      font-family: var(--font);
-      transition: border-color .15s, box-shadow .15s;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px var(--blue-dim);
-    }
-    .form-group textarea { resize: vertical; min-height: 120px; }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: var(--text-dim); }
-    [data-theme="light"] .form-group input,
-    [data-theme="light"] .form-group textarea { background: #fff; }
-    .contact-submit {
-      width: 100%;
-      padding: .85rem;
-      background: var(--blue);
-      color: #0A0E1A;
-      font-size: .95rem;
-      font-weight: 800;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: opacity .2s;
-      margin-top: .5rem;
-    }
-    [data-theme="light"] .contact-submit { color: #fff; }
-    .contact-submit:hover { opacity: .9; }
-
-    .contact-confirm {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    .contact-confirm h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: .75rem; color: var(--blue); }
-    .contact-confirm p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
-
-    @media (max-width: 900px) {
-      .support-cards { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
-      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .contact-form-card { padding: 2rem 1.5rem; }
-    }
-
-    @media (max-width: 600px) {
-      .support-hero { padding: calc(var(--nav-h) + 2.5rem) 0 0; }
-      .support-hero h1 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
-      .phone-display { padding: .8rem 1.5rem; font-size: 1.2rem; }
-      .support-card { padding: 1.5rem 1.25rem; }
-      .contact-form-card { padding: 1.5rem 1.25rem; }
-    }
-  </style>
-</Fragment>
 
 <section class="support-hero">
   <div class="container">
@@ -252,7 +41,7 @@ const seo = {
         </div>
         <h3>Help Center</h3>
         <p>Explore our comprehensive documentation, tutorials, and guides to get the most out of ScoreBreak.</p>
-        <a href="https://intercom.help/scorebreakhelp/en/" class="btn btn-outline btn-sm" target="_blank" rel="noopener" style="margin: 0 auto;">Visit Help Center →</a>
+        <a href="https://intercom.help/scorebreakhelp/en/" class="btn btn-outline btn-sm support-help-btn" target="_blank" rel="noopener">Visit Help Center →</a>
       </div>
 
       <!-- Downloads -->
@@ -266,24 +55,24 @@ const seo = {
         </div>
         <h3>Downloads</h3>
         <p>Download ScoreBreak for Mac, iPhone, and iPad — or open the web app directly in your browser.</p>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:.6rem; margin-top:.5rem;">
+        <div class="support-downloads">
           <a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener" aria-label="Download on the App Store">
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" style="height:44px; width:auto; display:block;">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
           </a>
           <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Open Web App →</a>
         </div>
       </div>
 
       <!-- Contact -->
-      <div class="support-card" style="text-align:left">
-        <div class="support-card-icon" style="margin-left:0;">
+      <div class="support-card support-card--left">
+        <div class="support-card-icon support-card-icon--left">
           <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
           </svg>
         </div>
         <h3>Contact Support</h3>
         <p>Can't find what you're looking for? Send us a message and we'll respond within 1 business day.</p>
-        <div style="margin-top: .25rem;">
+        <div class="support-contact-details">
           <div class="contact-detail">
             <div class="contact-detail-icon">
               <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h12a1 1 0 011 1v9a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M16 5L9 10 2 5"/></svg>
@@ -373,3 +162,228 @@ const seo = {
 </section>
 
 </Layout>
+
+<style>
+.support-hero {
+  padding: calc(var(--nav-h) + 4.5rem) 0 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.support-hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.support-hero p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+}
+.phone-display {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--blue-dim);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: .9rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  color: var(--blue);
+  text-decoration: none;
+  transition: background .2s, box-shadow .2s;
+}
+.phone-display:hover { border-color: var(--blue-mid); }
+.phone-display svg { width: 24px; height: 24px; }
+
+/* Support cards */
+.support-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.support-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-sub);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  text-align: center;
+  transition: background .2s, border-color .2s, box-shadow .2s;
+}
+.support-card-icon {
+  width: 56px; height: 56px;
+  background: var(--blue-dim);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.1rem;
+  color: var(--blue);
+}
+.support-card-icon svg { width: 28px; height: 28px; }
+.support-card h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: .45rem;
+  color: var(--text);
+}
+.support-card p {
+  font-size: .88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.1rem;
+}
+
+/* Contact form */
+.contact-section {
+  background: var(--bg2);
+  border-top: 1px solid var(--border-sub);
+  border-bottom: 1px solid var(--border-sub);
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-info h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  margin-bottom: 1rem;
+}
+.contact-info p {
+  font-size: .95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+.contact-detail-icon {
+  width: 36px; height: 36px;
+  background: var(--blue-dim);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue);
+  flex-shrink: 0;
+}
+.contact-detail-icon svg { width: 18px; height: 18px; }
+.contact-detail strong { display: block; font-size: .9rem; font-weight: 700; margin-bottom: .1rem; }
+.contact-detail span { font-size: .85rem; color: var(--text-muted); }
+
+.contact-form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-sub);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+.contact-form-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin-bottom: 1rem;
+}
+.form-group label {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.form-group input,
+.form-group textarea {
+  padding: .7rem 1rem;
+  background: var(--bg);
+  border: 1.5px solid var(--border-sub);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: .92rem;
+  font-family: var(--font);
+  transition: border-color .15s, box-shadow .15s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-dim);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text-dim); }
+:global([data-theme="light"]) .form-group input,
+:global([data-theme="light"]) .form-group textarea { background: #fff; }
+.contact-submit {
+  width: 100%;
+  padding: .85rem;
+  background: var(--blue);
+  color: #0A0E1A;
+  font-size: .95rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity .2s;
+  margin-top: .5rem;
+}
+:global([data-theme="light"]) .contact-submit { color: #fff; }
+.contact-submit:hover { opacity: .9; }
+
+.contact-confirm {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.contact-confirm h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: .75rem; color: var(--blue); }
+.contact-confirm p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .support-cards { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-form-card { padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .support-hero { padding: calc(var(--nav-h) + 2.5rem) 0 0; }
+  .support-hero h1 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+  .phone-display { padding: .8rem 1.5rem; font-size: 1.2rem; }
+  .support-card { padding: 1.5rem 1.25rem; }
+  .contact-form-card { padding: 1.5rem 1.25rem; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.support-help-btn {
+  margin: 0 auto;
+}
+.support-downloads {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+  margin-top: .5rem;
+}
+.app-store-badge {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+.support-card--left {
+  text-align: left;
+}
+.support-card-icon--left {
+  margin-left: 0;
+}
+.support-contact-details {
+  margin-top: .25rem;
+}
+</style>
