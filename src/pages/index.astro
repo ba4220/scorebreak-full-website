@@ -60,7 +60,7 @@ const purposeItems: PurposeItem[] = [
 ---
 <Layout seo={seo}>
 
-<section style="padding: 0;">
+<section class="home-hero-section">
   <div class="container">
     <div class="hero">
       <div class="hero-content">
@@ -71,7 +71,7 @@ const purposeItems: PurposeItem[] = [
         </div>
       </div>
       <div class="hero-image">
-        <video autoplay muted playsinline id="heroVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0E1A;border-radius:8px;">
+        <video autoplay muted playsinline id="heroVideo" class="img-cover hero-demo-video">
           <source src="/website-demo8-optimized.mp4" type="video/mp4">
         </video>
         <div class="hero-fade-overlay" id="heroFadeOverlay"></div>
@@ -111,7 +111,7 @@ const purposeItems: PurposeItem[] = [
     </div>
     <div class="sports-grid">
       <a href="/lacrosse/" class="sport-card sport-card-lacrosse">
-        <div class="sport-card-bg"><Image src={umdIpadImg} width={688} alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;" /></div>
+        <div class="sport-card-bg"><Image src={umdIpadImg} width={688} alt="" class="img-cover sport-card-photo-lax" /></div>
         <div class="sport-card-arrow">→</div>
         <div class="sport-card-content">
           <h3>Lacrosse</h3>
@@ -119,7 +119,7 @@ const purposeItems: PurposeItem[] = [
         </div>
       </a>
       <a href="/basketball/" class="sport-card sport-card-basketball">
-        <div class="sport-card-bg"><Image src={scorebreakBasketballImg} width={619} alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25;" /></div>
+        <div class="sport-card-bg"><Image src={scorebreakBasketballImg} width={619} alt="" class="img-cover sport-card-photo-bball" /></div>
         <div class="sport-card-arrow">→</div>
         <div class="sport-card-content">
           <h3>Basketball</h3>
@@ -136,8 +136,8 @@ const purposeItems: PurposeItem[] = [
         </div>
       </a>
     </div>
-    <div style="text-align:center; margin-top: 32px;">
-      <a href="/other-sports/" class="sports-more-link">and other sports <span style="color:#56C7FF;">→</span></a>
+    <div class="sports-more">
+      <a href="/other-sports/" class="sports-more-link">and other sports <span class="sports-more-arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -145,7 +145,7 @@ const purposeItems: PurposeItem[] = [
 <!-- ══════════════════════════════════════
      PRODUCTS OVERVIEW
 ══════════════════════════════════════ -->
-<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+<section class="section section-band">
   <div class="container">
     <div class="section-head">
       <h2 class="section-title">Core products</h2>
@@ -552,5 +552,27 @@ const purposeItems: PurposeItem[] = [
 @keyframes pulse {
   0%,100%{opacity:1;transform:scale(1)}
   50%{opacity:.5;transform:scale(.7)}
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.home-hero-section {
+  padding: 0;
+}
+.hero-demo-video {
+  background: #0A0E1A;
+  border-radius: 8px;
+}
+.sport-card-photo-lax {
+  opacity: 0.45;
+}
+.sport-card-photo-bball {
+  opacity: 0.25;
+}
+.sports-more {
+  text-align: center;
+  margin-top: 32px;
+}
+.sports-more-arrow {
+  color: #56C7FF;
 }
 </style>

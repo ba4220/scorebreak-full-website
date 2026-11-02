@@ -36,7 +36,7 @@ const seo = {
         </div>
       </div>
       <div class="split-hero-media split-hero-media--device">
-        <Image src={finalSoftwareMockupBasketballImg} width={704} alt="ScoreBreak film analysis software" class="sw-hero-img" loading="eager" />
+        <Image src={finalSoftwareMockupBasketballImg} width={704} alt="ScoreBreak film analysis software" loading="eager" />
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@ const seo = {
       <!-- Tag Boards -->
       <div class="film-card">
         <div class="film-card-img">
-          <Image src={tagBoardsSoftwareImg} width={466} alt="Tag boards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" />
+          <Image src={tagBoardsSoftwareImg} width={466} alt="Tag boards" class="img-cover" loading="eager" />
         </div>
         <div class="film-card-body">
           <h3>Tag Boards</h3>
@@ -78,7 +78,7 @@ const seo = {
       <!-- Playlists -->
       <div class="film-card">
         <div class="film-card-img">
-          <Image src={playlistsSoftwareImg} width={466} alt="Playlists" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" />
+          <Image src={playlistsSoftwareImg} width={466} alt="Playlists" class="img-cover" loading="eager" />
         </div>
         <div class="film-card-body">
           <h3>Playlists</h3>
@@ -89,7 +89,7 @@ const seo = {
       <!-- AI Analysis -->
       <div class="film-card">
         <div class="film-card-img">
-          <Image src={locationChartBballImg} width={466} alt="AI analysis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" />
+          <Image src={locationChartBballImg} width={466} alt="AI analysis" class="img-cover" loading="eager" />
         </div>
         <div class="film-card-body">
           <h3>AI Analysis</h3>
@@ -111,7 +111,7 @@ const seo = {
       <!-- Remote Film Sessions -->
       <div class="film-card">
         <div class="film-card-img">
-          <Image src={remoteFilmSessionsSoftwareImg} width={466} alt="Remote film sessions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <Image src={remoteFilmSessionsSoftwareImg} width={466} alt="Remote film sessions" class="img-cover" />
         </div>
         <div class="film-card-body">
           <h3>Remote Film Sessions</h3>
@@ -122,7 +122,7 @@ const seo = {
       <!-- Unlimited Storage -->
       <div class="film-card">
         <div class="film-card-img">
-          <Image src={unlimitedFilmStorageImg} width={466} alt="Unlimited film storage" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <Image src={unlimitedFilmStorageImg} width={466} alt="Unlimited film storage" class="img-cover" />
         </div>
         <div class="film-card-body">
           <h3>Unlimited Storage</h3>
@@ -133,7 +133,7 @@ const seo = {
       <!-- Team Communication -->
       <div class="film-card">
         <div class="film-card-img">
-          <Image src={chatIphoneAppImg} width={466} alt="Team communication" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <Image src={chatIphoneAppImg} width={466} alt="Team communication" class="img-cover" />
         </div>
         <div class="film-card-body">
           <h3>Team Communication</h3>
@@ -158,13 +158,13 @@ const seo = {
         </div>
         <h2 class="section-title"><span>ScoreBreak Handoff</span></h2>
         <p>ScoreBreak Handoff™ provides professional ready-to-use film breakdowns with full stats. When you can't find the time to break down film yourself, we do it for you  -  complete with tagged game film, breakdowns, and playlists. Every game is delivered within 24 hours by professional human analysts who have broken down thousands of lacrosse games since 2022.</p>
-        <p style="margin-top:1rem;">Additional statistics  -  including shot charts and dodge reports  -  can be added to any Handoff package.</p>
+        <p class="handoff-note">Additional statistics  -  including shot charts and dodge reports  -  can be added to any Handoff package.</p>
         <a href="/demo/" class="btn btn-outline">Learn More about Handoff →</a>
       </div>
       <div class="handoff-visual">
-        <Image src={handoffImg} width={702} alt="ScoreBreak Handoff film breakdown" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,26,.92) 0%,rgba(10,14,26,.5) 50%,transparent 100%);z-index:1;"></div>
-        <div class="handoff-visual-inner" style="z-index:2;">
+        <Image src={handoffImg} width={702} alt="ScoreBreak Handoff film breakdown" class="img-cover handoff-img" />
+        <div class="handoff-overlay"></div>
+        <div class="handoff-visual-inner handoff-visual-inner--top">
         </div>
       </div>
     </div>
@@ -180,7 +180,7 @@ const seo = {
       <h2 class="section-title">Simple, team-based pricing</h2>
       <p class="section-subtitle">All plans include a free trial. No credit card required.</p>
     </div>
-    <div class="pricing-grid" style="grid-template-columns:repeat(2,1fr);max-width:740px;margin-left:auto;margin-right:auto;align-items:stretch;">
+    <div class="pricing-grid sw-pricing-grid">
 
       <!-- Recruiting Network -->
       <div class="pricing-card">
@@ -246,12 +246,12 @@ const seo = {
 
     </div>
 
-    <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;">
+    <div class="pricing-actions">
       <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
       <a href="/demo/" class="btn btn-outline btn-lg">Request a Demo →</a>
     </div>
 
-    <p style="text-align:center;margin-top:1.5rem;font-size:1.05rem;color:var(--text-muted);">College and professional programs  -  <a href="#" data-modal-open="sbContactModal" style="color:var(--blue);font-weight:600;">contact us</a> for a custom quote.</p>
+    <p class="sw-pricing-footnote">College and professional programs  -  <a href="#" data-modal-open="sbContactModal" class="sw-pricing-footnote-link">contact us</a> for a custom quote.</p>
   </div>
 </section>
 
@@ -267,7 +267,7 @@ const seo = {
         <a href="/leagues/" class="btn btn-outline">Explore League Solutions →</a>
       </div>
       <div class="fed-visual">
-        <Image src={leagueExchangeImg} width={702} alt="ScoreBreak League Exchange" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <Image src={leagueExchangeImg} width={702} alt="ScoreBreak League Exchange" class="sw-fed-img" />
       </div>
     </div>
   </div>
@@ -277,12 +277,7 @@ const seo = {
 
 <style>
 /* ── Hero ─────────────────────────────────────────────── */
-/* Hero mockup keeps its gentle float; layout comes from .split-hero in styles.css */
-@keyframes deviceFloat {
-  from { transform: translateY(0px); }
-  to   { transform: translateY(-4px); }
-}
-.sw-hero-img { animation: deviceFloat 3s ease-in-out infinite alternate; }
+/* Layout comes from .split-hero in styles.css */
 /* Wider image column than the shared split hero; mobile stacking still comes from styles.css */
 @media (min-width: 901px) {
   .split-hero-inner { grid-template-columns: 1fr 1.1fr; gap: 3.5rem; }
@@ -467,4 +462,52 @@ const seo = {
   border-color: rgba(10,14,26,0.1);
 }
 :global([data-theme="light"]) .film-card-img { background: rgba(10,14,26,0.06); }
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.handoff-note {
+  margin-top: 1rem;
+}
+.handoff-img {
+  z-index: 0;
+}
+.handoff-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,rgba(10,14,26,.92) 0%,rgba(10,14,26,.5) 50%,transparent 100%);
+  z-index: 1;
+}
+.handoff-visual-inner--top {
+  z-index: 2;
+}
+.sw-pricing-grid {
+  grid-template-columns: repeat(2,1fr);
+  max-width: 740px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch;
+}
+.pricing-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.sw-pricing-footnote {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+.sw-pricing-footnote-link {
+  color: var(--blue);
+  font-weight: 600;
+}
+.sw-fed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 </style>

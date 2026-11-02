@@ -29,8 +29,8 @@ const current = (href: string) => (href === path ? 'page' : undefined);
           <a href="/airborne/" aria-current={current('/airborne/')}>Airborne Sideline Replay</a>
           <a href="/recruiting-network/" aria-current={current('/recruiting-network/')}>Recruiting Network</a>
           <a href="/leagues/" aria-current={current('/leagues/')}>League Solutions</a>
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
-          <a href="/solutions/" aria-current={current('/solutions/')} style="color:var(--blue);font-weight:700;">All Solutions</a>
+          <hr class="nav-divider">
+          <a href="/solutions/" aria-current={current('/solutions/')} class="nav-all-solutions">All Solutions</a>
         </div>
       </div>
     </div>
@@ -60,8 +60,8 @@ const current = (href: string) => (href === path ? 'page' : undefined);
     <a href="/airborne/" aria-current={current('/airborne/')}>Airborne Sideline Replay</a>
     <a href="/recruiting-network/" aria-current={current('/recruiting-network/')}>Recruiting Network</a>
     <a href="/leagues/" aria-current={current('/leagues/')}>League Solutions</a>
-    <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 0;">
-    <a href="/solutions/" aria-current={current('/solutions/')} style="color:var(--blue);font-weight:700;">All Solutions</a>
+    <hr class="nav-divider">
+    <a href="/solutions/" aria-current={current('/solutions/')} class="nav-all-solutions">All Solutions</a>
   </div>
   <div class="nav-mobile-section">
     <a href="/support/" aria-current={current('/support/')}>Support</a>

@@ -120,8 +120,8 @@ const seo = {
             <textarea id="message" name="message" placeholder="Tell us about your program and what you're hoping to accomplish with ScoreBreak..."></textarea>
           </div>
           <button type="submit" class="form-submit-btn">Request a Demo →</button>
-          <p style="text-align:center; margin-top:1.25rem; font-size:.95rem; color:var(--text-muted);">Or call us at <a href="tel:18008092102" style="color:var(--blue); font-weight:600; text-decoration:none;">1.800.809.2102</a></p>
-          <p class="form-privacy">By submitting, you agree to our <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener" style="color:var(--blue)">Privacy Policy</a> and <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener" style="color:var(--blue)">Terms &amp; Conditions</a>.</p>
+          <p class="demo-alt">Or call us at <a href="tel:18008092102" class="demo-alt-link">1.800.809.2102</a></p>
+          <p class="form-privacy">By submitting, you agree to our <a href="https://www.scorebreak.io/privacy" target="_blank" rel="noopener" class="demo-link">Privacy Policy</a> and <a href="https://www.scorebreak.io/terms" target="_blank" rel="noopener" class="demo-link">Terms &amp; Conditions</a>.</p>
         </form>
 
         <!-- Confirmation message -->
@@ -342,5 +342,22 @@ const seo = {
   .demo-form-card { padding: 1.5rem 1.25rem; border-radius: 16px; }
   .demo-info h1 { font-size: clamp(1.6rem, 7vw, 2rem); }
   .demo-info p { margin-bottom: 2rem; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+/* Beats .demo-form-card p, as the inline style did. */
+.demo-form-card .demo-alt {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: .95rem;
+  color: var(--text-muted);
+}
+.demo-alt-link {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+.demo-link {
+  color: var(--blue);
 }
 </style>

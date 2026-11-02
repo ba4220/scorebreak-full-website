@@ -23,7 +23,7 @@ const seo = {
 <!-- ══════════════════════════════════════
      DOCUMENTS
 ══════════════════════════════════════ -->
-<section class="section" style="padding-top:1rem;">
+<section class="section res-list">
   <div class="container">
     <div class="doc-grid">
 
@@ -83,7 +83,7 @@ const seo = {
 <section class="section">
   <div class="container resources-cta">
     <h2>Need a document that isn't listed?</h2>
-    <div class="hero-actions" style="justify-content:center;">
+    <div class="hero-actions hero-actions--center">
       <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
     </div>
   </div>
@@ -204,5 +204,10 @@ const seo = {
 @media (max-width: 600px) {
   .resources-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
   .doc-grid { grid-template-columns: 1fr; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.res-list {
+  padding-top: 1rem;
 }
 </style>

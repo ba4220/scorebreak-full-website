@@ -14,7 +14,7 @@ const seo = {
 <Layout seo={seo} sharedStyles={false}>
 
 <!-- Hidden SVG filter: turns black text → white, keeps all other colors intact -->
-<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="svg-defs" aria-hidden="true">
   <defs>
     <filter id="logo-darks-to-white" color-interpolation-filters="sRGB">
       <!-- Build an alpha mask that is opaque only on dark (near-black) pixels -->
@@ -50,7 +50,7 @@ const seo = {
   <p class="hero-subtitle"><span>ScoreBreak</span> Gridiron: Modern film analysis and sideline replay software.</p>
 
   <p class="hero-sub">
-    <span style="color:var(--white)">Film analysis</span>, <span style="color:var(--white)">reliable sideline replay</span>, and <span style="color:var(--white)">in-depth in-game reports</span>  -  built with ease of use and customization at the forefront.
+    <span class="text-white">Film analysis</span>, <span class="text-white">reliable sideline replay</span>, and <span class="text-white">in-depth in-game reports</span>  -  built with ease of use and customization at the forefront.
   </p>
 
   <div class="hero-cta-group">
@@ -185,7 +185,7 @@ const seo = {
   <div class="waitlist-inner">
     <div class="section-label">Pre-Launch Waitlist</div>
     <h2 class="section-title">Secure your spot.</h2>
-    <p class="section-sub" style="margin: 0 auto;">
+    <p class="section-sub section-sub--center">
       Join the waitlist for early access. Coaches who refer colleagues move up the list  -  and enough referrals earns a discount on your first year.
     </p>
 
@@ -274,19 +274,19 @@ const seo = {
         <svg class="perk-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M1 8l4 4 9-9"/>
         </svg>
-        <span>Each coach you refer <strong style="color:var(--white)">moves you up</strong> the early access list.</span>
+        <span>Each coach you refer <strong class="text-white">moves you up</strong> the early access list.</span>
       </div>
       <div class="referral-perk-item">
         <svg class="perk-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M1 8l4 4 9-9"/>
         </svg>
-        <span>Coaches with enough referrals receive a <strong style="color:var(--white)">discount on their first year</strong>.</span>
+        <span>Coaches with enough referrals receive a <strong class="text-white">discount on their first year</strong>.</span>
       </div>
       <div class="referral-perk-item">
         <svg class="perk-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M1 8l4 4 9-9"/>
         </svg>
-        <span>Your referrals also get priority access  -  <strong style="color:var(--white)">everyone wins</strong>.</span>
+        <span>Your referrals also get priority access  -  <strong class="text-white">everyone wins</strong>.</span>
       </div>
     </div>
 
@@ -820,4 +820,16 @@ const seo = {
       .waitlist-card { padding: 1.75rem 1.25rem; }
       .confirm-box { padding: 2rem 1.5rem; }
     }
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.svg-defs {
+  position: absolute;
+  overflow: hidden;
+}
+.text-white {
+  color: var(--white);
+}
+.section-sub--center {
+  margin: 0 auto;
+}
 </style>

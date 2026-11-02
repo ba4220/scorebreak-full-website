@@ -32,7 +32,7 @@ const seo = {
 </section>
 
 <!-- ═══ WHAT IS AIRBORNE  -  INTRO ═══ -->
-<section class="section" style="padding-top: 5rem;">
+<section class="section ab-intro-section">
   <div class="container">
     <div class="ab-intro">
       <div class="ab-intro-text">
@@ -62,7 +62,7 @@ const seo = {
 
       <div class="ab-scene">
         <div class="ab-intro-visual">
-          <Image src={airborneHomePageImg} width={704} alt="Airborne system deployed at lacrosse game" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" />
+          <Image src={airborneHomePageImg} width={704} alt="Airborne system deployed at lacrosse game" class="img-cover" loading="eager" />
         </div>
         <div class="ab-glow-shadow"></div>
       </div>
@@ -71,7 +71,7 @@ const seo = {
 </section>
 
 <!-- ═══ SOLUTION CHOOSER CARDS ═══ -->
-<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+<section class="section section-band">
   <div class="container">
     <div class="section-head">
       <span class="section-label">Two Solutions</span>
@@ -94,12 +94,12 @@ const seo = {
       </a>
 
       <a href="#airborne-stadium" class="ab-solution-card ab-stadium">
-        <div class="ab-solution-badge" style="color:#a78bfa;">
+        <div class="ab-solution-badge ab-violet">
           Installed
         </div>
         <h3>Airborne Stadium</h3>
         <p>A permanent multi-angle IP camera network built into your home stadium. No setup on game day, near real-time replay, automated recording and upload, Daktronics integration, and advanced officiating review tools.</p>
-        <span class="ab-solution-link" style="color:#a78bfa;">
+        <span class="ab-solution-link ab-violet">
           See Airborne Stadium
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
@@ -154,7 +154,7 @@ const seo = {
 
       <div class="ab-scene">
         <div class="ab-prod-img">
-          <Image src={airborneRCameraCaseImg} width={704} alt="Airborne R camera and case hardware" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <Image src={airborneRCameraCaseImg} width={704} alt="Airborne R camera and case hardware" class="img-cover" />
         </div>
         <div class="ab-glow-shadow"></div>
       </div>
@@ -162,10 +162,10 @@ const seo = {
 
     <div class="ab-gallery-2">
       <div class="ab-gallery-img">
-        <Image src={airborneRImg} width={556} alt="Airborne R sideline replay system" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <Image src={airborneRImg} width={556} alt="Airborne R sideline replay system" class="img-cover" />
       </div>
       <div class="ab-gallery-img">
-        <Image src={ipadSidelineInUseImg} width={556} alt="Airborne R iPad in use on the sideline" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <Image src={ipadSidelineInUseImg} width={556} alt="Airborne R iPad in use on the sideline" class="img-cover" />
       </div>
     </div>
 
@@ -187,7 +187,7 @@ const seo = {
     <div class="ab-prod-top">
       <div class="ab-scene">
         <div class="ab-prod-img">
-          <Image src={cameraInstallationAirborneStadiumImg} width={704} alt="Airborne Stadium camera installation" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;" />
+          <Image src={cameraInstallationAirborneStadiumImg} width={704} alt="Airborne Stadium camera installation" class="img-cover ab-img-upper" />
         </div>
         <div class="ab-glow-shadow"></div>
       </div>
@@ -242,13 +242,13 @@ const seo = {
 
     <div class="ab-gallery-3">
       <div class="ab-gallery-img">
-        <Image src={airborneStadiumExampleInterfaceImg} width={363} alt="Airborne Stadium replay interface" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <Image src={airborneStadiumExampleInterfaceImg} width={363} alt="Airborne Stadium replay interface" class="img-cover" />
       </div>
       <div class="ab-gallery-img">
-        <Image src={airborneStadiumEncoderImg} width={363} alt="Airborne Stadium encoder hardware" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <Image src={airborneStadiumEncoderImg} width={363} alt="Airborne Stadium encoder hardware" class="img-cover" />
       </div>
       <div class="ab-gallery-img">
-        <Image src={airborneStadiumDaktronicsIntegrationImg} width={363} alt="Airborne Stadium Daktronics scoreboard integration" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <Image src={airborneStadiumDaktronicsIntegrationImg} width={363} alt="Airborne Stadium Daktronics scoreboard integration" class="img-cover" />
       </div>
     </div>
 
@@ -256,28 +256,28 @@ const seo = {
 </section>
 
 <!-- ═══ OFFICIATING REPLAY ═══ -->
-<section class="section" style="background:var(--bg2);border-top:1px solid var(--border-sub);">
+<section class="section ab-officiating">
   <div class="container">
-    <div class="ab-officiating-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+    <div class="ab-officiating-grid ab-officiating-cols">
       <div>
-        <div style="display:inline-block;font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:1.25rem;">Officiating Replay</div>
-        <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1rem;">Built for Officiating Replay.</h2>
-        <p style="font-size:.97rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem;">ScoreBreak Airborne Stadium integrates live statistics from your statistics provider and syncs them with multiple camera angles for frame-accurate playback. Trusted by professional leagues for officiating review.</p>
-        <div style="display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;">
-          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
-            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+        <div class="ab-off-label">Officiating Replay</div>
+        <h2 class="ab-off-title">Built for Officiating Replay.</h2>
+        <p class="ab-off-text">ScoreBreak Airborne Stadium integrates live statistics from your statistics provider and syncs them with multiple camera angles for frame-accurate playback. Trusted by professional leagues for officiating review.</p>
+        <div class="ab-off-list">
+          <div class="ab-off-item">
+            <div class="ab-off-icon">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
             <span>Live stats sync from your statistics provider in real time</span>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
-            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+          <div class="ab-off-item">
+            <div class="ab-off-icon">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
             <span>Multiple camera angles with synchronized multi-angle switching</span>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.93rem;color:var(--text-muted);">
-            <div style="width:22px;height:22px;border-radius:6px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+          <div class="ab-off-item">
+            <div class="ab-off-icon">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg>
             </div>
             <span>Frame-accurate scrubbing purpose-built for officiating review</span>
@@ -285,8 +285,8 @@ const seo = {
         </div>
         <a href="/demo/" class="btn btn-primary">Request a Demo →</a>
       </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.4);">
-        <Image src={officiatingReplayUnrivaledEnhancedImg} width={704} alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;" />
+      <div class="ab-off-media">
+        <Image src={officiatingReplayUnrivaledEnhancedImg} width={704} alt="ScoreBreak officiating replay interface" class="img-fluid" />
       </div>
     </div>
   </div>
@@ -727,11 +727,7 @@ const seo = {
 }
 .ab-cta-link:hover { color: var(--blue); }
 
-/* ── Floating image treatment ── */
-@keyframes abFloat {
-  from { transform: translateY(0px); }
-  to   { transform: translateY(-4px); }
-}
+/* ── Image scene: device image with a glow underneath ── */
 .ab-scene {
   display: flex;
   flex-direction: column;
@@ -741,12 +737,7 @@ const seo = {
 }
 .ab-scene .ab-intro-visual,
 .ab-scene .ab-prod-img {
-  animation: abFloat 3s ease-in-out infinite alternate;
   width: 100%;
-}
-.ab-scene:hover .ab-intro-visual,
-.ab-scene:hover .ab-prod-img {
-  animation-play-state: paused;
 }
 .ab-glow-shadow {
   width: 60%;
@@ -755,10 +746,6 @@ const seo = {
   border-radius: 50%;
   filter: blur(10px);
   margin-top: 10px;
-  animation: abFloat 3s ease-in-out infinite alternate;
-}
-.ab-scene:hover .ab-glow-shadow {
-  animation-play-state: paused;
 }
 
 /* ── Responsive ── */
@@ -781,5 +768,77 @@ const seo = {
   .ab-features-grid.cols-5 { grid-template-columns: 1fr; }
   .ab-prod-top { grid-template-columns: 1fr; }
   .ab-gallery-2, .ab-gallery-3 { grid-template-columns: 1fr; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.ab-intro-section {
+  padding-top: 5rem;
+}
+.ab-violet {
+  color: #a78bfa;
+}
+.ab-img-upper {
+  object-position: center 30%;
+}
+.ab-officiating {
+  background: var(--bg2);
+  border-top: 1px solid var(--border-sub);
+}
+.ab-officiating-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.ab-off-label {
+  display: inline-block;
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 1.25rem;
+}
+.ab-off-title {
+  font-size: clamp(1.8rem,3vw,2.6rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.ab-off-text {
+  font-size: .97rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.ab-off-list {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  margin-bottom: 2rem;
+}
+.ab-off-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  font-size: .93rem;
+  color: var(--text-muted);
+}
+.ab-off-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--blue-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+.ab-off-media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
 }
 </style>

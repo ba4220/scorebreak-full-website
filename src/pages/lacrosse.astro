@@ -38,14 +38,14 @@ const purposeItems: PurposeItem[] = [
 </section>
 
 <!-- ═══ PRODUCT GRID ═══ -->
-<section class="section" style="padding-top:0;">
+<section class="section lax-products">
   <div class="container">
     <div class="product-grid">
 
       <!-- Card 1: Team Software -->
       <a href="/software/" class="product-card">
         <div class="product-card-img">
-          <Image src={finalSoftwareMockupImg} width={365} alt="ScoreBreak Team Software" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;transform:scale(1.05);" loading="eager" />
+          <Image src={finalSoftwareMockupImg} width={365} alt="ScoreBreak Team Software" class="img-cover lax-img-contain" loading="eager" />
         </div>
         <div class="product-card-body">
           <div class="product-card-title">Team Software &amp; Breakdown Services <span class="product-card-arrow">→</span></div>
@@ -57,7 +57,7 @@ const purposeItems: PurposeItem[] = [
       <!-- Card 2: Sideline Video Replay -->
       <a href="/airborne/" class="product-card">
         <div class="product-card-img">
-          <Image src={ipadAirborneSidelineImg} width={348} alt="Airborne sideline replay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:bottom;" loading="eager" />
+          <Image src={ipadAirborneSidelineImg} width={348} alt="Airborne sideline replay" class="img-cover lax-img-bottom" loading="eager" />
         </div>
         <div class="product-card-body">
           <div class="product-card-title">Airborne: Sideline Video Replay <span class="product-card-arrow">→</span></div>
@@ -69,7 +69,7 @@ const purposeItems: PurposeItem[] = [
       <!-- Card 3: ScoreBreak Recruiting Network -->
       <a href="/recruiting-network/" class="product-card">
         <div class="product-card-img">
-          <Image src={portalPlayerImg} width={348} alt="ScoreBreak Recruiting Network" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" />
+          <Image src={portalPlayerImg} width={348} alt="ScoreBreak Recruiting Network" class="img-cover" loading="eager" />
         </div>
         <div class="product-card-body">
           <div class="product-card-title">ScoreBreak Recruiting Network <span class="product-card-arrow">→</span></div>
@@ -81,7 +81,7 @@ const purposeItems: PurposeItem[] = [
       <!-- Card 4: League and Tournament Solutions -->
       <a href="/leagues/" class="product-card">
         <div class="product-card-img">
-          <Image src={recruitingImg} width={348} alt="Lacrosse league solutions" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" />
+          <Image src={recruitingImg} width={348} alt="Lacrosse league solutions" class="img-cover" loading="eager" />
         </div>
         <div class="product-card-body">
           <div class="product-card-title">League Solutions <span class="product-card-arrow">→</span></div>
@@ -94,7 +94,7 @@ const purposeItems: PurposeItem[] = [
   </div>
 </section>
 
-<PurposeBuilt label="Platform" items={purposeItems} variant="list" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);" />
+<PurposeBuilt label="Platform" items={purposeItems} variant="list" class="section-band" />
 
 <!-- ═══ TESTIMONIALS ═══ -->
 <section class="section">
@@ -266,5 +266,18 @@ const purposeItems: PurposeItem[] = [
   .lax-hero h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
   .lax-hero .hero-sub { font-size: 1.02rem; }
   .product-grid { grid-template-columns: 1fr; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.lax-products {
+  padding-top: 0;
+}
+.lax-img-contain {
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1.05);
+}
+.lax-img-bottom {
+  object-position: bottom;
 }
 </style>

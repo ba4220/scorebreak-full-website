@@ -41,7 +41,7 @@ const seo = {
         </div>
         <h3>Help Center</h3>
         <p>Explore our comprehensive documentation, tutorials, and guides to get the most out of ScoreBreak.</p>
-        <a href="https://intercom.help/scorebreakhelp/en/" class="btn btn-outline btn-sm" target="_blank" rel="noopener" style="margin: 0 auto;">Visit Help Center →</a>
+        <a href="https://intercom.help/scorebreakhelp/en/" class="btn btn-outline btn-sm support-help-btn" target="_blank" rel="noopener">Visit Help Center →</a>
       </div>
 
       <!-- Downloads -->
@@ -55,24 +55,24 @@ const seo = {
         </div>
         <h3>Downloads</h3>
         <p>Download ScoreBreak for Mac, iPhone, and iPad — or open the web app directly in your browser.</p>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:.6rem; margin-top:.5rem;">
+        <div class="support-downloads">
           <a href="https://apps.apple.com/us/app/scorebreak-game-film-review/id1047466750" target="_blank" rel="noopener" aria-label="Download on the App Store">
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" style="height:44px; width:auto; display:block;">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
           </a>
           <a href="https://app.scorebreak.io" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Open Web App →</a>
         </div>
       </div>
 
       <!-- Contact -->
-      <div class="support-card" style="text-align:left">
-        <div class="support-card-icon" style="margin-left:0;">
+      <div class="support-card support-card--left">
+        <div class="support-card-icon support-card-icon--left">
           <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
           </svg>
         </div>
         <h3>Contact Support</h3>
         <p>Can't find what you're looking for? Send us a message and we'll respond within 1 business day.</p>
-        <div style="margin-top: .25rem;">
+        <div class="support-contact-details">
           <div class="contact-detail">
             <div class="contact-detail-icon">
               <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h12a1 1 0 011 1v9a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M16 5L9 10 2 5"/></svg>
@@ -359,5 +359,31 @@ const seo = {
   .phone-display { padding: .8rem 1.5rem; font-size: 1.2rem; }
   .support-card { padding: 1.5rem 1.25rem; }
   .contact-form-card { padding: 1.5rem 1.25rem; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.support-help-btn {
+  margin: 0 auto;
+}
+.support-downloads {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+  margin-top: .5rem;
+}
+.app-store-badge {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+.support-card--left {
+  text-align: left;
+}
+.support-card-icon--left {
+  margin-left: 0;
+}
+.support-contact-details {
+  margin-top: .25rem;
 }
 </style>

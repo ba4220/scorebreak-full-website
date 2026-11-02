@@ -14,10 +14,16 @@ const { title, titleStyle, subtitle, secondaryHref = '/demo/', secondaryLabel = 
     <div class="cta-section">
       <h2 style={titleStyle}>{title}</h2>
       {subtitle && <p>{subtitle}</p>}
-      <div class="hero-actions" style="justify-content:center;">
+      <div class="hero-actions cta-actions">
         <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
         <a href={secondaryHref} class="btn btn-outline btn-lg">{secondaryLabel}</a>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+.cta-actions {
+  justify-content:center;
+}
+</style>

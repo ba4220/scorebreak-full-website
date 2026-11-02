@@ -686,3 +686,15 @@ form[data-form] [type="submit"].is-error { outline: 2px solid #FF5A5A; outline-o
   .footer-bottom { flex-direction: column; text-align: center; }
   .footer-legal { justify-content: center; }
 }
+
+.nav-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin: 6px 0;
+}
+/* Matches the weight of the menus' own link rules (.nav-drop-menu a, light theme included). */
+.nav-drop-menu a.nav-all-solutions,
+.nav-mobile a.nav-all-solutions {
+  color: var(--blue);
+  font-weight: 700;
+}

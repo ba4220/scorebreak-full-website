@@ -20,7 +20,7 @@ const seo = {
     <div class="split-hero-inner">
       <div class="split-hero-text">
         <div class="split-hero-eyebrow">Recruiting Network</div>
-        <h1>Get in front of <span style="white-space:nowrap;">college coaches.</span><br><span class="accent">On the platform <span style="white-space:nowrap;">they already use.</span></span></h1>
+        <h1>Get in front of <span class="nowrap">college coaches.</span><br><span class="accent">On the platform <span class="nowrap">they already use.</span></span></h1>
         <p class="hero-sub">Every athlete on a team subscription gets a recruiting profile with their own film and self-clipped highlights. College coaches already use ScoreBreak for film work, so your players are a couple of clicks away.</p>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
@@ -119,13 +119,13 @@ const seo = {
 <!-- ═══════════════════════════════════════════════════════════
      TESTIMONIALS
 ════════════════════════════════════════════════════════════ -->
-<section class="section" style="border-top:1px solid var(--border-sub);">
+<section class="section rn-testimonials">
   <div class="container">
     <div class="section-head">
       <div class="section-label">What Coaches Are Saying</div>
       <h2 class="section-title">Trusted by coaches and programs nationwide</h2>
     </div>
-    <div class="testimonials-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="testimonials-grid rn-testimonials-grid">
 
       <Testimonial id="ryan-danehy" tileSize={40} />
 
@@ -143,8 +143,8 @@ const seo = {
     <div class="section-head">
       <h2 class="section-title">Simple team pricing</h2>
     </div>
-    <div style="display:flex;justify-content:center;">
-      <div class="pricing-card featured" style="max-width:480px;width:100%;">
+    <div class="rn-pricing-wrap">
+      <div class="pricing-card featured rn-pricing-card">
         <span class="pricing-badge">Team Plan</span>
         <div class="pricing-name">ScoreBreak Recruiting Network</div>
         <div class="pricing-price">
@@ -174,7 +174,7 @@ const seo = {
       </div>
     </div>
 
-    <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;">
+    <div class="pricing-actions">
       <a href="#" class="btn btn-primary btn-lg" data-modal-open="sbContactModal">Contact Us</a>
       <a href="/demo/" class="btn btn-outline btn-lg">Request a Demo →</a>
     </div>
@@ -195,5 +195,32 @@ const seo = {
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 600px) {
   .testimonials-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.nowrap {
+  white-space: nowrap;
+}
+.rn-testimonials {
+  border-top: 1px solid var(--border-sub);
+}
+.rn-testimonials-grid {
+  grid-template-columns: repeat(2,1fr);
+}
+.rn-pricing-wrap {
+  display: flex;
+  justify-content: center;
+}
+.rn-pricing-card {
+  max-width: 480px;
+  width: 100%;
+}
+.pricing-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
 }
 </style>

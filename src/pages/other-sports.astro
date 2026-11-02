@@ -73,12 +73,12 @@ const seo = {
 </section>
 
 <!-- ═══ FEATURES ═══ -->
-<section class="section" style="background: var(--bg2);">
+<section class="section os-features">
   <div class="container">
-    <div style="text-align:center; margin-bottom:3.5rem;">
+    <div class="os-features-head">
       <div class="os-badge">What's Included</div>
       <h2 class="section-title">Everything your staff needs.</h2>
-      <p class="section-subtitle" style="max-width:580px; margin:0 auto;">ScoreBreak is built to fit your system, your terminology, and your workflow.</p>
+      <p class="section-subtitle os-features-sub">ScoreBreak is built to fit your system, your terminology, and your workflow.</p>
     </div>
 
     <div class="os-features-grid">
@@ -146,14 +146,14 @@ const seo = {
         <a href="/airborne/" class="btn btn-outline">Learn About Airborne →</a>
       </div>
       <div class="os-airborne-visual">
-        <Image src={airborneLockerRoomImg} width={588} alt="Airborne R sideline replay system in locker room" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy" />
+        <Image src={airborneLockerRoomImg} width={588} alt="Airborne R sideline replay system in locker room" class="img-cover os-airborne-img" loading="lazy" />
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="section" style="padding: 2.5rem 0;">
+<section class="section os-cta-section">
   <div class="container">
     <div class="os-cta">
       <h2>ScoreBreak works for your sport.</h2>
@@ -427,5 +427,24 @@ const seo = {
   .os-cta-actions { flex-direction: column; align-items: stretch; }
   .os-cta-actions .btn { width: 100%; justify-content: center; }
   .os-airborne { padding: 2rem 1.5rem; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.os-features {
+  background: var(--bg2);
+}
+.os-features-head {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.os-features-sub {
+  max-width: 580px;
+  margin: 0 auto;
+}
+.os-airborne-img {
+  border-radius: 12px;
+}
+.os-cta-section {
+  padding: 2.5rem 0;
 }
 </style>

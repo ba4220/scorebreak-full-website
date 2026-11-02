@@ -25,7 +25,7 @@ const seo = { title: pageTitle, description, ogType: 'article' as const, twitter
       </div>
     </div>
   </header>
-  <div class="container" style="padding-bottom:4rem;">
+  <div class="container post-container">
     <div class="post-wrap">
       <div class="post-body">
         <slot />
@@ -160,5 +160,10 @@ const seo = { title: pageTitle, description, ogType: 'article' as const, twitter
 @media (max-width: 600px) {
   .post-nav { grid-template-columns: 1fr; }
   .post-nav-next { grid-column: auto; }
+}
+
+/* Formerly inline style="" attributes: last in the sheet so they still win over earlier rules. */
+.post-container {
+  padding-bottom: 4rem;
 }
 </style>
