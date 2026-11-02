@@ -48,6 +48,8 @@ Both test suites run against `dist/`, so build first (`npm test` does it for you
 - `npm run test:browser`: about a minute, headless Chromium. On every page: no script errors or broken files, nav dropdown, mobile menu, contact modal (open, close, Escape, backdrop) and its form, footer layout, and no sideways scroll on phones. Every form: blocked when invalid (including spaces-only input), the exact email message sent, its confirmation shown; a failed send keeps the input and outlines the submit button red until a retry succeeds; honeypots send nothing. Plus the carousels and hero video.
 - `npm test` runs `check`, `build`, then both suites.
 
+For CSS refactors that must not change the look: `npm run snapshot:save` on the built site before, `npm run snapshot:compare` after (about 35 s; pass page paths to limit it, e.g. `npm run snapshot:compare -- /about/`). It records every element's computed style and box on every page at 1440/1024/768/390, dark and light, plus the open nav dropdown, contact modal and mobile menu, and fails on any difference. It also lists every CSS rule added or removed (Astro's scoping stripped), which is how `:hover` rules and media queries between those widths are reviewed. Snapshots live in `.style-snapshot/` (git-ignored).
+
 ## JavaScript
 
 All in `src/scripts/`. Pages load them with `<script>import '../scripts/<name>';</script>`; Astro bundles them into hashed files under `/_astro/`. `site.ts` also exposes everything on `window.SB` (`SB.api`, `SB.forms`, `SB.modal`, `SB.config`) for page scripts and tests.
