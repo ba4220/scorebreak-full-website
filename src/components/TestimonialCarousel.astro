@@ -28,3 +28,70 @@ const { ids } = Astro.props;
 </div>
 
 <script>import '../scripts/carousel';</script>
+
+<style>
+  .tc-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .tc-track {
+    display: flex;
+    transition: transform .45s cubic-bezier(.4,0,.2,1);
+  }
+  .tc-slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  /* The card comes from Testimonial.astro. */
+  .tc-slide :global(.testimonial-card) {
+    max-width: 680px;
+    width: 100%;
+  }
+  .tc-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .tc-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, border-color .15s;
+    font-size: .9rem;
+    flex-shrink: 0;
+  }
+  .tc-btn:hover { background: var(--card-bg2); border-color: var(--border); }
+  .tc-dots {
+    display: flex;
+    gap: .45rem;
+    align-items: center;
+  }
+  /* Dots are created by scripts/carousel.ts, so they carry no scope class. */
+  :global(.tc-dot) {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background .2s, transform .2s;
+  }
+  :global(.tc-dot.active) {
+    background: var(--blue);
+    transform: scale(1.4);
+  }
+  @media (max-width: 600px) {
+    .tc-btn { width: 44px; height: 44px; }
+  }
+</style>

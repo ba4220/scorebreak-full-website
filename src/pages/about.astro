@@ -15,8 +15,92 @@ const seo = {
 };
 ---
 <Layout seo={seo}>
-<Fragment slot="head">
-  <style is:inline>
+
+<section class="about-hero">
+  <div class="container">
+    <div class="section-label">Our Story</div>
+    <h1>Built for the Coaches Who Demand More.</h1>
+    <p class="about-hero-sub">ScoreBreak is the sports technology company connecting athletes with coaches, giving teams the tools to outperform on film and on the field, and serving leagues and professional organizations across multiple sports.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOUNDING / FOUNDER
+══════════════════════════════════════ -->
+<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
+  <div class="container">
+    <div class="founder-inner">
+      <div class="founder-photo-col">
+        <Image src={jordanHendryImg} width={220} alt="Jordan Hendry  -  Founder & CEO of ScoreBreak" class="founder-photo" loading="eager" />
+      </div>
+      <div class="founder-text-col">
+        <div class="section-label">Our Founding</div>
+        <h2 class="founder-headline">Founded from Inside the Locker Room Out.</h2>
+        <div class="founder-name">Jordan Hendry</div>
+        <div class="founder-title">Founder &amp; CEO</div>
+        <p class="founder-bio">ScoreBreak was founded in 2015 by Jordan Hendry  -  a retired professional lacrosse player for the Denver Outlaws and former collegiate athlete at the University of Denver. Jordan built ScoreBreak because he lived the problem firsthand: coaches needed better tools, faster film, and real intelligence on the sideline and in the film room.</p>
+        <p class="founder-bio">What started as a solution for lacrosse has grown into a complete sports technology platform serving programs across lacrosse, basketball, and football.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MISSION
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Our Mission</div>
+      <h2 class="section-title">Professional tools. Built for everyone.</h2>
+    </div>
+    <p class="mission-body">ScoreBreak brings professional-grade technology that any coach, at any level, can pick up and use. From a first-year high school coach to a Division 1 program with a full staff, ScoreBreak meets you where you are. We believe every coaching staff deserves access to the same quality of tools that the pros use.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMMITMENTS
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Our Commitment</div>
+      <h2 class="section-title">What we stand for.</h2>
+    </div>
+    <div class="commitment-grid">
+
+      <div class="commitment-card">
+        <h3>Innovation</h3>
+        <p>Pushing the boundaries of sports technology  -  from AI-powered film analysis to live stat integration and automated reporting.</p>
+      </div>
+
+      <div class="commitment-card">
+        <h3>Support</h3>
+        <p>Support is part of the product. Direct access to a real team that knows the sport and the software.</p>
+      </div>
+
+      <div class="commitment-card">
+        <h3>Accessibility</h3>
+        <p>Professional-grade technology shouldn't require a professional-grade budget  -  simple enough for a first-time coach, capable enough for a D1 staff.</p>
+      </div>
+
+      <div class="commitment-card">
+        <h3>Community</h3>
+        <p>We show up at tournaments, talk to coaches on the sideline, and build lasting relationships with the programs that trust us.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<CtaSection title="See what ScoreBreak can do for your program." />
+
+</Layout>
+
+<style>
     /* ── Hero ── */
     .about-hero {
       padding: calc(var(--nav-h) + 4.5rem) 0 4rem;
@@ -198,89 +282,4 @@ const seo = {
       .commitment-grid { grid-template-columns: 1fr; }
       .founder-photo { width: 160px; height: 160px; }
     }
-  </style>
-</Fragment>
-
-<section class="about-hero">
-  <div class="container">
-    <div class="section-label">Our Story</div>
-    <h1>Built for the Coaches Who Demand More.</h1>
-    <p class="about-hero-sub">ScoreBreak is the sports technology company connecting athletes with coaches, giving teams the tools to outperform on film and on the field, and serving leagues and professional organizations across multiple sports.</p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     FOUNDING / FOUNDER
-══════════════════════════════════════ -->
-<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub);">
-  <div class="container">
-    <div class="founder-inner">
-      <div class="founder-photo-col">
-        <Image src={jordanHendryImg} width={220} alt="Jordan Hendry  -  Founder & CEO of ScoreBreak" class="founder-photo" loading="eager" />
-      </div>
-      <div class="founder-text-col">
-        <div class="section-label">Our Founding</div>
-        <h2 class="founder-headline">Founded from Inside the Locker Room Out.</h2>
-        <div class="founder-name">Jordan Hendry</div>
-        <div class="founder-title">Founder &amp; CEO</div>
-        <p class="founder-bio">ScoreBreak was founded in 2015 by Jordan Hendry  -  a retired professional lacrosse player for the Denver Outlaws and former collegiate athlete at the University of Denver. Jordan built ScoreBreak because he lived the problem firsthand: coaches needed better tools, faster film, and real intelligence on the sideline and in the film room.</p>
-        <p class="founder-bio">What started as a solution for lacrosse has grown into a complete sports technology platform serving programs across lacrosse, basketball, and football.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     MISSION
-══════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">Our Mission</div>
-      <h2 class="section-title">Professional tools. Built for everyone.</h2>
-    </div>
-    <p class="mission-body">ScoreBreak brings professional-grade technology that any coach, at any level, can pick up and use. From a first-year high school coach to a Division 1 program with a full staff, ScoreBreak meets you where you are. We believe every coaching staff deserves access to the same quality of tools that the pros use.</p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     COMMITMENTS
-══════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">Our Commitment</div>
-      <h2 class="section-title">What we stand for.</h2>
-    </div>
-    <div class="commitment-grid">
-
-      <div class="commitment-card">
-        <h3>Innovation</h3>
-        <p>Pushing the boundaries of sports technology  -  from AI-powered film analysis to live stat integration and automated reporting.</p>
-      </div>
-
-      <div class="commitment-card">
-        <h3>Support</h3>
-        <p>Support is part of the product. Direct access to a real team that knows the sport and the software.</p>
-      </div>
-
-      <div class="commitment-card">
-        <h3>Accessibility</h3>
-        <p>Professional-grade technology shouldn't require a professional-grade budget  -  simple enough for a first-time coach, capable enough for a D1 staff.</p>
-      </div>
-
-      <div class="commitment-card">
-        <h3>Community</h3>
-        <p>We show up at tournaments, talk to coaches on the sideline, and build lasting relationships with the programs that trust us.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     CTA
-══════════════════════════════════════ -->
-<CtaSection title="See what ScoreBreak can do for your program." />
-
-</Layout>
+</style>
