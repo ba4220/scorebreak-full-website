@@ -15,7 +15,8 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
   - `src/content/blog/`: one Markdown file per post (`title`, `description`, `date`, `author` frontmatter). `src/pages/blog/[slug].astro` publishes each at `/blog/<slug>/` through `src/layouts/BlogPost.astro`; the blog index and the Newer/Older links are generated, newest first. To add a post, add a Markdown file. Straight quotes stay straight (smart quotes are off).
   - `src/styles/`: `styles.css` (shared styles) and `components.css` (what the football page also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
   - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
-  - `public/`: images, video, PDFs and the favicon, copied to the site root as-is.
+  - `src/assets/`: every image the pages show. Import it and render it with `<Image src={img} width={N} … />` from `astro:assets`, where `N` is the largest CSS width it displays at. The build resizes it to WebP and writes a `srcset` up to 2× `N` (`image.layout: 'constrained'` in `astro.config.mjs`), so originals can stay full-size.
+  - `public/`: files served as-is at a fixed URL: video, PDFs, the favicon and `logos/logo-nav.png` (the Open Graph image).
 - Pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`).
 - Production is a Google Cloud Storage bucket (see [Hosting](#hosting-google-cloud-storage)). Netlify only builds deploy previews for PRs on this repo, configured in `netlify.toml`; drop both when the repo moves to ScoreBreak's GitHub.
 
@@ -145,7 +146,7 @@ Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, serv
 - The football page doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
 - `AUDIT.md` and `AI-TELLS-AUDIT.md` list further findings. Many copy and design items in `AI-TELLS-AUDIT.md` have already been addressed.
 
-**File names.** Asset files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Images are still split between the `public/` root and folders. Feel free to reorganize, but update all paths if you do.
+**File names.** Files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Keep the same convention in `src/assets/`.
 
 ## Notes on content
 

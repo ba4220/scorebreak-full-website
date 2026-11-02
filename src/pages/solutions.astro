@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import scorebreakSoftwareLacrosseImg from '../assets/software/scorebreak-software-lacrosse.png';
+import airborneHomePageImg from '../assets/airborne-r/airborne-home-page.png';
+import portalHeroIphoneImg from '../assets/recruiting-network/portal-hero-iphone.png';
+import leagueSiteMockupImg from '../assets/league-site-mockup.png';
 import Layout from '../layouts/Layout.astro';
 import CtaSection from '../components/CtaSection.astro';
 
@@ -146,7 +151,7 @@ const seo = {
     <!-- Row 1: Team Software -->
     <div class="sol-row">
       <div class="sol-row-img">
-        <img src="/software/scorebreak-software-lacrosse.png" alt="ScoreBreak Team Software on desktop, laptop, and mobile">
+        <Image src={scorebreakSoftwareLacrosseImg} width={591} alt="ScoreBreak Team Software on desktop, laptop, and mobile" loading="eager" />
       </div>
       <div class="sol-row-text">
         <div class="section-label">Team Software</div>
@@ -164,7 +169,7 @@ const seo = {
     <!-- Row 2: Airborne Sideline Replay -->
     <div class="sol-row sol-row--reverse">
       <div class="sol-row-img">
-        <img src="/airborne-r/airborne-home-page.png" alt="Airborne sideline replay unit on the sideline">
+        <Image src={airborneHomePageImg} width={704} alt="Airborne sideline replay unit on the sideline" />
       </div>
       <div class="sol-row-text">
         <div class="section-label">Airborne Sideline Replay</div>
@@ -182,7 +187,7 @@ const seo = {
     <!-- Row 3: Recruiting Network -->
     <div class="sol-row">
       <div class="sol-row-img">
-        <img src="/recruiting-network/portal-hero-iphone.png" alt="ScoreBreak athlete recruiting profile on an iPhone" style="max-height:460px;object-position:top center;">
+        <Image src={portalHeroIphoneImg} width={252} alt="ScoreBreak athlete recruiting profile on an iPhone" style="max-height:460px;object-position:top center;" />
       </div>
       <div class="sol-row-text">
         <div class="section-label">Recruiting Network</div>
@@ -200,7 +205,7 @@ const seo = {
     <!-- Row 4: League Solutions -->
     <div class="sol-row sol-row--reverse">
       <div class="sol-row-img">
-        <img src="/league-site-mockup.png" alt="ScoreBreak league site with stats, standings, and film">
+        <Image src={leagueSiteMockupImg} width={704} alt="ScoreBreak league site with stats, standings, and film" />
       </div>
       <div class="sol-row-text">
         <div class="section-label">League Solutions</div>

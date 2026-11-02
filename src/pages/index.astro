@@ -1,8 +1,18 @@
 ---
+import { Image } from 'astro:assets';
+import finalSoftwareMockupBasketballImg from '../assets/software/final-software-mockup-basketball.png';
+import umdIpadImg from '../assets/airborne-r/umd-ipad.png';
+import scorebreakBasketballImg from '../assets/basketball/scorebreak-basketball.png';
 import Layout from '../layouts/Layout.astro';
 import { schoolLogos } from '../data/school-logos';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialCarousel from '../components/TestimonialCarousel.astro';
+
+// Desktop CSS height of each marquee logo (.marquee-logo rules below), so the srcset covers it at 2x.
+const MARQUEE_HEIGHTS: Record<string, number> = {
+  'logo-stanford': 70, 'logo-first-class': 73, 'logo-culver': 60, 'logo-cornell': 57, 'logo-denver2': 63, 'logo-new-towson': 91,
+};
+const marqueeHeight = (className?: string) => (className && MARQUEE_HEIGHTS[className]) || 52;
 
 const seo = {
   title: 'ScoreBreak | Film Analysis and Sideline Replay for Competitive Sports Programs',
@@ -440,7 +450,7 @@ const seo = {
         </video>
         <div class="hero-fade-overlay" id="heroFadeOverlay"></div>
         <div class="hero-endcard" id="heroEndcard">
-          <img src="/software/final-software-mockup-basketball.png" alt="ScoreBreak Software" class="hero-endcard-mockup">
+          <Image src={finalSoftwareMockupBasketballImg} width={704} alt="ScoreBreak Software" class="hero-endcard-mockup" />
           <button class="hero-replay-btn" id="heroReplayBtn" aria-label="Replay demo">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0E1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
             Replay Demo
@@ -459,7 +469,7 @@ const seo = {
   <div class="marquee-wrapper">
     <div class="marquee-track">
       {[...schoolLogos, ...schoolLogos].map((logo) => (
-        <span class="logo-cell"><img src={logo.src} class={['marquee-logo', logo.className].filter(Boolean).join(' ')} alt={logo.alt}></span>
+        <span class="logo-cell"><Image src={logo.src} height={marqueeHeight(logo.className)} class={['marquee-logo', logo.className].filter(Boolean).join(' ')} alt={logo.alt} /></span>
       ))}
     </div>
   </div>
@@ -475,7 +485,7 @@ const seo = {
     </div>
     <div class="sports-grid">
       <a href="/lacrosse/" class="sport-card sport-card-lacrosse">
-        <div class="sport-card-bg"><img src="/airborne-r/umd-ipad.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;"></div>
+        <div class="sport-card-bg"><Image src={umdIpadImg} width={688} alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;" /></div>
         <div class="sport-card-arrow">→</div>
         <div class="sport-card-content">
           <h3>Lacrosse</h3>
@@ -483,7 +493,7 @@ const seo = {
         </div>
       </a>
       <a href="/basketball/" class="sport-card sport-card-basketball">
-        <div class="sport-card-bg"><img src="/basketball/scorebreak-basketball.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25;"></div>
+        <div class="sport-card-bg"><Image src={scorebreakBasketballImg} width={619} alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25;" /></div>
         <div class="sport-card-arrow">→</div>
         <div class="sport-card-content">
           <h3>Basketball</h3>

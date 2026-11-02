@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import jordanHendryImg from '../assets/jordan-hendry.webp';
 import Layout from '../layouts/Layout.astro';
 import CtaSection from '../components/CtaSection.astro';
 
@@ -214,7 +216,7 @@ const seo = {
   <div class="container">
     <div class="founder-inner">
       <div class="founder-photo-col">
-        <img src="/jordan-hendry.webp" alt="Jordan Hendry  -  Founder & CEO of ScoreBreak" class="founder-photo">
+        <Image src={jordanHendryImg} width={220} alt="Jordan Hendry  -  Founder & CEO of ScoreBreak" class="founder-photo" loading="eager" />
       </div>
       <div class="founder-text-col">
         <div class="section-label">Our Founding</div>

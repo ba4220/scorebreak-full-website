@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import leagueExchangeImg from '../assets/software/league-exchange.png';
+import liljImg from '../assets/ncaa-d1/lilj.png';
+import leagueSiteMockupImg from '../assets/league-site-mockup.png';
+import nbaAcademyLogoImg from '../assets/ncaa-d1/nba-academy-logo.png';
 import Layout from '../layouts/Layout.astro';
 import CtaSection from '../components/CtaSection.astro';
 
@@ -336,7 +341,7 @@ const seo = {
   <div class="container">
     <div class="lg-two-col" style="align-items:center;gap:3.75rem;grid-template-columns:1.2fr 1fr;">
       <div style="background:var(--card-bg);border:1px solid var(--border-sub);border-radius:var(--radius-lg);overflow:hidden;">
-        <img src="/software/league-exchange.png" alt="ScoreBreak Film Exchange  -  league-wide film access for every team" style="width:100%;height:auto;display:block;">
+        <Image src={leagueExchangeImg} width={702} alt="ScoreBreak Film Exchange  -  league-wide film access for every team" style="width:100%;height:auto;display:block;" />
       </div>
 
       <div class="lg-section-text">
@@ -409,7 +414,7 @@ const seo = {
 
         <!-- LILJ Partnership card -->
         <a href="https://app.scorebreak.io/federation/239/main" target="_blank" rel="noopener" class="lg-partnership">
-          <img src="/ncaa-d1/lilj.png" alt="Long Island Lacrosse Journal" style="height:44px;width:auto;object-fit:contain;flex-shrink:0;">
+          <Image src={liljImg} width={44} alt="Long Island Lacrosse Journal" style="height:44px;width:auto;object-fit:contain;flex-shrink:0;" />
           <div class="lg-partnership-divider"></div>
           <div>
             <p>In partnership with the Long Island Lacrosse Journal, explore a live sample of our league platform  -  powered by the Juniors Open.</p>
@@ -420,7 +425,7 @@ const seo = {
 
       <!-- Mockup image -->
       <div class="lg-visual">
-        <img src="/league-site-mockup.png" alt="ScoreBreak League Sites  -  branded league hub with live standings, stats, and film-linked video">
+        <Image src={leagueSiteMockupImg} width={704} alt="ScoreBreak League Sites  -  branded league hub with live standings, stats, and film-linked video" />
       </div>
     </div>
   </div>
@@ -487,12 +492,12 @@ const seo = {
     <div class="trusted-row">
 
       <div class="trusted-badge">
-        <img src="/ncaa-d1/lilj.png" alt="Long Island Lacrosse Journal / Juniors Open">
+        <Image src={liljImg} width={44} alt="Long Island Lacrosse Journal / Juniors Open" />
         <span class="trusted-badge-label">Juniors Open</span>
       </div>
 
       <div class="trusted-badge">
-        <img src="/ncaa-d1/nba-academy-logo.png" alt="NBA Academy Games">
+        <Image src={nbaAcademyLogoImg} width={151} alt="NBA Academy Games" />
         <span class="trusted-badge-label">NBA Academy Games</span>
       </div>
 

@@ -1,10 +1,15 @@
+---
+import { Image } from 'astro:assets';
+import whiteWordLogoImg from '../assets/logos/white-word-logo.png';
+import _4NavImg from '../assets/logos/4-nav.png';
+---
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label="ScoreBreak Home">
-          <img src="/logos/white-word-logo.png?v=2" class="logo-dark" alt="ScoreBreak">
-          <img src="/logos/4-nav.png" class="logo-light" alt="ScoreBreak">
+          <Image src={whiteWordLogoImg} width={214} class="logo-dark" alt="ScoreBreak" />
+          <Image src={_4NavImg} width={243} class="logo-light" alt="ScoreBreak" />
         </a>
         <p class="footer-tagline">We are ScoreBreak, the sports technology company connecting athletes with coaches, helping teams get more from their film, and powering the infrastructure for leagues and professional organizations at every level.</p>
         <div class="footer-socials">

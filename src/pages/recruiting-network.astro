@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import portalHeroIphoneImg from '../assets/recruiting-network/portal-hero-iphone.png';
 import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
 
@@ -226,7 +228,7 @@ const seo = {
         </div>
       </div>
       <div class="split-hero-media split-hero-media--device">
-        <img src="/recruiting-network/portal-hero-iphone.png" alt="ScoreBreak athlete recruiting profile on an iPhone">
+        <Image src={portalHeroIphoneImg} width={252} alt="ScoreBreak athlete recruiting profile on an iPhone" loading="eager" />
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { testimonials, type TestimonialId } from '../data/testimonials';
 
 interface Props {
@@ -17,7 +18,7 @@ const logoStyle = size
 <div class="testimonial-card" style={style}>
   <p class="testimonial-quote" set:html={t.quote} />
   <div class="testimonial-author">
-    <img src={t.logo} alt={t.logoAlt} style={logoStyle}>
+    <Image src={t.logo} height={size ?? 36} alt={t.logoAlt} style={logoStyle} />
     <div>
       <div class="testimonial-name">{t.name}</div>
       <div class="testimonial-title" set:html={t.role} />

@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import scorebreakBasketballImg from '../assets/basketball/scorebreak-basketball.png';
+import basketballImg from '../assets/basketball/basketball.png';
+import officiatingReplayUnrivaledEnhancedImg from '../assets/basketball/officiating-replay-unrivaled-enhanced.png';
 import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
 
@@ -211,7 +215,7 @@ const seo = {
         </div>
       </div>
       <div class="split-hero-media">
-        <img src="/basketball/scorebreak-basketball.png" alt="ScoreBreak basketball platform interface">
+        <Image src={scorebreakBasketballImg} width={619} alt="ScoreBreak basketball platform interface" loading="eager" />
       </div>
     </div>
   </div>
@@ -324,7 +328,7 @@ const seo = {
         <a href="/airborne/" class="btn btn-primary">Explore Airborne →</a>
       </div>
       <div class="bball-feature-visual">
-        <img src="/basketball/basketball.png" alt="ScoreBreak sideline replay on iPad" style="aspect-ratio:1.55; object-fit:cover; object-position:100% 50%;">
+        <Image src={basketballImg} width={702} alt="ScoreBreak sideline replay on iPad" style="aspect-ratio:1.55; object-fit:cover; object-position:100% 50%;" />
       </div>
     </div>
   </div>
@@ -361,7 +365,7 @@ const seo = {
         <a href="/airborne/#airborne-stadium" class="btn btn-outline">See Airborne Stadium →</a>
       </div>
       <div class="bball-feature-visual" style="overflow:hidden;border-radius:var(--radius-lg);">
-        <img src="/basketball/officiating-replay-unrivaled-enhanced.png" alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;">
+        <Image src={officiatingReplayUnrivaledEnhancedImg} width={704} alt="ScoreBreak officiating replay interface" style="width:100%;height:auto;display:block;" />
       </div>
     </div>
   </div>
