@@ -16,7 +16,7 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
   - `src/styles/`: `styles.css` (shared styles) and `components.css` (what the football page also needs: design tokens, nav, footer, modals and modal forms). `football.astro` passes `sharedStyles={false}` to skip `styles.css`.
   - `src/scripts/`: TypeScript, bundled by Astro. See [JavaScript](#javascript).
   - `src/assets/`: every image the pages show. Import it and render it with `<Image src={img} width={N} … />` from `astro:assets`, where `N` is the largest CSS width it displays at. The build resizes it to WebP and writes a `srcset` up to 2× `N` (`image.layout: 'constrained'` in `astro.config.mjs`), so originals can stay full-size.
-  - `public/`: files served as-is at a fixed URL: video, PDFs, the favicon and `logos/logo-nav.png` (the Open Graph image).
+  - `public/`: files served as-is at a fixed URL: video, PDFs, the favicon and `og-image.png` (the 1200×630 link-preview image, same as the app's).
 - Pages contain no inline scripts or `onclick`-style handlers (enforced by `npm run test:static`).
 - Production is a Google Cloud Storage bucket (see [Hosting](#hosting-google-cloud-storage)). Netlify only builds deploy previews for PRs on this repo, configured in `netlify.toml`; drop both when the repo moves to ScoreBreak's GitHub.
 
@@ -144,9 +144,8 @@ Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, serv
 **Redirects.** `portal.html` was renamed to `/recruiting-network/`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
 
 **Known issues**
-- Open Graph image path (`logos/logo-nav.png`) needs checking.
 - The football page doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.
-- `AUDIT.md` and `AI-TELLS-AUDIT.md` list further findings. Many copy and design items in `AI-TELLS-AUDIT.md` have already been addressed.
+- `AUDIT.md` and `AI-TELLS-AUDIT.md` list the findings still open (re-checked against the Astro site on 2026-11-02), each tagged code or copy/design, plus what has been fixed.
 
 **File names.** Files and folders in `public/` use lowercase-hyphenated names (no spaces, capitals, or characters like `'`, `+`, `( )`) so paths behave the same on every host; `npm run test:static` enforces this. Keep the same convention in `src/assets/`.
 
