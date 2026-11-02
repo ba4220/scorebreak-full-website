@@ -332,19 +332,6 @@ const seo = {
   z-index: 1;
   pointer-events: none;
 }
-.film-card-img-icon {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px; height: 52px;
-  background: var(--blue-dim);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 1;
-  color: var(--blue);
-}
-.film-card-img-icon svg { width: 24px; height: 24px; }
 .film-card-body { padding: 1.25rem; flex: 1; }
 .film-card-body h3 {
   font-size: 1rem;
@@ -414,43 +401,6 @@ const seo = {
   flex-direction: column;
   gap: .75rem;
 }
-.hv-row {
-  display: flex;
-  gap: .75rem;
-  align-items: center;
-}
-.hv-block {
-  background: var(--card-bg2);
-  border: 1px solid var(--border-sub);
-  border-radius: 8px;
-  flex: 1;
-  height: 40px;
-}
-.hv-block-wide { flex: 2; }
-.hv-block-accent {
-  background: linear-gradient(135deg, rgba(86,199,255,.2) 0%, rgba(86,199,255,.07) 100%);
-  border-color: var(--border);
-}
-.hv-stat {
-  background: var(--card-bg2);
-  border: 1px solid var(--border-sub);
-  border-radius: 10px;
-  padding: .75rem 1rem;
-  flex: 1;
-}
-.hv-stat-val {
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: var(--blue);
-  line-height: 1;
-  margin-bottom: .2rem;
-}
-.hv-stat-label {
-  font-size: .72rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
 
 /* ── Federations Section ─────────────────────────────── */
 .fed-section {
@@ -498,23 +448,6 @@ const seo = {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 40% 50%, rgba(86,199,255,.13) 0%, transparent 60%);
-}
-.fed-visual-inner {
-  position: absolute;
-  inset: 1.5rem;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: .75rem;
-}
-.fv-tile {
-  background: var(--card-bg2);
-  border: 1px solid var(--border-sub);
-  border-radius: 10px;
-}
-.fv-tile-accent {
-  background: linear-gradient(135deg, rgba(86,199,255,.22) 0%, rgba(86,199,255,.08) 100%);
-  border-color: var(--border);
 }
 
 /* ── Responsive ──────────────────────────────────────── */

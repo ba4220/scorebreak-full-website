@@ -137,52 +137,6 @@ const seo = {
       text-align: center;
     }
 
-    /* ── Sport cards ── */
-    .sport-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .sport-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: var(--radius);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .sport-card-eyebrow {
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1rem;
-    }
-    .sport-card h3 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      margin-bottom: .75rem;
-      line-height: 1.3;
-    }
-    .sport-card p {
-      font-size: .9rem;
-      color: var(--text-muted);
-      line-height: 1.72;
-      flex: 1;
-    }
-    .sport-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .3rem;
-      font-size: .88rem;
-      font-weight: 700;
-      color: var(--blue);
-      text-decoration: none;
-      margin-top: 1.25rem;
-    }
-    .sport-card-link:hover { text-decoration: underline; }
-
     /* ── Commitment grid ── */
     .commitment-grid {
       display: grid;
@@ -273,12 +227,8 @@ const seo = {
     }
 
     /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .sport-cards { grid-template-columns: repeat(2, 1fr); }
-    }
     @media (max-width: 600px) {
       .about-hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
-      .sport-cards { grid-template-columns: 1fr; }
       .commitment-grid { grid-template-columns: 1fr; }
       .founder-photo { width: 160px; height: 160px; }
     }

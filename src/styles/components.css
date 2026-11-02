@@ -166,14 +166,6 @@
   transition: background .15s, color .15s;
 }
 .nav-drop-menu a:hover { background: var(--blue-dim); color: var(--blue); }
-.nav-drop-menu a .drop-icon {
-  width: 20px; height: 20px;
-  background: var(--blue-dim);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  font-size: .7rem;
-}
 
 /* Right-side nav */
 .nav-right {
@@ -679,7 +671,6 @@ form[data-form] [type="submit"].is-error { outline: 2px solid #FF5A5A; outline-o
 [data-theme="light"] .sb-modal-divider::after { background: rgba(10,14,26,.1); }
 [data-theme="light"] .sb-modal-phone { color: #5A6478; }
 [data-theme="light"] #sbModalConfirmText { color: #0A0E1A; }
-
 
 @media (max-width: 900px) {
   .footer-inner {

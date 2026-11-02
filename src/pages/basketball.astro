@@ -210,8 +210,6 @@ const seo = {
 </Layout>
 
 <style>
-/* ── Basketball hero ── */
-
 /* ── Feature sections ── */
 .bball-feature {
   display: grid;
@@ -231,14 +229,6 @@ const seo = {
   width: 100%;
   height: auto;
   display: block;
-}
-.bball-feature-visual-placeholder {
-  aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  background: linear-gradient(135deg, #0d1f35 0%, #0a1428 60%, #060e1c 100%);
 }
 .bball-feature-eyebrow {
   display: inline-block;
@@ -298,37 +288,6 @@ const seo = {
 #film-analysis .bball-bullets { gap: 0; }
 #film-analysis .bball-bullet { font-size: 1rem; line-height: 1.6; padding: .6rem 0; }
 #film-analysis .bball-bullet strong { color: var(--text); font-weight: 700; }
-
-/* ── Comparison table ── */
-.vs-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: .93rem;
-}
-.vs-table th {
-  padding: .75rem 1rem;
-  text-align: left;
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  border-bottom: 1px solid var(--border-sub);
-}
-.vs-table th:nth-child(2),
-.vs-table th:nth-child(3) { text-align: center; }
-.vs-table td {
-  padding: .85rem 1rem;
-  border-bottom: 1px solid var(--border-sub);
-  color: var(--text-muted);
-}
-.vs-table td:nth-child(2),
-.vs-table td:nth-child(3) { text-align: center; }
-.vs-table tr:last-child td { border-bottom: none; }
-.vs-check { color: #4ade80; font-size: 1.1rem; }
-.vs-x { color: #ef4444; font-size: 1.1rem; }
-.vs-table th.highlight { color: var(--blue); }
-.vs-table td.highlight { color: var(--text); font-weight: 600; }
 
 /* ── Stats bar ── */
 .stats-bar {
