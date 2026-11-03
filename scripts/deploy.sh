@@ -1,9 +1,27 @@
 #!/usr/bin/env bash
-# Build the site and publish it to the staging GCS bucket.
-# Staging-only extras: every page gets <meta name="robots" content="noindex">, so search engines skip it.
+# Build the site and publish it to a GCS website bucket: scripts/deploy.sh staging|production
+#   staging:    staging API, every page gets <meta name="robots" content="noindex"> so search engines skip it
+#   production: production API (the build default), needs a clean, pushed working tree
+# BUCKET=gs://… overrides the target's bucket.
 set -euo pipefail
 
-BUCKET="${BUCKET:-gs://scorebreak-marketing-site-staging}"
+TARGET="${1:-}"
+case "$TARGET" in
+  staging)
+    BUCKET="${BUCKET:-gs://scorebreak-marketing-site-staging}"
+    export PUBLIC_API_HOST=https://staging-api2.scorebreak.io
+    NOINDEX=1
+    ;;
+  production)
+    BUCKET="${BUCKET:-gs://scorebreak-marketing-site}"
+    unset PUBLIC_API_HOST
+    NOINDEX=0
+    ;;
+  *)
+    echo "Usage: $0 staging|production" >&2
+    exit 1
+    ;;
+esac
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
@@ -19,17 +37,32 @@ HTML_CACHE="public, max-age=60"
 cd "$ROOT"
 
 if [[ -n "$(git status --porcelain)" ]]; then
+  if [[ "$TARGET" == production ]]; then
+    echo "Production deploys need a clean working tree; commit or stash first." >&2
+    exit 1
+  fi
   echo "Warning: working tree has uncommitted changes; they will be deployed." >&2
 fi
-echo "Deploying $(git rev-parse --short HEAD) ($(git rev-parse --abbrev-ref HEAD)) to $BUCKET"
-read -r -p "Continue? [y/N] " answer
-[[ "$answer" == "y" || "$answer" == "Y" ]] || exit 1
+if [[ "$TARGET" == production ]] && [[ -n "$(git log '@{u}..' 2>/dev/null)" ]]; then
+  echo "Production deploys need every commit pushed; run git push first." >&2
+  exit 1
+fi
+echo "Deploying $(git rev-parse --short HEAD) ($(git rev-parse --abbrev-ref HEAD)) to $TARGET: $BUCKET"
+if [[ "$TARGET" == production ]]; then
+  read -r -p "Type 'production' to continue: " answer
+  [[ "$answer" == production ]] || exit 1
+else
+  read -r -p "Continue? [y/N] " answer
+  [[ "$answer" == "y" || "$answer" == "Y" ]] || exit 1
+fi
 
-PUBLIC_API_HOST=https://staging-api2.scorebreak.io npm run build
+npm run build
 
-# Staging-only edits go on a copy, not dist/.
+# Target-specific edits go on a copy, not dist/.
 cp -R dist/. "$STAGE/"
-find "$STAGE" -name '*.html' -exec perl -pi -e 's|<head>|<head><meta name="robots" content="noindex, nofollow">|' {} +
+if [[ "$NOINDEX" == 1 ]]; then
+  find "$STAGE" -name '*.html' -exec perl -pi -e 's|<head>|<head><meta name="robots" content="noindex, nofollow">|' {} +
+fi
 
 # Full copy rather than `gsutil rsync`, which skipped changed files against this bucket.
 gs -m cp -z "$GZIP_EXTS" -r "$STAGE"/* "$BUCKET/"

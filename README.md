@@ -24,10 +24,17 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 The site is hosted from a Google Cloud Storage bucket configured as a static website.
 
-**Staging:** `npm run deploy:staging` builds and publishes to `gs://scorebreak-marketing-site-staging` (another bucket: `BUCKET=gs://… npm run deploy:staging`). It asks before uploading and before deleting anything, and needs `gsutil` logged in. On top of a plain upload it:
+Both targets use `scripts/deploy.sh`, which asks before uploading and before deleting anything, and needs `gsutil` logged in. `BUCKET=gs://… npm run deploy:<target>` overrides the bucket.
 
-- builds against the staging API (`PUBLIC_API_HOST=https://staging-api2.scorebreak.io`)
-- adds `<meta name="robots" content="noindex, nofollow">` to every page, so search engines skip staging (on a copy; `dist/` stays clean)
+| | `npm run deploy:staging` | `npm run deploy:production` |
+|---|---|---|
+| Bucket | `gs://scorebreak-marketing-site-staging` (https://staging.scorebreak.io) | `gs://scorebreak-marketing-site` (https://scorebreak.io, once DNS points there) |
+| Forms API | `https://staging-api2.scorebreak.io` | `https://api2.scorebreak.io` |
+| `noindex` on every page | yes | no |
+| Guard rails | warns about uncommitted changes | refuses uncommitted or unpushed changes; you type `production` to confirm |
+
+On top of a plain upload, both:
+
 - uploads every page a second time without the trailing slash (`/support` as well as `/support/index.html`), so `/support` loads directly instead of redirecting to `/support/index.html`
 - stores text files (`html,css,js,svg,txt,xml,json`) gzipped, about 4–5× smaller over the wire; GCS unzips them for clients that can't take gzip
 - sets `Cache-Control: public, max-age=60` on HTML (the CDN and browsers may serve a page up to a minute old, so a deploy shows within about a minute) and `public, max-age=31536000, immutable` on `/_astro/`
@@ -36,9 +43,9 @@ The site is hosted from a Google Cloud Storage bucket configured as a static web
 
 It uses plain `gsutil cp` rather than `gsutil rsync`, which skipped changed files against this bucket, and runs gsutil single-process, since its multiprocessing crashes Python on macOS.
 
-**Production:** no script yet. The staging one minus the `noindex` step and with the production API host (a plain `npm run build`) is the starting point.
+**Going live on scorebreak.io** (outside this repo): a production bucket set up like staging (public, website config); the load balancer sending `scorebreak.io` to it and redirecting `www.scorebreak.io` to `https://scorebreak.io`; a certificate for both names (Certificate Manager with DNS authorization issues it before the switch); then, in Cloud DNS, the 4 Squarespace A records on `scorebreak.io` and the `www` CNAME replaced with the load balancer's IP. Leave MX, TXT and the other subdomains alone. For working forms, the production API also needs the mail endpoint and `TURNSTILE_SECRET_KEY`, and the Turnstile widget needs both hostnames.
 
-- `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`. Without the trailing slash GCS redirects `/about` to `/about/index.html`, which is why the staging script also uploads slash-less copies. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
+- `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`. Without the trailing slash GCS redirects `/about` to `/about/index.html`, which is why the deploy script also uploads slash-less copies. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
 - Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML is cached for 60 seconds, so updates show up within a minute. The CDN currently caps what it sends browsers at one hour (`max-age=3600` on `/_astro/`); raising its client TTL lets browsers keep hashed assets for the full year.
 - A bucket can't redirect old URLs (e.g. a live `/portal`); that needs the load balancer's URL map or a small stub page.
 
@@ -90,6 +97,7 @@ Where it goes, per build:
 |---|---|---|
 | `npm run dev` | `https://staging-api2.scorebreak.io` | `test` (radek@) for every form; each request and response is logged to the console |
 | `npm run deploy:staging` | `https://staging-api2.scorebreak.io` | per form, below |
+| `npm run deploy:production` | `https://api2.scorebreak.io` | per form, below |
 | `npm run build` (production) | `https://api2.scorebreak.io` | per form, below |
 
 `PUBLIC_API_HOST=… npm run build` overrides the host. A failed send keeps the form filled, outlines the submit button red and shows a short reason under it: too many requests (429), verification failed (422 token), invalid email (422 email), check your details (other 422), or "Something went wrong. Please try again later." for anything else.
