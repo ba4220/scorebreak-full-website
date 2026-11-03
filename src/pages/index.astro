@@ -5,6 +5,7 @@ import umdIpadImg from '../assets/airborne-r/umd-ipad.png';
 import scorebreakBasketballImg from '../assets/basketball/scorebreak-basketball.png';
 import Layout from '../layouts/Layout.astro';
 import { schoolLogos } from '../data/school-logos';
+import { features } from '../data/features';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialCarousel from '../components/TestimonialCarousel.astro';
 import PurposeBuilt, { type PurposeItem } from '../components/PurposeBuilt.astro';
@@ -109,7 +110,7 @@ const purposeItems: PurposeItem[] = [
     <div class="section-head">
       <h2 class="section-title">Built for your sport</h2>
     </div>
-    <div class="sports-grid">
+    <div class:list={['sports-grid', !features.football && 'sports-grid--two']}>
       <a href="/lacrosse/" class="sport-card sport-card-lacrosse">
         <div class="sport-card-bg"><Image src={umdIpadImg} width={688} alt="" class="img-cover sport-card-photo-lax" /></div>
         <div class="sport-card-arrow">→</div>
@@ -126,15 +127,17 @@ const purposeItems: PurposeItem[] = [
           <p>Film analysis, sideline replay, and officiating tools for basketball programs at every level.</p>
         </div>
       </a>
-      <a href="/football/" class="sport-card sport-card-football">
-        <div class="sport-card-bg"></div>
-        <div class="sport-card-arrow">→</div>
-        <div class="sport-card-content">
-          <div class="sport-card-tag">Coming Soon  -  Gridiron</div>
-          <h3>Football</h3>
-          <p>ScoreBreak Gridiron is on its way. Join the pre-launch waitlist and be first to experience the future of football technology.</p>
-        </div>
-      </a>
+      {features.football && (
+        <a href="/football/" class="sport-card sport-card-football">
+          <div class="sport-card-bg"></div>
+          <div class="sport-card-arrow">→</div>
+          <div class="sport-card-content">
+            <div class="sport-card-tag">Coming Soon  -  Gridiron</div>
+            <h3>Football</h3>
+            <p>ScoreBreak Gridiron is on its way. Join the pre-launch waitlist and be first to experience the future of football technology.</p>
+          </div>
+        </a>
+      )}
     </div>
     <div class="sports-more">
       <a href="/other-sports/" class="sports-more-link">and other sports <span class="sports-more-arrow">→</span></a>
@@ -390,6 +393,7 @@ const purposeItems: PurposeItem[] = [
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
+.sports-grid--two { grid-template-columns: repeat(2, 1fr); }
 .sport-card-basketball .sport-card-bg {
   background: linear-gradient(135deg, #1A0D00 0%, #2D1800 50%, #3D2000 100%);
 }

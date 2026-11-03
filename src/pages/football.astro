@@ -1,5 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { features } from '../data/features';
+
+// Built sites send /football/ to the homepage until football launches; `astro dev` still shows the page.
+if (!features.football && import.meta.env.PROD) {
+  return Astro.redirect('/', 301); // 301 = instant meta refresh; 302 waits 2s on a "Redirecting" page
+}
 
 const seo = {
   title: 'ScoreBreak Gridiron | Football Film Analysis  -  Join the Waitlist',

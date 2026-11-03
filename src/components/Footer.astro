@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import whiteWordLogoImg from '../assets/logos/white-word-logo.png';
 import _4NavImg from '../assets/logos/4-nav.png';
+import { features } from '../data/features';
 ---
 <footer class="site-footer">
   <div class="container">
@@ -30,7 +31,7 @@ import _4NavImg from '../assets/logos/4-nav.png';
         <ul>
           <li><a href="/lacrosse/">Lacrosse</a></li>
           <li><a href="/basketball/">Basketball</a></li>
-          <li><a href="/football/">Football</a></li>
+          {features.football && <li><a href="/football/">Football</a></li>}
           <li><a href="/other-sports/">Other Sports</a></li>
         </ul>
       </div>

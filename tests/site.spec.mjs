@@ -1,6 +1,6 @@
 // Browser checks for shared behaviour, layout and every form: `npm run test:browser`.
 import { test, expect } from '@playwright/test';
-import { PAGES } from './pages.mjs';
+import { FOOTBALL, PAGES } from './pages.mjs';
 
 const DESKTOP = { width: 1440, height: 900 };
 
@@ -232,6 +232,7 @@ test.describe('forms', () => {
   });
 
   test('football: waitlist with referral link', async ({ page }) => {
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
     const errors = await open(page, '/football/');
     await page.click('#waitlist-form button[type=submit]');
     await expect(page.locator('#first-name')).toHaveCSS('border-color', 'rgb(255, 90, 90)');
@@ -421,6 +422,7 @@ test.describe('form failures and edge cases', () => {
   });
 
   test('football: waitlist honeypot shows success but sends nothing', async ({ page }) => {
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
     await open(page, '/football/');
     await page.fill('#first-name', 'Bot');
     await page.fill('#last-name', 'Bot');
@@ -434,6 +436,7 @@ test.describe('form failures and edge cases', () => {
   });
 
   test('closing one of two open modals keeps the page scroll-locked', async ({ page }) => {
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
     await open(page, '/football/');
     await page.evaluate(() => { window.SB.modal.open('confirmation'); window.SB.modal.open('sbContactModal'); });
     await page.evaluate(() => window.SB.modal.close('sbContactModal'));
@@ -523,7 +526,7 @@ test.describe('form layout', () => {
     { path: '/resources/', form: '#sbSoc2Form', open: (page) => page.evaluate(() => window.SB.modal.open('sbSoc2Modal')) },
     { path: '/demo/', form: '#demoForm' },
     { path: '/support/', form: '#contactForm' },
-    { path: '/football/', form: '#waitlist-form' },
+    ...(FOOTBALL ? [{ path: '/football/', form: '#waitlist-form' }] : []),
   ];
   for (const { path, form, open: openForm } of FORMS) {
     test(`${form} (${path}): every field fits inside the form at every width`, async ({ page }) => {
@@ -566,7 +569,15 @@ test.describe('nav details', () => {
     await expect(mobile).toHaveCSS('color', BLUE);
   });
 
+  test('while football is switched off, /football/ lands on the homepage', async ({ page }) => {
+    test.skip(FOOTBALL, 'football is switched on in src/data/features.ts');
+    await page.goto('/football/');
+    await expect(page).toHaveURL('/');
+    await expect(page.locator('.sports-grid')).toBeVisible();
+  });
+
   test('football uses the shared nav and highlights Football', async ({ page }) => {
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
     await open(page, '/football/');
     await page.locator('#dd-sports [data-dropdown-toggle]').click();
     await expect(page.locator('#dd-sports a[aria-current="page"]')).toHaveText('Football');

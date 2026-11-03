@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname, normalize } from 'node:path';
-import { ROOT, DIST, PAGES, STANDALONE, fileOf } from './pages.mjs';
+import { ROOT, DIST, PAGES, REDIRECTS, STANDALONE, FOOTBALL, fileOf } from './pages.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = Object.fromEntries(PAGES.map((p) => [p, readFileSync(join(DIST, fileOf(p)), 'utf8')]));
@@ -146,6 +146,23 @@ test('every form on the site has a MAIL entry (type + title) in src/scripts/api.
   const forms = new Set(PAGES.flatMap((p) => [...html[p].matchAll(/data-form="([a-z0-9-]+)"/g)].map((m) => m[1])));
   for (const name of forms) {
     assert.match(api, new RegExp(`'${name}':\\s*\\{\\s*type: '(general|support)',\\s*title:`), `api.ts has no MAIL entry for "${name}"`);
+  }
+});
+
+test('football follows the switch in src/data/features.ts: links, and /football/ as a page or a redirect to /', () => {
+  if (FOOTBALL) {
+    assert.ok(PAGES.includes('/football/'));
+  } else {
+    assert.deepEqual(REDIRECTS, ['/football/']);
+    assert.match(readFileSync(join(DIST, 'football/index.html'), 'utf8'), /<meta http-equiv="refresh" content="0;url=\/">/);
+  }
+  for (const page of PAGES) {
+    const links = html[page].match(/href="\/football\/"/g) || [];
+    if (FOOTBALL) {
+      assert.ok(links.length > 0, `${page} has no football links`);
+    } else {
+      assert.equal(links.length, 0, `${page} links to /football/`);
+    }
   }
 });
 
