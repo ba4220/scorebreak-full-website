@@ -1,8 +1,9 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import finalSoftwareMockupBasketballImg from '../assets/software/final-software-mockup-basketball.png';
 import umdIpadImg from '../assets/airborne-r/umd-ipad.png';
 import scorebreakBasketballImg from '../assets/basketball/scorebreak-basketball.png';
+import demoPosterImg from '../assets/hero/demo-poster.png';
 import Layout from '../layouts/Layout.astro';
 import { schoolLogos } from '../data/school-logos';
 import { features } from '../data/features';
@@ -11,6 +12,8 @@ import TestimonialCarousel from '../components/TestimonialCarousel.astro';
 import PurposeBuilt, { type PurposeItem } from '../components/PurposeBuilt.astro';
 
 // Desktop CSS height of each marquee logo (.marquee-logo rules below), so the srcset covers it at 2x.
+// First frame of the hero video, shown until it starts playing.
+const demoPoster = await getImage({ src: demoPosterImg, width: 1600, format: 'webp', layout: 'none' });
 const MARQUEE_HEIGHTS: Record<string, number> = {
   'logo-stanford': 70, 'logo-first-class': 73, 'logo-culver': 60, 'logo-cornell': 57, 'logo-denver2': 63, 'logo-new-towson': 91,
 };
@@ -72,8 +75,8 @@ const purposeItems: PurposeItem[] = [
         </div>
       </div>
       <div class="hero-image">
-        <video autoplay muted playsinline id="heroVideo" class="img-cover hero-demo-video">
-          <source src="/website-demo8-optimized.mp4" type="video/mp4">
+        <video autoplay muted playsinline id="heroVideo" class="img-cover hero-demo-video" poster={demoPoster.src}>
+          <source src="/website-demo8-1600.mp4" type="video/mp4">
         </video>
         <div class="hero-fade-overlay" id="heroFadeOverlay"></div>
         <div class="hero-endcard" id="heroEndcard">
