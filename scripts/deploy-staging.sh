@@ -20,9 +20,9 @@ echo "Deploying $(git rev-parse --short HEAD) ($(git rev-parse --abbrev-ref HEAD
 read -r -p "Continue? [y/N] " answer
 [[ "$answer" == "y" || "$answer" == "Y" ]] || exit 1
 
-npm run build
+PUBLIC_API_HOST=https://staging-api2.scorebreak.io npm run build
 
-# Copy so dist/ stays a clean production build.
+# Staging-only edits go on a copy, not dist/.
 cp -R dist/. "$STAGE/"
 find "$STAGE" -name '*.html' -exec perl -pi -e 's|<head>|<head><meta name="robots" content="noindex, nofollow">|' {} +
 

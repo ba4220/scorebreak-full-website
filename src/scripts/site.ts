@@ -7,10 +7,11 @@
      (api.ts), which formats the email. A filled honeypot field (bot-field) skips both. Optional
      data-form-confirm="<selector>" is revealed on success (its [data-field] spans are filled
      from the submitted values) and data-form-hide="<selector>" is hidden (defaults to the form).
-     A failed send keeps the form filled and outlines its submit button red (.is-error) until a send succeeds.
+     A failed send keeps the form filled, outlines its submit button red (.is-error) and shows a short reason
+     under it (.form-error) until a send succeeds.
      Per-form hooks: SB.forms.register(name, { validate(form), onSuccess(form, fields), onError(form, err) }).
    Everything is also exposed on window.SB for page scripts and tests. */
-import { api, config, fieldsOf, type Fields, type FormEntry } from './api';
+import { api, ApiError, config, fieldsOf, type Fields, type FormEntry } from './api';
 
 /* ── Dropdowns ── */
 {
@@ -211,12 +212,44 @@ const forms = (() => {
       }
     });
   }
-  function setError(form: HTMLFormElement, failed: boolean) {
-    form.querySelector('[type="submit"]')?.classList.toggle('is-error', failed);
+  // What the visitor sees under the submit button after a failed send.
+  function errorMessage(err: unknown): string {
+    if (err instanceof ApiError) {
+      if (err.status === 429) {
+        return 'Too many requests. Please try again later.';
+      }
+      if (err.status === 422) {
+        const data = (err.data || {}) as Record<string, unknown>;
+        const fields = (data.errors || data) as Record<string, unknown>;
+        if (fields.token) {
+          return 'Verification failed. Please try again.';
+        }
+        if (fields.email) {
+          return 'Please enter a valid email address.';
+        }
+        return 'Please check your details and try again.';
+      }
+    }
+    return 'Something went wrong. Please try again later.';
+  }
+  function setError(form: HTMLFormElement, err: unknown) {
+    const submit = form.querySelector('[type="submit"]');
+    submit?.classList.toggle('is-error', Boolean(err));
+    let note = form.querySelector<HTMLElement>('.form-error');
+    if (!note && err && submit) {
+      note = document.createElement('p');
+      note.className = 'form-error';
+      note.setAttribute('role', 'alert');
+      submit.after(note);
+    }
+    if (note) {
+      note.textContent = err ? errorMessage(err) : '';
+      note.hidden = !err;
+    }
   }
   function reset(form: HTMLFormElement) {
     form.reset();
-    setError(form, false);
+    setError(form, null);
     (target(form, 'data-form-hide') || form).hidden = false;
     const confirm = target(form, 'data-form-confirm');
     if (confirm) {
@@ -267,13 +300,13 @@ const forms = (() => {
         const token = await turnstile.token(form);
         return api.submitForm(name, entries, token);
       }).then((result) => {
-        setError(form, false);
+        setError(form, null);
         showConfirmation(form, fields);
         hook.onSuccess?.(form, fields, result);
       }).catch((err) => {
         // Keep what the visitor typed so they can retry; the red outline marks the failed send.
         console.error(`[SB.forms] ${name} failed`, err);
-        setError(form, true);
+        setError(form, err);
         hook.onError?.(form, err);
       }).finally(() => {
         if (submit) {

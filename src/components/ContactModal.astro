@@ -11,20 +11,20 @@
         <div class="sb-form-row">
           <div class="sb-form-group">
             <label for="sbFirstName">First Name</label>
-            <input type="text" id="sbFirstName" name="firstName" required>
+            <input type="text" id="sbFirstName" maxlength="100" name="firstName" required>
           </div>
           <div class="sb-form-group">
             <label for="sbLastName">Last Name</label>
-            <input type="text" id="sbLastName" name="lastName" required>
+            <input type="text" id="sbLastName" maxlength="100" name="lastName" required>
           </div>
         </div>
         <div class="sb-form-group">
           <label for="sbEmail">Email</label>
-          <input type="email" id="sbEmail" name="email" required>
+          <input type="email" id="sbEmail" maxlength="100" name="email" required>
         </div>
         <div class="sb-form-group">
           <label for="sbMessage">Message</label>
-          <textarea id="sbMessage" name="message" rows="4" placeholder="Tell us about your program and what you're looking for..." required></textarea>
+          <textarea id="sbMessage" maxlength="8000" name="message" rows="4" placeholder="Tell us about your program and what you're looking for..." required></textarea>
         </div>
         <button type="submit" class="btn btn-primary sb-form-submit">Send Message</button>
       </form>

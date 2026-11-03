@@ -30,9 +30,11 @@ async function open(page, path, viewport = DESKTOP) {
   });
   await page.route('https://challenges.cloudflare.com/**', (route) =>
     route.fulfill({ contentType: 'application/javascript', body: FAKE_TURNSTILE }));
+  // Stands in for the ScoreBreak mail API, so no test sends a real email.
+  await page.route('**/api/marketing_site/mails', (route) => route.fulfill({ contentType: 'application/json', body: '{}' }));
   await page.setViewportSize(viewport);
   await page.goto(path);
-  // Record every message handed to the transport (js/api.js), still letting the fake respond.
+  // Record every message handed to the transport (src/scripts/api.ts), still letting the stubbed API respond.
   await page.evaluate(() => {
     const send = window.SB.api.send;
     window.__sent = [];
@@ -91,13 +93,11 @@ for (const path of PAGES) {
       await expect(page.locator('#sbModalConfirmText')).toHaveText("Thanks Test, we'll be in touch shortly.");
       await expect(page.locator('#sbModalFormWrap')).toBeHidden();
       expect(await sent(page)).toEqual([{
-        form: 'contact-sales',
-        category: 'sales',
+        type: 'general',
         title: 'Contact request: Test User',
-        replyTo: 'test@example.com',
         body: ['First Name: Test', 'Last Name: User', 'Email: test@example.com', '', 'Message:', 'Hello', '', sentFrom(path)].join('\n'),
-        fields: { firstName: 'Test', lastName: 'User', email: 'test@example.com', message: 'Hello' },
-        turnstileToken: 'token-1',
+        email: 'test@example.com',
+        token: 'token-1',
       }]);
 
       // Reopening starts from a fresh form.
@@ -163,13 +163,11 @@ test.describe('forms', () => {
     await page.click('#sbSoc2Form button[type=submit]');
     await expect(page.locator('#sbSoc2ConfirmText')).toHaveText("Request received. We'll send the SOC 2 report to it@example.com shortly.");
     expect(await sent(page)).toEqual([{
-      form: 'soc2-request',
-      category: 'sales',
+      type: 'general',
       title: 'SOC 2 report request: it@example.com',
-      replyTo: 'it@example.com',
       body: ['Email: it@example.com', '', sentFrom('/resources/')].join('\n'),
-      fields: { email: 'it@example.com' },
-      turnstileToken: 'token-1',
+      email: 'it@example.com',
+      token: 'token-1',
     }]);
     expect(errors).toEqual([]);
   });
@@ -190,20 +188,15 @@ test.describe('forms', () => {
     await expect(page.locator('#formConfirm h3')).toHaveText('Thanks, Test!');
     await expect(page.locator('#demoForm')).toBeHidden();
     expect(await sent(page)).toEqual([{
-      form: 'demo-request',
-      category: 'sales',
+      type: 'general',
       title: 'Demo request: Test Academy',
-      replyTo: 'test@example.com',
       body: [
         'First Name: Test', 'Last Name: User', 'Email: test@example.com', 'Phone: —',
         'School or Organization: Test Academy', 'Sport: Lacrosse', 'Role: Head Coach',
         '', 'Message:', '—', '', sentFrom('/demo/'),
       ].join('\n'),
-      fields: {
-        firstName: 'Test', lastName: 'User', email: 'test@example.com', phone: '',
-        organization: 'Test Academy', sport: 'lacrosse', role: 'head-coach', message: '',
-      },
-      turnstileToken: 'token-1',
+      email: 'test@example.com',
+      token: 'token-1',
     }]);
     expect(errors).toEqual([]);
   });
@@ -220,13 +213,11 @@ test.describe('forms', () => {
     await expect(page.locator('#contactConfirm')).toBeVisible();
     await expect(page.locator('#contactForm')).toBeHidden();
     expect(await sent(page)).toEqual([{
-      form: 'support-request',
-      category: 'support',
+      type: 'support',
       title: 'Support request: Test User',
-      replyTo: 'test@example.com',
       body: ['Your Name: Test User', 'Email Address: test@example.com', '', 'Message:', 'Help', '', sentFrom('/support/')].join('\n'),
-      fields: { name: 'Test User', email: 'test@example.com', message: 'Help' },
-      turnstileToken: 'token-1',
+      email: 'test@example.com',
+      token: 'token-1',
     }]);
     expect(errors).toEqual([]);
   });
@@ -252,16 +243,14 @@ test.describe('forms', () => {
     await expect(overlay.locator('[data-field="first_name"]')).toHaveText('Test');
     await expect(page.locator('#referral-link-text')).toHaveText(/^scorebreakgridiron\.com\/ref\/[A-Z2-9]{8}$/);
     expect(await sent(page)).toEqual([{
-      form: 'waitlist',
-      category: 'gridiron-waitlist',
+      type: 'general',
       title: 'Gridiron waitlist: Test Coach, Test High',
-      replyTo: 'coach@example.com',
       body: [
         'First Name: Test', 'Last Name: Coach', 'Email Address: coach@example.com',
         'School / Program: Test High', 'Your Role: Head Coach', '', sentFrom('/football/'),
       ].join('\n'),
-      fields: { first_name: 'Test', last_name: 'Coach', email: 'coach@example.com', school: 'Test High', position: 'head_coach' },
-      turnstileToken: 'token-1',
+      email: 'coach@example.com',
+      token: 'token-1',
     }]);
 
     await page.click('#confirm-close-btn');
@@ -338,6 +327,45 @@ test.describe('form failures and edge cases', () => {
     });
   }
 
+  test('contact: an error response from the mail API outlines the button red and keeps the input', async ({ page }) => {
+    const errors = await open(page, '/about/');
+    await page.route('**/api/marketing_site/mails', (route) =>
+      route.fulfill({ status: 429, contentType: 'application/json', body: '{"error":"Too many requests"}' }), { times: 1 });
+    await page.locator('.site-footer [data-modal-open="sbContactModal"]').click();
+    await fillContact(page);
+    const submit = page.locator('#sbContactForm button[type=submit]');
+    await submit.click();
+    await expect(submit).toHaveClass(/\bis-error\b/);
+    const note = page.locator('#sbContactForm .form-error');
+    await expect(note).toHaveText('Too many requests. Please try again later.');
+    await expect(note).toBeVisible();
+    await expect(page.locator('#sbModalConfirm')).toBeHidden();
+    await expect(page.locator('#sbMessage')).toHaveValue('Hello');
+
+    await submit.click();
+    await expect(page.locator('#sbModalConfirm')).toBeVisible();
+    await expect(note).toBeHidden();
+    expect(errors).toEqual([]);
+  });
+
+  for (const [status, body, message] of [
+    [500, '{"error":"Mail delivery failed"}', 'Something went wrong. Please try again later.'],
+    [500, '<html>Bad gateway</html>', 'Something went wrong. Please try again later.'],
+    [422, '{"token":["is invalid"]}', 'Verification failed. Please try again.'],
+    [422, '{"errors":{"email":["does not match format"]}}', 'Please enter a valid email address.'],
+    [422, '{"title":["length must be less than or equal to 200"]}', 'Please check your details and try again.'],
+  ]) {
+    test(`support: a ${status} ${body} shows "${message}" under the button`, async ({ page }) => {
+      await open(page, '/support/');
+      await page.route('**/api/marketing_site/mails', (route) => route.fulfill({ status, body }), { times: 1 });
+      await page.fill('#cName', 'Test User');
+      await page.fill('#cEmail', 'test@example.com');
+      await page.fill('#cMessage', 'Help');
+      await page.click('#contactForm button[type=submit]');
+      await expect(page.locator('#contactForm .form-error')).toHaveText(message);
+    });
+  }
+
   test('contact: reopening the modal clears a previous error', async ({ page }) => {
     await open(page, '/about/');
     const openLink = page.locator('.site-footer [data-modal-open="sbContactModal"]');
@@ -347,9 +375,11 @@ test.describe('form failures and edge cases', () => {
     const submit = page.locator('#sbContactForm button[type=submit]');
     await submit.click();
     await expect(submit).toHaveClass(/\bis-error\b/);
+    await expect(page.locator('#sbContactForm .form-error')).toHaveText('Something went wrong. Please try again later.');
     await page.keyboard.press('Escape');
     await openLink.click();
     await expect(submit).not.toHaveClass(/\bis-error\b/);
+    await expect(page.locator('#sbContactForm .form-error')).toBeHidden();
     await expect(page.locator('#sbFirstName')).toHaveValue('');
   });
 
@@ -414,11 +444,6 @@ test.describe('bot protection', () => {
   }
   const turnstileStats = (page) => page.evaluate(() => window.__turnstile);
 
-  test('local development uses Cloudflare\'s test site key, not the production one', async ({ page }) => {
-    await open(page, '/about/');
-    expect(await page.evaluate(() => window.SB.config.turnstileSiteKey)).toBe('1x00000000000000000000AA');
-  });
-
   test('Turnstile loads only when a form is used, not on page load', async ({ page }) => {
     await open(page, '/about/');
     expect(await page.evaluate(() => typeof window.turnstile)).toBe('undefined');
@@ -438,7 +463,7 @@ test.describe('bot protection', () => {
     await expect(submit).toHaveClass(/\bis-error\b/);
     await submit.click();
     await expect(page.locator('#sbModalConfirm')).toBeVisible();
-    expect((await sent(page)).map((m) => m.turnstileToken)).toEqual(['token-1', 'token-2']);
+    expect((await sent(page)).map((m) => m.token)).toEqual(['token-1', 'token-2']);
     expect(await turnstileStats(page)).toEqual({ renders: 1, executes: 2, resets: 1 });
   });
 

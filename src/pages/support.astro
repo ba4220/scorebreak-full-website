@@ -140,15 +140,15 @@ const seo = {
           <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div class="form-group">
             <label for="cName">Your Name</label>
-            <input type="text" id="cName" name="name" placeholder="Jane Smith" required />
+            <input type="text" id="cName" maxlength="100" name="name" placeholder="Jane Smith" required />
           </div>
           <div class="form-group">
             <label for="cEmail">Email Address</label>
-            <input type="email" id="cEmail" name="email" placeholder="jane@school.edu" required />
+            <input type="email" id="cEmail" maxlength="100" name="email" placeholder="jane@school.edu" required />
           </div>
           <div class="form-group">
             <label for="cMessage">Message</label>
-            <textarea id="cMessage" name="message" placeholder="Describe the issue or question..." required></textarea>
+            <textarea id="cMessage" maxlength="8000" name="message" placeholder="Describe the issue or question..." required></textarea>
           </div>
           <button type="submit" class="contact-submit">Send Message →</button>
         </form>

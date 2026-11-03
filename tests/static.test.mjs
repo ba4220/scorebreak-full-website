@@ -139,11 +139,23 @@ test('footer, modal and modal-form rules live only in components.css', () => {
   }
 });
 
-test('every form on the site has a MAIL entry (category + title) in src/scripts/api.ts', () => {
+test('every form on the site has a MAIL entry (type + title) in src/scripts/api.ts', () => {
   const api = read('src/scripts/api.ts');
   const forms = new Set(PAGES.flatMap((p) => [...html[p].matchAll(/data-form="([a-z0-9-]+)"/g)].map((m) => m[1])));
   for (const name of forms) {
-    assert.match(api, new RegExp(`'${name}':\\s*\\{\\s*category: '[a-z-]+',\\s*title:`), `api.ts has no MAIL entry for "${name}"`);
+    assert.match(api, new RegExp(`'${name}':\\s*\\{\\s*type: '(general|support)',\\s*title:`), `api.ts has no MAIL entry for "${name}"`);
+  }
+});
+
+test('every visible form field has a maxlength (100 for inputs, 8000 for textareas), so the API limits are never hit', () => {
+  for (const page of PAGES) {
+    for (const [field] of html[page].matchAll(/<(?:input|textarea)\b[^>]*>/g)) {
+      if (/name="bot-field"|type="(?:hidden|submit|button|checkbox|radio)"/.test(field) || !/\bname="/.test(field)) {
+        continue;
+      }
+      const limit = field.startsWith('<textarea') ? '8000' : '100';
+      assert.match(field, new RegExp(`maxlength="${limit}"`), `${page}: ${field}`);
+    }
   }
 });
 

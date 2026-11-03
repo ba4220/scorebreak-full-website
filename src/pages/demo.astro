@@ -73,24 +73,24 @@ const seo = {
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name" />
+              <input type="text" id="firstName" maxlength="100" name="firstName" placeholder="Jane" required autocomplete="given-name" />
             </div>
             <div class="form-group">
               <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name" />
+              <input type="text" id="lastName" maxlength="100" name="lastName" placeholder="Smith" required autocomplete="family-name" />
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="jane@school.edu" required autocomplete="email" />
+            <input type="email" id="email" maxlength="100" name="email" placeholder="jane@school.edu" required autocomplete="email" />
           </div>
           <div class="form-group">
             <label for="phone">Phone <span>(optional)</span></label>
-            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+            <input type="tel" id="phone" maxlength="100" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" />
           </div>
           <div class="form-group">
             <label for="organization">School or Organization</label>
-            <input type="text" id="organization" name="organization" placeholder="Jefferson Academy" required />
+            <input type="text" id="organization" maxlength="100" name="organization" placeholder="Jefferson Academy" required />
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -117,7 +117,7 @@ const seo = {
           </div>
           <div class="form-group">
             <label for="message">Message <span>(optional)</span></label>
-            <textarea id="message" name="message" placeholder="Tell us about your program and what you're hoping to accomplish with ScoreBreak..."></textarea>
+            <textarea id="message" maxlength="8000" name="message" placeholder="Tell us about your program and what you're hoping to accomplish with ScoreBreak..."></textarea>
           </div>
           <button type="submit" class="form-submit-btn">Request a Demo →</button>
           <p class="demo-alt">Or call us at <a href="tel:18008092102" class="demo-alt-link">1.800.809.2102</a></p>

@@ -341,8 +341,9 @@
   .logo-dark, .logo-light { height: 34px !important; }
 }
 
-/* Submit button after a failed send (set by js/site.js). */
+/* Submit button after a failed send, and the reason under it (set by src/scripts/site.ts). */
 form[data-form] [type="submit"].is-error { outline: 2px solid #FF5A5A; outline-offset: 2px; }
+form[data-form] .form-error { margin: 0.6rem 0 0; color: #FF5A5A; font-size: 0.8rem; line-height: 1.4; text-align: center; }
 
 /* ============================================================
    FOOTER
