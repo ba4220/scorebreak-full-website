@@ -13,7 +13,7 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: `python3 -m http.server ${PORT} --bind 127.0.0.1`,
+    command: `python3 -m http.server ${PORT} --bind 127.0.0.1 --directory dist`,
     url: `http://127.0.0.1:${PORT}/index.html`,
     reuseExistingServer: !process.env.CI,
     stderr: 'ignore', // python's per-request access log

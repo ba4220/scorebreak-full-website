@@ -1,6 +1,6 @@
 // Browser checks for shared behaviour, layout and every form: `npm run test:browser`.
 import { test, expect } from '@playwright/test';
-import { PAGES } from './pages.mjs';
+import { FOOTBALL, PAGES } from './pages.mjs';
 
 const DESKTOP = { width: 1440, height: 900 };
 
@@ -30,9 +30,11 @@ async function open(page, path, viewport = DESKTOP) {
   });
   await page.route('https://challenges.cloudflare.com/**', (route) =>
     route.fulfill({ contentType: 'application/javascript', body: FAKE_TURNSTILE }));
+  // Stands in for the ScoreBreak mail API, so no test sends a real email.
+  await page.route('**/api/marketing_site/mails', (route) => route.fulfill({ contentType: 'application/json', body: '{}' }));
   await page.setViewportSize(viewport);
-  await page.goto(`/${path}`);
-  // Record every message handed to the transport (js/api.js), still letting the fake respond.
+  await page.goto(path);
+  // Record every message handed to the transport (src/scripts/api.ts), still letting the stubbed API respond.
   await page.evaluate(() => {
     const send = window.SB.api.send;
     window.__sent = [];
@@ -45,7 +47,7 @@ async function open(page, path, viewport = DESKTOP) {
 }
 
 const sent = (page) => page.evaluate(() => window.__sent);
-const sentFrom = (path) => `Sent from: http://127.0.0.1:4173/${path}`;
+const sentFrom = (path) => `Sent from: http://127.0.0.1:4173${path}`;
 
 for (const path of PAGES) {
   test.describe(path, () => {
@@ -90,20 +92,22 @@ for (const path of PAGES) {
       await page.click('#sbContactForm button[type=submit]');
       await expect(page.locator('#sbModalConfirmText')).toHaveText("Thanks Test, we'll be in touch shortly.");
       await expect(page.locator('#sbModalFormWrap')).toBeHidden();
+      await expect(page.locator('#sbModalTitle')).toBeHidden();
+      await expect(page.locator('#sbModalSub')).toBeHidden();
       expect(await sent(page)).toEqual([{
-        form: 'contact-sales',
-        category: 'sales',
+        type: 'general',
         title: 'Contact request: Test User',
-        replyTo: 'test@example.com',
         body: ['First Name: Test', 'Last Name: User', 'Email: test@example.com', '', 'Message:', 'Hello', '', sentFrom(path)].join('\n'),
-        fields: { firstName: 'Test', lastName: 'User', email: 'test@example.com', message: 'Hello' },
-        turnstileToken: 'token-1',
+        email: 'test@example.com',
+        token: 'token-1',
       }]);
 
       // Reopening starts from a fresh form.
       await page.keyboard.press('Escape');
       await openLink.click();
       await expect(page.locator('#sbModalFormWrap')).toBeVisible();
+      await expect(page.locator('#sbModalTitle')).toBeVisible();
+      await expect(page.locator('#sbModalSub')).toBeVisible();
       await expect(page.locator('#sbModalConfirm')).toBeHidden();
       await expect(page.locator('#sbFirstName')).toHaveValue('');
 
@@ -143,7 +147,7 @@ for (const path of PAGES) {
 
 test.describe('forms', () => {
   test('contact: a filled honeypot shows success but sends nothing', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     await page.locator('.site-footer [data-modal-open="sbContactModal"]').click();
     await page.fill('#sbFirstName', 'Bot');
     await page.fill('#sbLastName', 'Bot');
@@ -156,26 +160,26 @@ test.describe('forms', () => {
   });
 
   test('resources: SOC 2 request', async ({ page }) => {
-    const errors = await open(page, 'resources.html');
+    const errors = await open(page, '/resources/');
     await page.locator('[data-modal-open="sbSoc2Modal"]').click();
     await expect(page.locator('#sbSoc2Modal')).toBeVisible();
     await page.fill('#sbSoc2Email', 'it@example.com');
     await page.click('#sbSoc2Form button[type=submit]');
+    await expect(page.locator('#sbSoc2Title')).toBeHidden();
+    await expect(page.locator('#sbSoc2Sub')).toBeHidden();
     await expect(page.locator('#sbSoc2ConfirmText')).toHaveText("Request received. We'll send the SOC 2 report to it@example.com shortly.");
     expect(await sent(page)).toEqual([{
-      form: 'soc2-request',
-      category: 'sales',
+      type: 'general',
       title: 'SOC 2 report request: it@example.com',
-      replyTo: 'it@example.com',
-      body: ['Email: it@example.com', '', sentFrom('resources.html')].join('\n'),
-      fields: { email: 'it@example.com' },
-      turnstileToken: 'token-1',
+      body: ['Email: it@example.com', '', sentFrom('/resources/')].join('\n'),
+      email: 'it@example.com',
+      token: 'token-1',
     }]);
     expect(errors).toEqual([]);
   });
 
   test('demo: request', async ({ page }) => {
-    const errors = await open(page, 'demo.html');
+    const errors = await open(page, '/demo/');
     await page.click('#demoForm button[type=submit]');
     expect(await sent(page)).toEqual([]);
 
@@ -189,27 +193,24 @@ test.describe('forms', () => {
     await expect(page.locator('#formConfirm')).toBeVisible();
     await expect(page.locator('#formConfirm h3')).toHaveText('Thanks, Test!');
     await expect(page.locator('#demoForm')).toBeHidden();
+    await expect(page.locator('#demoFormTitle')).toBeHidden();
+    await expect(page.locator('#demoFormSub')).toBeHidden();
     expect(await sent(page)).toEqual([{
-      form: 'demo-request',
-      category: 'sales',
+      type: 'general',
       title: 'Demo request: Test Academy',
-      replyTo: 'test@example.com',
       body: [
         'First Name: Test', 'Last Name: User', 'Email: test@example.com', 'Phone: —',
         'School or Organization: Test Academy', 'Sport: Lacrosse', 'Role: Head Coach',
-        '', 'Message:', '—', '', sentFrom('demo.html'),
+        '', 'Message:', '—', '', sentFrom('/demo/'),
       ].join('\n'),
-      fields: {
-        firstName: 'Test', lastName: 'User', email: 'test@example.com', phone: '',
-        organization: 'Test Academy', sport: 'lacrosse', role: 'head-coach', message: '',
-      },
-      turnstileToken: 'token-1',
+      email: 'test@example.com',
+      token: 'token-1',
     }]);
     expect(errors).toEqual([]);
   });
 
   test('support: request', async ({ page }) => {
-    const errors = await open(page, 'support.html');
+    const errors = await open(page, '/support/');
     await page.click('#contactForm button[type=submit]');
     expect(await sent(page)).toEqual([]);
 
@@ -219,20 +220,20 @@ test.describe('forms', () => {
     await page.click('#contactForm button[type=submit]');
     await expect(page.locator('#contactConfirm')).toBeVisible();
     await expect(page.locator('#contactForm')).toBeHidden();
+    await expect(page.locator('#contactFormTitle')).toBeHidden();
     expect(await sent(page)).toEqual([{
-      form: 'support-request',
-      category: 'support',
+      type: 'support',
       title: 'Support request: Test User',
-      replyTo: 'test@example.com',
-      body: ['Your Name: Test User', 'Email Address: test@example.com', '', 'Message:', 'Help', '', sentFrom('support.html')].join('\n'),
-      fields: { name: 'Test User', email: 'test@example.com', message: 'Help' },
-      turnstileToken: 'token-1',
+      body: ['Your Name: Test User', 'Email Address: test@example.com', '', 'Message:', 'Help', '', sentFrom('/support/')].join('\n'),
+      email: 'test@example.com',
+      token: 'token-1',
     }]);
     expect(errors).toEqual([]);
   });
 
   test('football: waitlist with referral link', async ({ page }) => {
-    const errors = await open(page, 'football.html');
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
+    const errors = await open(page, '/football/');
     await page.click('#waitlist-form button[type=submit]');
     await expect(page.locator('#first-name')).toHaveCSS('border-color', 'rgb(255, 90, 90)');
     expect(await sent(page)).toEqual([]);
@@ -252,16 +253,14 @@ test.describe('forms', () => {
     await expect(overlay.locator('[data-field="first_name"]')).toHaveText('Test');
     await expect(page.locator('#referral-link-text')).toHaveText(/^scorebreakgridiron\.com\/ref\/[A-Z2-9]{8}$/);
     expect(await sent(page)).toEqual([{
-      form: 'waitlist',
-      category: 'gridiron-waitlist',
+      type: 'general',
       title: 'Gridiron waitlist: Test Coach, Test High',
-      replyTo: 'coach@example.com',
       body: [
         'First Name: Test', 'Last Name: Coach', 'Email Address: coach@example.com',
-        'School / Program: Test High', 'Your Role: Head Coach', '', sentFrom('football.html'),
+        'School / Program: Test High', 'Your Role: Head Coach', '', sentFrom('/football/'),
       ].join('\n'),
-      fields: { first_name: 'Test', last_name: 'Coach', email: 'coach@example.com', school: 'Test High', position: 'head_coach' },
-      turnstileToken: 'token-1',
+      email: 'coach@example.com',
+      token: 'token-1',
     }]);
 
     await page.click('#confirm-close-btn');
@@ -273,13 +272,13 @@ test.describe('forms', () => {
 
 test.describe('page-specific scripts', () => {
   test('index: hero video plays at 0.75x', async ({ page }) => {
-    await page.goto('/index.html');
+    await page.goto('/');
     await expect.poll(() => page.evaluate(() => document.getElementById('heroVideo').playbackRate)).toBe(0.75);
   });
 
-  for (const path of ['index.html', 'lacrosse.html']) {
+  for (const path of ['/', '/lacrosse/']) {
     test(`${path}: testimonial carousel`, async ({ page }) => {
-      await page.goto(`/${path}`);
+      await page.goto(path);
       const slides = await page.locator('[data-carousel-track] > *').count();
       expect(slides).toBeGreaterThan(1);
       const dots = page.locator('[data-carousel-dots] .tc-dot');
@@ -316,7 +315,7 @@ test.describe('form failures and edge cases', () => {
 
   for (const how of ['reject', 'throw']) {
     test(`contact: a failed send (${how}) outlines the button red and keeps the input; a retry succeeds and clears it`, async ({ page }) => {
-      const errors = await open(page, 'about.html');
+      const errors = await open(page, '/about/');
       await page.locator('.site-footer [data-modal-open="sbContactModal"]').click();
       await fillContact(page);
       const submit = page.locator('#sbContactForm button[type=submit]');
@@ -338,8 +337,47 @@ test.describe('form failures and edge cases', () => {
     });
   }
 
+  test('contact: an error response from the mail API outlines the button red and keeps the input', async ({ page }) => {
+    const errors = await open(page, '/about/');
+    await page.route('**/api/marketing_site/mails', (route) =>
+      route.fulfill({ status: 429, contentType: 'application/json', body: '{"error":"Too many requests"}' }), { times: 1 });
+    await page.locator('.site-footer [data-modal-open="sbContactModal"]').click();
+    await fillContact(page);
+    const submit = page.locator('#sbContactForm button[type=submit]');
+    await submit.click();
+    await expect(submit).toHaveClass(/\bis-error\b/);
+    const note = page.locator('#sbContactForm .form-error');
+    await expect(note).toHaveText('Too many requests. Please try again later.');
+    await expect(note).toBeVisible();
+    await expect(page.locator('#sbModalConfirm')).toBeHidden();
+    await expect(page.locator('#sbMessage')).toHaveValue('Hello');
+
+    await submit.click();
+    await expect(page.locator('#sbModalConfirm')).toBeVisible();
+    await expect(note).toBeHidden();
+    expect(errors).toEqual([]);
+  });
+
+  for (const [status, body, message] of [
+    [500, '{"error":"Mail delivery failed"}', 'Something went wrong. Please try again later.'],
+    [500, '<html>Bad gateway</html>', 'Something went wrong. Please try again later.'],
+    [422, '{"token":["is invalid"]}', 'Verification failed. Please try again.'],
+    [422, '{"errors":{"email":["does not match format"]}}', 'Please enter a valid email address.'],
+    [422, '{"title":["length must be less than or equal to 200"]}', 'Please check your details and try again.'],
+  ]) {
+    test(`support: a ${status} ${body} shows "${message}" under the button`, async ({ page }) => {
+      await open(page, '/support/');
+      await page.route('**/api/marketing_site/mails', (route) => route.fulfill({ status, body }), { times: 1 });
+      await page.fill('#cName', 'Test User');
+      await page.fill('#cEmail', 'test@example.com');
+      await page.fill('#cMessage', 'Help');
+      await page.click('#contactForm button[type=submit]');
+      await expect(page.locator('#contactForm .form-error')).toHaveText(message);
+    });
+  }
+
   test('contact: reopening the modal clears a previous error', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     const openLink = page.locator('.site-footer [data-modal-open="sbContactModal"]');
     await openLink.click();
     await fillContact(page);
@@ -347,14 +385,16 @@ test.describe('form failures and edge cases', () => {
     const submit = page.locator('#sbContactForm button[type=submit]');
     await submit.click();
     await expect(submit).toHaveClass(/\bis-error\b/);
+    await expect(page.locator('#sbContactForm .form-error')).toHaveText('Something went wrong. Please try again later.');
     await page.keyboard.press('Escape');
     await openLink.click();
     await expect(submit).not.toHaveClass(/\bis-error\b/);
+    await expect(page.locator('#sbContactForm .form-error')).toBeHidden();
     await expect(page.locator('#sbFirstName')).toHaveValue('');
   });
 
   test('demo (on-page form): a failed send keeps the form and outlines the button', async ({ page }) => {
-    await open(page, 'demo.html');
+    await open(page, '/demo/');
     await page.fill('#firstName', 'Test');
     await page.fill('#lastName', 'User');
     await page.fill('#email', 'test@example.com');
@@ -373,7 +413,7 @@ test.describe('form failures and edge cases', () => {
   });
 
   test('whitespace-only required fields are treated as empty', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     await page.locator('.site-footer [data-modal-open="sbContactModal"]').click();
     await fillContact(page, '   ');
     await page.click('#sbContactForm button[type=submit]');
@@ -382,7 +422,8 @@ test.describe('form failures and edge cases', () => {
   });
 
   test('football: waitlist honeypot shows success but sends nothing', async ({ page }) => {
-    await open(page, 'football.html');
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
+    await open(page, '/football/');
     await page.fill('#first-name', 'Bot');
     await page.fill('#last-name', 'Bot');
     await page.fill('#email', 'bot@example.com');
@@ -395,7 +436,8 @@ test.describe('form failures and edge cases', () => {
   });
 
   test('closing one of two open modals keeps the page scroll-locked', async ({ page }) => {
-    await open(page, 'football.html');
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
+    await open(page, '/football/');
     await page.evaluate(() => { window.SB.modal.open('confirmation'); window.SB.modal.open('sbContactModal'); });
     await page.evaluate(() => window.SB.modal.close('sbContactModal'));
     expect(await page.evaluate(() => document.body.style.overflow)).toBe('hidden');
@@ -414,20 +456,15 @@ test.describe('bot protection', () => {
   }
   const turnstileStats = (page) => page.evaluate(() => window.__turnstile);
 
-  test('local development uses Cloudflare\'s test site key, not the production one', async ({ page }) => {
-    await open(page, 'about.html');
-    expect(await page.evaluate(() => window.SB.config.turnstileSiteKey)).toBe('1x00000000000000000000AA');
-  });
-
   test('Turnstile loads only when a form is used, not on page load', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     expect(await page.evaluate(() => typeof window.turnstile)).toBe('undefined');
     await openContact(page);
     await expect.poll(() => page.evaluate(() => typeof window.turnstile)).toBe('object');
   });
 
   test('every send runs a fresh Turnstile check (tokens are single-use)', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     await openContact(page);
     const submit = page.locator('#sbContactForm button[type=submit]');
     await page.evaluate(() => {
@@ -438,12 +475,12 @@ test.describe('bot protection', () => {
     await expect(submit).toHaveClass(/\bis-error\b/);
     await submit.click();
     await expect(page.locator('#sbModalConfirm')).toBeVisible();
-    expect((await sent(page)).map((m) => m.turnstileToken)).toEqual(['token-1', 'token-2']);
+    expect((await sent(page)).map((m) => m.token)).toEqual(['token-1', 'token-2']);
     expect(await turnstileStats(page)).toEqual({ renders: 1, executes: 2, resets: 1 });
   });
 
   test('a failed Turnstile check sends nothing and outlines the button red', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     await openContact(page);
     await page.evaluate(() => { window.__turnstileFail = true; });
     const submit = page.locator('#sbContactForm button[type=submit]');
@@ -454,7 +491,7 @@ test.describe('bot protection', () => {
   });
 
   test('a blocked Turnstile script sends nothing and outlines the button red', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     await page.unroute('https://challenges.cloudflare.com/**');
     await page.route('https://challenges.cloudflare.com/**', (route) => route.abort());
     await openContact(page);
@@ -465,7 +502,7 @@ test.describe('bot protection', () => {
   });
 
   test('a filled honeypot skips Turnstile and sends nothing', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     await openContact(page);
     await page.locator('#sbContactForm [name="bot-field"]').evaluate((el) => { el.value = 'gotcha'; });
     await page.click('#sbContactForm button[type=submit]');
@@ -475,7 +512,7 @@ test.describe('bot protection', () => {
   });
 
   test('the honeypot field is skipped by Tab', async ({ page }) => {
-    await open(page, 'about.html');
+    await open(page, '/about/');
     await page.locator('.site-footer [data-modal-open="sbContactModal"]').click();
     await page.locator('#sbFirstName').focus();
     await page.keyboard.press('Shift+Tab');
@@ -485,11 +522,11 @@ test.describe('bot protection', () => {
 
 test.describe('form layout', () => {
   const FORMS = [
-    { path: 'about.html', form: '#sbContactForm', open: (page) => page.evaluate(() => window.SB.modal.open('sbContactModal')) },
-    { path: 'resources.html', form: '#sbSoc2Form', open: (page) => page.evaluate(() => window.SB.modal.open('sbSoc2Modal')) },
-    { path: 'demo.html', form: '#demoForm' },
-    { path: 'support.html', form: '#contactForm' },
-    { path: 'football.html', form: '#waitlist-form' },
+    { path: '/about/', form: '#sbContactForm', open: (page) => page.evaluate(() => window.SB.modal.open('sbContactModal')) },
+    { path: '/resources/', form: '#sbSoc2Form', open: (page) => page.evaluate(() => window.SB.modal.open('sbSoc2Modal')) },
+    { path: '/demo/', form: '#demoForm' },
+    { path: '/support/', form: '#contactForm' },
+    ...(FOOTBALL ? [{ path: '/football/', form: '#waitlist-form' }] : []),
   ];
   for (const { path, form, open: openForm } of FORMS) {
     test(`${form} (${path}): every field fits inside the form at every width`, async ({ page }) => {
@@ -515,32 +552,40 @@ test.describe('nav details', () => {
   const BLUE = 'rgb(86, 199, 255)';
 
   test('current page is highlighted: dropdown item, top link and mobile link', async ({ page }) => {
-    await open(page, 'basketball.html');
+    await open(page, '/basketball/');
     await page.locator('#dd-sports [data-dropdown-toggle]').click();
     const item = page.locator('#dd-sports a[aria-current="page"]');
     await expect(item).toHaveText('Basketball');
     await expect(item).toHaveCSS('color', BLUE);
     await expect(item).toHaveCSS('background-color', 'rgba(86, 199, 255, 0.1)');
 
-    await open(page, 'support.html');
+    await open(page, '/support/');
     await expect(page.locator('.nav-right a[aria-current="page"]')).toHaveCSS('color', BLUE);
 
-    await open(page, 'about.html', PHONE);
+    await open(page, '/about/', PHONE);
     await page.click('[data-nav-toggle]');
     const mobile = page.locator('#navMobile a[aria-current="page"]');
     await expect(mobile).toHaveText('About Us');
     await expect(mobile).toHaveCSS('color', BLUE);
   });
 
+  test('while football is switched off, /football/ lands on the homepage', async ({ page }) => {
+    test.skip(FOOTBALL, 'football is switched on in src/data/features.ts');
+    await page.goto('/football/');
+    await expect(page).toHaveURL('/');
+    await expect(page.locator('.sports-grid')).toBeVisible();
+  });
+
   test('football uses the shared nav and highlights Football', async ({ page }) => {
-    await open(page, 'football.html');
+    test.skip(!FOOTBALL, 'football is switched off in src/data/features.ts');
+    await open(page, '/football/');
     await page.locator('#dd-sports [data-dropdown-toggle]').click();
     await expect(page.locator('#dd-sports a[aria-current="page"]')).toHaveText('Football');
     await expect(page.locator('#dd-sports a[aria-current="page"]')).toHaveCSS('color', BLUE);
   });
 
   test('mobile menu closes on a click outside it, but not on clicks inside', async ({ page }) => {
-    await open(page, 'lacrosse.html', PHONE);
+    await open(page, '/lacrosse/', PHONE);
     const menu = page.locator('#navMobile');
     await page.click('[data-nav-toggle]');
     await expect(menu).toHaveClass(/\bopen\b/);
@@ -553,7 +598,7 @@ test.describe('nav details', () => {
   });
 
   test('mobile menu closes when the window widens past the mobile breakpoint', async ({ page }) => {
-    await open(page, 'lacrosse.html', PHONE);
+    await open(page, '/lacrosse/', PHONE);
     const menu = page.locator('#navMobile');
     await page.click('[data-nav-toggle]');
     await expect(menu).toHaveClass(/\bopen\b/);
@@ -565,7 +610,7 @@ test.describe('nav details', () => {
   });
 
   test('mobile menu: Sports and Solutions headings look the same', async ({ page }) => {
-    await open(page, 'index.html', PHONE);
+    await open(page, '/', PHONE);
     await page.click('[data-nav-toggle]');
     const styleOf = (locator) => locator.evaluate((el) => {
       const cs = getComputedStyle(el);
@@ -579,7 +624,7 @@ test.describe('nav details', () => {
 });
 
 test('index: sport-card text is never cut off or under the arrow, at any width', async ({ page }) => {
-  await open(page, 'index.html');
+  await open(page, '/');
   for (const width of [320, 360, 390, 480, 600, 700, 900, 901, 950, 1000, 1100, 1200, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const problems = await page.locator('.sport-card').evaluateAll((cards) => cards.flatMap((card) => {

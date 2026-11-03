@@ -1,0 +1,4 @@
+# Deploy previews on GitHub PRs. Netlify is not the production host.
+[build]
+  command = "npm run build"
+  publish = "dist"
