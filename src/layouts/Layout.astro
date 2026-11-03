@@ -21,6 +21,9 @@ const { seo, sharedStyles = true } = Astro.props;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Dark from the first frame, before the stylesheets arrive (no white flash on a first visit). -->
+  <meta name="color-scheme" content="dark" />
+  <style is:inline>html { background: #0A0E1A; }</style>
   <Seo {...seo} />
   <link rel="icon" type="image/png" href="/favicon.png" />
   {sharedStyles && <link rel="stylesheet" href={stylesHref} />}
