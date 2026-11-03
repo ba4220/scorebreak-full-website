@@ -29,7 +29,8 @@ The site is hosted from a Google Cloud Storage bucket configured as a static web
 - builds against the staging API (`PUBLIC_API_HOST=https://staging-api2.scorebreak.io`)
 - adds `<meta name="robots" content="noindex, nofollow">` to every page, so search engines skip staging (on a copy; `dist/` stays clean)
 - uploads every page a second time without the trailing slash (`/support` as well as `/support/index.html`), so `/support` loads directly instead of redirecting to `/support/index.html`
-- sets `Cache-Control: no-cache` on HTML and `public, max-age=31536000, immutable` on `/_astro/`
+- stores text files (`html,css,js,svg,txt,xml,json`) gzipped, about 4–5× smaller over the wire; GCS unzips them for clients that can't take gzip
+- sets `Cache-Control: public, max-age=60` on HTML (the CDN and browsers may serve a page up to a minute old, so a deploy shows within about a minute) and `public, max-age=31536000, immutable` on `/_astro/`
 - sets the bucket's main page to `index.html` and its 404 page to `404.html`
 - lists objects in the bucket that aren't in the build and deletes them only if you answer `y`
 
@@ -38,7 +39,7 @@ It uses plain `gsutil cp` rather than `gsutil rsync`, which skipped changed file
 **Production:** no script yet. The staging one minus the `noindex` step and with the production API host (a plain `npm run build`) is the starting point.
 
 - `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`. Without the trailing slash GCS redirects `/about` to `/about/index.html`, which is why the staging script also uploads slash-less copies. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
-- Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML is `no-cache` so updates show up at once (a CDN in front can still hold an hour-old copy from before that header was set).
+- Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML is cached for 60 seconds, so updates show up within a minute. The CDN currently caps what it sends browsers at one hour (`max-age=3600` on `/_astro/`); raising its client TTL lets browsers keep hashed assets for the full year.
 - A bucket can't redirect old URLs (e.g. a live `/portal`); that needs the load balancer's URL map or a small stub page.
 
 ## Testing

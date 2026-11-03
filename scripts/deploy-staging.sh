@@ -11,6 +11,11 @@ trap 'rm -rf "$STAGE"' EXIT
 # gsutil's multiprocessing crashes Python on macOS; threads only.
 gs() { gsutil -o "GSUtil:parallel_process_count=1" "$@"; }
 
+# Text files are stored gzipped (Content-Encoding: gzip); GCS unzips them for the rare client that can't take gzip.
+GZIP_EXTS=html,css,js,svg,txt,xml,json
+# HTML may be cached for a minute (CDN and browser), so a deploy shows up within ~1 minute.
+HTML_CACHE="public, max-age=60"
+
 cd "$ROOT"
 
 if [[ -n "$(git status --porcelain)" ]]; then
@@ -27,20 +32,22 @@ cp -R dist/. "$STAGE/"
 find "$STAGE" -name '*.html' -exec perl -pi -e 's|<head>|<head><meta name="robots" content="noindex, nofollow">|' {} +
 
 # Full copy rather than `gsutil rsync`, which skipped changed files against this bucket.
-gs -m cp -r "$STAGE"/* "$BUCKET/"
+gs -m cp -z "$GZIP_EXTS" -r "$STAGE"/* "$BUCKET/"
 
 # Serve /support (no trailing slash) directly instead of GCS redirecting to /support/index.html.
 # Direct API PUT: `gsutil cp` treats "support" as the existing support/ folder and writes inside it.
 pages=$(cd "$STAGE" && find . -mindepth 2 -name index.html | sed 's|^\./||; s|/index\.html$||')
 token=$(gcloud auth print-access-token)
 for page in $pages; do
-  curl -sSf -o /dev/null -X PUT -T "$STAGE/$page/index.html" \
-    -H "Authorization: Bearer $token" -H "Content-Type: text/html" -H "Cache-Control: no-cache" \
-    "https://storage.googleapis.com/${BUCKET#gs://}/$page"
+  gzip -9 -c "$STAGE/$page/index.html" > "$STAGE/page.gz"
+  curl -sSf -o /dev/null -X PUT -T "$STAGE/page.gz" \
+    -H "Authorization: Bearer $token" -H "Content-Type: text/html" -H "Content-Encoding: gzip" \
+    -H "Cache-Control: $HTML_CACHE" "https://storage.googleapis.com/${BUCKET#gs://}/$page"
 done
+rm "$STAGE/page.gz"
 
-# HTML must revalidate so new deploys show up at once; _astro/ files are content-hashed, so cache them forever.
-gs -m -q setmeta -h "Cache-Control:no-cache" "$BUCKET/**.html"
+# _astro/ files are content-hashed, so they can be cached forever.
+gs -m -q setmeta -h "Cache-Control:$HTML_CACHE" "$BUCKET/**.html"
 gs -m -q setmeta -h "Cache-Control:public, max-age=31536000, immutable" "$BUCKET/_astro/**"
 
 gs web set -m index.html -e 404.html "$BUCKET"
