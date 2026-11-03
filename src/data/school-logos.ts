@@ -24,7 +24,7 @@ import umdImg from '../assets/ncaa-d1/umd.png';
 import uncImg from '../assets/ncaa-d1/unc.png';
 import yaleImg from '../assets/ncaa-d1/yale.png';
 
-// Homepage "Trusted by programs nationwide" marquee, in display order. className adds per-logo size tweaks (index.astro styles).
+// Homepage "Trusted by elite organizations worldwide" marquee, in display order. className adds per-logo size tweaks (index.astro styles).
 export interface SchoolLogo {
   src: ImageMetadata;
   alt: string;
