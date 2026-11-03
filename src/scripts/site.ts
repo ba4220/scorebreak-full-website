@@ -6,7 +6,8 @@
    - form[data-form="<name>"]: checked with Cloudflare Turnstile, then submitted through SB.api.submitForm
      (api.ts), which formats the email. A filled honeypot field (bot-field) skips both. Optional
      data-form-confirm="<selector>" is revealed on success (its [data-field] spans are filled
-     from the submitted values) and data-form-hide="<selector>" is hidden (defaults to the form).
+     from the submitted values) and everything matching data-form-hide="<selectors>" is hidden (defaults to the
+     form), e.g. the form plus its heading and intro, so the confirmation stands alone.
      A failed send keeps the form filled, outlines its submit button red (.is-error) and shows a short reason
      under it (.form-error) until a send succeeds.
      Per-form hooks: SB.forms.register(name, { validate(form), onSuccess(form, fields), onError(form, err) }).
@@ -182,6 +183,10 @@ const forms = (() => {
     const selector = form.getAttribute(attr);
     return selector ? document.querySelector<HTMLElement>(selector) : null;
   }
+  function toHide(form: HTMLFormElement): HTMLElement[] {
+    const selectors = form.getAttribute('data-form-hide');
+    return selectors ? Array.from(document.querySelectorAll<HTMLElement>(selectors)) : [form];
+  }
   // One entry per named field, in form order, with the label and the text the visitor saw.
   function entriesOf(form: HTMLFormElement): FormEntry[] {
     return (Array.from(form.elements) as FieldElement[])
@@ -250,7 +255,7 @@ const forms = (() => {
   function reset(form: HTMLFormElement) {
     form.reset();
     setError(form, null);
-    (target(form, 'data-form-hide') || form).hidden = false;
+    toHide(form).forEach((el) => { el.hidden = false; });
     const confirm = target(form, 'data-form-confirm');
     if (confirm) {
       confirm.hidden = true;
@@ -262,7 +267,7 @@ const forms = (() => {
       return;
     }
     fill(confirm, fields);
-    (target(form, 'data-form-hide') || form).hidden = true;
+    toHide(form).forEach((el) => { el.hidden = true; });
     confirm.hidden = false;
     const rect = confirm.getBoundingClientRect();
     if (rect.top < 0 || rect.bottom > window.innerHeight) {

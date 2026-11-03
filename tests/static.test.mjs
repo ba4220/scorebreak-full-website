@@ -113,8 +113,10 @@ test('data-* hooks point at elements that exist on the same page', () => {
     for (const [, id] of source.matchAll(/data-modal-open="([^"]+)"/g)) {
       assert.match(source, new RegExp(`id="${id}"[^>]*\\bdata-modal\\b`), `${page}: [data-modal-open="${id}"] has no matching [data-modal]`);
     }
-    for (const [, sel] of source.matchAll(/data-form-(?:confirm|hide)="#([^"]+)"/g)) {
-      assert.ok(ids.has(sel), `${page}: #${sel} referenced by a form does not exist`);
+    for (const [, list] of source.matchAll(/data-form-(?:confirm|hide)="([^"]+)"/g)) {
+      for (const sel of list.split(/\s*,\s*/)) {
+        assert.ok(sel.startsWith('#') && ids.has(sel.slice(1)), `${page}: ${sel} referenced by a form does not exist`);
+      }
     }
     for (const [tag] of source.matchAll(/<form\b[^>]*>/g)) {
       assert.match(tag, /\sdata-form="[a-z0-9-]+"/, `${page}: form without data-form: ${tag}`);

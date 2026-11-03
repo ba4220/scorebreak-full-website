@@ -64,11 +64,11 @@ const seo = {
 
       <!-- Form Column -->
       <div class="demo-form-card">
-        <h2>Request a Demo</h2>
-        <p>Fill out the form below and a member of our team will reach out within 1 business day.</p>
+        <h2 id="demoFormTitle">Request a Demo</h2>
+        <p id="demoFormSub">Fill out the form below and a member of our team will reach out within 1 business day.</p>
 
         <!-- The form -->
-        <form id="demoForm" novalidate data-form="demo-request" data-form-confirm="#formConfirm">
+        <form id="demoForm" novalidate data-form="demo-request" data-form-hide="#demoFormTitle, #demoFormSub, #demoForm" data-form-confirm="#formConfirm">
           <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div class="form-row">
             <div class="form-group">

@@ -92,6 +92,8 @@ for (const path of PAGES) {
       await page.click('#sbContactForm button[type=submit]');
       await expect(page.locator('#sbModalConfirmText')).toHaveText("Thanks Test, we'll be in touch shortly.");
       await expect(page.locator('#sbModalFormWrap')).toBeHidden();
+      await expect(page.locator('#sbModalTitle')).toBeHidden();
+      await expect(page.locator('#sbModalSub')).toBeHidden();
       expect(await sent(page)).toEqual([{
         type: 'general',
         title: 'Contact request: Test User',
@@ -104,6 +106,8 @@ for (const path of PAGES) {
       await page.keyboard.press('Escape');
       await openLink.click();
       await expect(page.locator('#sbModalFormWrap')).toBeVisible();
+      await expect(page.locator('#sbModalTitle')).toBeVisible();
+      await expect(page.locator('#sbModalSub')).toBeVisible();
       await expect(page.locator('#sbModalConfirm')).toBeHidden();
       await expect(page.locator('#sbFirstName')).toHaveValue('');
 
@@ -161,6 +165,8 @@ test.describe('forms', () => {
     await expect(page.locator('#sbSoc2Modal')).toBeVisible();
     await page.fill('#sbSoc2Email', 'it@example.com');
     await page.click('#sbSoc2Form button[type=submit]');
+    await expect(page.locator('#sbSoc2Title')).toBeHidden();
+    await expect(page.locator('#sbSoc2Sub')).toBeHidden();
     await expect(page.locator('#sbSoc2ConfirmText')).toHaveText("Request received. We'll send the SOC 2 report to it@example.com shortly.");
     expect(await sent(page)).toEqual([{
       type: 'general',
@@ -187,6 +193,8 @@ test.describe('forms', () => {
     await expect(page.locator('#formConfirm')).toBeVisible();
     await expect(page.locator('#formConfirm h3')).toHaveText('Thanks, Test!');
     await expect(page.locator('#demoForm')).toBeHidden();
+    await expect(page.locator('#demoFormTitle')).toBeHidden();
+    await expect(page.locator('#demoFormSub')).toBeHidden();
     expect(await sent(page)).toEqual([{
       type: 'general',
       title: 'Demo request: Test Academy',
@@ -212,6 +220,7 @@ test.describe('forms', () => {
     await page.click('#contactForm button[type=submit]');
     await expect(page.locator('#contactConfirm')).toBeVisible();
     await expect(page.locator('#contactForm')).toBeHidden();
+    await expect(page.locator('#contactFormTitle')).toBeHidden();
     expect(await sent(page)).toEqual([{
       type: 'support',
       title: 'Support request: Test User',

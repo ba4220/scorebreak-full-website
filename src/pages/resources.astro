@@ -95,10 +95,10 @@ const seo = {
   <div class="sb-modal">
     <button class="sb-modal-close" data-modal-close aria-label="Close">✕</button>
     <h2 id="sbSoc2Title">Request SOC 2 Report</h2>
-    <p class="sb-modal-sub">Enter your email and we'll send you the report directly.</p>
+    <p class="sb-modal-sub" id="sbSoc2Sub">Enter your email and we'll send you the report directly.</p>
 
     <div id="sbSoc2FormWrap">
-      <form id="sbSoc2Form" name="soc2-request" method="POST" data-form="soc2-request" data-form-hide="#sbSoc2FormWrap" data-form-confirm="#sbSoc2Confirm">
+      <form id="sbSoc2Form" name="soc2-request" method="POST" data-form="soc2-request" data-form-hide="#sbSoc2Title, #sbSoc2Sub, #sbSoc2FormWrap" data-form-confirm="#sbSoc2Confirm">
         <p class="sb-hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="sb-form-group">
           <label for="sbSoc2Email">Email</label>
