@@ -22,16 +22,23 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 ## Hosting (Google Cloud Storage)
 
-The site is hosted from a Google Cloud Storage bucket configured as a static website. Deploying is uploading `dist/`:
+The site is hosted from a Google Cloud Storage bucket configured as a static website.
 
-```sh
-npm run build
-gcloud storage rsync dist gs://<bucket> --recursive --delete-unmatched-destination-objects
-gcloud storage buckets update gs://<bucket> --web-main-page-suffix=index.html --web-error-page=404.html   # once
-```
+**Staging:** `npm run deploy:staging` builds and publishes to `gs://scorebreak-marketing-site-staging` (another bucket: `BUCKET=gs://… npm run deploy:staging`). It asks before uploading and before deleting anything, and needs `gsutil` logged in. On top of a plain upload it:
 
-- `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`, and `/about` redirects to `/about/`. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
-- Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML should stay short-cached so updates show up.
+- builds against the staging API (`PUBLIC_API_HOST=https://staging-api2.scorebreak.io`)
+- adds `<meta name="robots" content="noindex, nofollow">` to every page, so search engines skip staging (on a copy; `dist/` stays clean)
+- uploads every page a second time without the trailing slash (`/support` as well as `/support/index.html`), so `/support` loads directly instead of redirecting to `/support/index.html`
+- sets `Cache-Control: no-cache` on HTML and `public, max-age=31536000, immutable` on `/_astro/`
+- sets the bucket's main page to `index.html` and its 404 page to `404.html`
+- lists objects in the bucket that aren't in the build and deletes them only if you answer `y`
+
+It uses plain `gsutil cp` rather than `gsutil rsync`, which skipped changed files against this bucket, and runs gsutil single-process, since its multiprocessing crashes Python on macOS.
+
+**Production:** no script yet. The staging one minus the `noindex` step and with the production API host (a plain `npm run build`) is the starting point.
+
+- `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`. Without the trailing slash GCS redirects `/about` to `/about/index.html`, which is why the staging script also uploads slash-less copies. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
+- Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML is `no-cache` so updates show up at once (a CDN in front can still hold an hour-old copy from before that header was set).
 - A bucket can't redirect old URLs (e.g. a live `/portal`); that needs the load balancer's URL map or a small stub page.
 
 ## Testing
@@ -56,35 +63,43 @@ All in `src/scripts/`. Pages load them with `<script>import '../scripts/<name>';
 
 | File | Loaded by | What it does |
 |---|---|---|
-| `api.ts` | every page (via `site.ts`) | **The one place form data leaves the page.** Turns each submission into a ready-to-send email and hands it to `SB.api.send`, currently a fake that logs and resolves; wire the real API there. |
+| `api.ts` | every page (via `site.ts`) | **The one place form data leaves the page.** Turns each submission into an email request and POSTs it to the ScoreBreak API in `SB.api.send`. |
 | `site.ts` | every page (`Layout.astro`) | Nav dropdowns, mobile menu, modals, and form handling, driven by `data-*` attributes (documented at the top of the file). |
 | `carousel.ts` | `index`, `lacrosse` | Testimonial carousels (`[data-carousel]`). |
 | `hero-video.ts` | `index` | Homepage hero video speed, fade and end card. |
 | `waitlist.ts` | `football` | Waitlist validation and the referral-link confirmation overlay. |
 
-Every form has `data-form="<name>"`. On submit, the API receives one JSON-ready object:
+Every form has `data-form="<name>"`. On submit, `SB.api.send` POSTs one JSON object to `<API_HOST>/api/marketing_site/mails` (no login, CORS open):
 
 ```js
 {
-  form: 'demo-request',                 // which form
-  category: 'sales',                    // which ScoreBreak inbox it lands in
-  title: 'Demo request: Test Academy',  // email subject
-  replyTo: 'test@example.com',          // the submitter's email
-  body: 'First Name: Test\nLast Name: User\n…\n\nSent from: https://…/demo/',  // plain-text email body
-  fields: { firstName: 'Test', … },     // raw values, keyed by input name
-  turnstileToken: '…'                   // Cloudflare Turnstile token, see Bot protection
+  type: 'general',                      // inbox: general → ben@, support → support@, test → radek@
+  title: 'Demo request: Test Academy',  // email subject, at most 200 characters
+  body: 'First Name: Test\nLast Name: User\n…\n\nSent from: https://…/demo/',  // plain text, at most 10000 characters
+  email: 'test@example.com',            // the submitter's email, sent as Reply-To
+  token: '…'                            // Cloudflare Turnstile token, see Bot protection
 }
 ```
 
-The body has one `Label: value` line per field, using the labels visitors see (and an option's text, not its code); messages go on their own lines and empty optional fields show `—`. Categories and titles are set per form in the `MAIL` table in `src/scripts/api.ts`, and `npm run test:static` fails if a form has no entry there.
+The body has one `Label: value` line per field, using the labels visitors see (and an option's text, not its code); messages go on their own lines and empty optional fields show `—`. Types and titles are set per form in the `MAIL` table in `src/scripts/api.ts`, and `npm run test:static` fails if a form has no entry there. Inputs are capped at 100 characters and textareas at 8000 (`maxlength`, also checked by `test:static`), and `api.ts` still clips the title and body to the API's limits.
 
-| Form | `data-form` | Category | Title | Fields |
+Where it goes, per build:
+
+| Build | API host | Inbox |
+|---|---|---|
+| `npm run dev` | `https://staging-api2.scorebreak.io` | `test` (radek@) for every form; each request and response is logged to the console |
+| `npm run deploy:staging` | `https://staging-api2.scorebreak.io` | per form, below |
+| `npm run build` (production) | `https://api2.scorebreak.io` | per form, below |
+
+`PUBLIC_API_HOST=… npm run build` overrides the host. A failed send keeps the form filled, outlines the submit button red and shows a short reason under it: too many requests (429), verification failed (422 token), invalid email (422 email), check your details (other 422), or "Something went wrong. Please try again later." for anything else.
+
+| Form | `data-form` | Type | Title | Fields |
 |---|---|---|---|---|
-| Contact modal ("Get in Touch", every page) | `contact-sales` | `sales` | Contact request: *first last* | `firstName`, `lastName`, `email`, `message` |
-| SOC 2 request modal (`/resources/`) | `soc2-request` | `sales` | SOC 2 report request: *email* | `email` |
-| Demo request (`/demo/`) | `demo-request` | `sales` | Demo request: *organization* | `firstName`, `lastName`, `email`, `phone`, `organization`, `sport`, `role`, `message` |
+| Contact modal ("Get in Touch", every page) | `contact-sales` | `general` | Contact request: *first last* | `firstName`, `lastName`, `email`, `message` |
+| SOC 2 request modal (`/resources/`) | `soc2-request` | `general` | SOC 2 report request: *email* | `email` |
+| Demo request (`/demo/`) | `demo-request` | `general` | Demo request: *organization* | `firstName`, `lastName`, `email`, `phone`, `organization`, `sport`, `role`, `message` |
 | Support form (`/support/`) | `support-request` | `support` | Support request: *name* | `name`, `email`, `message` |
-| Gridiron waitlist (`/football/`) | `waitlist` | `gridiron-waitlist` | Gridiron waitlist: *first last, school* | `first_name`, `last_name`, `email`, `school`, `position` |
+| Gridiron waitlist (`/football/`) | `waitlist` | `general` | Gridiron waitlist: *first last, school* | `first_name`, `last_name`, `email`, `school`, `position` |
 
 ## Bot protection
 
@@ -93,11 +108,11 @@ Two layers on every form:
 - **Honeypot**: a hidden `bot-field` input (off-screen, skipped by Tab, ignored by autofill). If it's filled, the visitor sees the normal success message and nothing is sent.
 - **Cloudflare Turnstile**: `site.ts` loads Cloudflare's script the first time someone uses a form, runs an invisible check on submit, and adds the resulting token to the message. Visitors only see a "Verify you are human" box if Cloudflare asks for interaction.
 
-Setup when wiring the real API:
+Setup:
 
-1. Create a Turnstile widget in the Cloudflare dashboard (free, no Cloudflare hosting needed) with the site's hostnames, including any test bucket's domain.
-2. Its **site key** is set in `config.turnstileSiteKey` in `src/scripts/api.ts` (`0x4AAAAAAFsh1-4bXRbaMMU5`). On `localhost`/`127.0.0.1` the site switches to Cloudflare's always-passing test key automatically, because the real key only works on the hostnames registered for the widget. A test deploy on any other hostname needs that hostname added to the widget (or its own widget).
-3. Keep the **secret key** on the API only. For every message, the API must verify `turnstileToken` with Cloudflare's Siteverify endpoint (and check the returned hostname) before sending any email. Without this server-side check, Turnstile gives no protection. Tokens are single-use and expire after 5 minutes; the site gets a fresh one on every send.
+1. The Turnstile widget in the Cloudflare dashboard lists every hostname the site runs on: production, staging (with and without `www`) and `localhost`. A new hostname has to be added there, or the check fails before anything is sent.
+2. Its **site key** is `config.turnstileSiteKey` in `src/scripts/api.ts` (`0x4AAAAAAFsh1-4bXRbaMMU5`), the same in every build.
+3. The **secret key** lives only on the API (`TURNSTILE_SECRET_KEY`), which verifies every `token` with Cloudflare's Siteverify before sending. If it's missing or wrong, every send fails with 500 "Captcha verification failed" and the Cloudflare dashboard warns that Siteverify isn't being called. Tokens are single-use and expire after 5 minutes; the site gets a fresh one on every send.
 
 Turnstile is a third-party script from `challenges.cloudflare.com`, which may need a mention in the privacy policy.
 
@@ -109,7 +124,7 @@ Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, serv
 |---|---|
 | `/` | Homepage (hero demo video with end card) |
 | `/lacrosse/`, `/basketball/` | Sport pages |
-| `/football/` | ScoreBreak Gridiron (football, coming soon / early access) |
+| `/football/` | ScoreBreak Gridiron (football, coming soon / early access). Hidden for now: see below |
 | `/other-sports/` | Soccer, ice hockey, field hockey, and other sports |
 | `/solutions/` | All solutions overview |
 | `/software/` | Team Software |
@@ -131,15 +146,9 @@ Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, serv
 
 ## To do
 
-**Forms.** Every form builds its email in `src/scripts/api.ts` and hands it to `SB.api.send`, which is currently a fake (nothing is sent). Wire it to the real API, which maps each category to an inbox:
+**Football.** `football: false` in `src/data/features.ts` hides every Football/Gridiron link (nav dropdown, Gridiron pill, mobile menu, footer) and the homepage card (the sports grid drops to two columns), and built sites turn `/football/` into an instant redirect to `/`. `npm run dev` still shows the page. The football page and waitlist browser tests are skipped while it's off. Set it to `true` to launch. The Gridiron waitlist sends to ben@ for now; its confirmation shows a referral link (`scorebreakgridiron.com/ref/<code>`) whose code is random and isn't stored anywhere.
 
-| Form | Send to |
-|---|---|
-| Support form (`/support/`) | support@scorebreak.io |
-| Demo request (`/demo/`) | ben@scorebreak.io |
-| Contact modal ("Get in Touch", every page) | ben@scorebreak.io |
-| SOC 2 request modal (`/resources/`) | ben@scorebreak.io |
-| Gridiron waitlist (`/football/`) | Not decided yet. Its confirmation shows a referral link (`scorebreakgridiron.com/ref/<code>`) whose code is random and isn't stored anywhere. |
+**Forms API in production.** The mail endpoint is only on the staging API so far; production forms fail until it reaches `api2.scorebreak.io`.
 
 **Redirects.** `portal.html` was renamed to `/recruiting-network/`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
 
