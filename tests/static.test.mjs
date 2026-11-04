@@ -196,6 +196,15 @@ test('every page has one canonical link to its scorebreak.io /path/ URL (the 404
   }
 });
 
+test('the sitemap lists exactly the published pages (no 404, no redirect stubs), and robots.txt points at it', () => {
+  const index = readFileSync(join(DIST, 'sitemap-index.xml'), 'utf8');
+  const sitemaps = [...index.matchAll(/<loc>https:\/\/scorebreak\.io\/([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const locs = sitemaps.flatMap((f) => [...readFileSync(join(DIST, f), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+  const expected = PAGES.filter((p) => p !== '/404.html').map((p) => `https://scorebreak.io${p}`);
+  assert.deepEqual(locs.sort(), expected.sort());
+  assert.match(readFileSync(join(DIST, 'robots.txt'), 'utf8'), /^Sitemap: https:\/\/scorebreak\.io\/sitemap-index\.xml$/m);
+});
+
 test('every page links the favicon', () => {
   for (const page of PAGES) {
     assert.ok(html[page].includes('<link rel="icon" type="image/png" href="/favicon.png">'), page);

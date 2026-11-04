@@ -8,7 +8,7 @@ Marketing site for ScoreBreak: film analysis software, Airborne sideline replay 
 
 - Built with [Astro](https://astro.build) and TypeScript into a fully static site: `npm run build` writes plain HTML, CSS, JS and assets to `dist/`, which any static host can serve. Pages have clean URLs with a trailing slash (`/about/`, `/blog/notes-all-over/`), built as `about/index.html` etc.; every internal link and asset path is site-root absolute (`/demo/`, `/logos/…`).
 - Layout:
-  - `src/pages/`: one `.astro` file per page. Each sets its `seo` (title, description, social tags; see `src/components/Seo.astro`) and wraps its content in `src/layouts/Layout.astro`. Its own CSS goes in a `<style>` at the end of the file: Astro scopes it to that page (`scopedStyleStrategy: 'where'`, so no added specificity), bundles it after the shared stylesheets, and `:global(...)` reaches markup outside the file (the theme attribute on `<html>`, child components, Markdown, script-created elements).
+  - `src/pages/`: one `.astro` file per page. Each sets its `seo` (title, description, social tags; see `src/components/Seo.astro`, which also adds the `<link rel="canonical">` to `https://scorebreak.io/<path>/`) and wraps its content in `src/layouts/Layout.astro`. Its own CSS goes in a `<style>` at the end of the file: Astro scopes it to that page (`scopedStyleStrategy: 'where'`, so no added specificity), bundles it after the shared stylesheets, and `:global(...)` reaches markup outside the file (the theme attribute on `<html>`, child components, Markdown, script-created elements).
   - `src/layouts/Layout.astro`: the shared `<head>`, nav, footer, contact modal and site script. Edit those once there and every page gets the change.
   - `src/components/`: `Nav` (sets `aria-current="page"` automatically), `Footer`, `ContactModal`, `Seo`, `Testimonial` / `TestimonialCarousel`, `CtaSection` (the closing "Contact Us" band), `PurposeBuilt` (the "Purpose-Built for Coaches, Players, and Leagues" section on index and lacrosse; each page passes its own items).
   - `src/data/`: `testimonials.ts` (every coach quote, used by id on index, lacrosse, basketball and recruiting-network; edit a quote once) and `school-logos.ts` (homepage logo marquee).
@@ -47,6 +47,8 @@ It uses plain `gsutil cp` rather than `gsutil rsync`, which skipped changed file
 
 - `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`. Without the trailing slash GCS redirects `/about` to `/about/index.html`, which is why the deploy script also uploads slash-less copies. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
 - Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML is cached for 60 seconds, so updates show up within a minute. The CDN currently caps what it sends browsers at one hour (`max-age=3600` on `/_astro/`); raising its client TTL lets browsers keep hashed assets for the full year.
+
+- `@astrojs/sitemap` writes `/sitemap-index.xml` (every page except 404 and redirect stubs such as `/football/` while it's off); `public/robots.txt` allows everything and points at it. Staging keeps the same robots.txt, since its noindex tags only work if crawlers can fetch the pages.
 
 ## Testing
 

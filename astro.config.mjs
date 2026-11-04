@@ -1,7 +1,11 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+import { features } from './src/data/features.ts';
 
 export default defineConfig({
   site: 'https://scorebreak.io',
+  // /sitemap-index.xml (linked from public/robots.txt): every page except 404 and redirect stubs.
+  integrations: [sitemap({ filter: (url) => !url.endsWith('/404/') && (features.football || !url.endsWith('/football/')) })],
   // Clean URLs that a Google Cloud Storage website bucket can serve: about.astro → about/index.html at /about/.
   // The bucket serves <dir>/index.html (MainPageSuffix) and redirects /about to /about/; dev accepts both.
   build: { format: 'directory' },
