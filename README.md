@@ -28,7 +28,7 @@ Both targets use `scripts/deploy.sh`, which asks before uploading and before del
 
 | | `npm run deploy:staging` | `npm run deploy:production` |
 |---|---|---|
-| Bucket | `gs://scorebreak-marketing-site-staging` (https://staging.scorebreak.io) | `gs://scorebreak-marketing-site` (https://scorebreak.io, once DNS points there) |
+| Bucket | `gs://scorebreak-marketing-site-staging` (https://staging.scorebreak.io) | `gs://scorebreak-marketing-site-production` (https://scorebreak.io, once DNS points there) |
 | Forms API | `https://staging-api2.scorebreak.io` | `https://api2.scorebreak.io` |
 | `noindex` on every page | yes | no |
 | Guard rails | warns about uncommitted changes | refuses uncommitted or unpushed changes; you type `production` to confirm |
@@ -47,7 +47,6 @@ It uses plain `gsutil cp` rather than `gsutil rsync`, which skipped changed file
 
 - `index.html` as the main page suffix is what makes clean URLs work: `/about/` serves `about/index.html`. Without the trailing slash GCS redirects `/about` to `/about/index.html`, which is why the deploy script also uploads slash-less copies. This only applies when the bucket is reached through its website endpoint (a custom domain via a load balancer, or a `c.storage.googleapis.com` CNAME), not through `storage.googleapis.com/<bucket>/…` links.
 - Files under `/_astro/` have content hashes in their names, so they can be cached for a long time (`Cache-Control: public, max-age=31536000, immutable`); HTML is cached for 60 seconds, so updates show up within a minute. The CDN currently caps what it sends browsers at one hour (`max-age=3600` on `/_astro/`); raising its client TTL lets browsers keep hashed assets for the full year.
-- A bucket can't redirect old URLs (e.g. a live `/portal`); that needs the load balancer's URL map or a small stub page.
 
 ## Testing
 
@@ -158,8 +157,6 @@ Source files are `src/pages/<name>.astro`; each builds `<name>/index.html`, serv
 **Football.** `football: false` in `src/data/features.ts` hides every Football/Gridiron link (nav dropdown, Gridiron pill, mobile menu, footer) and the homepage card (the sports grid drops to two columns), and built sites turn `/football/` into an instant redirect to `/`. `npm run dev` still shows the page. The football page and waitlist browser tests are skipped while it's off. Set it to `true` to launch. The Gridiron waitlist sends to ben@ for now; its confirmation shows a referral link (`scorebreakgridiron.com/ref/<code>`) whose code is random and isn't stored anywhere.
 
 **Forms API in production.** The mail endpoint is only on the staging API so far; production forms fail until it reaches `api2.scorebreak.io`.
-
-**Redirects.** `portal.html` was renamed to `/recruiting-network/`. If the current live ScoreBreak site has a /portal URL, please redirect it to the new page.
 
 **Known issues**
 - The football page doesn't load the shared `styles.css` (it was removed to resolve CSS conflicts with football's own styles). It uses the same nav, footer and modals as every other page via `Layout.astro` and `components.css`; its own colour variables that differ from the site's are prefixed `--gridiron-`. `npm test` checks it at desktop and phone widths. Keep this in mind when changing shared styles.

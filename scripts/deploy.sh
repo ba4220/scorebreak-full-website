@@ -13,7 +13,7 @@ case "$TARGET" in
     NOINDEX=1
     ;;
   production)
-    BUCKET="${BUCKET:-gs://scorebreak-marketing-site}"
+    BUCKET="${BUCKET:-gs://scorebreak-marketing-site-production}"
     unset PUBLIC_API_HOST
     NOINDEX=0
     ;;
