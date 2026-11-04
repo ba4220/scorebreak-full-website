@@ -189,6 +189,13 @@ test('every form has the honeypot, unfocusable by Tab and ignored by autofill', 
   }
 });
 
+test('every page has one canonical link to its scorebreak.io /path/ URL (the 404 page has none)', () => {
+  for (const page of PAGES) {
+    const links = [...html[page].matchAll(/<link rel="canonical" href="([^"]+)">/g)].map((m) => m[1]);
+    assert.deepEqual(links, page === '/404.html' ? [] : [`https://scorebreak.io${page}`], page);
+  }
+});
+
 test('every page links the favicon', () => {
   for (const page of PAGES) {
     assert.ok(html[page].includes('<link rel="icon" type="image/png" href="/favicon.png">'), page);

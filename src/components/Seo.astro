@@ -10,16 +10,19 @@ export interface SeoProps {
   // Pages that omit these get only twitter:card, and Twitter falls back to the og: tags.
   twitterTitle?: string;
   twitterDescription?: string;
-  // Overrides the default og:url for this page.
+  // Overrides the default og:url (and canonical) for this page.
   url?: string;
+  // <link rel="canonical"> to url, so /about, /about/ and www.scorebreak.io count as one page. 404 opts out.
+  canonical?: boolean;
 }
 type Props = SeoProps;
 
-const { title, description, keywords, ogTitle = title, ogDescription = description, ogType = 'website', twitterTitle, twitterDescription } = Astro.props;
+const { title, description, keywords, ogTitle = title, ogDescription = description, ogType = 'website', twitterTitle, twitterDescription, canonical = true } = Astro.props;
 const url = Astro.props.url ?? new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
 ---
 <title>{title}</title>
 <meta name="description" content={description} />
+{canonical && <link rel="canonical" href={url} />}
 {keywords && <meta name="keywords" content={keywords} />}
 <meta property="og:title" content={ogTitle} />
 <meta property="og:description" content={ogDescription} />
